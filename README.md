@@ -2,7 +2,7 @@
 
 ## Data files
 - acm_ts.csv: museum visitorship of ACM
-- intl_arrivals.csv: international arrivals
+- intl_arrivals.csv: international arrivals\
 Both data are pulled via api calls from Singstat Table Builder website.
 
 
