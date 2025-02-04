@@ -5,6 +5,7 @@ library(Metrics)
 library(tidyverse)
 library(zoo)
 library(xts)
+library(tseries)
 
 set.seed(123)
 
@@ -78,6 +79,19 @@ interpolation_func = function(ts_data){
 #turned off interpolation as it is not affecting modelling results
 #acm_ts_train = interpolation_func(acm_ts_train)
 
+#exogenous variable: STB international arrivals
+intl_ts = read.csv("C:/Users/xueli/OneDrive/Desktop/NHB/Visitor Forecast/intl_arrivals.csv")
+intl_ts = intl_ts[intl_ts$Data.Series=="Total International Visitor Arrivals By Inbound Tourism Markets",]
+#create date variable
+intl_ts$Reporting.Period = parse_date_time(intl_ts$Reporting.Period, "Y b")
+#drop unused variable
+intl_ts=subset(intl_ts, select=-c(Data.Series))
+#convert to time series object for time series modelling
+intl_ts = ts(intl_ts$Value, frequency=12, start=c(2014,1), end=c(2024,10))
+#split training set for exogenous variable
+result = ts_train_test_split(intl_ts, 0.8)
+intl_ts_train = result[[1]]
+intl_ts_test = result[[2]]
 
 
 #time series analysis
@@ -136,7 +150,7 @@ plot_actual_pred = function(full_df, pred_df){
 }
 
 
-#Model 1: Holt-Winters exponential smoothing with trend and additive seasonal component
+#===== Model 1: Holt-Winters exponential smoothing with trend and additive seasonal component =====
 HW_param_func = function(ts_data){
   #param grid
   alpha_range = seq(0.1, 0.9, by=0.1)
@@ -186,3 +200,60 @@ plot_actual_pred(acm_ts, HW_pred)
 #4. evaluation metrics for cross comparison across models
 M1_result = eval_metric(acm_ts_test, HW_pred)
 print(M1_result)
+
+
+#===== Model 2: SARIMA =====
+#test for stationarity
+adf.test(acm_ts_train)
+#does not reject null hypothesis of non-stationary
+acm_ts_train_diff = diff(acm_ts_train, differences=1)
+adf.test(acm_ts_train_diff)
+#1st order differencing help to reject null hypothesis and accepts stationarity, d=1
+
+#acf and pcaf plots to determine initial AR and MA parameters
+acf(acm_ts_train_diff, main="ACF Plot") 
+#plot cuts off at lag 2, q=2
+
+pacf(acm_ts_train_diff, main="PACF Plot") 
+#p=1
+#conclusion: initial mode is ARIMA(p=1,d=1,q=2)
+
+#fit model
+sarima_model = auto.arima(acm_ts_train, d=1, max.p=1, max.q=2, seasonal=T, D=1, stepwise=F)
+summary(sarima_model)
+#model selected is ARIMA(0,1,0)(2,1,0)[12]
+
+sarima_for = forecast(sarima_model, h=h)
+
+#output
+#1.forecast plot with confidence intervals
+plot(sarima_for)
+#2.autocorrelation test
+acf_test(sarima_for$residuals)
+#3.plot of actual v.s. predicted
+sarima_pred = sarima_for[[4]]
+plot_actual_pred(acm_ts, sarima_pred)
+#4.evaluation metrics for cross comparison across models
+M2_result = eval_metric(acm_ts_test, sarima_pred)
+print(M2_result)
+
+
+#===== Model 3: SARIMAX =====
+#fit model
+sarimax_model = auto.arima(acm_ts_train, d=1, max.p=1, max.q=2, seasonal=T, D=1, stepwise=F, xreg=intl_ts_train)
+summary(sarimax_model)
+#model selected is ARIMA(0,1,0)(1,1,0)[12]
+
+sarimax_for = forecast(sarimax_model, h=h, xreg=intl_ts_test)
+
+#output
+#1.forecast plot with confidence intervals
+plot(sarimax_for)
+#2.autocorrelation test
+acf_test(sarimax_for$residuals)
+#3.plot of actual v.s. predicted
+sarimax_pred = sarimax_for[[4]]
+plot_actual_pred(acm_ts, sarimax_pred)
+#4.evaluation metrics for cross comparison across models
+M2_result = eval_metric(acm_ts_test, sarimax_pred)
+print(M2_result)
