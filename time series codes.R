@@ -150,6 +150,13 @@ plot_actual_pred = function(full_df, pred_df){
 }
 
 
+#===== Baseline model: Monthly mean over 3 years =====
+latest_3years = window(acm_ts_train, start=c(end(acm_ts_train)[1]-2,1), end=end(acm_ts_train))
+monthly_mean = tapply(latest_3years, cycle(latest_3years), mean)
+baseline_pred = ts(monthly_mean, frequency=12, start=start(acm_ts_test), end=end(acm_ts_test))
+baseline_result = eval_metric(acm_ts_test, baseline_pred)
+
+
 #===== Model 1: Holt-Winters exponential smoothing with trend and additive seasonal component =====
 HW_param_func = function(ts_data){
   #param grid
