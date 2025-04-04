@@ -3,8 +3,8 @@
 ## Project folder structure 
 Look at Combined folder, where all the codes are consolidated at
 Combined/
-├── data/                # Data files from singstat api calls
-  ├── intl_arrivals.csv
+├── data/                # Data files from singstat api calls  
+  ├── intl_arrivals.csv  
   ├── museum_ts.csv
 ├── models/                # Python codes for different models
   ├── lstm.py
