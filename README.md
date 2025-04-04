@@ -1,7 +1,8 @@
 # Visitor Forecast 
 
 ## Project folder structure 
-Look at Combined folder, where all the codes are consolidated at
+Look at Combined folder (where all the codes are consolidated at)  
+```
 Combined/  
 ├── data/                # Data files from singstat api calls  
   ├── intl_arrivals.csv  
@@ -16,7 +17,8 @@ Combined/
   ├── singstat_api.py      # Singstat Table Builder API calls  
 ├── main.py                # Run main.py  
 ├── model_eval.csv         # Output for model evaluation  
-├── requirements.txt       # requirements.txt for python codes  
+├── requirements.txt       # requirements.txt for python codes
+```
 
 ## Data files
 - acm_ts.csv: museum visitorship of ACM
