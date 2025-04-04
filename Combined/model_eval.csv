@@ -1,0 +1,5 @@
+Model,RMSE,MAPE
+Random Forest Regressor,7.25,18.92%
+XGBoost,10.31,26.62%
+LSTM,6.06,15.51%
+TimeGPT,15.68,41.46%
