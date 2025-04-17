@@ -10,3 +10,4 @@ scikit-learn==1.6.1
 xgboost==3.0.0
 tensorflow==2.15.0
 nixtla==0.6.6
+plotnine==0.14.5
