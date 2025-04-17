@@ -11,7 +11,12 @@ Combined/
   ├── lstm.py  
   ├── randomforest.py  
   ├── timegpt.py  
-  ├── xgboost.py  
+  ├── xgboost.py
+├── timeplot_output/      #Time plot outputs of actual v.s. predicted values
+  ├── lstm_timeplot.png
+  ├── rf_timeplot.png
+  ├── timegpt_timeplot.png
+  ├── xgb_timeplot.png
 ├── utils/  
   ├── data_prep.py         # Data preparation codes  
   ├── singstat_api.py      # Singstat Table Builder API calls  
