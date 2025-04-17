@@ -64,5 +64,5 @@ def randomforest(train_data, test_data):
     mape_rf = mean_absolute_percentage_error(test_data["value"], test_data["Forecast"])
 
     model_eval= ['Random Forest Regressor', rmse_rf, mape_rf]
-    return model_eval
+    return model_eval, forecast
 

@@ -61,4 +61,4 @@ def xgb(train_data, test_data):
     mape_xgb = mean_absolute_percentage_error(test_data["value"], test_data["Forecast"])
     
     model_eval= ['XGBoost', rmse_xgb, mape_xgb]
-    return model_eval
+    return model_eval, forecast

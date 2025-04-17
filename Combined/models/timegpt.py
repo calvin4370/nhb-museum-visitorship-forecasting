@@ -42,6 +42,7 @@ def timegpt(train_data, test_data):
     # Parse forecast results
     forecast_df['timestamp'] = pd.to_datetime(forecast_df['timestamp'])
     forecast_df.set_index('timestamp', inplace=True)
+    forecast = forecast_df['TimeGPT'].values
 
     # Metrics Calculation
     rmse_timegpt = np.sqrt(mean_squared_error(test_data['value'], forecast_df['TimeGPT']))
@@ -49,4 +50,4 @@ def timegpt(train_data, test_data):
 
     model_eval= ['TimeGPT', rmse_timegpt, mape_timegpt]
 
-    return model_eval
+    return model_eval, forecast

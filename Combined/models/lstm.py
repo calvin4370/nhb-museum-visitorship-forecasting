@@ -65,4 +65,4 @@ def lstm(data):
     mape_lstm = mean_absolute_percentage_error(y_test_inv, test_predict)
 
     model_eval= ['LSTM', rmse_lstm, mape_lstm]
-    return model_eval
+    return model_eval, test_predict
