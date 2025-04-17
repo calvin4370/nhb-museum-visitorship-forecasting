@@ -3,6 +3,7 @@ import pandas as pd
 
 from utils.data_prep import data_prep
 from utils.singstat_api import singstat_api
+from utils.timeplot import timeplot
 
 from models.randomforest import randomforest
 from models.xgboost import xgb
@@ -29,17 +30,21 @@ def main(train_data, test_data, full_data):
     # Create list to store model evaluation results
     model_eval = []
 
-    model_eval_rf = randomforest(train_data, test_data)
+    model_eval_rf, rf_forecast = randomforest(train_data, test_data)
     model_eval.append(model_eval_rf)
+    timeplot("rf", train_data, test_data, rf_forecast)
     
-    model_eval_xgb = xgb(train_data, test_data)
+    model_eval_xgb, xgb_forecast = xgb(train_data, test_data)
     model_eval.append(model_eval_xgb)
+    timeplot("xgb", train_data, test_data, xgb_forecast)
 
-    model_eval_lstm = lstm(full_data)
+    model_eval_lstm, lstm_forecast = lstm(full_data)
     model_eval.append(model_eval_lstm)
+    timeplot("lstm", train_data, test_data, lstm_forecast)
 
-    model_eval_timegpt = timegpt(train_data, test_data)
+    model_eval_timegpt, timegpt_forecast = timegpt(train_data, test_data)
     model_eval.append(model_eval_timegpt)
+    timeplot("timegpt", train_data, test_data, timegpt_forecast)
 
     model_eval_df = pd.DataFrame(model_eval, columns=['Model', 'RMSE', 'MAPE'])
 
