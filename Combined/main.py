@@ -9,13 +9,17 @@ from models.randomforest import randomforest
 from models.xgboost import xgb
 from models.lstm import lstm
 from models.timegpt import timegpt
+from models.holtwinters import hw
+from models.sarimax import sarimax_model
+from models.baseline import baseline
+from models.svr import support_vec
 
 # Set institution param
 museum = "Asian Civilisations Museum"
 
 # 2 api calls made: museum visitorship and international arrivals
-visitors = singstat_api("M891071", 2014, "Jan", 2024, "Dec")
-arrivals = singstat_api("M550001", 2014, "Jan", 2024, "Dec")
+visitors = singstat_api("M891071", 2013, "Jan", 2024, "Dec")
+arrivals = singstat_api("M550001", 2013, "Jan", 2024, "Dec")
 
 # Filter specific museum visitorship data
 # output both data series (museum time series and STB international arrival time series)
@@ -42,9 +46,25 @@ def main(train_data, test_data, full_data):
     model_eval.append(model_eval_lstm)
     timeplot("lstm", train_data, test_data, lstm_forecast)
 
-    model_eval_timegpt, timegpt_forecast = timegpt(train_data, test_data)
-    model_eval.append(model_eval_timegpt)
-    timeplot("timegpt", train_data, test_data, timegpt_forecast)
+    #model_eval_timegpt, timegpt_forecast = timegpt(train_data, test_data)
+    #model_eval.append(model_eval_timegpt)
+    #timeplot("timegpt", train_data, test_data, timegpt_forecast)
+
+    model_eval_hw, hw_forecast = hw(train_data, test_data)
+    model_eval.append(model_eval_hw)
+    timeplot("hw", train_data, test_data, hw_forecast)
+
+    model_eval_sarimax, sarimax_forecast = sarimax_model(train_data, test_data)
+    model_eval.append(model_eval_sarimax)
+    timeplot("sarimax", train_data, test_data, sarimax_forecast)
+
+    model_eval_baseline, baseline_forecast = baseline(train_data, test_data)
+    model_eval.append(model_eval_baseline)
+    timeplot("baseline", train_data, test_data, baseline_forecast)
+
+    model_eval_svr, svr_forecast = support_vec(train_data, test_data)
+    model_eval.append(model_eval_svr)
+    timeplot("svr", train_data, test_data, svr_forecast)
 
     model_eval_df = pd.DataFrame(model_eval, columns=['Model', 'RMSE', 'MAPE'])
 
