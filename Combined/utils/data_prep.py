@@ -16,8 +16,6 @@ def data_prep():
     for lag in range(1, 13):
         df[f"lag_{lag}"] = df["value"].shift(lag)
 
-    #df["monthly_avg"] = df.groupby(df["month"])["value"].transform("mean")
-
     # Drop NaN rows created by lagging
     df.dropna(inplace=True)
 
@@ -28,6 +26,7 @@ def data_prep():
 
     # Monthly average calculated after train-test split to avoid data leakage
     train_data["monthly_avg"] = train_data.groupby(train_data["month"])["value"].transform("mean")
-    test_data["monthly_avg"] = train_data.groupby(train_data["month"])["value"].transform("mean")
+    monthly_avg = train_data[["month", "monthly_avg"]].drop_duplicates()
+    test_data = pd.merge(test_data, monthly_avg, on="month", how="left")
 
     return train_data, test_data, df
