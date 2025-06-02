@@ -8,7 +8,7 @@ from sklearn.svm import SVR
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
 
-def support_vec(train_data, test_data):
+def support_vec(train_data, test_data, eval):
     # Set seed for random forest
     random_state = 42
 
@@ -76,9 +76,12 @@ def support_vec(train_data, test_data):
     test_data["Forecast"] = forecast
 
     # Metrics Calculation
-    rmse_svr = root_mean_squared_error(test_data["value"], test_data["Forecast"])
-    mape_svr = mean_absolute_percentage_error(test_data["value"], test_data["Forecast"])
+    if eval:
+        rmse_svr = root_mean_squared_error(test_data["value"], test_data["Forecast"])
+        mape_svr = mean_absolute_percentage_error(test_data["value"], test_data["Forecast"])
 
-    model_eval= ['Support Vector Regression', rmse_svr, mape_svr]
+        model_eval = ['Support Vector Regression', rmse_svr, mape_svr]
+    else:
+        model_eval = []
 
     return model_eval, forecast

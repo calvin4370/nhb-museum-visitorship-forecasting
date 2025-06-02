@@ -5,7 +5,7 @@ import optuna
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
-def hw(train_data, test_data):
+def hw(train_data, test_data, eval):
     # Prepare input data for Holt Winters
     train_X = train_data.set_index("timestamp")["value"]
     train_X = train_X.asfreq('MS')
@@ -77,9 +77,13 @@ def hw(train_data, test_data):
     forecast = best_model_fitted.forecast(forecast_periods)
     test_data["Forecast"] = forecast.values
 
-    # Metrics Calculation
-    rmse_hw = root_mean_squared_error(test_data["value"], test_data["Forecast"])
-    mape_hw = mean_absolute_percentage_error(test_data["value"], test_data["Forecast"])
+    if eval:
+        # Metrics Calculation
+        rmse_hw = root_mean_squared_error(test_data["value"], test_data["Forecast"])
+        mape_hw = mean_absolute_percentage_error(test_data["value"], test_data["Forecast"])
 
-    model_eval= ['Holt-Winters exponential smoothing', rmse_hw, mape_hw]
+        model_eval= ['Holt-Winters exponential smoothing', rmse_hw, mape_hw]
+    else:
+        model_eval = []
+        
     return model_eval, forecast.values

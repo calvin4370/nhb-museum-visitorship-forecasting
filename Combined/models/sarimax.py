@@ -9,7 +9,7 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-def sarimax_model(train_data, test_data):
+def sarimax_model(train_data, test_data, eval):
     # Set seed for random forest
     random_state = 42
 
@@ -70,10 +70,13 @@ def sarimax_model(train_data, test_data):
     forecast = best_model_fitted.get_forecast(steps=forecast_periods, exog=test_data[features])
     test_data["Forecast"] = forecast.predicted_mean.values
 
-    # Metrics Calculation
-    rmse_sarimax = root_mean_squared_error(test_data["value"], test_data["Forecast"])
-    mape_sarimax = mean_absolute_percentage_error(test_data["value"], test_data["Forecast"])
+    if eval:    
+        # Metrics Calculation
+        rmse_sarimax = root_mean_squared_error(test_data["value"], test_data["Forecast"])
+        mape_sarimax = mean_absolute_percentage_error(test_data["value"], test_data["Forecast"])
 
-    model_eval= ['SARIMAX', rmse_sarimax, mape_sarimax]
+        model_eval = ['SARIMAX', rmse_sarimax, mape_sarimax]
+    else:
+        model_eval = []
     
     return model_eval, test_data["Forecast"]

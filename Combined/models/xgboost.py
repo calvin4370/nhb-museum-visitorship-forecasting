@@ -6,7 +6,7 @@ from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_er
 from sklearn.model_selection import TimeSeriesSplit
 from xgboost import XGBRegressor
 
-def xgb(train_data, test_data):
+def xgb(train_data, test_data, eval):
     # Define features and target
     features = ["sin_month", "cos_month", "monthly_avg"] + [
         f"lag_{i}" for i in range(1, 13)
@@ -56,9 +56,13 @@ def xgb(train_data, test_data):
     forecast = best_model.predict(test_data[features])
     test_data["Forecast"] = forecast
 
-    # Metrics Calculation
-    rmse_xgb = root_mean_squared_error(test_data["value"], test_data["Forecast"])
-    mape_xgb = mean_absolute_percentage_error(test_data["value"], test_data["Forecast"])
-    
-    model_eval= ['XGBoost', rmse_xgb, mape_xgb]
+    if eval:
+        # Metrics Calculation
+        rmse_xgb = root_mean_squared_error(test_data["value"], test_data["Forecast"])
+        mape_xgb = mean_absolute_percentage_error(test_data["value"], test_data["Forecast"])
+        
+        model_eval = ['XGBoost', rmse_xgb, mape_xgb]
+    else:
+        model_eval = []
+        
     return model_eval, forecast

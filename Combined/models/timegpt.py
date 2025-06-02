@@ -8,7 +8,7 @@ from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 
 from utilsforecast.losses import mae, mse, rmse, mape, smape
 
-def timegpt(train_data, test_data):
+def timegpt(train_data, test_data, eval):
     # Initialize NixtlaClient
     nixtla_api_key = os.getenv('nixtla_api_key')
     nixtla_client = NixtlaClient(api_key=f"{nixtla_api_key}")
@@ -44,10 +44,13 @@ def timegpt(train_data, test_data):
     forecast_df.set_index('timestamp', inplace=True)
     forecast = forecast_df['TimeGPT'].values
 
-    # Metrics Calculation
-    rmse_timegpt = np.sqrt(mean_squared_error(test_data['value'], forecast_df['TimeGPT']))
-    mape_timegpt = mean_absolute_percentage_error(test_data['value'], forecast_df['TimeGPT'])
+    if eval:
+        # Metrics Calculation
+        rmse_timegpt = np.sqrt(mean_squared_error(test_data['value'], forecast_df['TimeGPT']))
+        mape_timegpt = mean_absolute_percentage_error(test_data['value'], forecast_df['TimeGPT'])
 
-    model_eval= ['TimeGPT', rmse_timegpt, mape_timegpt]
+        model_eval = ['TimeGPT', rmse_timegpt, mape_timegpt]
+    else:
+        model_eval = []
 
     return model_eval, forecast

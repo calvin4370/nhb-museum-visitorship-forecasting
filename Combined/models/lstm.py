@@ -8,7 +8,7 @@ import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import LSTM, Dense
 
-def lstm(data):
+def lstm(data, eval, h):
     # Use only the 'Value' column for LSTM forecasting
     values = data['value'].values.reshape(-1, 1)
     
@@ -31,15 +31,26 @@ def lstm(data):
     
     # Create train-test split (80-20), ensuring no missing rows
     time_steps = 12
-    train_size = int(len(values_scaled) * 0.8)
+    if eval:
+        train_size = int(len(values_scaled) * 0.8)
 
-    # Include the last `time_steps` rows of training in test
-    train = values_scaled[:train_size]
-    test = values_scaled[train_size - time_steps:]
+        # Include the last `time_steps` rows of training in test
+        train = values_scaled[:train_size]
+        test = values_scaled[train_size - time_steps:]
 
-    # Create sequences
-    X_train, y_train = create_sequences(train, time_steps)
-    X_test, y_test = create_sequences(test, time_steps)
+        # Create sequences
+        X_train, y_train = create_sequences(train, time_steps)
+        X_test, y_test = create_sequences(test, time_steps)
+    
+    else:
+        train_size = int(len(values_scaled)) - h
+        train = values_scaled[:train_size]
+        test = values_scaled[train_size - time_steps:]
+        
+        # Create sequences
+        X_train, y_train = create_sequences(train, time_steps)
+        X_test, y_test = create_sequences(test, time_steps)
+
 
     model = Sequential([
         LSTM(50, return_sequences=True, input_shape=(time_steps, 1)),# need to change the number if add more exo variables
@@ -58,11 +69,17 @@ def lstm(data):
 
     # Inverse scale the predictions and actual values
     test_predict = scaler.inverse_transform(test_predict)
-    y_test_inv = scaler.inverse_transform(y_test)
 
-    # Compute RMSE and MAPE
-    rmse_lstm = np.sqrt(mean_squared_error(y_test_inv, test_predict))
-    mape_lstm = mean_absolute_percentage_error(y_test_inv, test_predict)
+    if eval:
+        # Inverse scale the predictions and actual values
+        y_test_inv = scaler.inverse_transform(y_test)
 
-    model_eval= ['LSTM', rmse_lstm, mape_lstm]
+        # Compute RMSE and MAPE
+        rmse_lstm = np.sqrt(mean_squared_error(y_test_inv, test_predict))
+        mape_lstm = mean_absolute_percentage_error(y_test_inv, test_predict)
+
+        model_eval = ['LSTM', rmse_lstm, mape_lstm]
+    else:
+        model_eval = []
+
     return model_eval, test_predict
