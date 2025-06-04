@@ -31,7 +31,7 @@ Combined/
   ├── timeplot.py          # Functions to output timeplots and predictions data frame
 ├── main.py                # Run main.py  
 ├── model_eval.csv         # Output for model evaluation
-├── predictions.csv         # Output for model evaluation  
+├── predictions.csv         # Output for model prediction  
 ├── requirements.txt       # requirements.txt for python codes
 ```
 
