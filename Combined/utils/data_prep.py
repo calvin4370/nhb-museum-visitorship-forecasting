@@ -6,7 +6,13 @@ def sin_cos_month(df):
     df["month"] = df["timestamp"].dt.month
     df["sin_month"] = np.sin(2 * np.pi * df["month"] / 12)
     df["cos_month"] = np.cos(2 * np.pi * df["month"] / 12)
+    return df
 
+def is_covid(df):
+    # Create COVID indicator, COVID impact captured between Apr 2020 to Feb 2023
+    covid_start = pd.Timestamp('2020-04-01')
+    covid_end = pd.Timestamp('2023-02-13')
+    df["is_covid"] = ((df["timestamp"]>=covid_start) & (df["timestamp"]<=covid_end)).astype(int)    
     return df
 
 def data_prep(split_ind, h):
@@ -24,6 +30,9 @@ def data_prep(split_ind, h):
 
     # Drop NaN rows created by lagging
     df.dropna(inplace=True)
+
+    # Create COVID indicator
+    df = is_covid(df)
 
     #Train-test split for model evaluation
     if split_ind:
@@ -52,6 +61,7 @@ def data_prep(split_ind, h):
         })
         test_data["Data Series"] = df["Data Series"].iloc[-1]
         test_data = sin_cos_month(test_data)
+        test_data = is_covid(test_data)
         
         new_df = df.tail(12)
         new_df = pd.concat([new_df,test_data], axis=0, join="outer")
