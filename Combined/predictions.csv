@@ -1,193 +1,193 @@
 Institution,Model,Year,Month,Prediction
-Peranakan Museum,rf,2025,4,12.883333333333349
-Peranakan Museum,rf,2025,5,15.424937500000029
-Peranakan Museum,rf,2025,6,14.962500000000055
-Peranakan Museum,rf,2025,7,14.962500000000055
-Peranakan Museum,rf,2025,8,24.72500000000001
-Peranakan Museum,rf,2025,9,14.051999999999975
-Peranakan Museum,rf,2025,10,13.993999999999987
-Peranakan Museum,rf,2025,11,12.883333333333349
-Peranakan Museum,rf,2025,12,13.855166666666655
-Peranakan Museum,rf,2026,1,14.962500000000055
-Peranakan Museum,rf,2026,2,14.962500000000055
-Peranakan Museum,rf,2026,3,24.72500000000001
-Peranakan Museum,rf,2026,4,12.883333333333349
-Peranakan Museum,rf,2026,5,15.424937500000029
-Peranakan Museum,rf,2026,6,14.962500000000055
-Peranakan Museum,rf,2026,7,15.462687500000024
-Peranakan Museum,rf,2026,8,24.72500000000001
-Peranakan Museum,rf,2026,9,14.051999999999975
-Peranakan Museum,rf,2026,10,13.993999999999987
-Peranakan Museum,rf,2026,11,12.883333333333349
-Peranakan Museum,rf,2026,12,12.883333333333349
-Peranakan Museum,rf,2027,1,14.962500000000055
-Peranakan Museum,rf,2027,2,14.962500000000055
-Peranakan Museum,rf,2027,3,24.72500000000001
-Peranakan Museum,xgb,2025,4,9.940417289733887
-Peranakan Museum,xgb,2025,5,15.395925521850586
-Peranakan Museum,xgb,2025,6,12.562698364257812
-Peranakan Museum,xgb,2025,7,13.594442367553711
-Peranakan Museum,xgb,2025,8,21.416261672973633
-Peranakan Museum,xgb,2025,9,15.17875862121582
-Peranakan Museum,xgb,2025,10,16.933000564575195
-Peranakan Museum,xgb,2025,11,15.21498966217041
-Peranakan Museum,xgb,2025,12,16.088151931762695
-Peranakan Museum,xgb,2026,1,21.090425491333008
-Peranakan Museum,xgb,2026,2,11.361141204833984
-Peranakan Museum,xgb,2026,3,23.166683197021484
-Peranakan Museum,xgb,2026,4,4.041472434997559
-Peranakan Museum,xgb,2026,5,10.341425895690918
-Peranakan Museum,xgb,2026,6,12.475774765014648
-Peranakan Museum,xgb,2026,7,13.364419937133789
-Peranakan Museum,xgb,2026,8,36.627349853515625
-Peranakan Museum,xgb,2026,9,13.285972595214844
-Peranakan Museum,xgb,2026,10,16.04180145263672
-Peranakan Museum,xgb,2026,11,13.907588005065918
-Peranakan Museum,xgb,2026,12,15.279675483703613
-Peranakan Museum,xgb,2027,1,20.35995864868164
-Peranakan Museum,xgb,2027,2,10.619171142578125
-Peranakan Museum,xgb,2027,3,23.166683197021484
-Peranakan Museum,lstm,2025,4,16.186599731445312
-Peranakan Museum,lstm,2025,5,15.5050048828125
-Peranakan Museum,lstm,2025,6,16.77411460876465
-Peranakan Museum,lstm,2025,7,17.078350067138672
-Peranakan Museum,lstm,2025,8,18.017642974853516
-Peranakan Museum,lstm,2025,9,26.449268341064453
-Peranakan Museum,lstm,2025,10,20.401704788208008
-Peranakan Museum,lstm,2025,11,18.092697143554688
-Peranakan Museum,lstm,2025,12,15.482836723327637
-Peranakan Museum,lstm,2026,1,13.882509231567383
-Peranakan Museum,lstm,2026,2,13.736315727233887
-Peranakan Museum,lstm,2026,3,14.672528266906738
-Peranakan Museum,lstm,2026,4,17.9044132232666
-Peranakan Museum,lstm,2026,5,16.57901954650879
-Peranakan Museum,lstm,2026,6,17.345623016357422
-Peranakan Museum,lstm,2026,7,17.743574142456055
-Peranakan Museum,lstm,2026,8,18.976886749267578
-Peranakan Museum,lstm,2026,9,26.25335121154785
-Peranakan Museum,lstm,2026,10,20.413469314575195
-Peranakan Museum,lstm,2026,11,18.269433975219727
-Peranakan Museum,lstm,2026,12,15.774327278137207
-Peranakan Museum,lstm,2027,1,14.185242652893066
-Peranakan Museum,lstm,2027,2,13.989300727844238
-Peranakan Museum,lstm,2027,3,14.603238105773926
-Peranakan Museum,timegpt,2025,4,12.8234825
-Peranakan Museum,timegpt,2025,5,16.3026
-Peranakan Museum,timegpt,2025,6,15.67034
-Peranakan Museum,timegpt,2025,7,13.129286
-Peranakan Museum,timegpt,2025,8,24.129341
-Peranakan Museum,timegpt,2025,9,12.22558
-Peranakan Museum,timegpt,2025,10,12.259769
-Peranakan Museum,timegpt,2025,11,11.412292
-Peranakan Museum,timegpt,2025,12,11.217048
-Peranakan Museum,timegpt,2026,1,12.32792
-Peranakan Museum,timegpt,2026,2,14.660218
-Peranakan Museum,timegpt,2026,3,20.509426
-Peranakan Museum,timegpt,2026,4,11.555995
-Peranakan Museum,timegpt,2026,5,15.98007
-Peranakan Museum,timegpt,2026,6,15.371327
-Peranakan Museum,timegpt,2026,7,13.052539
-Peranakan Museum,timegpt,2026,8,23.727867
-Peranakan Museum,timegpt,2026,9,12.122341
-Peranakan Museum,timegpt,2026,10,12.378536
-Peranakan Museum,timegpt,2026,11,11.140073
-Peranakan Museum,timegpt,2026,12,11.219093
-Peranakan Museum,timegpt,2027,1,12.4023
-Peranakan Museum,timegpt,2027,2,14.523188
-Peranakan Museum,timegpt,2027,3,21.097878
-Peranakan Museum,hw,2025,4,-0.8595076935081742
-Peranakan Museum,hw,2025,5,13.684493775256586
-Peranakan Museum,hw,2025,6,9.760030706377822
-Peranakan Museum,hw,2025,7,10.005197029550784
-Peranakan Museum,hw,2025,8,17.65660988273553
-Peranakan Museum,hw,2025,9,10.728827607139412
-Peranakan Museum,hw,2025,10,1.8304149066770243
-Peranakan Museum,hw,2025,11,8.72551502410308
-Peranakan Museum,hw,2025,12,6.588991736660991
-Peranakan Museum,hw,2026,1,6.377956130406053
-Peranakan Museum,hw,2026,2,4.236281952272517
-Peranakan Museum,hw,2026,3,16.641381542320925
-Peranakan Museum,hw,2026,4,-8.229726290626832
-Peranakan Museum,hw,2026,5,6.314275178137928
-Peranakan Museum,hw,2026,6,2.3898121092591644
-Peranakan Museum,hw,2026,7,2.6349784324321264
-Peranakan Museum,hw,2026,8,10.286391285616872
-Peranakan Museum,hw,2026,9,3.3586090100207526
-Peranakan Museum,hw,2026,10,-5.539803690441634
-Peranakan Museum,hw,2026,11,1.3552964269844217
-Peranakan Museum,hw,2026,12,-0.781226860457667
-Peranakan Museum,hw,2027,1,-0.9922624667126051
-Peranakan Museum,hw,2027,2,-3.133936644846141
-Peranakan Museum,hw,2027,3,9.271162945202267
-Peranakan Museum,sarimax,2025,4,14.224819717260129
-Peranakan Museum,sarimax,2025,5,16.55772609665897
-Peranakan Museum,sarimax,2025,6,16.853235518839053
-Peranakan Museum,sarimax,2025,7,18.745518418862
-Peranakan Museum,sarimax,2025,8,29.67783332651017
-Peranakan Museum,sarimax,2025,9,15.646744985201952
-Peranakan Museum,sarimax,2025,10,16.307074774086256
-Peranakan Museum,sarimax,2025,11,15.089666025570992
-Peranakan Museum,sarimax,2025,12,13.58509799828451
-Peranakan Museum,sarimax,2026,1,13.621681473586708
-Peranakan Museum,sarimax,2026,2,12.43192147747895
-Peranakan Museum,sarimax,2026,3,23.668568381458154
-Peranakan Museum,sarimax,2026,4,15.302913348008135
-Peranakan Museum,sarimax,2026,5,17.11104744687967
-Peranakan Museum,sarimax,2026,6,17.26856723904893
-Peranakan Museum,sarimax,2026,7,19.01067311536547
-Peranakan Museum,sarimax,2026,8,39.72853386532434
-Peranakan Museum,sarimax,2026,9,15.252394545393438
-Peranakan Museum,sarimax,2026,10,16.845006391904057
-Peranakan Museum,sarimax,2026,11,16.141331927753424
-Peranakan Museum,sarimax,2026,12,15.434829528196971
-Peranakan Museum,sarimax,2027,1,15.435840863162364
-Peranakan Museum,sarimax,2027,2,15.783952885736662
-Peranakan Museum,sarimax,2027,3,23.042097409758135
-Peranakan Museum,baseline,2025,4,8.233333333333333
-Peranakan Museum,baseline,2025,5,9.966666666666667
-Peranakan Museum,baseline,2025,6,9.966666666666667
-Peranakan Museum,baseline,2025,7,9.466666666666667
-Peranakan Museum,baseline,2025,8,17.466666666666665
-Peranakan Museum,baseline,2025,9,8.566666666666666
-Peranakan Museum,baseline,2025,10,7.566666666666667
-Peranakan Museum,baseline,2025,11,6.866666666666667
-Peranakan Museum,baseline,2025,12,6.333333333333333
-Peranakan Museum,baseline,2026,1,7.666666666666667
-Peranakan Museum,baseline,2026,2,14.333333333333334
-Peranakan Museum,baseline,2026,3,19.5
-Peranakan Museum,baseline,2026,4,8.233333333333333
-Peranakan Museum,baseline,2026,5,9.966666666666667
-Peranakan Museum,baseline,2026,6,9.966666666666667
-Peranakan Museum,baseline,2026,7,9.466666666666667
-Peranakan Museum,baseline,2026,8,17.466666666666665
-Peranakan Museum,baseline,2026,9,8.566666666666666
-Peranakan Museum,baseline,2026,10,7.566666666666667
-Peranakan Museum,baseline,2026,11,6.866666666666667
-Peranakan Museum,baseline,2026,12,6.333333333333333
-Peranakan Museum,baseline,2027,1,7.666666666666667
-Peranakan Museum,baseline,2027,2,14.333333333333334
-Peranakan Museum,baseline,2027,3,19.5
-Peranakan Museum,svr,2025,4,11.887588518521879
-Peranakan Museum,svr,2025,5,14.317687095604613
-Peranakan Museum,svr,2025,6,15.45765332338268
-Peranakan Museum,svr,2025,7,16.93610068977888
-Peranakan Museum,svr,2025,8,24.583714527547837
-Peranakan Museum,svr,2025,9,19.74292724221377
-Peranakan Museum,svr,2025,10,17.687561936268867
-Peranakan Museum,svr,2025,11,16.475939188635767
-Peranakan Museum,svr,2025,12,14.636231066591888
-Peranakan Museum,svr,2026,1,17.069966895994927
-Peranakan Museum,svr,2026,2,16.03453205661941
-Peranakan Museum,svr,2026,3,30.109148292934044
-Peranakan Museum,svr,2026,4,6.807038211015438
-Peranakan Museum,svr,2026,5,12.693928716217135
-Peranakan Museum,svr,2026,6,15.419303943980168
-Peranakan Museum,svr,2026,7,17.745338627598034
-Peranakan Museum,svr,2026,8,23.70371134170845
-Peranakan Museum,svr,2026,9,18.887956951026002
-Peranakan Museum,svr,2026,10,17.112762773075378
-Peranakan Museum,svr,2026,11,15.602742963902157
-Peranakan Museum,svr,2026,12,13.842824519953734
-Peranakan Museum,svr,2027,1,17.006499048222352
-Peranakan Museum,svr,2027,2,15.9797848752046
-Peranakan Museum,svr,2027,3,30.152207993192068
+Indian Heritage Centre,rf,2025,4,18.21944098959687
+Indian Heritage Centre,rf,2025,5,16.128774943959208
+Indian Heritage Centre,rf,2025,6,11.954581676547557
+Indian Heritage Centre,rf,2025,7,17.37808481379732
+Indian Heritage Centre,rf,2025,8,15.603315899414536
+Indian Heritage Centre,rf,2025,9,13.838879912569137
+Indian Heritage Centre,rf,2025,10,25.8524674075924
+Indian Heritage Centre,rf,2025,11,13.691066717286542
+Indian Heritage Centre,rf,2025,12,11.506741377032258
+Indian Heritage Centre,rf,2026,1,17.91429116161616
+Indian Heritage Centre,rf,2026,2,13.222490616036923
+Indian Heritage Centre,rf,2026,3,12.907464031229917
+Indian Heritage Centre,rf,2026,4,18.01106016209105
+Indian Heritage Centre,rf,2026,5,14.48977673165952
+Indian Heritage Centre,rf,2026,6,12.485429062168475
+Indian Heritage Centre,rf,2026,7,16.030482432844934
+Indian Heritage Centre,rf,2026,8,15.210887494856129
+Indian Heritage Centre,rf,2026,9,13.74232713479136
+Indian Heritage Centre,rf,2026,10,24.221605899655902
+Indian Heritage Centre,rf,2026,11,13.525178449998279
+Indian Heritage Centre,rf,2026,12,11.620878281794162
+Indian Heritage Centre,rf,2027,1,18.071694733044733
+Indian Heritage Centre,rf,2027,2,13.026095377941685
+Indian Heritage Centre,rf,2027,3,12.907464031229917
+Indian Heritage Centre,xgb,2025,4,14.626821517944336
+Indian Heritage Centre,xgb,2025,5,15.28197956085205
+Indian Heritage Centre,xgb,2025,6,9.58920669555664
+Indian Heritage Centre,xgb,2025,7,16.883907318115234
+Indian Heritage Centre,xgb,2025,8,16.064254760742188
+Indian Heritage Centre,xgb,2025,9,15.548233985900879
+Indian Heritage Centre,xgb,2025,10,22.879127502441406
+Indian Heritage Centre,xgb,2025,11,17.256168365478516
+Indian Heritage Centre,xgb,2025,12,11.401201248168945
+Indian Heritage Centre,xgb,2026,1,16.616321563720703
+Indian Heritage Centre,xgb,2026,2,13.57455825805664
+Indian Heritage Centre,xgb,2026,3,11.032584190368652
+Indian Heritage Centre,xgb,2026,4,16.002182006835938
+Indian Heritage Centre,xgb,2026,5,16.994384765625
+Indian Heritage Centre,xgb,2026,6,12.101950645446777
+Indian Heritage Centre,xgb,2026,7,12.264551162719727
+Indian Heritage Centre,xgb,2026,8,16.330591201782227
+Indian Heritage Centre,xgb,2026,9,12.461051940917969
+Indian Heritage Centre,xgb,2026,10,16.878170013427734
+Indian Heritage Centre,xgb,2026,11,12.474079132080078
+Indian Heritage Centre,xgb,2026,12,11.569134712219238
+Indian Heritage Centre,xgb,2027,1,18.1705379486084
+Indian Heritage Centre,xgb,2027,2,13.696494102478027
+Indian Heritage Centre,xgb,2027,3,11.021321296691895
+Indian Heritage Centre,lstm,2025,4,17.581043243408203
+Indian Heritage Centre,lstm,2025,5,17.321758270263672
+Indian Heritage Centre,lstm,2025,6,16.699777603149414
+Indian Heritage Centre,lstm,2025,7,15.857122421264648
+Indian Heritage Centre,lstm,2025,8,15.653901100158691
+Indian Heritage Centre,lstm,2025,9,15.828010559082031
+Indian Heritage Centre,lstm,2025,10,15.840312004089355
+Indian Heritage Centre,lstm,2025,11,15.876810073852539
+Indian Heritage Centre,lstm,2025,12,17.07794761657715
+Indian Heritage Centre,lstm,2026,1,17.2106990814209
+Indian Heritage Centre,lstm,2026,2,16.58594512939453
+Indian Heritage Centre,lstm,2026,3,16.66291046142578
+Indian Heritage Centre,lstm,2026,4,16.401002883911133
+Indian Heritage Centre,lstm,2026,5,16.194862365722656
+Indian Heritage Centre,lstm,2026,6,15.964395523071289
+Indian Heritage Centre,lstm,2026,7,15.476301193237305
+Indian Heritage Centre,lstm,2026,8,15.44025993347168
+Indian Heritage Centre,lstm,2026,9,15.694114685058594
+Indian Heritage Centre,lstm,2026,10,15.756322860717773
+Indian Heritage Centre,lstm,2026,11,15.849868774414062
+Indian Heritage Centre,lstm,2026,12,17.060914993286133
+Indian Heritage Centre,lstm,2027,1,17.196203231811523
+Indian Heritage Centre,lstm,2027,2,16.579816818237305
+Indian Heritage Centre,lstm,2027,3,16.66242218017578
+Indian Heritage Centre,timegpt,2025,4,20.086586
+Indian Heritage Centre,timegpt,2025,5,18.533234
+Indian Heritage Centre,timegpt,2025,6,16.704552
+Indian Heritage Centre,timegpt,2025,7,23.23126
+Indian Heritage Centre,timegpt,2025,8,18.97261
+Indian Heritage Centre,timegpt,2025,9,17.238024
+Indian Heritage Centre,timegpt,2025,10,30.600803
+Indian Heritage Centre,timegpt,2025,11,20.828697
+Indian Heritage Centre,timegpt,2025,12,14.525221
+Indian Heritage Centre,timegpt,2026,1,29.303482
+Indian Heritage Centre,timegpt,2026,2,17.68684
+Indian Heritage Centre,timegpt,2026,3,19.343636
+Indian Heritage Centre,timegpt,2026,4,22.249958
+Indian Heritage Centre,timegpt,2026,5,20.098774
+Indian Heritage Centre,timegpt,2026,6,18.871834
+Indian Heritage Centre,timegpt,2026,7,25.691425
+Indian Heritage Centre,timegpt,2026,8,21.425829
+Indian Heritage Centre,timegpt,2026,9,19.845133
+Indian Heritage Centre,timegpt,2026,10,33.19617
+Indian Heritage Centre,timegpt,2026,11,22.579006
+Indian Heritage Centre,timegpt,2026,12,16.915825
+Indian Heritage Centre,timegpt,2027,1,31.465023
+Indian Heritage Centre,timegpt,2027,2,20.31889
+Indian Heritage Centre,timegpt,2027,3,21.834171
+Indian Heritage Centre,hw,2025,4,19.819435397245513
+Indian Heritage Centre,hw,2025,5,17.188055606559548
+Indian Heritage Centre,hw,2025,6,10.515887675481242
+Indian Heritage Centre,hw,2025,7,19.913530431739407
+Indian Heritage Centre,hw,2025,8,14.148091924109792
+Indian Heritage Centre,hw,2025,9,9.004367016527471
+Indian Heritage Centre,hw,2025,10,34.76723510494283
+Indian Heritage Centre,hw,2025,11,6.618098895073269
+Indian Heritage Centre,hw,2025,12,4.133424293862863
+Indian Heritage Centre,hw,2026,1,19.079649401431855
+Indian Heritage Centre,hw,2026,2,15.682919521850726
+Indian Heritage Centre,hw,2026,3,14.51846307192842
+Indian Heritage Centre,hw,2026,4,20.022543994231725
+Indian Heritage Centre,hw,2026,5,17.39116420354576
+Indian Heritage Centre,hw,2026,6,10.718996272467455
+Indian Heritage Centre,hw,2026,7,20.116639028725622
+Indian Heritage Centre,hw,2026,8,14.351200521096006
+Indian Heritage Centre,hw,2026,9,9.207475613513683
+Indian Heritage Centre,hw,2026,10,34.97034370192904
+Indian Heritage Centre,hw,2026,11,6.821207492059482
+Indian Heritage Centre,hw,2026,12,4.336532890849076
+Indian Heritage Centre,hw,2027,1,19.28275799841807
+Indian Heritage Centre,hw,2027,2,15.88602811883694
+Indian Heritage Centre,hw,2027,3,14.721571668914633
+Indian Heritage Centre,sarimax,2025,4,15.346656328199895
+Indian Heritage Centre,sarimax,2025,5,14.570438901322035
+Indian Heritage Centre,sarimax,2025,6,11.885111901754874
+Indian Heritage Centre,sarimax,2025,7,17.338371288286186
+Indian Heritage Centre,sarimax,2025,8,13.369394619672791
+Indian Heritage Centre,sarimax,2025,9,12.683360798292409
+Indian Heritage Centre,sarimax,2025,10,24.06902661819672
+Indian Heritage Centre,sarimax,2025,11,16.10982671032688
+Indian Heritage Centre,sarimax,2025,12,11.016298528694227
+Indian Heritage Centre,sarimax,2026,1,21.491960960919663
+Indian Heritage Centre,sarimax,2026,2,12.77609737088768
+Indian Heritage Centre,sarimax,2026,3,13.510986416084773
+Indian Heritage Centre,sarimax,2026,4,15.808107424268123
+Indian Heritage Centre,sarimax,2026,5,13.996850722089615
+Indian Heritage Centre,sarimax,2026,6,13.041948614284884
+Indian Heritage Centre,sarimax,2026,7,17.581312491872445
+Indian Heritage Centre,sarimax,2026,8,15.250591677121138
+Indian Heritage Centre,sarimax,2026,9,13.645113863727076
+Indian Heritage Centre,sarimax,2026,10,25.6056748205869
+Indian Heritage Centre,sarimax,2026,11,15.82112037447282
+Indian Heritage Centre,sarimax,2026,12,11.256957982106822
+Indian Heritage Centre,sarimax,2027,1,21.859743470196662
+Indian Heritage Centre,sarimax,2027,2,13.202824913742814
+Indian Heritage Centre,sarimax,2027,3,13.544805858029445
+Indian Heritage Centre,baseline,2025,4,14.866666666666667
+Indian Heritage Centre,baseline,2025,5,14.733333333333334
+Indian Heritage Centre,baseline,2025,6,10.733333333333334
+Indian Heritage Centre,baseline,2025,7,17.566666666666666
+Indian Heritage Centre,baseline,2025,8,14.766666666666666
+Indian Heritage Centre,baseline,2025,9,12.266666666666666
+Indian Heritage Centre,baseline,2025,10,33.9
+Indian Heritage Centre,baseline,2025,11,16.03333333333333
+Indian Heritage Centre,baseline,2025,12,6.7
+Indian Heritage Centre,baseline,2026,1,21.933333333333334
+Indian Heritage Centre,baseline,2026,2,15.300000000000002
+Indian Heritage Centre,baseline,2026,3,14.566666666666668
+Indian Heritage Centre,baseline,2026,4,14.866666666666667
+Indian Heritage Centre,baseline,2026,5,14.733333333333334
+Indian Heritage Centre,baseline,2026,6,10.733333333333334
+Indian Heritage Centre,baseline,2026,7,17.566666666666666
+Indian Heritage Centre,baseline,2026,8,14.766666666666666
+Indian Heritage Centre,baseline,2026,9,12.266666666666666
+Indian Heritage Centre,baseline,2026,10,33.9
+Indian Heritage Centre,baseline,2026,11,16.03333333333333
+Indian Heritage Centre,baseline,2026,12,6.7
+Indian Heritage Centre,baseline,2027,1,21.933333333333334
+Indian Heritage Centre,baseline,2027,2,15.300000000000002
+Indian Heritage Centre,baseline,2027,3,14.566666666666668
+Indian Heritage Centre,svr,2025,4,18.520959952097368
+Indian Heritage Centre,svr,2025,5,14.383708814461999
+Indian Heritage Centre,svr,2025,6,9.677516257123893
+Indian Heritage Centre,svr,2025,7,15.026283833504289
+Indian Heritage Centre,svr,2025,8,14.666555392913759
+Indian Heritage Centre,svr,2025,9,3.77360643968161
+Indian Heritage Centre,svr,2025,10,10.057211897351964
+Indian Heritage Centre,svr,2025,11,17.49500923557432
+Indian Heritage Centre,svr,2025,12,8.35423978542295
+Indian Heritage Centre,svr,2026,1,12.707790445394574
+Indian Heritage Centre,svr,2026,2,10.907226025083228
+Indian Heritage Centre,svr,2026,3,12.11793465377045
+Indian Heritage Centre,svr,2026,4,15.60313583913434
+Indian Heritage Centre,svr,2026,5,17.858343411372193
+Indian Heritage Centre,svr,2026,6,13.300874250556165
+Indian Heritage Centre,svr,2026,7,14.606103175139959
+Indian Heritage Centre,svr,2026,8,15.59842570488698
+Indian Heritage Centre,svr,2026,9,11.787028756815085
+Indian Heritage Centre,svr,2026,10,16.16168899893238
+Indian Heritage Centre,svr,2026,11,15.644607985505134
+Indian Heritage Centre,svr,2026,12,7.025687640419308
+Indian Heritage Centre,svr,2027,1,13.5940271216057
+Indian Heritage Centre,svr,2027,2,13.334323011206466
+Indian Heritage Centre,svr,2027,3,12.294300816780458
