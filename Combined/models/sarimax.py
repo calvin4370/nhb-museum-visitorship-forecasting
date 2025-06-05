@@ -14,7 +14,7 @@ def sarimax_model(train_data, test_data, eval):
     random_state = 42
 
     # Define features and target
-    features = ["sin_month", "cos_month", "monthly_avg"] + [
+    features = ["sin_month", "cos_month", "monthly_avg", "is_covid"] + [
         f"lag_{i}" for i in range(1, 13)
     ]
     target = "value"

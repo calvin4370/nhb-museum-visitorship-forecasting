@@ -20,6 +20,9 @@ def timegpt(train_data, test_data, eval):
     future_dates['monthly_avg'] = test_data['monthly_avg'].values
     future_dates['lag_1'] = train_data['value'].iloc[-1]  # Last value from train as lag_1
     future_dates['lag_12'] = train_data['value'].iloc[-12]  # Value 12 months back as lag_12
+    covid_start = pd.Timestamp('2020-04-01')
+    covid_end = pd.Timestamp('2023-02-13')
+    future_dates['is_covid'] = ((future_dates["timestamp"]>=covid_start) & (future_dates["timestamp"]<=covid_end)).astype(int)  
 
     # Forecast using Nixtla
     forecast_horizon = len(test_data)
@@ -28,7 +31,7 @@ def timegpt(train_data, test_data, eval):
     #finetune_loss = 'rmse'  # tried tuning for rmse but got both worse results fr rmse and mape
 
     forecast_df = nixtla_client.forecast(
-        df=train_data[['timestamp', 'value', 'sin_month', 'cos_month', 'monthly_avg', 'lag_1', 'lag_12']],
+        df=train_data[['timestamp', 'value', 'sin_month', 'cos_month', 'monthly_avg', 'lag_1', 'lag_12', "is_covid"]],
         h=forecast_horizon,
         time_col="timestamp",
         target_col="value",
