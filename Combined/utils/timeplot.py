@@ -77,9 +77,9 @@ def timeplot(model_name, train_data, test_data, forecast, eval):
         + geom_ribbon(aes(ymin="lower_ci", ymax="upper_ci", fill="Type"), alpha=0.2)
         + scale_x_datetime(date_breaks="2 years", date_labels="%Y")
         + labs(
-            title="Forecast with Confidence Intervals (2014-2024)",
+            title="Forecast with Confidence Intervals",
             x="Year",
-            y="Visitorship",
+            y="Monthly Visitorship ('000)",
         )
         + theme_classic()
     )
