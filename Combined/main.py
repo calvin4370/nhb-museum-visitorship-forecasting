@@ -101,7 +101,6 @@ def main(train_data, test_data, full_data):
         baseline_forecast = forecast_table("baseline", baseline_forecast.values)
         svr_forecast = forecast_table ("svr", svr_forecast)
 
-        #still missing timegpt, sarimax and baseline (not fixed yet)
         forecast_overall = pd.concat(
             [rf_forecast, 
             xgb_forecast, 
@@ -116,5 +115,6 @@ def main(train_data, test_data, full_data):
         forecast_overall["Year"] = test_data["timestamp"].dt.year
         forecast_overall = forecast_overall[["Institution", "Model", "Year", "Month", "Prediction"]]
         forecast_overall.to_csv("./predictions.csv", index=False)
+
 
 main(train_data, test_data, full_data)
