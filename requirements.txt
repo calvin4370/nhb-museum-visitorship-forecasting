@@ -1,0 +1,14 @@
+#Python 3.11.9
+
+pandas==2.2.3
+numpy==1.26.4
+mizani==0.13.1
+plotnine==0.14.5
+matplotlib==3.10.1
+optuna==4.2.1
+scikit-learn==1.6.1
+xgboost==3.0.0
+tensorflow==2.15.0
+nixtla==0.6.6
+plotnine==0.14.5
+statsmodels==0.14.4
