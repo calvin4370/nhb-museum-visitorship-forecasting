@@ -6,7 +6,7 @@ from src.data.singstat_api import singstat_api
 from src.visualisation.timeplot import timeplot, forecast_table
 
 from src.models.randomforest import randomforest
-from src.models.xgboost import xgb
+from src.models.xgboost_model import xgb
 from src.models.lstm import lstm
 from src.models.timegpt import timegpt
 from src.models.holtwinters import hw
