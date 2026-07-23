@@ -6,9 +6,10 @@ from plotnine import (
     ggplot,
     labs,
     scale_x_datetime,
-    theme_classic
+    theme_classic,
 )
 import matplotlib.pyplot as plt
+
 
 def timeplot(model_name, train_data, test_data, forecast, eval):
     test_data_new = test_data.copy()
@@ -48,8 +49,12 @@ def timeplot(model_name, train_data, test_data, forecast, eval):
                     }
                 ),
             ]
-        ).merge(test_data_new[["timestamp", "lower_ci", "upper_ci"]], on="timestamp", how="left")
-    
+        ).merge(
+            test_data_new[["timestamp", "lower_ci", "upper_ci"]],
+            on="timestamp",
+            how="left",
+        )
+
     else:
         forecast_plot_data = pd.concat(
             [
@@ -68,7 +73,11 @@ def timeplot(model_name, train_data, test_data, forecast, eval):
                     }
                 ),
             ]
-        ).merge(test_data_new[["timestamp", "lower_ci", "upper_ci"]], on="timestamp", how="left")        
+        ).merge(
+            test_data_new[["timestamp", "lower_ci", "upper_ci"]],
+            on="timestamp",
+            how="left",
+        )
 
     # Corrected visualization without explicit upper/lower bound lines
     confidence_plot = (
@@ -85,6 +94,7 @@ def timeplot(model_name, train_data, test_data, forecast, eval):
     )
     confidence_plot.save(f"./timeplot_output/{model_name}_timeplot.png")
     plt.close()
+
 
 def forecast_table(model_name, forecast):
     forecast_df = pd.DataFrame(forecast, columns=["Prediction"])
