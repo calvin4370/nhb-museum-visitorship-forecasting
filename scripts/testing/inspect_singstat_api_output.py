@@ -13,20 +13,11 @@ START_YEAR, START_MONTH = 2024, "Apr"
 END_YEAR, END_MONTH = 2026, "Mar"
 OUTPUT_PATH = Path(__file__).parent / "outputs" / "singstat_schema_sample.json"
 # ---------------------------- CONSTANTS ----------------------------- #
-MONTHS = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-]
+MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+HDR = {
+    "User-Agent": "Mozilla/5.0",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,/;q=0.8",
+}
 # -------------------------------------------------------------------- #
 
 
@@ -53,11 +44,7 @@ def fetch_raw(resource_id, start_year, start_month, end_year, end_month):
         f"https://tablebuilder.singstat.gov.sg/api/table/tabledata/"
         f"{resource_id}?offset=0&timeFilter={time_filter}"
     )
-    hdr = {
-        "User-Agent": "Mozilla/5.0",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,/;q=0.8",
-    }
-    request = Request(url, headers=hdr)
+    request = Request(url, headers=HDR)
     data = urlopen(request).read()
     return (json.loads(data.decode("utf-8")), url, time_filter)
 

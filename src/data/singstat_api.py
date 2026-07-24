@@ -79,7 +79,6 @@ def singstat_api(resourceId, start_year, start_month, end_year, end_month):
     melted_df.rename(columns={"rowText": "Data Series"}, inplace=True)
 
     # 3. Split "columns" into "Reporting Period" and "Value"
-
     # Apply the function to the 'columns' column
     melted_df[["Reporting Period", "Value"]] = melted_df["columns"].apply(
         extract_keys_values

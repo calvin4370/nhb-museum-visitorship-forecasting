@@ -1,0 +1,15 @@
+Binary searching for the max valid period count...
+  n_periods=100 -> FAIL  (range now 1-100)
+  n_periods= 50 -> FAIL  (range now 1-50)
+  n_periods= 25 -> FAIL  (range now 1-25)
+  n_periods= 13 -> OK  (range now 13-25)
+  n_periods= 19 -> OK  (range now 19-25)
+  n_periods= 22 -> OK  (range now 22-25)
+  n_periods= 23 -> OK  (range now 23-25)
+  n_periods= 24 -> OK  (range now 24-25)
+
+Max valid periods per request: 24
+
+Confirming this is a period-count cap, not a URL-length cap...
+  offset padded to  200 zeros -> url_len=  393 (vs failing request's url_len=359) -> OK
+  offset padded to 1000 zeros -> url_len= 1193 (vs failing request's url_len=359) -> OK
