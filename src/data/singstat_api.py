@@ -4,14 +4,16 @@ import numpy as np
 import json
 from urllib.request import Request, urlopen
 
+# CONSTANTS
+MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+MAX_PERIODS_PER_REQUEST = 24 # Singstat API's limit for time periods requested per call
 
 # api call to singstat table builder
 # function to loop through months
 def next_month(month):
-    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    current_index = months.index(month)
+    current_index = MONTHS.index(month)
     next_index = (current_index + 1) % 12
-    return months[next_index]
+    return MONTHS[next_index]
 
 
 #  function to extract keys and values pairs
@@ -22,7 +24,6 @@ def extract_keys_values(row):
 
 
 # main function for api call
-# params needed: resourceId, start year, start month, end year, end month
 def singstat_api(resourceId, start_year, start_month, end_year, end_month):
 
     # ====== Headers ======
@@ -44,6 +45,7 @@ def singstat_api(resourceId, start_year, start_month, end_year, end_month):
     current_year = start["year"]
     current_month = start["month"]
 
+    # Fill the timeFilter_list with all required YYYY MMM period from start to end
     while current_year <= end["year"]:
         if current_year == end["year"] and current_month == end["month"]:
             timeFilter_list.append(f"{current_year}%20{current_month}")
@@ -53,21 +55,30 @@ def singstat_api(resourceId, start_year, start_month, end_year, end_month):
         current_month = next_month(current_month)
         if current_month == "Jan":
             current_year += 1
-            
-    timeFilter = ",".join(timeFilter_list)
 
-    # ====== Get data ======
-    url = f"https://tablebuilder.singstat.gov.sg/api/table/tabledata/{resourceId}?offset={offset}&timeFilter={timeFilter}"
-    request = Request(url, headers=hdr)
-    data = urlopen(request).read()
-    data
+    # Slice the timeFilter_list into chunks of ≤24 periods (max allowed per request)
+    timeFilter_chunks = [
+        timeFilter_list[i : i + MAX_PERIODS_PER_REQUEST]
+        for i in range(0, len(timeFilter_list), MAX_PERIODS_PER_REQUEST)
+    ]
 
-    # ====== Decode the bytes data, convert into dictionary and extract data into df ======
-    decoded_data = data.decode("utf-8")
-    data_dict = json.loads(decoded_data)
-    data_dict = data_dict["Data"]
-    singstat_df = pd.DataFrame(data_dict["row"])
-    singstat_df
+    # Make the API calls for each chunk and concatenate the results
+    for chunk in timeFilter_chunks:
+        chunk_timeFilter_param = ",".join(chunk)
+        url = f"https://tablebuilder.singstat.gov.sg/api/table/tabledata/{resourceId}?offset={offset}&timeFilter={chunk_timeFilter_param}"
+        request = Request(url, headers=hdr)
+        data = urlopen(request).read()
+        decoded_data = data.decode("utf-8")
+        data_dict = json.loads(decoded_data)
+        data_dict = data_dict["Data"]
+        chunk_df = pd.DataFrame(data_dict["row"])
+
+        # Concatenate the chunk_dfs into singstat_df else initialise it
+        if 'singstat_df' in locals():
+            singstat_df = pd.concat([singstat_df, chunk_df], ignore_index=True)
+        else:
+            singstat_df = chunk_df
+
 
     # ====== Manipulate the df to a suitable data processing format ======
     melted_df = singstat_df.copy()
