@@ -3,6 +3,7 @@ import numpy as np
 
 import json
 from urllib.request import Request, urlopen
+from urllib.error import URLError
 
 # CONSTANTS
 MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -16,11 +17,18 @@ def next_month(month):
     return MONTHS[next_index]
 
 
-#  function to extract keys and values pairs
+# function to extract keys and values pairs
 def extract_keys_values(row):
     keys = [item["key"] for item in row]
     values = [item["value"] for item in row]
     return pd.Series([keys, values])
+
+
+# human-readable date range for a timeFilter chunk, for error messages
+def chunk_label(chunk):
+    first = chunk[0].replace("%20", " ")
+    last = chunk[-1].replace("%20", " ")
+    return f"{first} to {last}"
 
 
 # main function for api call
@@ -67,11 +75,17 @@ def singstat_api(resourceId, start_year, start_month, end_year, end_month):
         chunk_timeFilter_param = ",".join(chunk)
         url = f"https://tablebuilder.singstat.gov.sg/api/table/tabledata/{resourceId}?offset={offset}&timeFilter={chunk_timeFilter_param}"
         request = Request(url, headers=hdr)
-        data = urlopen(request).read()
-        decoded_data = data.decode("utf-8")
-        data_dict = json.loads(decoded_data)
-        data_dict = data_dict["Data"]
-        chunk_df = pd.DataFrame(data_dict["row"])
+
+        try:
+            data = urlopen(request).read()
+            decoded_data = data.decode("utf-8")
+            data_dict = json.loads(decoded_data)["Data"]
+            chunk_df = pd.DataFrame(data_dict["row"])
+        except (URLError, json.JSONDecodeError, KeyError) as e:
+            raise RuntimeError(
+                f"SingStat API request failed for resourceId={resourceId}, "
+                f"period {chunk_label(chunk)}: {e}"
+            ) from e
 
         # Concatenate the chunk_dfs into singstat_df else initialise it
         if 'singstat_df' in locals():
