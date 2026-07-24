@@ -1,0 +1,1688 @@
+{
+  "Data": {
+    "theme": "Society",
+    "subject": "Culture and Recreation",
+    "topic": "The Arts, Sports, Interest Groups and Visits to Places of Interest",
+    "id": "M891071",
+    "groupTitle": null,
+    "title": "Visits To Selected Places Of Interest, Monthly",
+    "frequency": "Monthly",
+    "adjustmentType": null,
+    "datasource": "SCIENCE CENTRE SINGAPORE, MANDAI WILDLIFE GROUP, JURONG GARDENS PTE LTD, NATIONAL PARKS BOARD, SINGAPORE ART MUSEUM, NATIONAL HERITAGE BOARD, HERITAGESG",
+    "footnote": "Data refer to the number of visits to the place of interest within the reference period.",
+    "generatedBy": "SingStat Table Builder",
+    "dataLastUpdated": "19/06/2026",
+    "dateGenerated": "24/07/2026",
+    "offset": "0",
+    "limit": "5000",
+    "sortBy": null,
+    "timeFilter": "2024 Apr,2024 May,2024 Jun,2024 Jul,2024 Aug,2024 Sep,2024 Oct,2024 Nov,2024 Dec,2025 Jan,2025 Feb,2025 Mar,2025 Apr,2025 May,2025 Jun,2025 Jul,2025 Aug,2025 Sep,2025 Oct,2025 Nov,2025 Dec,2026 Jan,2026 Feb,2026 Mar",
+    "between": null,
+    "search": null,
+    "row": [
+      {
+        "seriesNo": "1",
+        "rowText": "Asian Civilisations Museum",
+        "uoM": "Thousand",
+        "footnote": "Opened in April 1997.  Figures include visitors to Asian Civilisations Museum at Armenian Street (up to December 2005) and Empress Place Building (with effect from March 2003).  With effect from April 2006, Visitorship to the museums is counted using an automatic tracking system, which makes use of tracking devices fixed at all the entrances to the museums.  All visitors who access the museum premises are captured in the count, regardless of whether the entries are based on paid admissions or those not requiring payment.  The place of interest was closed from April to June 2020 due to measures imposed during the global COVID-19 pandemic.  During periods of heightened alert due to COVID-19, the place of interest operated at a reduced capacity in line with prevailing government guidelines.",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "28.5"
+          },
+          {
+            "key": "2024 May",
+            "value": "34.7"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "33.1"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "39.2"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "39.3"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "25.7"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "36.2"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "34.1"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "22.7"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "38.4"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "37.8"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "31.9"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "32.3"
+          },
+          {
+            "key": "2025 May",
+            "value": "49.4"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "39.6"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "41.3"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "40.2"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "34.8"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "43"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "46.4"
+          },
+          {
+            "key": "2025 Dec",
+            "value": "29"
+          },
+          {
+            "key": "2026 Jan",
+            "value": "58.5"
+          },
+          {
+            "key": "2026 Feb",
+            "value": "60.7"
+          },
+          {
+            "key": "2026 Mar",
+            "value": "54.7"
+          }
+        ]
+      },
+      {
+        "seriesNo": "2",
+        "rowText": "National Museum Of Singapore",
+        "uoM": "Thousand",
+        "footnote": "Major renovation and repair were carried out during January 1989 to November 1990.  From 28 April 2003 to 6 March 2006, figures refer to Singapore History Museum which was closed and re-opened as National Museum of Singapore (NMS) on 8 December 2006.  From April 2006 to November 2006, exhibitions and fringe activities were held on the premises of NMS.  With effect from April 2006, visitorship to the museums is counted using an automatic tracking system, a device which is fixed at entrances to the museums.  All visitors who access the museum premises are captured in the count, regardless of whether the entries are based on paid admissions or those not requiring payment.  The place of interest was closed from April to June 2020 due to measures imposed during the global COVID-19 pandemic.  During periods of heightened alert due to COVID-19, the place of interest operated at a reduced capacity in line with prevailing government guidelines.",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "58.3"
+          },
+          {
+            "key": "2024 May",
+            "value": "68.2"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "73.3"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "139.7"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "155.7"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "70"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "80"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "59.4"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "62.7"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "102.1"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "74.8"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "53.9"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "55"
+          },
+          {
+            "key": "2025 May",
+            "value": "76.1"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "65.9"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "119.1"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "167.7"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "83"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "96.5"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "65.3"
+          },
+          {
+            "key": "2025 Dec",
+            "value": "78.9"
+          },
+          {
+            "key": "2026 Jan",
+            "value": "82"
+          },
+          {
+            "key": "2026 Feb",
+            "value": "100.9"
+          },
+          {
+            "key": "2026 Mar",
+            "value": "66.1"
+          }
+        ]
+      },
+      {
+        "seriesNo": "3",
+        "rowText": "Singapore Art Museum",
+        "uoM": "Thousand",
+        "footnote": "Opened in January 1996.  With effect from April 2006, visitorship to the museums is counted using an automatic tracking system, a device which is fixed at entrances to the museums.  All visitors who access the museum premises are captured in the count, regardless of whether the entries are based on paid admissions or those not requiring payment.  Visitorship data include visitors to SAM at 8Q which was officially opened on 15 August 2008.  Singapore Art Museum (SAM) had been incorporated as an independent company limited by guarantee in November 2013.  From January 2014, visitorship data are provided by SAM.  SAM at the former St. Joseph's Institution building closed for redevelopment works in September 2018.  Data for 2019 refer to visitorship to SAM at 8Q from 1 January to 28 February 2019.  SAM at 8Q closed for redevelopment in March 2019.  SAM opened its new venue at Tanjong Pagar Distripark in January 2022.  Visitorship from 2022 include visitors to Tanjong Pagar Distripark only.  Data exclude digital visitorship.",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "57.4"
+          },
+          {
+            "key": "2024 May",
+            "value": "73.2"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "76"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "80.8"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "80.6"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "256.4"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "75.2"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "63.1"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "57.8"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "67.3"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "67.1"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "83"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "49.8"
+          },
+          {
+            "key": "2025 May",
+            "value": "49.3"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "-"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "-"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "-"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "-"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "-"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "-"
+          }
+        ]
+      },
+      {
+        "seriesNo": "5",
+        "rowText": "Peranakan Museum",
+        "uoM": "Thousand",
+        "footnote": "Peranakan Museum (PM) was officially opened on 26 April 2008.  Year 2008 data refer to the number of visitors to PM from 26 April 2008 to 31 December 2008.  Visitorship to the museums is counted using an automatic tracking system, which makes use of tracking devices fixed at all the entrances to the museums.  All visitors who access the museum premises are captured in the count, regardless of whether the entries are based on paid admissions or those not requiring payment.  Data for 2019 refer to visitorship to PM from 1 January to 31 March 2019.  PM is closed for redevelopment from 1 April 2019 to 17 Feb 2023.",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "10.5"
+          },
+          {
+            "key": "2024 May",
+            "value": "13.8"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "13.7"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "15.3"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "23.9"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "15.5"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "11.9"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "10.3"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "9.1"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "11.4"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "10.9"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "23.8"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "18.2"
+          },
+          {
+            "key": "2025 May",
+            "value": "16.1"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "13.7"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "13"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "22.8"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "12"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "10.9"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "10.7"
+          },
+          {
+            "key": "2025 Dec",
+            "value": "9.9"
+          },
+          {
+            "key": "2026 Jan",
+            "value": "11.5"
+          },
+          {
+            "key": "2026 Feb",
+            "value": "10.6"
+          },
+          {
+            "key": "2026 Mar",
+            "value": "18.2"
+          }
+        ]
+      },
+      {
+        "seriesNo": "6",
+        "rowText": "Science Centre Singapore",
+        "uoM": "Thousand",
+        "footnote": "Prior to January 2024, data covered only visits to Science Centre Singapore.  From January 2024 onwards, data cover visits to Science Centre Singapore and Snow City.  The place of interest was closed from April to June 2020 due to measures imposed during the global COVID-19 pandemic.  During periods of heightened alert due to  COVID-19, the place of interest operated at a reduced capacity in line with prevailing government guidelines.",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "91.5"
+          },
+          {
+            "key": "2024 May",
+            "value": "105.4"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "93"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "103.5"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "92.9"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "64.7"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "72.9"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "101.6"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "70.8"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "77.4"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "67.6"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "75.3"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "106.3"
+          },
+          {
+            "key": "2025 May",
+            "value": "83.5"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "91"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "110.6"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "127.9"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "123.3"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "122.4"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "101.9"
+          },
+          {
+            "key": "2025 Dec",
+            "value": "121.6"
+          },
+          {
+            "key": "2026 Jan",
+            "value": "69.7"
+          },
+          {
+            "key": "2026 Feb",
+            "value": "74.6"
+          },
+          {
+            "key": "2026 Mar",
+            "value": "94.6"
+          }
+        ]
+      },
+      {
+        "seriesNo": "7",
+        "rowText": "Mandai Bird Paradise",
+        "uoM": "Thousand",
+        "footnote": "Mandai Bird Paradise was officially opened on 8 May 2023.  From 21 April 2023, Mandai Bird Paradise welcomed visitors for preview.",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "57.4"
+          },
+          {
+            "key": "2024 May",
+            "value": "76.1"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "97.1"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "90.7"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "88.5"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "70.6"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "76.1"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "83.7"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "92.4"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "77.1"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "67.1"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "77.2"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "73.1"
+          },
+          {
+            "key": "2025 May",
+            "value": "81.4"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "76.8"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "73.5"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "86.8"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "75.6"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "71.6"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "88.1"
+          },
+          {
+            "key": "2025 Dec",
+            "value": "73"
+          },
+          {
+            "key": "2026 Jan",
+            "value": "61.4"
+          },
+          {
+            "key": "2026 Feb",
+            "value": "65.6"
+          },
+          {
+            "key": "2026 Mar",
+            "value": "63.4"
+          }
+        ]
+      },
+      {
+        "seriesNo": "8",
+        "rowText": "Night Safari",
+        "uoM": "Thousand",
+        "footnote": "The place of interest was closed from April to June 2020 due to measures imposed during the global COVID-19 pandemic.  During periods of heightened alert due to COVID-19, the place of interest operated at a reduced capacity in line with prevailing government guidelines.",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "79.2"
+          },
+          {
+            "key": "2024 May",
+            "value": "97.5"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "101.9"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "141.3"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "148.7"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "74.9"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "87.7"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "63"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "85"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "105.1"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "86.5"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "76.2"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "84.8"
+          },
+          {
+            "key": "2025 May",
+            "value": "100.3"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "90.4"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "127.7"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "141.5"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "73.7"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "84.2"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "62.5"
+          },
+          {
+            "key": "2025 Dec",
+            "value": "82.8"
+          },
+          {
+            "key": "2026 Jan",
+            "value": "95.4"
+          },
+          {
+            "key": "2026 Feb",
+            "value": "115.3"
+          },
+          {
+            "key": "2026 Mar",
+            "value": "83.9"
+          }
+        ]
+      },
+      {
+        "seriesNo": "9",
+        "rowText": "River Wonders",
+        "uoM": "Thousand",
+        "footnote": "River Safari was officially opened on 3 April 2013.  The place of interest was closed from April to June 2020 due to measures imposed during the global COVID-19 pandemic.  During periods of heightened alert due to COVID-19, the place of interest operated at a reduced capacity in line with prevailing government guidelines.  It has been renamed as River Wonders wef 13 October 2021. ",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "69.7"
+          },
+          {
+            "key": "2024 May",
+            "value": "83.9"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "85.1"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "108.3"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "116"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "57.9"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "70.3"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "58.5"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "80.1"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "82.5"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "69"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "62.8"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "62.7"
+          },
+          {
+            "key": "2025 May",
+            "value": "78.6"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "77.6"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "89.4"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "92.2"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "55.4"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "63.6"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "55.7"
+          },
+          {
+            "key": "2025 Dec",
+            "value": "73.8"
+          },
+          {
+            "key": "2026 Jan",
+            "value": "75.5"
+          },
+          {
+            "key": "2026 Feb",
+            "value": "92.8"
+          },
+          {
+            "key": "2026 Mar",
+            "value": "69.5"
+          }
+        ]
+      },
+      {
+        "seriesNo": "10",
+        "rowText": "Singapore Zoological Gardens",
+        "uoM": "Thousand",
+        "footnote": "The place of interest was closed from April to June 2020 due to measures imposed during the global COVID-19 pandemic.  During periods of heightened alert due to COVID-19, the place of interest operated at a reduced capacity in line with prevailing government guidelines.",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "103.4"
+          },
+          {
+            "key": "2024 May",
+            "value": "128.6"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "130.9"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "149.9"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "158"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "92.3"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "113.7"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "103.5"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "130.2"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "118.2"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "109.4"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "97.9"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "106.7"
+          },
+          {
+            "key": "2025 May",
+            "value": "128.5"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "124.1"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "135.7"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "142.1"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "100.8"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "102.6"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "102.7"
+          },
+          {
+            "key": "2025 Dec",
+            "value": "128.3"
+          },
+          {
+            "key": "2026 Jan",
+            "value": "111.5"
+          },
+          {
+            "key": "2026 Feb",
+            "value": "122"
+          },
+          {
+            "key": "2026 Mar",
+            "value": "106.4"
+          }
+        ]
+      },
+      {
+        "seriesNo": "11",
+        "rowText": "Jurong Lake Gardens",
+        "uoM": "Thousand",
+        "footnote": "Data from September 2024 (opening month) refer to visits to Jurong Lake Gardens which includes Lakeside Garden, Chinese Garden and Japanese Garden Jurong Lake Gardens was opened on 8 September 2024.  Data prior to September 2024 refer to visits to Chinese/Japanese Gardens. Chinese/Japanese Gardens was closed for redevelopment from 1 June 2019 to 7 September 2024.  From October 2002 to July 2007, Japanese Gardens was closed for renovation.  Data for 2019 refer to visits to Chinese/ Japanese Gardens from 1 January to 31 May 2019.  From April 2016, data are obtained from National Parks Board.  Prior to April 2016, data were obtained from JTC Corporation.",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "0"
+          },
+          {
+            "key": "2024 May",
+            "value": "0"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "0"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "0"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "0"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "875.7"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "737.6"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "626.8"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "670.5"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "547.5"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "541.1"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "547.8"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "561.8"
+          },
+          {
+            "key": "2025 May",
+            "value": "559.3"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "562.9"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "501.9"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "528.7"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "567.4"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "638.4"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "548.8"
+          }
+        ]
+      },
+      {
+        "seriesNo": "13",
+        "rowText": "Sun Yat Sen Nanyang Memorial Hall",
+        "uoM": "Thousand",
+        "footnote": "Visitorship to the museums is counted using an automatic tracking system, which makes use of tracking devices fixed at all the entrances to the museums.  All visitors who access the museum premises are captured in the count, regardless of whether the entries are based on paid admissions or those not requiring payment.  The place of interest was closed from April to June 2020 due to measures imposed during the global COVID-19 pandemic.  During periods of heightened alert due to COVID-19, the place of interest operated at a reduced capacity in line with prevailing government guidelines.   Visitorship to the Sun Yat Sen Nanyang Memorial Hall prior to January 2022 is not directly comparable to future time periods due to updates in the data collection method.  Sun Yat Sen Nanyang Memorial Hall is closed for redevelopment from 16 September 2024 and is expected to reopen in 2027.",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "4.9"
+          },
+          {
+            "key": "2024 May",
+            "value": "4.1"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "5.1"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "2.8"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "6"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "8.3"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "0"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "0"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "0"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "0"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "0"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "0"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "0"
+          },
+          {
+            "key": "2025 May",
+            "value": "0"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "0"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "0"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "-"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "-"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "-"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "-"
+          }
+        ]
+      },
+      {
+        "seriesNo": "14",
+        "rowText": "Indian Heritage Centre",
+        "uoM": "Thousand",
+        "footnote": "The Indian Heritage Centre opened on 7 May 2015.  Visitorship to the museums is counted using an automatic tracking system, which makes use of tracking devices fixed at all the entrances to the museums.  All visitors who access the museum premises are captured in the count, regardless of whether the entries are based on paid admissions or those not requiring payment.  The place of interest was closed from April to June 2020 due to measures imposed during the global COVID-19 pandemic.  During periods of heightened alert due to COVID-19, the place of interest operated at a reduced capacity in line with prevailing government guidelines.",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "20.5"
+          },
+          {
+            "key": "2024 May",
+            "value": "18.3"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "11.3"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "22.2"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "18.2"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "13.7"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "43.9"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "11"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "6.3"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "20.3"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "16.3"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "13.3"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "19.4"
+          },
+          {
+            "key": "2025 May",
+            "value": "17.9"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "8.6"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "22.3"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "17.5"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "15.1"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "38.3"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "12.6"
+          },
+          {
+            "key": "2025 Dec",
+            "value": "5.9"
+          },
+          {
+            "key": "2026 Jan",
+            "value": "30.2"
+          },
+          {
+            "key": "2026 Feb",
+            "value": "14.6"
+          },
+          {
+            "key": "2026 Mar",
+            "value": "15.8"
+          }
+        ]
+      },
+      {
+        "seriesNo": "15",
+        "rowText": "Malay Heritage Centre",
+        "uoM": "Thousand",
+        "footnote": "Visitorship to the Malay Heritage Centre prior to 2015 is not directly comparable to future years due to updates in the data collection method.  Visitorship to the museums is counted using an automatic tracking system, which makes use of tracking devices fixed at all the entrances to the museums.  All visitors who access the museum premises are captured in the count, regardless of whether the entries are based on paid admissions or those not requiring payment.  The place of interest was closed from April to June 2020 due to measures imposed during the global COVID-19 pandemic.  During periods of heightened alert due to COVID-19, the place of interest operated at a reduced capacity in line with prevailing government guidelines.  Malay Heritage Centre (MHC) was closed for redevelopment from 30 Oct 2022 and has reopended on 25 Apr 2026.",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "0"
+          },
+          {
+            "key": "2024 May",
+            "value": "0"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "0"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "0"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "0"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "0"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "0"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "0"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "0"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "0"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "0"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "0"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "0"
+          },
+          {
+            "key": "2025 May",
+            "value": "0"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "0"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "0"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "-"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "-"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "-"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "-"
+          }
+        ]
+      },
+      {
+        "seriesNo": "16",
+        "rowText": "Children's Museum Singapore",
+        "uoM": "Thousand",
+        "footnote": "Visitorship to the museums is counted using an automatic tracking system, which makes use of tracking devices fixed at all the entrances to the museums.  All visitors who access the museum premises are captured in the count, regardless of whether the entries are based on paid admissions or those not requiring payment.  Children's Museum Singapore was formerly known as the Singapore Philatelic Museum.  Children's Museum Singapore was opened on 10 December 2022.  Prior to Apr 2025, data on visitorship to Children's Museum Singapore (CMSG), Changi Chapel and Museum (CCM) and Reflections at Bukit Chandu (RBC) were provided by the National Heritage Board.  From Apr 2025, data on visitorship to CMSG, CCM and RBC are provided by HeritageSG.",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "11.7"
+          },
+          {
+            "key": "2024 May",
+            "value": "17.7"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "22.5"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "18.1"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "32.3"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "22.6"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "15.6"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "16"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "17.3"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "13.3"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "11.3"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "14.5"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "15.9"
+          },
+          {
+            "key": "2025 May",
+            "value": "16.7"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "18.9"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "16.1"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "31.8"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "18.7"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "13.8"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "14.2"
+          },
+          {
+            "key": "2025 Dec",
+            "value": "16.3"
+          },
+          {
+            "key": "2026 Jan",
+            "value": "11.9"
+          },
+          {
+            "key": "2026 Feb",
+            "value": "12.8"
+          },
+          {
+            "key": "2026 Mar",
+            "value": "15"
+          }
+        ]
+      },
+      {
+        "seriesNo": "17",
+        "rowText": "Changi Chapel And Museum",
+        "uoM": "Thousand",
+        "footnote": "Visitorship to the museums is counted using an automatic tracking system, which makes use of tracking devices fixed at all the entrances to the museums.  All visitors who access the museum premises are captured in the count, regardless of whether the entries are based on paid admissions or those not requiring payment.  Prior to Apr 2025, data on visitorship to Children's Museum Singapore (CMSG), Changi Chapel and Museum (CCM) and Reflections at Bukit Chandu (RBC) were provided by the National Heritage Board.  From Apr 2025, data on visitorship to CMSG, CCM and RBC are provided by HeritageSG.",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "4"
+          },
+          {
+            "key": "2024 May",
+            "value": "4.4"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "3.6"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "3.5"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "3.8"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "3.2"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "3.6"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "3.4"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "3.2"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "3.3"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "4.5"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "4"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "4.6"
+          },
+          {
+            "key": "2025 May",
+            "value": "4.1"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "3.1"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "4.3"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "3.5"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "4.6"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "4.3"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "3.7"
+          },
+          {
+            "key": "2025 Dec",
+            "value": "3.2"
+          },
+          {
+            "key": "2026 Jan",
+            "value": "4.3"
+          },
+          {
+            "key": "2026 Feb",
+            "value": "5.1"
+          },
+          {
+            "key": "2026 Mar",
+            "value": "4.7"
+          }
+        ]
+      },
+      {
+        "seriesNo": "18",
+        "rowText": "Reflections At Bukit Chandu",
+        "uoM": "Thousand",
+        "footnote": "Visitorship to the museums is counted using an automatic tracking system, which makes use of tracking devices fixed at all the entrances to the museums.  All visitors who access the museum premises are captured in the count, regardless of whether the entries are based on paid admissions or those not requiring payment.  Prior to Apr 2025, data on visitorship to Children's Museum Singapore (CMSG), Changi Chapel and Museum (CCM) and Reflections at Bukit Chandu (RBC) were provided by the National Heritage Board.  From Apr 2025, data on visitorship to CMSG, CCM and RBC are provided by HeritageSG.",
+        "columns": [
+          {
+            "key": "2024 Apr",
+            "value": "2"
+          },
+          {
+            "key": "2024 May",
+            "value": "2.8"
+          },
+          {
+            "key": "2024 Jun",
+            "value": "2.3"
+          },
+          {
+            "key": "2024 Jul",
+            "value": "2.1"
+          },
+          {
+            "key": "2024 Aug",
+            "value": "3"
+          },
+          {
+            "key": "2024 Sep",
+            "value": "2"
+          },
+          {
+            "key": "2024 Oct",
+            "value": "2.6"
+          },
+          {
+            "key": "2024 Nov",
+            "value": "2.1"
+          },
+          {
+            "key": "2024 Dec",
+            "value": "2.2"
+          },
+          {
+            "key": "2025 Jan",
+            "value": "2"
+          },
+          {
+            "key": "2025 Feb",
+            "value": "3.8"
+          },
+          {
+            "key": "2025 Mar",
+            "value": "3.4"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "2.7"
+          },
+          {
+            "key": "2025 May",
+            "value": "3.1"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "4.8"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "3.8"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "5.7"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "3.1"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "2.5"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "2.5"
+          },
+          {
+            "key": "2025 Dec",
+            "value": "3.2"
+          },
+          {
+            "key": "2026 Jan",
+            "value": "3.8"
+          },
+          {
+            "key": "2026 Feb",
+            "value": "4.5"
+          },
+          {
+            "key": "2026 Mar",
+            "value": "3.5"
+          }
+        ]
+      },
+      {
+        "seriesNo": "20",
+        "rowText": "Rainforest Wild Asia",
+        "uoM": "Thousand",
+        "footnote": "Rainforest Wild Asia was officially opened on 12 March 2025.",
+        "columns": [
+          {
+            "key": "2025 Mar",
+            "value": "67"
+          },
+          {
+            "key": "2025 Apr",
+            "value": "57.7"
+          },
+          {
+            "key": "2025 May",
+            "value": "53.6"
+          },
+          {
+            "key": "2025 Jun",
+            "value": "72"
+          },
+          {
+            "key": "2025 Jul",
+            "value": "56.5"
+          },
+          {
+            "key": "2025 Aug",
+            "value": "56.9"
+          },
+          {
+            "key": "2025 Sep",
+            "value": "48.2"
+          },
+          {
+            "key": "2025 Oct",
+            "value": "42.1"
+          },
+          {
+            "key": "2025 Nov",
+            "value": "46"
+          },
+          {
+            "key": "2025 Dec",
+            "value": "56.3"
+          },
+          {
+            "key": "2026 Jan",
+            "value": "41"
+          },
+          {
+            "key": "2026 Feb",
+            "value": "37.8"
+          },
+          {
+            "key": "2026 Mar",
+            "value": "39.5"
+          }
+        ]
+      }
+    ]
+  },
+  "DataCount": 1,
+  "StatusCode": 200,
+  "Message": ""
+}
