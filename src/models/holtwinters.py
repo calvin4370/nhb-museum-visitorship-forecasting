@@ -5,64 +5,66 @@ import optuna
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
-def hw(train_data, test_data, eval):
+def hw(train_data, test_data, eval, best_params=None):
     # Prepare input data for Holt Winters
     train_X = train_data.set_index("timestamp")["value"]
     train_X = train_X.asfreq('MS')
     seasonal_periods = 12
-    
+
     random_state = 42
 
-    # Hyperparameter optimization with Optuna
-    def objective(trial, data=train_X, seasonal_periods=12, val_size=10):
-        # Define the hyperparameter search space
-        params = {
-            'smoothing_level': trial.suggest_float('smoothing_level', 0, 1),
-            'smoothing_trend': trial.suggest_float('smoothing_trend', 0, 1),
-            'smoothing_seasonal': trial.suggest_float('smoothing_seasonal', 0, 1)        
-        }
+    # If best_params is provided, use it
+        # Else, perform hyperparameter optimization with Optuna
+    if best_params is None:
+        def objective(trial, data=train_X, seasonal_periods=12, val_size=10):
+            # Define the hyperparameter search space
+            params = {
+                'smoothing_level': trial.suggest_float('smoothing_level', 0, 1),
+                'smoothing_trend': trial.suggest_float('smoothing_trend', 0, 1),
+                'smoothing_seasonal': trial.suggest_float('smoothing_seasonal', 0, 1)
+            }
 
-        # Define the trend type
-        trend = trial.suggest_categorical('trend', ['add','mul'])
-        seasonal = trial.suggest_categorical('seasonal', ['add','mul'])
+            # Define the trend type
+            trend = trial.suggest_categorical('trend', ['add','mul'])
+            seasonal = trial.suggest_categorical('seasonal', ['add','mul'])
 
-        # Split data into train and validation sets
-        train_data = data[:-val_size]
-        val_data = data[-val_size:]
+            # Split data into train and validation sets
+            train_data = data[:-val_size]
+            val_data = data[-val_size:]
 
-        try:
-            # Fit model
-            model = ExponentialSmoothing(
-                train_data,
-                seasonal_periods = seasonal_periods,
-                trend = trend,
-                seasonal = seasonal
-                )
-            
-            # Train model with suggested parameters
-            fitted_model = model.fit(**params)
-            
-            #Generate forecast for validation set
-            forecast = fitted_model.forecast(val_size)
+            try:
+                # Fit model
+                model = ExponentialSmoothing(
+                    train_data,
+                    seasonal_periods = seasonal_periods,
+                    trend = trend,
+                    seasonal = seasonal
+                    )
 
-            # Calculate error
-            rmse = root_mean_squared_error(val_data, forecast)
-            return rmse
-        
-        except Exception as e:
-            return float('inf')
+                # Train model with suggested parameters
+                fitted_model = model.fit(**params)
 
-    sampler = optuna.samplers.TPESampler(seed=random_state)
-    study = optuna.create_study(direction="minimize", sampler=sampler)
-    study.optimize(objective, n_trials=50)
+                #Generate forecast for validation set
+                forecast = fitted_model.forecast(val_size)
 
-    # Train the best model
-    best_params = study.best_params
-    # Extract best trend and seasonal params from the best params as they are handled separately from smoothing parameters
+                # Calculate error
+                rmse = root_mean_squared_error(val_data, forecast)
+                return rmse
+
+            except Exception as e:
+                return float('inf')
+
+        sampler = optuna.samplers.TPESampler(seed=random_state)
+        study = optuna.create_study(direction="minimize", sampler=sampler)
+        study.optimize(objective, n_trials=50)
+        best_params = study.best_params
+
+    # Extract trend/seasonal from best_params as they are constructor args, not .fit()
+    # args -- keep them in best_params itself (don't mutate/pop) so the same dict can be
+    # returned and reused as-is for a later call.
     trend = best_params['trend']
     seasonal = best_params['seasonal']
-    del best_params['trend']
-    del best_params['seasonal']
+    fit_params = {k: v for k, v in best_params.items() if k not in ('trend', 'seasonal')}
 
     best_model = ExponentialSmoothing(
         train_X,
@@ -70,7 +72,7 @@ def hw(train_data, test_data, eval):
         trend=trend,
         seasonal=seasonal
     )
-    best_model_fitted = best_model.fit(**best_params)
+    best_model_fitted = best_model.fit(**fit_params)
 
     # Forecasting
     forecast_periods = len(test_data["value"])
@@ -85,5 +87,5 @@ def hw(train_data, test_data, eval):
         model_eval= ['Holt-Winters exponential smoothing', rmse_hw, mape_hw]
     else:
         model_eval = []
-        
-    return model_eval, forecast.values
+
+    return model_eval, forecast.values, best_params

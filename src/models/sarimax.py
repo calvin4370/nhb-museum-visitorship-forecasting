@@ -9,7 +9,7 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-def sarimax_model(train_data, test_data, eval):
+def sarimax_model(train_data, test_data, eval, best_params=None):
     # Set seed for random forest
     random_state = 42
 
@@ -19,46 +19,52 @@ def sarimax_model(train_data, test_data, eval):
     ]
     target = "value"
 
-    def objective(trial, data=train_data, val_size=10):
-        # Define the search space
-        # Non-seasonal params
-        p = trial.suggest_int('p', 0, 5)
-        d = trial.suggest_int('d', 0, 2)
-        q = trial.suggest_int('q', 0, 5)
-        # Seasonal params
-        P = trial.suggest_int('P', 0, 2)
-        D = trial.suggest_int('D', 0, 1)
-        Q = trial.suggest_int('Q', 0, 2)
+    # If best_params is provided, use it
+        # Else, perform hyperparameter optimization with Optuna
+    if best_params is None:
+        def objective(trial, data=train_data, val_size=10):
+            # Define the search space
+            # Non-seasonal params
+            p = trial.suggest_int('p', 0, 5)
+            d = trial.suggest_int('d', 0, 2)
+            q = trial.suggest_int('q', 0, 5)
+            # Seasonal params
+            P = trial.suggest_int('P', 0, 2)
+            D = trial.suggest_int('D', 0, 1)
+            Q = trial.suggest_int('Q', 0, 2)
 
 
-        # Split data into train and validation sets
-        train_data = data[:-val_size]
-        val_data = data[-val_size:]
+            # Split data into train and validation sets
+            train_data = data[:-val_size]
+            val_data = data[-val_size:]
 
-        # Try fitting the model with suggested params
-        try:
-            model = SARIMAX(
-                endog=train_data[target],
-                exog=train_data[features],
-                order=(p, d, q),
-                seasonal_order=(P, D, Q, 12),
-                enforce_stationarity=False,
-                enforce_invertibility=False
-            )
-            
-            # Train model with suggested parameters
-            fitted_model = model.fit()
-            return fitted_model.aic
+            # Try fitting the model with suggested params
+            try:
+                model = SARIMAX(
+                    endog=train_data[target],
+                    exog=train_data[features],
+                    order=(p, d, q),
+                    seasonal_order=(P, D, Q, 12),
+                    enforce_stationarity=False,
+                    enforce_invertibility=False
+                )
 
-        except Exception as e:
-            return float('inf')
+                # Train model with suggested parameters
+                fitted_model = model.fit()
+                return fitted_model.aic
 
-    sampler = optuna.samplers.TPESampler(seed=random_state)
-    study = optuna.create_study(direction="minimize", sampler=sampler)
-    study.optimize(objective, n_trials=50)
-    
+            except Exception as e:
+                return float('inf')
+
+        sampler = optuna.samplers.TPESampler(seed=random_state)
+        study = optuna.create_study(direction="minimize", sampler=sampler)
+        study.optimize(objective, n_trials=50)
+        best_params = study.best_params
+
     # Train the best model
-    best_params = study.best_params
+    # NOTE: order=/seasonal_order= are not passed here, so this still falls back to
+    # statsmodels' defaults regardless of best_params -- this is a known, separately
+    # tracked bug (deferred fix), left exactly as-is for this change.
     best_model = SARIMAX(
         endog=train_data[target], 
         exog=train_data[features]
@@ -78,5 +84,5 @@ def sarimax_model(train_data, test_data, eval):
         model_eval = ['SARIMAX', rmse_sarimax, mape_sarimax]
     else:
         model_eval = []
-    
-    return model_eval, test_data["Forecast"]
+
+    return model_eval, test_data["Forecast"], best_params
