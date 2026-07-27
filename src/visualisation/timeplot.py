@@ -79,6 +79,11 @@ def timeplot(model_name, train_data, test_data, forecast, eval):
             how="left",
         )
 
+    # Title mirrors the filename (model_name) plus the actual year range plotted
+    start_year = forecast_plot_data["timestamp"].dt.year.min()
+    end_year = forecast_plot_data["timestamp"].dt.year.max()
+    plot_title = f"{model_name} ({start_year}-{end_year})"
+
     # Corrected visualization without explicit upper/lower bound lines
     confidence_plot = (
         ggplot(forecast_plot_data, aes(x="timestamp"))
@@ -86,13 +91,13 @@ def timeplot(model_name, train_data, test_data, forecast, eval):
         + geom_ribbon(aes(ymin="lower_ci", ymax="upper_ci", fill="Type"), alpha=0.2)
         + scale_x_datetime(date_breaks="2 years", date_labels="%Y")
         + labs(
-            title="Forecast with Confidence Intervals",
+            title=plot_title,
             x="Year",
             y="Monthly Visitorship ('000)",
         )
         + theme_classic()
     )
-    confidence_plot.save(f"./timeplot_output/{model_name}_timeplot.png")
+    confidence_plot.save(f"./outputs/plots/{model_name}_timeplot.png")
     plt.close()
 
 
