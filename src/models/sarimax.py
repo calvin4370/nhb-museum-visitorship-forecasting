@@ -10,17 +10,17 @@ import warnings
 warnings.filterwarnings('ignore')
 
 def sarimax_model(train_data, test_data, eval, best_params=None):
-    # Set seed for random forest
-    random_state = 42
-
     # Define features and target
     features = ["sin_month", "cos_month", "monthly_avg", "is_covid"] + [
         f"lag_{i}" for i in range(1, 13)
     ]
     target = "value"
 
+    # Set seed for reproducibility
+    random_state = 42
+
     # If best_params is provided, use it
-        # Else, perform hyperparameter optimization with Optuna
+    # Else, perform hyperparameter optimization with Optuna
     if best_params is None:
         def objective(trial, data=train_data, val_size=10):
             # Define the search space
@@ -32,7 +32,6 @@ def sarimax_model(train_data, test_data, eval, best_params=None):
             P = trial.suggest_int('P', 0, 2)
             D = trial.suggest_int('D', 0, 1)
             Q = trial.suggest_int('Q', 0, 2)
-
 
             # Split data into train and validation sets
             train_data = data[:-val_size]
@@ -50,8 +49,11 @@ def sarimax_model(train_data, test_data, eval, best_params=None):
                 )
 
                 # Train model with suggested parameters
-                fitted_model = model.fit()
-                return fitted_model.aic
+                fitted_model = model.fit(disp=False)
+
+                # Score on held-out val_data
+                val_forecast = fitted_model.get_forecast(steps=val_size, exog=val_data[features])
+                return root_mean_squared_error(val_data[target], val_forecast.predicted_mean)
 
             except Exception as e:
                 return float('inf')
@@ -62,14 +64,15 @@ def sarimax_model(train_data, test_data, eval, best_params=None):
         best_params = study.best_params
 
     # Train the best model
-    # NOTE: order=/seasonal_order= are not passed here, so this still falls back to
-    # statsmodels' defaults regardless of best_params -- this is a known, separately
-    # tracked bug (deferred fix), left exactly as-is for this change.
     best_model = SARIMAX(
-        endog=train_data[target], 
-        exog=train_data[features]
-        )
-    best_model_fitted = best_model.fit(**best_params)
+        endog=train_data[target],
+        exog=train_data[features],
+        order=(best_params["p"], best_params["d"], best_params["q"]),
+        seasonal_order=(best_params["P"], best_params["D"], best_params["Q"], 12),
+        enforce_stationarity=False,
+        enforce_invertibility=False,
+    )
+    best_model_fitted = best_model.fit()
 
     # Forecasting
     forecast_periods = len(test_data["value"])
