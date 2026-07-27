@@ -9,7 +9,7 @@ import pandas as pd
 from config import MUSEUM_CODES, h
 from src.features.data_prep import prepare_eval_data, prepare_predict_data
 from src.visualisation.timeplot import timeplot, forecast_table
-from models.model_registry import MODEL_REGISTRY
+from src.models.model_registry import MODEL_REGISTRY
 
 
 def run_museum_pipeline(museum, visitors):
