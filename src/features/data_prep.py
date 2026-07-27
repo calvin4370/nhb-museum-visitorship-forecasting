@@ -24,6 +24,11 @@ def engineer_features(museum_ts):
     df = museum_ts.copy()
     df["timestamp"] = pd.to_datetime(df["Reporting Period"], format="%Y %b")
     df.rename(columns={"Value": "value"}, inplace=True)
+    # SingStat's API returns numeric values as JSON strings (dtype object) --
+    # cast explicitly rather than relying on an implicit CSV round-trip to
+    # coerce the type, since museum_ts is now passed in memory, not re-read
+    # from disk.
+    df["value"] = pd.to_numeric(df["value"])
 
     # Cyclocal encoding of month
     df = sin_cos_month(df)
@@ -76,21 +81,22 @@ def prepare_eval_data(museum_ts):
 def prepare_predict_data(museum_ts, h):
     """
     Build a full-history train set plus a synthetic h-month-ahead future
-    frame (no real actuals) to forecast.
+    frame to for model to forecast.
     """
     df = engineer_features(museum_ts)
     train_data = df
 
+    # Create a synthetic future frame for h months ahead
     last_date = df["timestamp"].max()
     forecast_horizon = pd.date_range(
         start=last_date + pd.DateOffset(months=1), periods=h, freq="MS"
     )
-
     test_data = pd.DataFrame({"timestamp": forecast_horizon, "value": np.nan})
     test_data["Data Series"] = df["Data Series"].iloc[-1]
     test_data = sin_cos_month(test_data)
     test_data = is_covid(test_data)
 
+    # Concatenate the last 12 months of actual data with the synthetic future frame
     new_df = df.tail(12)
     new_df = pd.concat([new_df, test_data], axis=0, join="outer")
 
@@ -101,6 +107,8 @@ def prepare_predict_data(museum_ts, h):
     train_data, test_data = add_monthly_avg(train_data, test_data)
 
     # Impute missing lag features with monthly averages
+    # Note: Decision made to impute missing lag features with monthly averages 
+    # instead recursive forecasting to avoid error propagation
     test_data["value"] = test_data["monthly_avg"]
     for lag in range(1, 13):
         test_data[f"lag_imp_{lag}"] = test_data["value"].shift(lag)
