@@ -11,7 +11,7 @@ from plotnine import (
 import matplotlib.pyplot as plt
 
 
-def timeplot(model_name, train_data, test_data, forecast, eval):
+def timeplot(save_path, title_prefix, train_data, test_data, forecast, eval):
     test_data_new = test_data.copy()
     # Add in the model forecast into test data series
     test_data_new["Forecast"] = forecast
@@ -79,12 +79,13 @@ def timeplot(model_name, train_data, test_data, forecast, eval):
             how="left",
         )
 
-    # Title mirrors the filename (model_name) plus the actual year range plotted
+    # Title uses the full, human-readable prefix (museum + model + mode) plus
+    # the actual year range plotted; save_path is the separate, compact filename.
     start_year = forecast_plot_data["timestamp"].dt.year.min()
     end_year = forecast_plot_data["timestamp"].dt.year.max()
-    plot_title = f"{model_name} ({start_year}-{end_year})"
+    plot_title = f"{title_prefix} ({start_year}-{end_year})"
 
-    # Corrected visualization without explicit upper/lower bound lines
+    # Plot and save the time series with confidence intervals
     confidence_plot = (
         ggplot(forecast_plot_data, aes(x="timestamp"))
         + geom_line(aes(y="value", color="Type"))
@@ -93,11 +94,11 @@ def timeplot(model_name, train_data, test_data, forecast, eval):
         + labs(
             title=plot_title,
             x="Year",
-            y="Monthly Visitorship ('000)",
+            y="Monthly Visitorship ('000s)",
         )
         + theme_classic()
     )
-    confidence_plot.save(f"./outputs/plots/{model_name}_timeplot.png")
+    confidence_plot.save(save_path)
     plt.close()
 
 
