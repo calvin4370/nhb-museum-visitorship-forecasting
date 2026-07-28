@@ -1,8 +1,5 @@
 import os
 
-# Suppress TensorFlow printing of useless messages
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
-
 from config import MUSEUM_CODES, START_YEAR, START_MONTH, END_YEAR, END_MONTH
 from src.cli import parse_args, resolve_museum_selection
 from src.data.singstat_api import singstat_api

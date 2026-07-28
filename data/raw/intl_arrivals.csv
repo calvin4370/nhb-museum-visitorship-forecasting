@@ -1,7 +1,4 @@
 Data Series,Reporting Period,Value
-Total International Visitor Arrivals By Place Of Residence,2013 Jan,1291718
-Total International Visitor Arrivals By Place Of Residence,2013 Feb,1221365
-Total International Visitor Arrivals By Place Of Residence,2013 Mar,1368891
 Total International Visitor Arrivals By Place Of Residence,2013 Apr,1274246
 Total International Visitor Arrivals By Place Of Residence,2013 May,1288282
 Total International Visitor Arrivals By Place Of Residence,2013 Jun,1288950
@@ -23,9 +20,9 @@ Total International Visitor Arrivals By Place Of Residence,2014 Sep,1098626
 Total International Visitor Arrivals By Place Of Residence,2014 Oct,1203527
 Total International Visitor Arrivals By Place Of Residence,2014 Nov,1144230
 Total International Visitor Arrivals By Place Of Residence,2014 Dec,1360541
-Southeast Asia,2013 Jan,460013
-Southeast Asia,2013 Feb,405346
-Southeast Asia,2013 Mar,523832
+Total International Visitor Arrivals By Place Of Residence,2015 Jan,1252608
+Total International Visitor Arrivals By Place Of Residence,2015 Feb,1188818
+Total International Visitor Arrivals By Place Of Residence,2015 Mar,1201648
 Southeast Asia,2013 Apr,497388
 Southeast Asia,2013 May,534890
 Southeast Asia,2013 Jun,557007
@@ -47,9 +44,9 @@ Southeast Asia,2014 Sep,436327
 Southeast Asia,2014 Oct,485039
 Southeast Asia,2014 Nov,463159
 Southeast Asia,2014 Dec,619198
-Brunei Darussalam,2013 Jan,5773
-Brunei Darussalam,2013 Feb,4427
-Brunei Darussalam,2013 Mar,8290
+Southeast Asia,2015 Jan,448133
+Southeast Asia,2015 Feb,380389
+Southeast Asia,2015 Mar,461999
 Brunei Darussalam,2013 Apr,4486
 Brunei Darussalam,2013 May,5574
 Brunei Darussalam,2013 Jun,7837
@@ -71,9 +68,9 @@ Brunei Darussalam,2014 Sep,5601
 Brunei Darussalam,2014 Oct,5440
 Brunei Darussalam,2014 Nov,5806
 Brunei Darussalam,2014 Dec,11998
-Indonesia,2013 Jan,254725
-Indonesia,2013 Feb,196059
-Indonesia,2013 Mar,259244
+Brunei Darussalam,2015 Jan,5521
+Brunei Darussalam,2015 Feb,4759
+Brunei Darussalam,2015 Mar,6989
 Indonesia,2013 Apr,218602
 Indonesia,2013 May,251092
 Indonesia,2013 Jun,295907
@@ -95,9 +92,9 @@ Indonesia,2014 Sep,206593
 Indonesia,2014 Oct,226630
 Indonesia,2014 Nov,219369
 Indonesia,2014 Dec,315395
-Malaysia,2013 Jan,89300
-Malaysia,2013 Feb,91895
-Malaysia,2013 Mar,108683
+Indonesia,2015 Jan,236295
+Indonesia,2015 Feb,184183
+Indonesia,2015 Mar,211347
 Malaysia,2013 Apr,95414
 Malaysia,2013 May,109517
 Malaysia,2013 Jun,107286
@@ -119,9 +116,9 @@ Malaysia,2014 Sep,99339
 Malaysia,2014 Oct,97184
 Malaysia,2014 Nov,106313
 Malaysia,2014 Dec,143276
-Myanmar,2013 Jan,6819
-Myanmar,2013 Feb,5680
-Myanmar,2013 Mar,8693
+Malaysia,2015 Jan,86193
+Malaysia,2015 Feb,82408
+Malaysia,2015 Mar,101929
 Myanmar,2013 Apr,13031
 Myanmar,2013 May,8432
 Myanmar,2013 Jun,7718
@@ -143,9 +140,9 @@ Myanmar,2014 Sep,8294
 Myanmar,2014 Oct,8958
 Myanmar,2014 Nov,7973
 Myanmar,2014 Dec,9859
-Philippines,2013 Jan,44201
-Philippines,2013 Feb,44540
-Philippines,2013 Mar,63521
+Myanmar,2015 Jan,7825
+Myanmar,2015 Feb,6204
+Myanmar,2015 Mar,9681
 Philippines,2013 Apr,73215
 Philippines,2013 May,76929
 Philippines,2013 Jun,55868
@@ -167,9 +164,9 @@ Philippines,2014 Sep,47246
 Philippines,2014 Oct,58572
 Philippines,2014 Nov,53508
 Philippines,2014 Dec,64526
-Thailand,2013 Jan,32897
-Thailand,2013 Feb,30311
-Thailand,2013 Mar,44202
+Philippines,2015 Jan,42839
+Philippines,2015 Feb,41155
+Philippines,2015 Mar,53649
 Thailand,2013 Apr,54728
 Thailand,2013 May,48171
 Thailand,2013 Jun,36018
@@ -191,9 +188,9 @@ Thailand,2014 Sep,35122
 Thailand,2014 Oct,53916
 Thailand,2014 Nov,35138
 Thailand,2014 Dec,39035
-Vietnam,2013 Jan,22879
-Vietnam,2013 Feb,28981
-Vietnam,2013 Mar,27732
+Thailand,2015 Jan,36798
+Thailand,2015 Feb,29889
+Thailand,2015 Mar,43504
 Vietnam,2013 Apr,31863
 Vietnam,2013 May,30496
 Vietnam,2013 Jun,42194
@@ -215,9 +212,9 @@ Vietnam,2014 Sep,28960
 Vietnam,2014 Oct,30552
 Vietnam,2014 Nov,29938
 Vietnam,2014 Dec,31185
-Other Markets In Southeast Asia,2013 Jan,3419
-Other Markets In Southeast Asia,2013 Feb,3453
-Other Markets In Southeast Asia,2013 Mar,3467
+Vietnam,2015 Jan,28632
+Vietnam,2015 Feb,28150
+Vietnam,2015 Mar,30907
 Other Markets In Southeast Asia,2013 Apr,6049
 Other Markets In Southeast Asia,2013 May,4679
 Other Markets In Southeast Asia,2013 Jun,4179
@@ -239,9 +236,9 @@ Other Markets In Southeast Asia,2014 Sep,5172
 Other Markets In Southeast Asia,2014 Oct,3787
 Other Markets In Southeast Asia,2014 Nov,5114
 Other Markets In Southeast Asia,2014 Dec,3924
-Greater China,2013 Jan,256173
-Greater China,2013 Feb,342660
-Greater China,2013 Mar,280596
+Other Markets In Southeast Asia,2015 Jan,4030
+Other Markets In Southeast Asia,2015 Feb,3641
+Other Markets In Southeast Asia,2015 Mar,3993
 Greater China,2013 Apr,293857
 Greater China,2013 May,263093
 Greater China,2013 Jun,243393
@@ -263,9 +260,9 @@ Greater China,2014 Sep,173014
 Greater China,2014 Oct,200246
 Greater China,2014 Nov,194072
 Greater China,2014 Dec,192653
-China,2013 Jan,189107
-China,2013 Feb,252958
-China,2013 Mar,205790
+Greater China,2015 Jan,207586
+Greater China,2015 Feb,327971
+Greater China,2015 Mar,198908
 China,2013 Apr,227870
 China,2013 May,198429
 China,2013 Jun,166890
@@ -287,9 +284,9 @@ China,2014 Sep,105780
 China,2014 Oct,133993
 China,2014 Nov,131731
 China,2014 Dec,124615
-Hong Kong SAR,2013 Jan,32438
-Hong Kong SAR,2013 Feb,48473
-Hong Kong SAR,2013 Mar,50220
+China,2015 Jan,140548
+China,2015 Feb,238011
+China,2015 Mar,130827
 Hong Kong SAR,2013 Apr,40252
 Hong Kong SAR,2013 May,40898
 Hong Kong SAR,2013 Jun,43857
@@ -311,9 +308,9 @@ Hong Kong SAR,2014 Sep,39931
 Hong Kong SAR,2014 Oct,40146
 Hong Kong SAR,2014 Nov,39019
 Hong Kong SAR,2014 Dec,45669
-Taiwan,2013 Jan,32717
-Taiwan,2013 Feb,39087
-Taiwan,2013 Mar,22606
+Hong Kong SAR,2015 Jan,34012
+Hong Kong SAR,2015 Feb,46985
+Hong Kong SAR,2015 Mar,41803
 Taiwan,2013 Apr,24261
 Taiwan,2013 May,22261
 Taiwan,2013 Jun,29680
@@ -335,9 +332,9 @@ Taiwan,2014 Sep,25373
 Taiwan,2014 Oct,24197
 Taiwan,2014 Nov,21240
 Taiwan,2014 Dec,18577
-Other Markets In Greater China,2013 Jan,1911
-Other Markets In Greater China,2013 Feb,2142
-Other Markets In Greater China,2013 Mar,1980
+Taiwan,2015 Jan,30685
+Taiwan,2015 Feb,40059
+Taiwan,2015 Mar,24694
 Other Markets In Greater China,2013 Apr,1474
 Other Markets In Greater China,2013 May,1505
 Other Markets In Greater China,2013 Jun,2966
@@ -359,9 +356,9 @@ Other Markets In Greater China,2014 Sep,1930
 Other Markets In Greater China,2014 Oct,1910
 Other Markets In Greater China,2014 Nov,2082
 Other Markets In Greater China,2014 Dec,3792
-North Asia,2013 Jan,116158
-North Asia,2013 Feb,108731
-North Asia,2013 Mar,124217
+Other Markets In Greater China,2015 Jan,2341
+Other Markets In Greater China,2015 Feb,2916
+Other Markets In Greater China,2015 Mar,1584
 North Asia,2013 Apr,84637
 North Asia,2013 May,89444
 North Asia,2013 Jun,94290
@@ -383,9 +380,9 @@ North Asia,2014 Sep,113725
 North Asia,2014 Oct,113472
 North Asia,2014 Nov,109720
 North Asia,2014 Dec,112880
-Japan,2013 Jan,62857
-Japan,2013 Feb,68442
-Japan,2013 Mar,87359
+North Asia,2015 Jan,130360
+North Asia,2015 Feb,113888
+North Asia,2015 Mar,122861
 Japan,2013 Apr,53292
 Japan,2013 May,55491
 Japan,2013 Jun,57757
@@ -407,9 +404,9 @@ Japan,2014 Sep,74408
 Japan,2014 Oct,68609
 Japan,2014 Nov,69415
 Japan,2014 Dec,71920
-South Korea,2013 Jan,53193
-South Korea,2013 Feb,40229
-South Korea,2013 Mar,36755
+Japan,2015 Jan,58479
+Japan,2015 Feb,62422
+Japan,2015 Mar,79941
 South Korea,2013 Apr,31296
 South Korea,2013 May,33857
 South Korea,2013 Jun,36409
@@ -431,9 +428,9 @@ South Korea,2014 Sep,39276
 South Korea,2014 Oct,44810
 South Korea,2014 Nov,40230
 South Korea,2014 Dec,40918
-Other Markets In North Asia,2013 Jan,108
-Other Markets In North Asia,2013 Feb,60
-Other Markets In North Asia,2013 Mar,103
+South Korea,2015 Jan,71820
+South Korea,2015 Feb,51415
+South Korea,2015 Mar,42872
 Other Markets In North Asia,2013 Apr,49
 Other Markets In North Asia,2013 May,96
 Other Markets In North Asia,2013 Jun,124
@@ -455,9 +452,9 @@ Other Markets In North Asia,2014 Sep,41
 Other Markets In North Asia,2014 Oct,53
 Other Markets In North Asia,2014 Nov,75
 Other Markets In North Asia,2014 Dec,42
-South Asia,2013 Jan,92370
-South Asia,2013 Feb,76153
-South Asia,2013 Mar,91079
+Other Markets In North Asia,2015 Jan,61
+Other Markets In North Asia,2015 Feb,51
+Other Markets In North Asia,2015 Mar,48
 South Asia,2013 Apr,101705
 South Asia,2013 May,141973
 South Asia,2013 Jun,121033
@@ -479,9 +476,9 @@ South Asia,2014 Sep,85979
 South Asia,2014 Oct,110357
 South Asia,2014 Nov,92377
 South Asia,2014 Dec,107009
-Bangladesh,2013 Jan,10584
-Bangladesh,2013 Feb,7379
-Bangladesh,2013 Mar,9617
+South Asia,2015 Jan,94529
+South Asia,2015 Feb,76576
+South Asia,2015 Mar,91552
 Bangladesh,2013 Apr,9832
 Bangladesh,2013 May,9611
 Bangladesh,2013 Jun,10360
@@ -503,9 +500,9 @@ Bangladesh,2014 Sep,9486
 Bangladesh,2014 Oct,10722
 Bangladesh,2014 Nov,10027
 Bangladesh,2014 Dec,11631
-India,2013 Jan,71162
-India,2013 Feb,59665
-India,2013 Mar,70480
+Bangladesh,2015 Jan,10923
+Bangladesh,2015 Feb,7960
+Bangladesh,2015 Mar,10186
 India,2013 Apr,76103
 India,2013 May,122030
 India,2013 Jun,99754
@@ -527,9 +524,9 @@ India,2014 Sep,65751
 India,2014 Oct,88855
 India,2014 Nov,71555
 India,2014 Dec,82520
-Pakistan,2013 Jan,1778
-Pakistan,2013 Feb,1249
-Pakistan,2013 Mar,1734
+India,2015 Jan,73605
+India,2015 Feb,60016
+India,2015 Mar,70302
 Pakistan,2013 Apr,1572
 Pakistan,2013 May,1646
 Pakistan,2013 Jun,2770
@@ -551,9 +548,9 @@ Pakistan,2014 Sep,1115
 Pakistan,2014 Oct,1161
 Pakistan,2014 Nov,1242
 Pakistan,2014 Dec,1505
-Sri Lanka,2013 Jan,6741
-Sri Lanka,2013 Feb,6392
-Sri Lanka,2013 Mar,7474
+Pakistan,2015 Jan,1500
+Pakistan,2015 Feb,870
+Pakistan,2015 Mar,1234
 Sri Lanka,2013 Apr,12588
 Sri Lanka,2013 May,7066
 Sri Lanka,2013 Jun,6206
@@ -575,9 +572,9 @@ Sri Lanka,2014 Sep,7536
 Sri Lanka,2014 Oct,6987
 Sri Lanka,2014 Nov,7603
 Sri Lanka,2014 Dec,8608
-Other Markets In South Asia,2013 Jan,2105
-Other Markets In South Asia,2013 Feb,1468
-Other Markets In South Asia,2013 Mar,1774
+Sri Lanka,2015 Jan,6139
+Sri Lanka,2015 Feb,5987
+Sri Lanka,2015 Mar,7640
 Other Markets In South Asia,2013 Apr,1610
 Other Markets In South Asia,2013 May,1620
 Other Markets In South Asia,2013 Jun,1943
@@ -599,9 +596,9 @@ Other Markets In South Asia,2014 Sep,2091
 Other Markets In South Asia,2014 Oct,2632
 Other Markets In South Asia,2014 Nov,1950
 Other Markets In South Asia,2014 Dec,2745
-West Asia,2013 Jan,10529
-West Asia,2013 Feb,9734
-West Asia,2013 Mar,14304
+Other Markets In South Asia,2015 Jan,2362
+Other Markets In South Asia,2015 Feb,1743
+Other Markets In South Asia,2015 Mar,2190
 West Asia,2013 Apr,11626
 West Asia,2013 May,8816
 West Asia,2013 Jun,13492
@@ -623,9 +620,9 @@ West Asia,2014 Sep,11961
 West Asia,2014 Oct,14898
 West Asia,2014 Nov,10844
 West Asia,2014 Dec,14667
-Iran,2013 Jan,675
-Iran,2013 Feb,731
-Iran,2013 Mar,2223
+West Asia,2015 Jan,13037
+West Asia,2015 Feb,9073
+West Asia,2015 Mar,16316
 Iran,2013 Apr,504
 Iran,2013 May,421
 Iran,2013 Jun,699
@@ -647,9 +644,9 @@ Iran,2014 Sep,1254
 Iran,2014 Oct,756
 Iran,2014 Nov,758
 Iran,2014 Dec,934
-Israel,2013 Jan,1351
-Israel,2013 Feb,1196
-Israel,2013 Mar,1241
+Iran,2015 Jan,601
+Iran,2015 Feb,632
+Iran,2015 Mar,2937
 Israel,2013 Apr,1023
 Israel,2013 May,1044
 Israel,2013 Jun,1215
@@ -671,9 +668,9 @@ Israel,2014 Sep,1134
 Israel,2014 Oct,1441
 Israel,2014 Nov,1602
 Israel,2014 Dec,1120
-Kuwait,2013 Jan,456
-Kuwait,2013 Feb,1302
-Kuwait,2013 Mar,550
+Israel,2015 Jan,1425
+Israel,2015 Feb,1347
+Israel,2015 Mar,1414
 Kuwait,2013 Apr,479
 Kuwait,2013 May,320
 Kuwait,2013 Jun,857
@@ -695,9 +692,9 @@ Kuwait,2014 Sep,532
 Kuwait,2014 Oct,896
 Kuwait,2014 Nov,404
 Kuwait,2014 Dec,781
-Saudi Arabia,2013 Jan,1988
-Saudi Arabia,2013 Feb,972
-Saudi Arabia,2013 Mar,1610
+Kuwait,2015 Jan,1420
+Kuwait,2015 Feb,519
+Kuwait,2015 Mar,546
 Saudi Arabia,2013 Apr,1089
 Saudi Arabia,2013 May,954
 Saudi Arabia,2013 Jun,2839
@@ -719,9 +716,9 @@ Saudi Arabia,2014 Sep,2311
 Saudi Arabia,2014 Oct,2349
 Saudi Arabia,2014 Nov,1660
 Saudi Arabia,2014 Dec,1292
-United Arab Emirates,2013 Jan,4424
-United Arab Emirates,2013 Feb,3873
-United Arab Emirates,2013 Mar,6560
+Saudi Arabia,2015 Jan,2500
+Saudi Arabia,2015 Feb,948
+Saudi Arabia,2015 Mar,1777
 United Arab Emirates,2013 Apr,6582
 United Arab Emirates,2013 May,4477
 United Arab Emirates,2013 Jun,5375
@@ -743,9 +740,9 @@ United Arab Emirates,2014 Sep,5012
 United Arab Emirates,2014 Oct,6704
 United Arab Emirates,2014 Nov,4754
 United Arab Emirates,2014 Dec,7868
-Other Markets In West Asia,2013 Jan,1635
-Other Markets In West Asia,2013 Feb,1660
-Other Markets In West Asia,2013 Mar,2120
+United Arab Emirates,2015 Jan,4612
+United Arab Emirates,2015 Feb,3871
+United Arab Emirates,2015 Mar,7588
 Other Markets In West Asia,2013 Apr,1949
 Other Markets In West Asia,2013 May,1600
 Other Markets In West Asia,2013 Jun,2507
@@ -767,9 +764,9 @@ Other Markets In West Asia,2014 Sep,1718
 Other Markets In West Asia,2014 Oct,2752
 Other Markets In West Asia,2014 Nov,1666
 Other Markets In West Asia,2014 Dec,2672
-Americas,2013 Jan,61382
-Americas,2013 Feb,54112
-Americas,2013 Mar,62006
+Other Markets In West Asia,2015 Jan,2479
+Other Markets In West Asia,2015 Feb,1756
+Other Markets In West Asia,2015 Mar,2054
 Americas,2013 Apr,52338
 Americas,2013 May,47760
 Americas,2013 Jun,56119
@@ -791,9 +788,9 @@ Americas,2014 Sep,42437
 Americas,2014 Oct,47969
 Americas,2014 Nov,52340
 Americas,2014 Dec,57955
-Canada,2013 Jan,9798
-Canada,2013 Feb,8995
-Canada,2013 Mar,9635
+Americas,2015 Jan,64780
+Americas,2015 Feb,57924
+Americas,2015 Mar,64764
 Canada,2013 Apr,7769
 Canada,2013 May,6699
 Canada,2013 Jun,5748
@@ -815,9 +812,9 @@ Canada,2014 Sep,5022
 Canada,2014 Oct,6696
 Canada,2014 Nov,7662
 Canada,2014 Dec,9234
-USA,2013 Jan,45736
-USA,2013 Feb,40696
-USA,2013 Mar,46881
+Canada,2015 Jan,10875
+Canada,2015 Feb,9915
+Canada,2015 Mar,10515
 USA,2013 Apr,38908
 USA,2013 May,36909
 USA,2013 Jun,45860
@@ -839,9 +836,9 @@ USA,2014 Sep,33053
 USA,2014 Oct,36306
 USA,2014 Nov,39705
 USA,2014 Dec,43188
-Other Markets In Americas,2013 Jan,5848
-Other Markets In Americas,2013 Feb,4421
-Other Markets In Americas,2013 Mar,5490
+USA,2015 Jan,46845
+USA,2015 Feb,42427
+USA,2015 Mar,48341
 Other Markets In Americas,2013 Apr,5661
 Other Markets In Americas,2013 May,4152
 Other Markets In Americas,2013 Jun,4511
@@ -863,9 +860,9 @@ Other Markets In Americas,2014 Sep,4362
 Other Markets In Americas,2014 Oct,4967
 Other Markets In Americas,2014 Nov,4973
 Other Markets In Americas,2014 Dec,5533
-Europe,2013 Jan,155741
-Europe,2013 Feb,144455
-Europe,2013 Mar,170603
+Other Markets In Americas,2015 Jan,7060
+Other Markets In Americas,2015 Feb,5582
+Other Markets In Americas,2015 Mar,5908
 Europe,2013 Apr,123042
 Europe,2013 May,101794
 Europe,2013 Jun,94881
@@ -887,9 +884,9 @@ Europe,2014 Sep,120902
 Europe,2014 Oct,129264
 Europe,2014 Nov,134238
 Europe,2014 Dec,137315
-Belgium & Luxembourg,2013 Jan,2185
-Belgium & Luxembourg,2013 Feb,1973
-Belgium & Luxembourg,2013 Mar,2712
+Europe,2015 Jan,158529
+Europe,2015 Feb,147155
+Europe,2015 Mar,160349
 Belgium & Luxembourg,2013 Apr,2025
 Belgium & Luxembourg,2013 May,1850
 Belgium & Luxembourg,2013 Jun,1735
@@ -911,9 +908,9 @@ Belgium & Luxembourg,2014 Sep,2233
 Belgium & Luxembourg,2014 Oct,2029
 Belgium & Luxembourg,2014 Nov,2546
 Belgium & Luxembourg,2014 Dec,2321
-Denmark,2013 Jan,3745
-Denmark,2013 Feb,3673
-Denmark,2013 Mar,3545
+Belgium & Luxembourg,2015 Jan,2063
+Belgium & Luxembourg,2015 Feb,1968
+Belgium & Luxembourg,2015 Mar,2594
 Denmark,2013 Apr,2149
 Denmark,2013 May,1691
 Denmark,2013 Jun,1868
@@ -935,9 +932,9 @@ Denmark,2014 Sep,2199
 Denmark,2014 Oct,2754
 Denmark,2014 Nov,2372
 Denmark,2014 Dec,2485
-Finland,2013 Jan,3877
-Finland,2013 Feb,3755
-Finland,2013 Mar,3271
+Denmark,2015 Jan,3440
+Denmark,2015 Feb,3634
+Denmark,2015 Mar,3246
 Finland,2013 Apr,2213
 Finland,2013 May,1527
 Finland,2013 Jun,1620
@@ -959,9 +956,9 @@ Finland,2014 Sep,1759
 Finland,2014 Oct,2522
 Finland,2014 Nov,3054
 Finland,2014 Dec,3210
-France,2013 Jan,12798
-France,2013 Feb,12621
-France,2013 Mar,16120
+Finland,2015 Jan,3740
+Finland,2015 Feb,3390
+Finland,2015 Mar,3110
 France,2013 Apr,13403
 France,2013 May,12432
 France,2013 Jun,9349
@@ -983,9 +980,9 @@ France,2014 Sep,10323
 France,2014 Oct,12351
 France,2014 Nov,11762
 France,2014 Dec,10708
-Germany,2013 Jan,22837
-Germany,2013 Feb,23053
-Germany,2013 Mar,31307
+France,2015 Jan,11285
+France,2015 Feb,13590
+France,2015 Mar,12789
 Germany,2013 Apr,18494
 Germany,2013 May,15763
 Germany,2013 Jun,13453
@@ -1007,9 +1004,9 @@ Germany,2014 Sep,22156
 Germany,2014 Oct,21905
 Germany,2014 Nov,21514
 Germany,2014 Dec,24156
-Italy,2013 Jan,6262
-Italy,2013 Feb,4309
-Italy,2013 Mar,5463
+Germany,2015 Jan,24529
+Germany,2015 Feb,24937
+Germany,2015 Mar,31468
 Italy,2013 Apr,4011
 Italy,2013 May,4407
 Italy,2013 Jun,4185
@@ -1031,9 +1028,9 @@ Italy,2014 Sep,5164
 Italy,2014 Oct,4389
 Italy,2014 Nov,5559
 Italy,2014 Dec,5124
-Netherlands,2013 Jan,7153
-Netherlands,2013 Feb,7098
-Netherlands,2013 Mar,7476
+Italy,2015 Jan,5470
+Italy,2015 Feb,4192
+Italy,2015 Mar,5311
 Netherlands,2013 Apr,5891
 Netherlands,2013 May,5916
 Netherlands,2013 Jun,5661
@@ -1055,9 +1052,9 @@ Netherlands,2014 Sep,6027
 Netherlands,2014 Oct,6051
 Netherlands,2014 Nov,6447
 Netherlands,2014 Dec,6222
-Norway,2013 Jan,3382
-Norway,2013 Feb,3524
-Norway,2013 Mar,4885
+Netherlands,2015 Jan,6405
+Netherlands,2015 Feb,6678
+Netherlands,2015 Mar,7127
 Norway,2013 Apr,3073
 Norway,2013 May,1904
 Norway,2013 Jun,2463
@@ -1079,9 +1076,9 @@ Norway,2014 Sep,2132
 Norway,2014 Oct,2328
 Norway,2014 Nov,2689
 Norway,2014 Dec,2758
-Rep Of Ireland,2013 Jan,1631
-Rep Of Ireland,2013 Feb,1361
-Rep Of Ireland,2013 Mar,1856
+Norway,2015 Jan,2859
+Norway,2015 Feb,3123
+Norway,2015 Mar,3535
 Rep Of Ireland,2013 Apr,1255
 Rep Of Ireland,2013 May,1264
 Rep Of Ireland,2013 Jun,1388
@@ -1103,9 +1100,9 @@ Rep Of Ireland,2014 Sep,1281
 Rep Of Ireland,2014 Oct,1353
 Rep Of Ireland,2014 Nov,1363
 Rep Of Ireland,2014 Dec,1198
-Russian Federation,2013 Jan,12197
-Russian Federation,2013 Feb,6482
-Russian Federation,2013 Mar,7873
+Rep Of Ireland,2015 Jan,1551
+Rep Of Ireland,2015 Feb,1277
+Rep Of Ireland,2015 Mar,1617
 Russian Federation,2013 Apr,6499
 Russian Federation,2013 May,5566
 Russian Federation,2013 Jun,4264
@@ -1127,9 +1124,9 @@ Russian Federation,2014 Sep,5384
 Russian Federation,2014 Oct,6507
 Russian Federation,2014 Nov,7246
 Russian Federation,2014 Dec,8004
-Spain,2013 Jan,2516
-Spain,2013 Feb,2530
-Spain,2013 Mar,3469
+Russian Federation,2015 Jan,12650
+Russian Federation,2015 Feb,4861
+Russian Federation,2015 Mar,5154
 Spain,2013 Apr,2508
 Spain,2013 May,2317
 Spain,2013 Jun,2278
@@ -1151,9 +1148,9 @@ Spain,2014 Sep,4153
 Spain,2014 Oct,3488
 Spain,2014 Nov,3757
 Spain,2014 Dec,3348
-Sweden,2013 Jan,6892
-Sweden,2013 Feb,5440
-Sweden,2013 Mar,5395
+Spain,2015 Jan,3546
+Spain,2015 Feb,2893
+Spain,2015 Mar,3715
 Sweden,2013 Apr,3243
 Sweden,2013 May,2199
 Sweden,2013 Jun,2240
@@ -1175,9 +1172,9 @@ Sweden,2014 Sep,2034
 Sweden,2014 Oct,3331
 Sweden,2014 Nov,3498
 Sweden,2014 Dec,5363
-Switzerland,2013 Jan,7957
-Switzerland,2013 Feb,7107
-Switzerland,2013 Mar,7766
+Sweden,2015 Jan,6295
+Sweden,2015 Feb,4556
+Sweden,2015 Mar,4284
 Switzerland,2013 Apr,7455
 Switzerland,2013 May,6663
 Switzerland,2013 Jun,5735
@@ -1199,9 +1196,9 @@ Switzerland,2014 Sep,7645
 Switzerland,2014 Oct,9515
 Switzerland,2014 Nov,8983
 Switzerland,2014 Dec,8630
-United Kingdom,2013 Jan,42983
-United Kingdom,2013 Feb,44608
-United Kingdom,2013 Mar,52527
+Switzerland,2015 Jan,9470
+Switzerland,2015 Feb,8475
+Switzerland,2015 Mar,8777
 United Kingdom,2013 Apr,38620
 United Kingdom,2013 May,27724
 United Kingdom,2013 Jun,28866
@@ -1223,9 +1220,9 @@ United Kingdom,2014 Sep,35981
 United Kingdom,2014 Oct,36986
 United Kingdom,2014 Nov,37919
 United Kingdom,2014 Dec,38438
-Other Markets In Europe,2013 Jan,19326
-Other Markets In Europe,2013 Feb,16921
-Other Markets In Europe,2013 Mar,16938
+United Kingdom,2015 Jan,44923
+United Kingdom,2015 Feb,47051
+United Kingdom,2015 Mar,50741
 Other Markets In Europe,2013 Apr,12203
 Other Markets In Europe,2013 May,10571
 Other Markets In Europe,2013 Jun,9776
@@ -1247,9 +1244,9 @@ Other Markets In Europe,2014 Sep,12431
 Other Markets In Europe,2014 Oct,13755
 Other Markets In Europe,2014 Nov,15529
 Other Markets In Europe,2014 Dec,15350
-Oceania,2013 Jan,132869
-Oceania,2013 Feb,76189
-Oceania,2013 Mar,95912
+Other Markets In Europe,2015 Jan,20303
+Other Markets In Europe,2015 Feb,16530
+Other Markets In Europe,2015 Mar,16881
 Oceania,2013 Apr,104538
 Oceania,2013 May,95910
 Oceania,2013 Jun,103351
@@ -1271,9 +1268,9 @@ Oceania,2014 Sep,109434
 Oceania,2014 Oct,97886
 Oceania,2014 Nov,81969
 Oceania,2014 Dec,109269
-Australia,2013 Jan,119592
-Australia,2013 Feb,69470
-Australia,2013 Mar,87652
+Oceania,2015 Jan,129274
+Oceania,2015 Feb,72276
+Oceania,2015 Mar,79761
 Australia,2013 Apr,94285
 Australia,2013 May,84444
 Australia,2013 Jun,91231
@@ -1295,9 +1292,9 @@ Australia,2014 Sep,97642
 Australia,2014 Oct,87565
 Australia,2014 Nov,73262
 Australia,2014 Dec,97855
-New Zealand,2013 Jan,11908
-New Zealand,2013 Feb,5735
-New Zealand,2013 Mar,7087
+Australia,2015 Jan,115584
+Australia,2015 Feb,65009
+Australia,2015 Mar,70708
 New Zealand,2013 Apr,9035
 New Zealand,2013 May,10225
 New Zealand,2013 Jun,10626
@@ -1319,9 +1316,9 @@ New Zealand,2014 Sep,10593
 New Zealand,2014 Oct,9146
 New Zealand,2014 Nov,7435
 New Zealand,2014 Dec,10015
-Other Markets In Oceania,2013 Jan,1369
-Other Markets In Oceania,2013 Feb,984
-Other Markets In Oceania,2013 Mar,1173
+New Zealand,2015 Jan,12330
+New Zealand,2015 Feb,6349
+New Zealand,2015 Mar,7854
 Other Markets In Oceania,2013 Apr,1218
 Other Markets In Oceania,2013 May,1241
 Other Markets In Oceania,2013 Jun,1494
@@ -1343,9 +1340,9 @@ Other Markets In Oceania,2014 Sep,1199
 Other Markets In Oceania,2014 Oct,1175
 Other Markets In Oceania,2014 Nov,1272
 Other Markets In Oceania,2014 Dec,1399
-Africa,2013 Jan,6338
-Africa,2013 Feb,3659
-Africa,2013 Mar,5755
+Other Markets In Oceania,2015 Jan,1360
+Other Markets In Oceania,2015 Feb,918
+Other Markets In Oceania,2015 Mar,1199
 Africa,2013 Apr,5056
 Africa,2013 May,4506
 Africa,2013 Jun,5298
@@ -1367,9 +1364,9 @@ Africa,2014 Sep,4846
 Africa,2014 Oct,4191
 Africa,2014 Nov,5507
 Africa,2014 Dec,9594
-Egypt,2013 Jan,277
-Egypt,2013 Feb,288
-Egypt,2013 Mar,289
+Africa,2015 Jan,6377
+Africa,2015 Feb,3562
+Africa,2015 Mar,5138
 Egypt,2013 Apr,324
 Egypt,2013 May,249
 Egypt,2013 Jun,410
@@ -1391,9 +1388,9 @@ Egypt,2014 Sep,399
 Egypt,2014 Oct,406
 Egypt,2014 Nov,397
 Egypt,2014 Dec,457
-Mauritius,2013 Jan,909
-Mauritius,2013 Feb,459
-Mauritius,2013 Mar,572
+Egypt,2015 Jan,453
+Egypt,2015 Feb,268
+Egypt,2015 Mar,419
 Mauritius,2013 Apr,738
 Mauritius,2013 May,500
 Mauritius,2013 Jun,582
@@ -1415,9 +1412,9 @@ Mauritius,2014 Sep,475
 Mauritius,2014 Oct,475
 Mauritius,2014 Nov,1024
 Mauritius,2014 Dec,1420
-South Africa (Rep Of),2013 Jan,3191
-South Africa (Rep Of),2013 Feb,1606
-South Africa (Rep Of),2013 Mar,3184
+Mauritius,2015 Jan,828
+Mauritius,2015 Feb,557
+Mauritius,2015 Mar,567
 South Africa (Rep Of),2013 Apr,2494
 South Africa (Rep Of),2013 May,2301
 South Africa (Rep Of),2013 Jun,2645
@@ -1439,9 +1436,9 @@ South Africa (Rep Of),2014 Sep,2354
 South Africa (Rep Of),2014 Oct,1853
 South Africa (Rep Of),2014 Nov,2310
 South Africa (Rep Of),2014 Dec,4842
-Other Markets In Africa,2013 Jan,1961
-Other Markets In Africa,2013 Feb,1306
-Other Markets In Africa,2013 Mar,1710
+South Africa (Rep Of),2015 Jan,3255
+South Africa (Rep Of),2015 Feb,1619
+South Africa (Rep Of),2015 Mar,2541
 Other Markets In Africa,2013 Apr,1500
 Other Markets In Africa,2013 May,1456
 Other Markets In Africa,2013 Jun,1661
@@ -1463,9 +1460,9 @@ Other Markets In Africa,2014 Sep,1618
 Other Markets In Africa,2014 Oct,1457
 Other Markets In Africa,2014 Nov,1776
 Other Markets In Africa,2014 Dec,2875
-Others,2013 Jan,145
-Others,2013 Feb,326
-Others,2013 Mar,587
+Other Markets In Africa,2015 Jan,1841
+Other Markets In Africa,2015 Feb,1118
+Other Markets In Africa,2015 Mar,1611
 Others,2013 Apr,59
 Others,2013 May,96
 Others,2013 Jun,86
@@ -1487,9 +1484,9 @@ Others,2014 Sep,1
 Others,2014 Oct,205
 Others,2014 Nov,4
 Others,2014 Dec,1
-Total International Visitor Arrivals By Place Of Residence,2015 Jan,1252608
-Total International Visitor Arrivals By Place Of Residence,2015 Feb,1188818
-Total International Visitor Arrivals By Place Of Residence,2015 Mar,1201648
+Others,2015 Jan,3
+Others,2015 Feb,4
+Others,2015 Mar,0
 Total International Visitor Arrivals By Place Of Residence,2015 Apr,1208624
 Total International Visitor Arrivals By Place Of Residence,2015 May,1222836
 Total International Visitor Arrivals By Place Of Residence,2015 Jun,1184747
@@ -1511,9 +1508,9 @@ Total International Visitor Arrivals By Place Of Residence,2016 Sep,1144063
 Total International Visitor Arrivals By Place Of Residence,2016 Oct,1237675
 Total International Visitor Arrivals By Place Of Residence,2016 Nov,1235433
 Total International Visitor Arrivals By Place Of Residence,2016 Dec,1506134
-Southeast Asia,2015 Jan,448133
-Southeast Asia,2015 Feb,380389
-Southeast Asia,2015 Mar,461999
+Total International Visitor Arrivals By Place Of Residence,2017 Jan,1480479
+Total International Visitor Arrivals By Place Of Residence,2017 Feb,1361010
+Total International Visitor Arrivals By Place Of Residence,2017 Mar,1480161
 Southeast Asia,2015 Apr,478213
 Southeast Asia,2015 May,512074
 Southeast Asia,2015 Jun,496392
@@ -1535,9 +1532,9 @@ Southeast Asia,2016 Sep,413178
 Southeast Asia,2016 Oct,471598
 Southeast Asia,2016 Nov,465948
 Southeast Asia,2016 Dec,637752
-Brunei Darussalam,2015 Jan,5521
-Brunei Darussalam,2015 Feb,4759
-Brunei Darussalam,2015 Mar,6989
+Southeast Asia,2017 Jan,478812
+Southeast Asia,2017 Feb,437738
+Southeast Asia,2017 Mar,534535
 Brunei Darussalam,2015 Apr,4977
 Brunei Darussalam,2015 May,5378
 Brunei Darussalam,2015 Jun,4992
@@ -1559,9 +1556,9 @@ Brunei Darussalam,2016 Sep,5551
 Brunei Darussalam,2016 Oct,4022
 Brunei Darussalam,2016 Nov,5256
 Brunei Darussalam,2016 Dec,10229
-Indonesia,2015 Jan,236295
-Indonesia,2015 Feb,184183
-Indonesia,2015 Mar,211347
+Brunei Darussalam,2017 Jan,5297
+Brunei Darussalam,2017 Feb,4379
+Brunei Darussalam,2017 Mar,7835
 Indonesia,2015 Apr,207138
 Indonesia,2015 May,238688
 Indonesia,2015 Jun,238403
@@ -1583,9 +1580,9 @@ Indonesia,2016 Sep,186610
 Indonesia,2016 Oct,213070
 Indonesia,2016 Nov,219845
 Indonesia,2016 Dec,329994
-Malaysia,2015 Jan,86193
-Malaysia,2015 Feb,82408
-Malaysia,2015 Mar,101929
+Indonesia,2017 Jan,254634
+Indonesia,2017 Feb,208853
+Indonesia,2017 Mar,256636
 Malaysia,2015 Apr,90515
 Malaysia,2015 May,100340
 Malaysia,2015 Jun,100074
@@ -1607,9 +1604,9 @@ Malaysia,2016 Sep,93519
 Malaysia,2016 Oct,92736
 Malaysia,2016 Nov,101549
 Malaysia,2016 Dec,128897
-Myanmar,2015 Jan,7825
-Myanmar,2015 Feb,6204
-Myanmar,2015 Mar,9681
+Malaysia,2017 Jan,84504
+Malaysia,2017 Feb,85058
+Malaysia,2017 Mar,105372
 Myanmar,2015 Apr,12969
 Myanmar,2015 May,9162
 Myanmar,2015 Jun,9326
@@ -1631,9 +1628,9 @@ Myanmar,2016 Sep,7102
 Myanmar,2016 Oct,8218
 Myanmar,2016 Nov,7648
 Myanmar,2016 Dec,13691
-Philippines,2015 Jan,42839
-Philippines,2015 Feb,41155
-Philippines,2015 Mar,53649
+Myanmar,2017 Jan,9902
+Myanmar,2017 Feb,9783
+Myanmar,2017 Mar,12656
 Philippines,2015 Apr,72259
 Philippines,2015 May,72159
 Philippines,2015 Jun,53329
@@ -1655,9 +1652,9 @@ Philippines,2016 Sep,45804
 Philippines,2016 Oct,57924
 Philippines,2016 Nov,55814
 Philippines,2016 Dec,68624
-Thailand,2015 Jan,36798
-Thailand,2015 Feb,29889
-Thailand,2015 Mar,43504
+Philippines,2017 Jan,46187
+Philippines,2017 Feb,51160
+Philippines,2017 Mar,61816
 Thailand,2015 Apr,47838
 Thailand,2015 May,45674
 Thailand,2015 Jun,40121
@@ -1679,9 +1676,9 @@ Thailand,2016 Sep,36911
 Thailand,2016 Oct,58094
 Thailand,2016 Nov,35520
 Thailand,2016 Dec,43619
-Vietnam,2015 Jan,28632
-Vietnam,2015 Feb,28150
-Vietnam,2015 Mar,30907
+Thailand,2017 Jan,36813
+Thailand,2017 Feb,38502
+Thailand,2017 Mar,47025
 Vietnam,2015 Apr,36472
 Vietnam,2015 May,35974
 Vietnam,2015 Jun,45490
@@ -1703,9 +1700,9 @@ Vietnam,2016 Sep,32777
 Vietnam,2016 Oct,32192
 Vietnam,2016 Nov,33482
 Vietnam,2016 Dec,35494
-Other Markets In Southeast Asia,2015 Jan,4030
-Other Markets In Southeast Asia,2015 Feb,3641
-Other Markets In Southeast Asia,2015 Mar,3993
+Vietnam,2017 Jan,35367
+Vietnam,2017 Feb,34586
+Vietnam,2017 Mar,37887
 Other Markets In Southeast Asia,2015 Apr,6045
 Other Markets In Southeast Asia,2015 May,4699
 Other Markets In Southeast Asia,2015 Jun,4657
@@ -1727,9 +1724,9 @@ Other Markets In Southeast Asia,2016 Sep,4904
 Other Markets In Southeast Asia,2016 Oct,5342
 Other Markets In Southeast Asia,2016 Nov,6834
 Other Markets In Southeast Asia,2016 Dec,7204
-Greater China,2015 Jan,207586
-Greater China,2015 Feb,327971
-Greater China,2015 Mar,198908
+Other Markets In Southeast Asia,2017 Jan,6108
+Other Markets In Southeast Asia,2017 Feb,5417
+Other Markets In Southeast Asia,2017 Mar,5308
 Greater China,2015 Apr,243881
 Greater China,2015 May,214376
 Greater China,2015 Jun,222897
@@ -1751,9 +1748,9 @@ Greater China,2016 Sep,232061
 Greater China,2016 Oct,232317
 Greater China,2016 Nov,247733
 Greater China,2016 Dec,286667
-China,2015 Jan,140548
-China,2015 Feb,238011
-China,2015 Mar,130827
+Greater China,2017 Jan,389744
+Greater China,2017 Feb,342756
+Greater China,2017 Mar,328080
 China,2015 Apr,153784
 China,2015 May,141375
 China,2015 Jun,144533
@@ -1775,9 +1772,9 @@ China,2016 Sep,170204
 China,2016 Oct,173185
 China,2016 Nov,193984
 China,2016 Dec,226020
-Hong Kong SAR,2015 Jan,34012
-Hong Kong SAR,2015 Feb,46985
-Hong Kong SAR,2015 Mar,41803
+China,2017 Jan,316805
+China,2017 Feb,268993
+China,2017 Mar,264711
 Hong Kong SAR,2015 Apr,58959
 Hong Kong SAR,2015 May,45742
 Hong Kong SAR,2015 Jun,45453
@@ -1799,9 +1796,9 @@ Hong Kong SAR,2016 Sep,30252
 Hong Kong SAR,2016 Oct,31512
 Hong Kong SAR,2016 Nov,30832
 Hong Kong SAR,2016 Dec,36763
-Taiwan,2015 Jan,30685
-Taiwan,2015 Feb,40059
-Taiwan,2015 Mar,24694
+Hong Kong SAR,2017 Jan,34436
+Hong Kong SAR,2017 Feb,33169
+Hong Kong SAR,2017 Mar,33561
 Taiwan,2015 Apr,29229
 Taiwan,2015 May,25498
 Taiwan,2015 Jun,30565
@@ -1823,9 +1820,9 @@ Taiwan,2016 Sep,30267
 Taiwan,2016 Oct,26270
 Taiwan,2016 Nov,21568
 Taiwan,2016 Dec,21454
-Other Markets In Greater China,2015 Jan,2341
-Other Markets In Greater China,2015 Feb,2916
-Other Markets In Greater China,2015 Mar,1584
+Taiwan,2017 Jan,36187
+Taiwan,2017 Feb,38866
+Taiwan,2017 Mar,27976
 Other Markets In Greater China,2015 Apr,1909
 Other Markets In Greater China,2015 May,1761
 Other Markets In Greater China,2015 Jun,2346
@@ -1847,9 +1844,9 @@ Other Markets In Greater China,2016 Sep,1338
 Other Markets In Greater China,2016 Oct,1350
 Other Markets In Greater China,2016 Nov,1349
 Other Markets In Greater China,2016 Dec,2430
-North Asia,2015 Jan,130360
-North Asia,2015 Feb,113888
-North Asia,2015 Mar,122861
+Other Markets In Greater China,2017 Jan,2316
+Other Markets In Greater China,2017 Feb,1728
+Other Markets In Greater China,2017 Mar,1832
 North Asia,2015 Apr,88349
 North Asia,2015 May,96909
 North Asia,2015 Jun,90541
@@ -1871,9 +1868,9 @@ North Asia,2016 Sep,106835
 North Asia,2016 Oct,97212
 North Asia,2016 Nov,100810
 North Asia,2016 Dec,101187
-Japan,2015 Jan,58479
-Japan,2015 Feb,62422
-Japan,2015 Mar,79941
+North Asia,2017 Jan,113643
+North Asia,2017 Feb,132843
+North Asia,2017 Mar,126243
 Japan,2015 Apr,46687
 Japan,2015 May,52971
 Japan,2015 Jun,53257
@@ -1895,9 +1892,9 @@ Japan,2016 Sep,68997
 Japan,2016 Oct,62858
 Japan,2016 Nov,64466
 Japan,2016 Dec,62570
-South Korea,2015 Jan,71820
-South Korea,2015 Feb,51415
-South Korea,2015 Mar,42872
+Japan,2017 Jan,53377
+Japan,2017 Feb,72654
+Japan,2017 Mar,82293
 South Korea,2015 Apr,41602
 South Korea,2015 May,43883
 South Korea,2015 Jun,37193
@@ -1919,9 +1916,9 @@ South Korea,2016 Sep,37742
 South Korea,2016 Oct,34346
 South Korea,2016 Nov,36314
 South Korea,2016 Dec,38601
-Other Markets In North Asia,2015 Jan,61
-Other Markets In North Asia,2015 Feb,51
-Other Markets In North Asia,2015 Mar,48
+South Korea,2017 Jan,60247
+South Korea,2017 Feb,60174
+South Korea,2017 Mar,43942
 Other Markets In North Asia,2015 Apr,60
 Other Markets In North Asia,2015 May,55
 Other Markets In North Asia,2015 Jun,91
@@ -1943,9 +1940,9 @@ Other Markets In North Asia,2016 Sep,96
 Other Markets In North Asia,2016 Oct,8
 Other Markets In North Asia,2016 Nov,30
 Other Markets In North Asia,2016 Dec,16
-South Asia,2015 Jan,94529
-South Asia,2015 Feb,76576
-South Asia,2015 Mar,91552
+Other Markets In North Asia,2017 Jan,19
+Other Markets In North Asia,2017 Feb,15
+Other Markets In North Asia,2017 Mar,8
 South Asia,2015 Apr,108179
 South Asia,2015 May,151623
 South Asia,2015 Jun,121413
@@ -1967,9 +1964,9 @@ South Asia,2016 Sep,97415
 South Asia,2016 Oct,119033
 South Asia,2016 Nov,114255
 South Asia,2016 Dec,123606
-Bangladesh,2015 Jan,10923
-Bangladesh,2015 Feb,7960
-Bangladesh,2015 Mar,10186
+South Asia,2017 Jan,100555
+South Asia,2017 Feb,95038
+South Asia,2017 Mar,107296
 Bangladesh,2015 Apr,9809
 Bangladesh,2015 May,10447
 Bangladesh,2015 Jun,9737
@@ -1991,9 +1988,9 @@ Bangladesh,2016 Sep,10081
 Bangladesh,2016 Oct,10078
 Bangladesh,2016 Nov,9830
 Bangladesh,2016 Dec,10960
-India,2015 Jan,73605
-India,2015 Feb,60016
-India,2015 Mar,70302
+Bangladesh,2017 Jan,9712
+Bangladesh,2017 Feb,8788
+Bangladesh,2017 Mar,10218
 India,2015 Apr,84041
 India,2015 May,130511
 India,2015 Jun,101773
@@ -2015,9 +2012,9 @@ India,2016 Sep,75074
 India,2016 Oct,94649
 India,2016 Nov,90734
 India,2016 Dec,94323
-Pakistan,2015 Jan,1500
-Pakistan,2015 Feb,870
-Pakistan,2015 Mar,1234
+India,2017 Jan,80062
+India,2017 Feb,75905
+India,2017 Mar,85299
 Pakistan,2015 Apr,1125
 Pakistan,2015 May,1291
 Pakistan,2015 Jun,1947
@@ -2039,9 +2036,9 @@ Pakistan,2016 Sep,1893
 Pakistan,2016 Oct,1901
 Pakistan,2016 Nov,1473
 Pakistan,2016 Dec,1947
-Sri Lanka,2015 Jan,6139
-Sri Lanka,2015 Feb,5987
-Sri Lanka,2015 Mar,7640
+Pakistan,2017 Jan,1520
+Pakistan,2017 Feb,1522
+Pakistan,2017 Mar,2050
 Sri Lanka,2015 Apr,11103
 Sri Lanka,2015 May,7652
 Sri Lanka,2015 Jun,5832
@@ -2063,9 +2060,9 @@ Sri Lanka,2016 Sep,7745
 Sri Lanka,2016 Oct,7825
 Sri Lanka,2016 Nov,9161
 Sri Lanka,2016 Dec,12307
-Other Markets In South Asia,2015 Jan,2362
-Other Markets In South Asia,2015 Feb,1743
-Other Markets In South Asia,2015 Mar,2190
+Sri Lanka,2017 Jan,5931
+Sri Lanka,2017 Feb,6246
+Sri Lanka,2017 Mar,7058
 Other Markets In South Asia,2015 Apr,2101
 Other Markets In South Asia,2015 May,1722
 Other Markets In South Asia,2015 Jun,2124
@@ -2087,9 +2084,9 @@ Other Markets In South Asia,2016 Sep,2622
 Other Markets In South Asia,2016 Oct,4580
 Other Markets In South Asia,2016 Nov,3057
 Other Markets In South Asia,2016 Dec,4069
-West Asia,2015 Jan,13037
-West Asia,2015 Feb,9073
-West Asia,2015 Mar,16316
+Other Markets In South Asia,2017 Jan,3330
+Other Markets In South Asia,2017 Feb,2577
+Other Markets In South Asia,2017 Mar,2671
 West Asia,2015 Apr,12262
 West Asia,2015 May,10058
 West Asia,2015 Jun,9962
@@ -2111,9 +2108,9 @@ West Asia,2016 Sep,17859
 West Asia,2016 Oct,11017
 West Asia,2016 Nov,11281
 West Asia,2016 Dec,14895
-Iran,2015 Jan,601
-Iran,2015 Feb,632
-Iran,2015 Mar,2937
+West Asia,2017 Jan,12581
+West Asia,2017 Feb,11749
+West Asia,2017 Mar,22042
 Iran,2015 Apr,548
 Iran,2015 May,488
 Iran,2015 Jun,646
@@ -2135,9 +2132,9 @@ Iran,2016 Sep,2534
 Iran,2016 Oct,1718
 Iran,2016 Nov,1632
 Iran,2016 Dec,1391
-Israel,2015 Jan,1425
-Israel,2015 Feb,1347
-Israel,2015 Mar,1414
+Iran,2017 Jan,1421
+Iran,2017 Feb,1704
+Iran,2017 Mar,8000
 Israel,2015 Apr,1264
 Israel,2015 May,1188
 Israel,2015 Jun,1087
@@ -2159,9 +2156,9 @@ Israel,2016 Sep,1639
 Israel,2016 Oct,2232
 Israel,2016 Nov,1729
 Israel,2016 Dec,1441
-Kuwait,2015 Jan,1420
-Kuwait,2015 Feb,519
-Kuwait,2015 Mar,546
+Israel,2017 Jan,1630
+Israel,2017 Feb,1799
+Israel,2017 Mar,1633
 Kuwait,2015 Apr,476
 Kuwait,2015 May,463
 Kuwait,2015 Jun,538
@@ -2183,9 +2180,9 @@ Kuwait,2016 Sep,1399
 Kuwait,2016 Oct,372
 Kuwait,2016 Nov,365
 Kuwait,2016 Dec,779
-Saudi Arabia,2015 Jan,2500
-Saudi Arabia,2015 Feb,948
-Saudi Arabia,2015 Mar,1777
+Kuwait,2017 Jan,1154
+Kuwait,2017 Feb,508
+Kuwait,2017 Mar,703
 Saudi Arabia,2015 Apr,873
 Saudi Arabia,2015 May,711
 Saudi Arabia,2015 Jun,735
@@ -2207,9 +2204,9 @@ Saudi Arabia,2016 Sep,1750
 Saudi Arabia,2016 Oct,598
 Saudi Arabia,2016 Nov,1123
 Saudi Arabia,2016 Dec,809
-United Arab Emirates,2015 Jan,4612
-United Arab Emirates,2015 Feb,3871
-United Arab Emirates,2015 Mar,7588
+Saudi Arabia,2017 Jan,1065
+Saudi Arabia,2017 Feb,835
+Saudi Arabia,2017 Mar,1111
 United Arab Emirates,2015 Apr,6628
 United Arab Emirates,2015 May,5278
 United Arab Emirates,2015 Jun,5101
@@ -2231,9 +2228,9 @@ United Arab Emirates,2016 Sep,7531
 United Arab Emirates,2016 Oct,4527
 United Arab Emirates,2016 Nov,4803
 United Arab Emirates,2016 Dec,7575
-Other Markets In West Asia,2015 Jan,2479
-Other Markets In West Asia,2015 Feb,1756
-Other Markets In West Asia,2015 Mar,2054
+United Arab Emirates,2017 Jan,4578
+United Arab Emirates,2017 Feb,4834
+United Arab Emirates,2017 Mar,8333
 Other Markets In West Asia,2015 Apr,2473
 Other Markets In West Asia,2015 May,1930
 Other Markets In West Asia,2015 Jun,1855
@@ -2255,9 +2252,9 @@ Other Markets In West Asia,2016 Sep,3006
 Other Markets In West Asia,2016 Oct,1570
 Other Markets In West Asia,2016 Nov,1629
 Other Markets In West Asia,2016 Dec,2900
-Americas,2015 Jan,64780
-Americas,2015 Feb,57924
-Americas,2015 Mar,64764
+Other Markets In West Asia,2017 Jan,2733
+Other Markets In West Asia,2017 Feb,2069
+Other Markets In West Asia,2017 Mar,2262
 Americas,2015 Apr,49143
 Americas,2015 May,48014
 Americas,2015 Jun,55325
@@ -2279,9 +2276,9 @@ Americas,2016 Sep,42901
 Americas,2016 Oct,53083
 Americas,2016 Nov,60401
 Americas,2016 Dec,67650
-Canada,2015 Jan,10875
-Canada,2015 Feb,9915
-Canada,2015 Mar,10515
+Americas,2017 Jan,72376
+Americas,2017 Feb,68575
+Americas,2017 Mar,72468
 Canada,2015 Apr,7086
 Canada,2015 May,6637
 Canada,2015 Jun,5914
@@ -2303,9 +2300,9 @@ Canada,2016 Sep,5257
 Canada,2016 Oct,7170
 Canada,2016 Nov,9104
 Canada,2016 Dec,10047
-USA,2015 Jan,46845
-USA,2015 Feb,42427
-USA,2015 Mar,48341
+Canada,2017 Jan,11225
+Canada,2017 Feb,11213
+Canada,2017 Mar,11493
 USA,2015 Apr,36186
 USA,2015 May,37117
 USA,2015 Jun,44929
@@ -2327,9 +2324,9 @@ USA,2016 Sep,33262
 USA,2016 Oct,40277
 USA,2016 Nov,44971
 USA,2016 Dec,50542
-Other Markets In Americas,2015 Jan,7060
-Other Markets In Americas,2015 Feb,5582
-Other Markets In Americas,2015 Mar,5908
+USA,2017 Jan,51562
+USA,2017 Feb,49370
+USA,2017 Mar,52107
 Other Markets In Americas,2015 Apr,5871
 Other Markets In Americas,2015 May,4260
 Other Markets In Americas,2015 Jun,4482
@@ -2351,9 +2348,9 @@ Other Markets In Americas,2016 Sep,4382
 Other Markets In Americas,2016 Oct,5636
 Other Markets In Americas,2016 Nov,6326
 Other Markets In Americas,2016 Dec,7061
-Europe,2015 Jan,158529
-Europe,2015 Feb,147155
-Europe,2015 Mar,160349
+Other Markets In Americas,2017 Jan,9589
+Other Markets In Americas,2017 Feb,7992
+Other Markets In Americas,2017 Mar,8868
 Europe,2015 Apr,128157
 Europe,2015 May,99889
 Europe,2015 Jun,88472
@@ -2375,9 +2372,9 @@ Europe,2016 Sep,123106
 Europe,2016 Oct,149426
 Europe,2016 Nov,144990
 Europe,2016 Dec,150103
-Belgium & Luxembourg,2015 Jan,2063
-Belgium & Luxembourg,2015 Feb,1968
-Belgium & Luxembourg,2015 Mar,2594
+Europe,2017 Jan,177009
+Europe,2017 Feb,188107
+Europe,2017 Mar,188890
 Belgium & Luxembourg,2015 Apr,2369
 Belgium & Luxembourg,2015 May,1765
 Belgium & Luxembourg,2015 Jun,1599
@@ -2399,9 +2396,9 @@ Belgium & Luxembourg,2016 Sep,2282
 Belgium & Luxembourg,2016 Oct,2565
 Belgium & Luxembourg,2016 Nov,2491
 Belgium & Luxembourg,2016 Dec,2166
-Denmark,2015 Jan,3440
-Denmark,2015 Feb,3634
-Denmark,2015 Mar,3246
+Belgium & Luxembourg,2017 Jan,2336
+Belgium & Luxembourg,2017 Feb,2431
+Belgium & Luxembourg,2017 Mar,2678
 Denmark,2015 Apr,2301
 Denmark,2015 May,1642
 Denmark,2015 Jun,1635
@@ -2423,9 +2420,9 @@ Denmark,2016 Sep,1891
 Denmark,2016 Oct,2795
 Denmark,2016 Nov,2273
 Denmark,2016 Dec,2173
-Finland,2015 Jan,3740
-Finland,2015 Feb,3390
-Finland,2015 Mar,3110
+Denmark,2017 Jan,3364
+Denmark,2017 Feb,4099
+Denmark,2017 Mar,3182
 Finland,2015 Apr,2198
 Finland,2015 May,1373
 Finland,2015 Jun,1551
@@ -2447,9 +2444,9 @@ Finland,2016 Sep,1688
 Finland,2016 Oct,2725
 Finland,2016 Nov,2390
 Finland,2016 Dec,2750
-France,2015 Jan,11285
-France,2015 Feb,13590
-France,2015 Mar,12789
+Finland,2017 Jan,3929
+Finland,2017 Feb,3834
+Finland,2017 Mar,3101
 France,2015 Apr,13135
 France,2015 May,11686
 France,2015 Jun,8969
@@ -2471,9 +2468,9 @@ France,2016 Sep,11176
 France,2016 Oct,14543
 France,2016 Nov,12615
 France,2016 Dec,11749
-Germany,2015 Jan,24529
-Germany,2015 Feb,24937
-Germany,2015 Mar,31468
+France,2017 Jan,12356
+France,2017 Feb,16851
+France,2017 Mar,14751
 Germany,2015 Apr,20086
 Germany,2015 May,16266
 Germany,2015 Jun,13660
@@ -2495,9 +2492,9 @@ Germany,2016 Sep,22567
 Germany,2016 Oct,27153
 Germany,2016 Nov,28441
 Germany,2016 Dec,35176
-Italy,2015 Jan,5470
-Italy,2015 Feb,4192
-Italy,2015 Mar,5311
+Germany,2017 Jan,37068
+Germany,2017 Feb,40022
+Germany,2017 Mar,43618
 Italy,2015 Apr,4870
 Italy,2015 May,3923
 Italy,2015 Jun,3915
@@ -2519,9 +2516,9 @@ Italy,2016 Sep,5731
 Italy,2016 Oct,5336
 Italy,2016 Nov,5425
 Italy,2016 Dec,5656
-Netherlands,2015 Jan,6405
-Netherlands,2015 Feb,6678
-Netherlands,2015 Mar,7127
+Italy,2017 Jan,6231
+Italy,2017 Feb,5320
+Italy,2017 Mar,5470
 Netherlands,2015 Apr,5989
 Netherlands,2015 May,5797
 Netherlands,2015 Jun,4553
@@ -2543,9 +2540,9 @@ Netherlands,2016 Sep,6078
 Netherlands,2016 Oct,6602
 Netherlands,2016 Nov,6777
 Netherlands,2016 Dec,6200
-Norway,2015 Jan,2859
-Norway,2015 Feb,3123
-Norway,2015 Mar,3535
+Netherlands,2017 Jan,7187
+Netherlands,2017 Feb,6971
+Netherlands,2017 Mar,6755
 Norway,2015 Apr,2652
 Norway,2015 May,1497
 Norway,2015 Jun,2260
@@ -2567,9 +2564,9 @@ Norway,2016 Sep,1651
 Norway,2016 Oct,2286
 Norway,2016 Nov,2440
 Norway,2016 Dec,2170
-Rep Of Ireland,2015 Jan,1551
-Rep Of Ireland,2015 Feb,1277
-Rep Of Ireland,2015 Mar,1617
+Norway,2017 Jan,2522
+Norway,2017 Feb,2990
+Norway,2017 Mar,2675
 Rep Of Ireland,2015 Apr,1434
 Rep Of Ireland,2015 May,1224
 Rep Of Ireland,2015 Jun,1369
@@ -2591,9 +2588,9 @@ Rep Of Ireland,2016 Sep,1425
 Rep Of Ireland,2016 Oct,1693
 Rep Of Ireland,2016 Nov,1453
 Rep Of Ireland,2016 Dec,1432
-Russian Federation,2015 Jan,12650
-Russian Federation,2015 Feb,4861
-Russian Federation,2015 Mar,5154
+Rep Of Ireland,2017 Jan,1706
+Rep Of Ireland,2017 Feb,1625
+Rep Of Ireland,2017 Mar,1738
 Russian Federation,2015 Apr,4371
 Russian Federation,2015 May,4523
 Russian Federation,2015 Jun,3644
@@ -2615,9 +2612,9 @@ Russian Federation,2016 Sep,4503
 Russian Federation,2016 Oct,6006
 Russian Federation,2016 Nov,7286
 Russian Federation,2016 Dec,7739
-Spain,2015 Jan,3546
-Spain,2015 Feb,2893
-Spain,2015 Mar,3715
+Russian Federation,2017 Jan,12262
+Russian Federation,2017 Feb,8949
+Russian Federation,2017 Mar,8963
 Spain,2015 Apr,3094
 Spain,2015 May,2953
 Spain,2015 Jun,2717
@@ -2639,9 +2636,9 @@ Spain,2016 Sep,4377
 Spain,2016 Oct,4166
 Spain,2016 Nov,4088
 Spain,2016 Dec,3592
-Sweden,2015 Jan,6295
-Sweden,2015 Feb,4556
-Sweden,2015 Mar,4284
+Spain,2017 Jan,3529
+Spain,2017 Feb,3625
+Spain,2017 Mar,3866
 Sweden,2015 Apr,3138
 Sweden,2015 May,1985
 Sweden,2015 Jun,2091
@@ -2663,9 +2660,9 @@ Sweden,2016 Sep,2076
 Sweden,2016 Oct,3422
 Sweden,2016 Nov,4142
 Sweden,2016 Dec,4830
-Switzerland,2015 Jan,9470
-Switzerland,2015 Feb,8475
-Switzerland,2015 Mar,8777
+Sweden,2017 Jan,6232
+Sweden,2017 Feb,5726
+Sweden,2017 Mar,4664
 Switzerland,2015 Apr,9308
 Switzerland,2015 May,6699
 Switzerland,2015 Jun,5203
@@ -2687,9 +2684,9 @@ Switzerland,2016 Sep,7003
 Switzerland,2016 Oct,10464
 Switzerland,2016 Nov,8766
 Switzerland,2016 Dec,8513
-United Kingdom,2015 Jan,44923
-United Kingdom,2015 Feb,47051
-United Kingdom,2015 Mar,50741
+Switzerland,2017 Jan,9079
+Switzerland,2017 Feb,9867
+Switzerland,2017 Mar,8197
 United Kingdom,2015 Apr,39822
 United Kingdom,2015 May,28125
 United Kingdom,2015 Jun,25543
@@ -2711,9 +2708,9 @@ United Kingdom,2016 Sep,36529
 United Kingdom,2016 Oct,43841
 United Kingdom,2016 Nov,39718
 United Kingdom,2016 Dec,39465
-Other Markets In Europe,2015 Jan,20303
-Other Markets In Europe,2015 Feb,16530
-Other Markets In Europe,2015 Mar,16881
+United Kingdom,2017 Jan,46364
+United Kingdom,2017 Feb,54456
+United Kingdom,2017 Mar,58635
 Other Markets In Europe,2015 Apr,13390
 Other Markets In Europe,2015 May,10431
 Other Markets In Europe,2015 Jun,9763
@@ -2735,9 +2732,9 @@ Other Markets In Europe,2016 Sep,14129
 Other Markets In Europe,2016 Oct,15829
 Other Markets In Europe,2016 Nov,16685
 Other Markets In Europe,2016 Dec,16492
-Oceania,2015 Jan,129274
-Oceania,2015 Feb,72276
-Oceania,2015 Mar,79761
+Other Markets In Europe,2017 Jan,22844
+Other Markets In Europe,2017 Feb,21341
+Other Markets In Europe,2017 Mar,20597
 Oceania,2015 Apr,94029
 Oceania,2015 May,85227
 Oceania,2015 Jun,95694
@@ -2759,9 +2756,9 @@ Oceania,2016 Sep,105400
 Oceania,2016 Oct,97974
 Oceania,2016 Nov,83536
 Oceania,2016 Dec,113380
-Australia,2015 Jan,115584
-Australia,2015 Feb,65009
-Australia,2015 Mar,70708
+Oceania,2017 Jan,128719
+Oceania,2017 Feb,79801
+Oceania,2017 Mar,95041
 Australia,2015 Apr,83497
 Australia,2015 May,73965
 Australia,2015 Jun,82755
@@ -2783,9 +2780,9 @@ Australia,2016 Sep,92210
 Australia,2016 Oct,85395
 Australia,2016 Nov,73308
 Australia,2016 Dec,100849
-New Zealand,2015 Jan,12330
-New Zealand,2015 Feb,6349
-New Zealand,2015 Mar,7854
+Australia,2017 Jan,115930
+Australia,2017 Feb,71416
+Australia,2017 Mar,85040
 New Zealand,2015 Apr,9492
 New Zealand,2015 May,10077
 New Zealand,2015 Jun,11593
@@ -2807,9 +2804,9 @@ New Zealand,2016 Sep,11514
 New Zealand,2016 Oct,10961
 New Zealand,2016 Nov,8529
 New Zealand,2016 Dec,9994
-Other Markets In Oceania,2015 Jan,1360
-Other Markets In Oceania,2015 Feb,918
-Other Markets In Oceania,2015 Mar,1199
+New Zealand,2017 Jan,10778
+New Zealand,2017 Feb,6928
+New Zealand,2017 Mar,8459
 Other Markets In Oceania,2015 Apr,1040
 Other Markets In Oceania,2015 May,1185
 Other Markets In Oceania,2015 Jun,1346
@@ -2831,9 +2828,9 @@ Other Markets In Oceania,2016 Sep,1676
 Other Markets In Oceania,2016 Oct,1618
 Other Markets In Oceania,2016 Nov,1699
 Other Markets In Oceania,2016 Dec,2537
-Africa,2015 Jan,6377
-Africa,2015 Feb,3562
-Africa,2015 Mar,5138
+Other Markets In Oceania,2017 Jan,2011
+Other Markets In Oceania,2017 Feb,1457
+Other Markets In Oceania,2017 Mar,1542
 Africa,2015 Apr,6410
 Africa,2015 May,4663
 Africa,2015 Jun,4051
@@ -2855,9 +2852,9 @@ Africa,2016 Sep,5308
 Africa,2016 Oct,6015
 Africa,2016 Nov,6478
 Africa,2016 Dec,10784
-Egypt,2015 Jan,453
-Egypt,2015 Feb,268
-Egypt,2015 Mar,419
+Africa,2017 Jan,7040
+Africa,2017 Feb,4403
+Africa,2017 Mar,5566
 Egypt,2015 Apr,348
 Egypt,2015 May,355
 Egypt,2015 Jun,226
@@ -2879,9 +2876,9 @@ Egypt,2016 Sep,448
 Egypt,2016 Oct,370
 Egypt,2016 Nov,350
 Egypt,2016 Dec,338
-Mauritius,2015 Jan,828
-Mauritius,2015 Feb,557
-Mauritius,2015 Mar,567
+Egypt,2017 Jan,281
+Egypt,2017 Feb,312
+Egypt,2017 Mar,390
 Mauritius,2015 Apr,858
 Mauritius,2015 May,513
 Mauritius,2015 Jun,600
@@ -2903,9 +2900,9 @@ Mauritius,2016 Sep,688
 Mauritius,2016 Oct,1013
 Mauritius,2016 Nov,2478
 Mauritius,2016 Dec,2394
-South Africa (Rep Of),2015 Jan,3255
-South Africa (Rep Of),2015 Feb,1619
-South Africa (Rep Of),2015 Mar,2541
+Mauritius,2017 Jan,1142
+Mauritius,2017 Feb,908
+Mauritius,2017 Mar,864
 South Africa (Rep Of),2015 Apr,2885
 South Africa (Rep Of),2015 May,2351
 South Africa (Rep Of),2015 Jun,2048
@@ -2927,9 +2924,9 @@ South Africa (Rep Of),2016 Sep,2430
 South Africa (Rep Of),2016 Oct,2809
 South Africa (Rep Of),2016 Nov,2092
 South Africa (Rep Of),2016 Dec,5305
-Other Markets In Africa,2015 Jan,1841
-Other Markets In Africa,2015 Feb,1118
-Other Markets In Africa,2015 Mar,1611
+South Africa (Rep Of),2017 Jan,3724
+South Africa (Rep Of),2017 Feb,1687
+South Africa (Rep Of),2017 Mar,2759
 Other Markets In Africa,2015 Apr,2319
 Other Markets In Africa,2015 May,1444
 Other Markets In Africa,2015 Jun,1177
@@ -2951,9 +2948,9 @@ Other Markets In Africa,2016 Sep,1742
 Other Markets In Africa,2016 Oct,1823
 Other Markets In Africa,2016 Nov,1558
 Other Markets In Africa,2016 Dec,2747
-Others,2015 Jan,3
-Others,2015 Feb,4
-Others,2015 Mar,0
+Other Markets In Africa,2017 Jan,1893
+Other Markets In Africa,2017 Feb,1496
+Other Markets In Africa,2017 Mar,1553
 Others,2015 Apr,1
 Others,2015 May,3
 Others,2015 Jun,0
@@ -2975,9 +2972,9 @@ Others,2016 Sep,0
 Others,2016 Oct,0
 Others,2016 Nov,1
 Others,2016 Dec,110
-Total International Visitor Arrivals By Place Of Residence,2017 Jan,1480479
-Total International Visitor Arrivals By Place Of Residence,2017 Feb,1361010
-Total International Visitor Arrivals By Place Of Residence,2017 Mar,1480161
+Others,2017 Jan,0
+Others,2017 Feb,0
+Others,2017 Mar,0
 Total International Visitor Arrivals By Place Of Residence,2017 Apr,1470750
 Total International Visitor Arrivals By Place Of Residence,2017 May,1363897
 Total International Visitor Arrivals By Place Of Residence,2017 Jun,1387601
@@ -2999,9 +2996,9 @@ Total International Visitor Arrivals By Place Of Residence,2018 Sep,1415149
 Total International Visitor Arrivals By Place Of Residence,2018 Oct,1467380
 Total International Visitor Arrivals By Place Of Residence,2018 Nov,1406985
 Total International Visitor Arrivals By Place Of Residence,2018 Dec,1603217
-Southeast Asia,2017 Jan,478812
-Southeast Asia,2017 Feb,437738
-Southeast Asia,2017 Mar,534535
+Total International Visitor Arrivals By Place Of Residence,2019 Jan,1624593
+Total International Visitor Arrivals By Place Of Residence,2019 Feb,1499051
+Total International Visitor Arrivals By Place Of Residence,2019 Mar,1564664
 Southeast Asia,2017 Apr,555812
 Southeast Asia,2017 May,502134
 Southeast Asia,2017 Jun,567156
@@ -3023,9 +3020,9 @@ Southeast Asia,2018 Sep,497316
 Southeast Asia,2018 Oct,533250
 Southeast Asia,2018 Nov,514632
 Southeast Asia,2018 Dec,644044
-Brunei Darussalam,2017 Jan,5297
-Brunei Darussalam,2017 Feb,4379
-Brunei Darussalam,2017 Mar,7835
+Southeast Asia,2019 Jan,491810
+Southeast Asia,2019 Feb,455405
+Southeast Asia,2019 Mar,530303
 Brunei Darussalam,2017 Apr,4662
 Brunei Darussalam,2017 May,4645
 Brunei Darussalam,2017 Jun,5758
@@ -3047,9 +3044,9 @@ Brunei Darussalam,2018 Sep,6133
 Brunei Darussalam,2018 Oct,5017
 Brunei Darussalam,2018 Nov,6118
 Brunei Darussalam,2018 Dec,10490
-Indonesia,2017 Jan,254634
-Indonesia,2017 Feb,208853
-Indonesia,2017 Mar,256636
+Brunei Darussalam,2019 Jan,5953
+Brunei Darussalam,2019 Feb,4105
+Brunei Darussalam,2019 Mar,7996
 Indonesia,2017 Apr,248048
 Indonesia,2017 May,220534
 Indonesia,2017 Jun,281171
@@ -3071,9 +3068,9 @@ Indonesia,2018 Sep,224629
 Indonesia,2018 Oct,225244
 Indonesia,2018 Nov,226425
 Indonesia,2018 Dec,321060
-Malaysia,2017 Jan,84504
-Malaysia,2017 Feb,85058
-Malaysia,2017 Mar,105372
+Indonesia,2019 Jan,261622
+Indonesia,2019 Feb,213991
+Indonesia,2019 Mar,249164
 Malaysia,2017 Apr,94550
 Malaysia,2017 May,90335
 Malaysia,2017 Jun,102776
@@ -3095,9 +3092,9 @@ Malaysia,2018 Sep,106880
 Malaysia,2018 Oct,103676
 Malaysia,2018 Nov,117793
 Malaysia,2018 Dec,142986
-Myanmar,2017 Jan,9902
-Myanmar,2017 Feb,9783
-Myanmar,2017 Mar,12656
+Malaysia,2019 Jan,88293
+Malaysia,2019 Feb,88706
+Malaysia,2019 Mar,106200
 Myanmar,2017 Apr,19610
 Myanmar,2017 May,11705
 Myanmar,2017 Jun,12144
@@ -3119,9 +3116,9 @@ Myanmar,2018 Sep,10211
 Myanmar,2018 Oct,12874
 Myanmar,2018 Nov,11846
 Myanmar,2018 Dec,12753
-Philippines,2017 Jan,46187
-Philippines,2017 Feb,51160
-Philippines,2017 Mar,61816
+Myanmar,2019 Jan,11074
+Myanmar,2019 Feb,10522
+Myanmar,2019 Mar,13499
 Philippines,2017 Apr,81952
 Philippines,2017 May,77671
 Philippines,2017 Jun,62002
@@ -3143,9 +3140,9 @@ Philippines,2018 Sep,57241
 Philippines,2018 Oct,68218
 Philippines,2018 Nov,66526
 Philippines,2018 Dec,72787
-Thailand,2017 Jan,36813
-Thailand,2017 Feb,38502
-Thailand,2017 Mar,47025
+Philippines,2019 Jan,49245
+Philippines,2019 Feb,52211
+Philippines,2019 Mar,59383
 Thailand,2017 Apr,58504
 Thailand,2017 May,47074
 Thailand,2017 Jun,34623
@@ -3167,9 +3164,9 @@ Thailand,2018 Sep,40580
 Thailand,2018 Oct,65734
 Thailand,2018 Nov,38796
 Thailand,2018 Dec,37270
-Vietnam,2017 Jan,35367
-Vietnam,2017 Feb,34586
-Vietnam,2017 Mar,37887
+Thailand,2019 Jan,34822
+Thailand,2019 Feb,33685
+Thailand,2019 Mar,45072
 Vietnam,2017 Apr,39370
 Vietnam,2017 May,43434
 Vietnam,2017 Jun,62831
@@ -3191,9 +3188,9 @@ Vietnam,2018 Sep,43407
 Vietnam,2018 Oct,41185
 Vietnam,2018 Nov,38089
 Vietnam,2018 Dec,37772
-Other Markets In Southeast Asia,2017 Jan,6108
-Other Markets In Southeast Asia,2017 Feb,5417
-Other Markets In Southeast Asia,2017 Mar,5308
+Vietnam,2019 Jan,32747
+Vietnam,2019 Feb,44283
+Vietnam,2019 Mar,41153
 Other Markets In Southeast Asia,2017 Apr,9116
 Other Markets In Southeast Asia,2017 May,6736
 Other Markets In Southeast Asia,2017 Jun,5851
@@ -3215,9 +3212,9 @@ Other Markets In Southeast Asia,2018 Sep,8235
 Other Markets In Southeast Asia,2018 Oct,11302
 Other Markets In Southeast Asia,2018 Nov,9039
 Other Markets In Southeast Asia,2018 Dec,8926
-Greater China,2017 Jan,389744
-Greater China,2017 Feb,342756
-Greater China,2017 Mar,328080
+Other Markets In Southeast Asia,2019 Jan,8054
+Other Markets In Southeast Asia,2019 Feb,7902
+Other Markets In Southeast Asia,2019 Mar,7836
 Greater China,2017 Apr,338068
 Greater China,2017 May,298939
 Greater China,2017 Jun,283320
@@ -3239,9 +3236,9 @@ Greater China,2018 Sep,309748
 Greater China,2018 Oct,314537
 Greater China,2018 Nov,280164
 Greater China,2018 Dec,302561
-China,2017 Jan,316805
-China,2017 Feb,268993
-China,2017 Mar,264711
+Greater China,2019 Jan,393850
+Greater China,2019 Feb,423941
+Greater China,2019 Mar,365215
 China,2017 Apr,252135
 China,2017 May,232361
 China,2017 Jun,218118
@@ -3263,9 +3260,9 @@ China,2018 Sep,239824
 China,2018 Oct,247664
 China,2018 Nov,220053
 China,2018 Dec,238194
-Hong Kong SAR,2017 Jan,34436
-Hong Kong SAR,2017 Feb,33169
-Hong Kong SAR,2017 Mar,33561
+China,2019 Jan,320581
+China,2019 Feb,339550
+China,2019 Mar,300209
 Hong Kong SAR,2017 Apr,53971
 Hong Kong SAR,2017 May,33784
 Hong Kong SAR,2017 Jun,32684
@@ -3287,9 +3284,9 @@ Hong Kong SAR,2018 Sep,35588
 Hong Kong SAR,2018 Oct,34865
 Hong Kong SAR,2018 Nov,32620
 Hong Kong SAR,2018 Dec,36982
-Taiwan,2017 Jan,36187
-Taiwan,2017 Feb,38866
-Taiwan,2017 Mar,27976
+Hong Kong SAR,2019 Jan,30056
+Hong Kong SAR,2019 Feb,38921
+Hong Kong SAR,2019 Mar,34355
 Taiwan,2017 Apr,30142
 Taiwan,2017 May,31092
 Taiwan,2017 Jun,30655
@@ -3311,9 +3308,9 @@ Taiwan,2018 Sep,32317
 Taiwan,2018 Oct,30334
 Taiwan,2018 Nov,25608
 Taiwan,2018 Dec,24048
-Other Markets In Greater China,2017 Jan,2316
-Other Markets In Greater China,2017 Feb,1728
-Other Markets In Greater China,2017 Mar,1832
+Taiwan,2019 Jan,40086
+Taiwan,2019 Feb,42977
+Taiwan,2019 Mar,29032
 Other Markets In Greater China,2017 Apr,1820
 Other Markets In Greater China,2017 May,1702
 Other Markets In Greater China,2017 Jun,1863
@@ -3335,9 +3332,9 @@ Other Markets In Greater China,2018 Sep,2019
 Other Markets In Greater China,2018 Oct,1674
 Other Markets In Greater China,2018 Nov,1883
 Other Markets In Greater China,2018 Dec,3337
-North Asia,2017 Jan,113643
-North Asia,2017 Feb,132843
-North Asia,2017 Mar,126243
+Other Markets In Greater China,2019 Jan,3127
+Other Markets In Greater China,2019 Feb,2493
+Other Markets In Greater China,2019 Mar,1619
 North Asia,2017 Apr,95081
 North Asia,2017 May,106798
 North Asia,2017 Jun,102427
@@ -3359,9 +3356,9 @@ North Asia,2018 Sep,124766
 North Asia,2018 Oct,127966
 North Asia,2018 Nov,124453
 North Asia,2018 Dec,105988
-Japan,2017 Jan,53377
-Japan,2017 Feb,72654
-Japan,2017 Mar,82293
+North Asia,2019 Jan,139127
+North Asia,2019 Feb,132146
+North Asia,2019 Mar,131235
 Japan,2017 Apr,46245
 Japan,2017 May,54012
 Japan,2017 Jun,52932
@@ -3383,9 +3380,9 @@ Japan,2018 Sep,77013
 Japan,2018 Oct,74019
 Japan,2018 Nov,73787
 Japan,2018 Dec,63738
-South Korea,2017 Jan,60247
-South Korea,2017 Feb,60174
-South Korea,2017 Mar,43942
+Japan,2019 Jan,66402
+Japan,2019 Feb,69885
+Japan,2019 Mar,84048
 South Korea,2017 Apr,48829
 South Korea,2017 May,52762
 South Korea,2017 Jun,49487
@@ -3407,9 +3404,9 @@ South Korea,2018 Sep,47734
 South Korea,2018 Oct,53926
 South Korea,2018 Nov,50634
 South Korea,2018 Dec,42223
-Other Markets In North Asia,2017 Jan,19
-Other Markets In North Asia,2017 Feb,15
-Other Markets In North Asia,2017 Mar,8
+South Korea,2019 Jan,72704
+South Korea,2019 Feb,62241
+South Korea,2019 Mar,47168
 Other Markets In North Asia,2017 Apr,7
 Other Markets In North Asia,2017 May,24
 Other Markets In North Asia,2017 Jun,8
@@ -3431,9 +3428,9 @@ Other Markets In North Asia,2018 Sep,19
 Other Markets In North Asia,2018 Oct,21
 Other Markets In North Asia,2018 Nov,32
 Other Markets In North Asia,2018 Dec,27
-South Asia,2017 Jan,100555
-South Asia,2017 Feb,95038
-South Asia,2017 Mar,107296
+Other Markets In North Asia,2019 Jan,21
+Other Markets In North Asia,2019 Feb,20
+Other Markets In North Asia,2019 Mar,19
 South Asia,2017 Apr,134505
 South Asia,2017 May,195198
 South Asia,2017 Jun,156862
@@ -3455,9 +3452,9 @@ South Asia,2018 Sep,126605
 South Asia,2018 Oct,140584
 South Asia,2018 Nov,142818
 South Asia,2018 Dec,144231
-Bangladesh,2017 Jan,9712
-Bangladesh,2017 Feb,8788
-Bangladesh,2017 Mar,10218
+South Asia,2019 Jan,126665
+South Asia,2019 Feb,108449
+South Asia,2019 Mar,128593
 Bangladesh,2017 Apr,8949
 Bangladesh,2017 May,9548
 Bangladesh,2017 Jun,9972
@@ -3479,9 +3476,9 @@ Bangladesh,2018 Sep,10074
 Bangladesh,2018 Oct,11206
 Bangladesh,2018 Nov,9001
 Bangladesh,2018 Dec,11297
-India,2017 Jan,80062
-India,2017 Feb,75905
-India,2017 Mar,85299
+Bangladesh,2019 Jan,9960
+Bangladesh,2019 Feb,9321
+Bangladesh,2019 Mar,10894
 India,2017 Apr,109303
 India,2017 May,172822
 India,2017 Jun,136478
@@ -3503,9 +3500,9 @@ India,2018 Sep,102251
 India,2018 Oct,114000
 India,2018 Nov,121319
 India,2018 Dec,117495
-Pakistan,2017 Jan,1520
-Pakistan,2017 Feb,1522
-Pakistan,2017 Mar,2050
+India,2019 Jan,104562
+India,2019 Feb,88926
+India,2019 Mar,106506
 Pakistan,2017 Apr,1434
 Pakistan,2017 May,1383
 Pakistan,2017 Jun,1421
@@ -3527,9 +3524,9 @@ Pakistan,2018 Sep,1808
 Pakistan,2018 Oct,1643
 Pakistan,2018 Nov,1464
 Pakistan,2018 Dec,2373
-Sri Lanka,2017 Jan,5931
-Sri Lanka,2017 Feb,6246
-Sri Lanka,2017 Mar,7058
+Pakistan,2019 Jan,1959
+Pakistan,2019 Feb,1327
+Pakistan,2019 Mar,1419
 Sri Lanka,2017 Apr,12363
 Sri Lanka,2017 May,8870
 Sri Lanka,2017 Jun,6806
@@ -3551,9 +3548,9 @@ Sri Lanka,2018 Sep,9442
 Sri Lanka,2018 Oct,9312
 Sri Lanka,2018 Nov,8097
 Sri Lanka,2018 Dec,9116
-Other Markets In South Asia,2017 Jan,3330
-Other Markets In South Asia,2017 Feb,2577
-Other Markets In South Asia,2017 Mar,2671
+Sri Lanka,2019 Jan,6367
+Sri Lanka,2019 Feb,6277
+Sri Lanka,2019 Mar,7044
 Other Markets In South Asia,2017 Apr,2456
 Other Markets In South Asia,2017 May,2575
 Other Markets In South Asia,2017 Jun,2185
@@ -3575,9 +3572,9 @@ Other Markets In South Asia,2018 Sep,3030
 Other Markets In South Asia,2018 Oct,4423
 Other Markets In South Asia,2018 Nov,2937
 Other Markets In South Asia,2018 Dec,3950
-West Asia,2017 Jan,12581
-West Asia,2017 Feb,11749
-West Asia,2017 Mar,22042
+Other Markets In South Asia,2019 Jan,3817
+Other Markets In South Asia,2019 Feb,2598
+Other Markets In South Asia,2019 Mar,2730
 West Asia,2017 Apr,12708
 West Asia,2017 May,10189
 West Asia,2017 Jun,12753
@@ -3599,9 +3596,9 @@ West Asia,2018 Sep,11098
 West Asia,2018 Oct,10437
 West Asia,2018 Nov,10396
 West Asia,2018 Dec,13458
-Iran,2017 Jan,1421
-Iran,2017 Feb,1704
-Iran,2017 Mar,8000
+West Asia,2019 Jan,11527
+West Asia,2019 Feb,9935
+West Asia,2019 Mar,15025
 Iran,2017 Apr,922
 Iran,2017 May,1115
 Iran,2017 Jun,1607
@@ -3623,9 +3620,9 @@ Iran,2018 Sep,551
 Iran,2018 Oct,233
 Iran,2018 Nov,342
 Iran,2018 Dec,292
-Israel,2017 Jan,1630
-Israel,2017 Feb,1799
-Israel,2017 Mar,1633
+Iran,2019 Jan,420
+Iran,2019 Feb,446
+Iran,2019 Mar,1864
 Israel,2017 Apr,1698
 Israel,2017 May,1627
 Israel,2017 Jun,1171
@@ -3647,9 +3644,9 @@ Israel,2018 Sep,2379
 Israel,2018 Oct,2073
 Israel,2018 Nov,1704
 Israel,2018 Dec,1682
-Kuwait,2017 Jan,1154
-Kuwait,2017 Feb,508
-Kuwait,2017 Mar,703
+Israel,2019 Jan,2374
+Israel,2019 Feb,1896
+Israel,2019 Mar,1945
 Kuwait,2017 Apr,436
 Kuwait,2017 May,314
 Kuwait,2017 Jun,576
@@ -3671,9 +3668,9 @@ Kuwait,2018 Sep,385
 Kuwait,2018 Oct,370
 Kuwait,2018 Nov,375
 Kuwait,2018 Dec,778
-Saudi Arabia,2017 Jan,1065
-Saudi Arabia,2017 Feb,835
-Saudi Arabia,2017 Mar,1111
+Kuwait,2019 Jan,1174
+Kuwait,2019 Feb,662
+Kuwait,2019 Mar,522
 Saudi Arabia,2017 Apr,928
 Saudi Arabia,2017 May,594
 Saudi Arabia,2017 Jun,640
@@ -3695,9 +3692,9 @@ Saudi Arabia,2018 Sep,807
 Saudi Arabia,2018 Oct,703
 Saudi Arabia,2018 Nov,768
 Saudi Arabia,2018 Dec,1304
-United Arab Emirates,2017 Jan,4578
-United Arab Emirates,2017 Feb,4834
-United Arab Emirates,2017 Mar,8333
+Saudi Arabia,2019 Jan,963
+Saudi Arabia,2019 Feb,765
+Saudi Arabia,2019 Mar,952
 United Arab Emirates,2017 Apr,6122
 United Arab Emirates,2017 May,5125
 United Arab Emirates,2017 Jun,6688
@@ -3719,9 +3716,9 @@ United Arab Emirates,2018 Sep,5174
 United Arab Emirates,2018 Oct,5129
 United Arab Emirates,2018 Nov,5652
 United Arab Emirates,2018 Dec,6704
-Other Markets In West Asia,2017 Jan,2733
-Other Markets In West Asia,2017 Feb,2069
-Other Markets In West Asia,2017 Mar,2262
+United Arab Emirates,2019 Jan,4805
+United Arab Emirates,2019 Feb,4409
+United Arab Emirates,2019 Mar,7546
 Other Markets In West Asia,2017 Apr,2602
 Other Markets In West Asia,2017 May,1414
 Other Markets In West Asia,2017 Jun,2071
@@ -3743,9 +3740,9 @@ Other Markets In West Asia,2018 Sep,1802
 Other Markets In West Asia,2018 Oct,1929
 Other Markets In West Asia,2018 Nov,1555
 Other Markets In West Asia,2018 Dec,2698
-Americas,2017 Jan,72376
-Americas,2017 Feb,68575
-Americas,2017 Mar,72468
+Other Markets In West Asia,2019 Jan,1791
+Other Markets In West Asia,2019 Feb,1757
+Other Markets In West Asia,2019 Mar,2196
 Americas,2017 Apr,55814
 Americas,2017 May,54290
 Americas,2017 Jun,64461
@@ -3767,9 +3764,9 @@ Americas,2018 Sep,56056
 Americas,2018 Oct,62266
 Americas,2018 Nov,75548
 Americas,2018 Dec,85208
-Canada,2017 Jan,11225
-Canada,2017 Feb,11213
-Canada,2017 Mar,11493
+Americas,2019 Jan,92393
+Americas,2019 Feb,77043
+Americas,2019 Mar,91115
 Canada,2017 Apr,7684
 Canada,2017 May,7617
 Canada,2017 Jun,6217
@@ -3791,9 +3788,9 @@ Canada,2018 Sep,7669
 Canada,2018 Oct,8923
 Canada,2018 Nov,12031
 Canada,2018 Dec,13614
-USA,2017 Jan,51562
-USA,2017 Feb,49370
-USA,2017 Mar,52107
+Canada,2019 Jan,14958
+Canada,2019 Feb,13833
+Canada,2019 Mar,15968
 USA,2017 Apr,40662
 USA,2017 May,40789
 USA,2017 Jun,52583
@@ -3815,9 +3812,9 @@ USA,2018 Sep,42379
 USA,2018 Oct,46260
 USA,2018 Nov,56184
 USA,2018 Dec,64115
-Other Markets In Americas,2017 Jan,9589
-Other Markets In Americas,2017 Feb,7992
-Other Markets In Americas,2017 Mar,8868
+USA,2019 Jan,67151
+USA,2019 Feb,56240
+USA,2019 Mar,65415
 Other Markets In Americas,2017 Apr,7468
 Other Markets In Americas,2017 May,5884
 Other Markets In Americas,2017 Jun,5661
@@ -3839,9 +3836,9 @@ Other Markets In Americas,2018 Sep,6008
 Other Markets In Americas,2018 Oct,7083
 Other Markets In Americas,2018 Nov,7333
 Other Markets In Americas,2018 Dec,7479
-Europe,2017 Jan,177009
-Europe,2017 Feb,188107
-Europe,2017 Mar,188890
+Other Markets In Americas,2019 Jan,10284
+Other Markets In Americas,2019 Feb,6970
+Other Markets In Americas,2019 Mar,9732
 Europe,2017 Apr,163089
 Europe,2017 May,107646
 Europe,2017 Jun,97934
@@ -3863,9 +3860,9 @@ Europe,2018 Sep,159993
 Europe,2018 Oct,162926
 Europe,2018 Nov,167566
 Europe,2018 Dec,175053
-Belgium & Luxembourg,2017 Jan,2336
-Belgium & Luxembourg,2017 Feb,2431
-Belgium & Luxembourg,2017 Mar,2678
+Europe,2019 Jan,224478
+Europe,2019 Feb,213198
+Europe,2019 Mar,213342
 Belgium & Luxembourg,2017 Apr,2955
 Belgium & Luxembourg,2017 May,1758
 Belgium & Luxembourg,2017 Jun,1741
@@ -3887,9 +3884,9 @@ Belgium & Luxembourg,2018 Sep,2586
 Belgium & Luxembourg,2018 Oct,2670
 Belgium & Luxembourg,2018 Nov,2727
 Belgium & Luxembourg,2018 Dec,2481
-Denmark,2017 Jan,3364
-Denmark,2017 Feb,4099
-Denmark,2017 Mar,3182
+Belgium & Luxembourg,2019 Jan,2632
+Belgium & Luxembourg,2019 Feb,2489
+Belgium & Luxembourg,2019 Mar,2800
 Denmark,2017 Apr,2977
 Denmark,2017 May,1671
 Denmark,2017 Jun,1685
@@ -3911,9 +3908,9 @@ Denmark,2018 Sep,2519
 Denmark,2018 Oct,3097
 Denmark,2018 Nov,2631
 Denmark,2018 Dec,2660
-Finland,2017 Jan,3929
-Finland,2017 Feb,3834
-Finland,2017 Mar,3101
+Denmark,2019 Jan,3542
+Denmark,2019 Feb,4049
+Denmark,2019 Mar,3562
 Finland,2017 Apr,2492
 Finland,2017 May,1596
 Finland,2017 Jun,1885
@@ -3935,9 +3932,9 @@ Finland,2018 Sep,2021
 Finland,2018 Oct,2867
 Finland,2018 Nov,2585
 Finland,2018 Dec,3357
-France,2017 Jan,12356
-France,2017 Feb,16851
-France,2017 Mar,14751
+Finland,2019 Jan,3642
+Finland,2019 Feb,4220
+Finland,2019 Mar,3106
 France,2017 Apr,15681
 France,2017 May,12333
 France,2017 Jun,9643
@@ -3959,9 +3956,9 @@ France,2018 Sep,13550
 France,2018 Oct,15717
 France,2018 Nov,16162
 France,2018 Dec,12922
-Germany,2017 Jan,37068
-Germany,2017 Feb,40022
-Germany,2017 Mar,43618
+France,2019 Jan,18052
+France,2019 Feb,19884
+France,2019 Mar,19099
 Germany,2017 Apr,30420
 Germany,2017 May,17427
 Germany,2017 Jun,16274
@@ -3983,9 +3980,9 @@ Germany,2018 Sep,28000
 Germany,2018 Oct,28808
 Germany,2018 Nov,29465
 Germany,2018 Dec,39214
-Italy,2017 Jan,6231
-Italy,2017 Feb,5320
-Italy,2017 Mar,5470
+Germany,2019 Jan,46784
+Germany,2019 Feb,41522
+Germany,2019 Mar,44963
 Italy,2017 Apr,5450
 Italy,2017 May,4337
 Italy,2017 Jun,4048
@@ -4007,9 +4004,9 @@ Italy,2018 Sep,7349
 Italy,2018 Oct,5777
 Italy,2018 Nov,5973
 Italy,2018 Dec,8637
-Netherlands,2017 Jan,7187
-Netherlands,2017 Feb,6971
-Netherlands,2017 Mar,6755
+Italy,2019 Jan,10910
+Italy,2019 Feb,10085
+Italy,2019 Mar,7201
 Netherlands,2017 Apr,6641
 Netherlands,2017 May,5842
 Netherlands,2017 Jun,4859
@@ -4031,9 +4028,9 @@ Netherlands,2018 Sep,7998
 Netherlands,2018 Oct,7839
 Netherlands,2018 Nov,7686
 Netherlands,2018 Dec,6999
-Norway,2017 Jan,2522
-Norway,2017 Feb,2990
-Norway,2017 Mar,2675
+Netherlands,2019 Jan,8212
+Netherlands,2019 Feb,7435
+Netherlands,2019 Mar,8288
 Norway,2017 Apr,3041
 Norway,2017 May,1387
 Norway,2017 Jun,2134
@@ -4055,9 +4052,9 @@ Norway,2018 Sep,2124
 Norway,2018 Oct,2608
 Norway,2018 Nov,2611
 Norway,2018 Dec,2570
-Rep Of Ireland,2017 Jan,1706
-Rep Of Ireland,2017 Feb,1625
-Rep Of Ireland,2017 Mar,1738
+Norway,2019 Jan,2902
+Norway,2019 Feb,3441
+Norway,2019 Mar,2811
 Rep Of Ireland,2017 Apr,1731
 Rep Of Ireland,2017 May,1476
 Rep Of Ireland,2017 Jun,1545
@@ -4079,9 +4076,9 @@ Rep Of Ireland,2018 Sep,1762
 Rep Of Ireland,2018 Oct,1842
 Rep Of Ireland,2018 Nov,1862
 Rep Of Ireland,2018 Dec,1582
-Russian Federation,2017 Jan,12262
-Russian Federation,2017 Feb,8949
-Russian Federation,2017 Mar,8963
+Rep Of Ireland,2019 Jan,1999
+Rep Of Ireland,2019 Feb,1737
+Rep Of Ireland,2019 Mar,2115
 Russian Federation,2017 Apr,6616
 Russian Federation,2017 May,5123
 Russian Federation,2017 Jun,3992
@@ -4103,9 +4100,9 @@ Russian Federation,2018 Sep,4456
 Russian Federation,2018 Oct,5274
 Russian Federation,2018 Nov,7139
 Russian Federation,2018 Dec,7989
-Spain,2017 Jan,3529
-Spain,2017 Feb,3625
-Spain,2017 Mar,3866
+Russian Federation,2019 Jan,12763
+Russian Federation,2019 Feb,8145
+Russian Federation,2019 Mar,8585
 Spain,2017 Apr,4391
 Spain,2017 May,3244
 Spain,2017 Jun,3305
@@ -4127,9 +4124,9 @@ Spain,2018 Sep,6652
 Spain,2018 Oct,5138
 Spain,2018 Nov,5173
 Spain,2018 Dec,4053
-Sweden,2017 Jan,6232
-Sweden,2017 Feb,5726
-Sweden,2017 Mar,4664
+Spain,2019 Jan,4212
+Spain,2019 Feb,4065
+Spain,2019 Mar,4274
 Sweden,2017 Apr,3662
 Sweden,2017 May,2079
 Sweden,2017 Jun,2421
@@ -4151,9 +4148,9 @@ Sweden,2018 Sep,2306
 Sweden,2018 Oct,4051
 Sweden,2018 Nov,4308
 Sweden,2018 Dec,6588
-Switzerland,2017 Jan,9079
-Switzerland,2017 Feb,9867
-Switzerland,2017 Mar,8197
+Sweden,2019 Jan,7721
+Sweden,2019 Feb,5707
+Sweden,2019 Mar,4849
 Switzerland,2017 Apr,11697
 Switzerland,2017 May,6683
 Switzerland,2017 Jun,5201
@@ -4175,9 +4172,9 @@ Switzerland,2018 Sep,7084
 Switzerland,2018 Oct,9085
 Switzerland,2018 Nov,8447
 Switzerland,2018 Dec,8809
-United Kingdom,2017 Jan,46364
-United Kingdom,2017 Feb,54456
-United Kingdom,2017 Mar,58635
+Switzerland,2019 Jan,9232
+Switzerland,2019 Feb,8564
+Switzerland,2019 Mar,8336
 United Kingdom,2017 Apr,48170
 United Kingdom,2017 May,30066
 United Kingdom,2017 Jun,27974
@@ -4199,9 +4196,9 @@ United Kingdom,2018 Sep,53207
 United Kingdom,2018 Oct,48279
 United Kingdom,2018 Nov,48748
 United Kingdom,2018 Dec,46047
-Other Markets In Europe,2017 Jan,22844
-Other Markets In Europe,2017 Feb,21341
-Other Markets In Europe,2017 Mar,20597
+United Kingdom,2019 Jan,59288
+United Kingdom,2019 Feb,62481
+United Kingdom,2019 Mar,66796
 Other Markets In Europe,2017 Apr,17165
 Other Markets In Europe,2017 May,12624
 Other Markets In Europe,2017 Jun,11227
@@ -4223,9 +4220,9 @@ Other Markets In Europe,2018 Sep,18379
 Other Markets In Europe,2018 Oct,19874
 Other Markets In Europe,2018 Nov,22049
 Other Markets In Europe,2018 Dec,21145
-Oceania,2017 Jan,128719
-Oceania,2017 Feb,79801
-Oceania,2017 Mar,95041
+Other Markets In Europe,2019 Jan,32587
+Other Markets In Europe,2019 Feb,29374
+Other Markets In Europe,2019 Mar,26557
 Oceania,2017 Apr,108478
 Oceania,2017 May,83916
 Oceania,2017 Jun,98259
@@ -4247,9 +4244,9 @@ Oceania,2018 Sep,123418
 Oceania,2018 Oct,109285
 Oceania,2018 Nov,85319
 Oceania,2018 Dec,119602
-Australia,2017 Jan,115930
-Australia,2017 Feb,71416
-Australia,2017 Mar,85040
+Oceania,2019 Jan,137660
+Oceania,2019 Feb,74454
+Oceania,2019 Mar,83730
 Australia,2017 Apr,93927
 Australia,2017 May,71970
 Australia,2017 Jun,84840
@@ -4271,9 +4268,9 @@ Australia,2018 Sep,107933
 Australia,2018 Oct,95096
 Australia,2018 Nov,74827
 Australia,2018 Dec,104928
-New Zealand,2017 Jan,10778
-New Zealand,2017 Feb,6928
-New Zealand,2017 Mar,8459
+Australia,2019 Jan,122672
+Australia,2019 Feb,66199
+Australia,2019 Mar,73841
 New Zealand,2017 Apr,12447
 New Zealand,2017 May,10261
 New Zealand,2017 Jun,11805
@@ -4295,9 +4292,9 @@ New Zealand,2018 Sep,13767
 New Zealand,2018 Oct,12404
 New Zealand,2018 Nov,8603
 New Zealand,2018 Dec,11860
-Other Markets In Oceania,2017 Jan,2011
-Other Markets In Oceania,2017 Feb,1457
-Other Markets In Oceania,2017 Mar,1542
+New Zealand,2019 Jan,12969
+New Zealand,2019 Feb,6831
+New Zealand,2019 Mar,8108
 Other Markets In Oceania,2017 Apr,2104
 Other Markets In Oceania,2017 May,1685
 Other Markets In Oceania,2017 Jun,1614
@@ -4319,9 +4316,9 @@ Other Markets In Oceania,2018 Sep,1718
 Other Markets In Oceania,2018 Oct,1785
 Other Markets In Oceania,2018 Nov,1889
 Other Markets In Oceania,2018 Dec,2814
-Africa,2017 Jan,7040
-Africa,2017 Feb,4403
-Africa,2017 Mar,5566
+Other Markets In Oceania,2019 Jan,2019
+Other Markets In Oceania,2019 Feb,1424
+Other Markets In Oceania,2019 Mar,1781
 Africa,2017 Apr,7195
 Africa,2017 May,4787
 Africa,2017 Jun,4427
@@ -4343,9 +4340,9 @@ Africa,2018 Sep,6146
 Africa,2018 Oct,6129
 Africa,2018 Nov,6088
 Africa,2018 Dec,13072
-Egypt,2017 Jan,281
-Egypt,2017 Feb,312
-Egypt,2017 Mar,390
+Africa,2019 Jan,7083
+Africa,2019 Feb,4480
+Africa,2019 Mar,6106
 Egypt,2017 Apr,342
 Egypt,2017 May,260
 Egypt,2017 Jun,191
@@ -4367,9 +4364,9 @@ Egypt,2018 Sep,372
 Egypt,2018 Oct,393
 Egypt,2018 Nov,289
 Egypt,2018 Dec,435
-Mauritius,2017 Jan,1142
-Mauritius,2017 Feb,908
-Mauritius,2017 Mar,864
+Egypt,2019 Jan,349
+Egypt,2019 Feb,341
+Egypt,2019 Mar,314
 Mauritius,2017 Apr,1221
 Mauritius,2017 May,619
 Mauritius,2017 Jun,539
@@ -4391,9 +4388,9 @@ Mauritius,2018 Sep,746
 Mauritius,2018 Oct,915
 Mauritius,2018 Nov,1894
 Mauritius,2018 Dec,2835
-South Africa (Rep Of),2017 Jan,3724
-South Africa (Rep Of),2017 Feb,1687
-South Africa (Rep Of),2017 Mar,2759
+Mauritius,2019 Jan,973
+Mauritius,2019 Feb,842
+Mauritius,2019 Mar,846
 South Africa (Rep Of),2017 Apr,3789
 South Africa (Rep Of),2017 May,2311
 South Africa (Rep Of),2017 Jun,1936
@@ -4415,9 +4412,9 @@ South Africa (Rep Of),2018 Sep,3084
 South Africa (Rep Of),2018 Oct,2712
 South Africa (Rep Of),2018 Nov,2154
 South Africa (Rep Of),2018 Dec,6378
-Other Markets In Africa,2017 Jan,1893
-Other Markets In Africa,2017 Feb,1496
-Other Markets In Africa,2017 Mar,1553
+South Africa (Rep Of),2019 Jan,3566
+South Africa (Rep Of),2019 Feb,1845
+South Africa (Rep Of),2019 Mar,3219
 Other Markets In Africa,2017 Apr,1843
 Other Markets In Africa,2017 May,1597
 Other Markets In Africa,2017 Jun,1761
@@ -4439,9 +4436,9 @@ Other Markets In Africa,2018 Sep,1944
 Other Markets In Africa,2018 Oct,2109
 Other Markets In Africa,2018 Nov,1751
 Other Markets In Africa,2018 Dec,3424
-Others,2017 Jan,0
-Others,2017 Feb,0
-Others,2017 Mar,0
+Other Markets In Africa,2019 Jan,2195
+Other Markets In Africa,2019 Feb,1452
+Other Markets In Africa,2019 Mar,1727
 Others,2017 Apr,0
 Others,2017 May,0
 Others,2017 Jun,2
@@ -4463,9 +4460,9 @@ Others,2018 Sep,3
 Others,2018 Oct,0
 Others,2018 Nov,1
 Others,2018 Dec,0
-Total International Visitor Arrivals By Place Of Residence,2019 Jan,1624593
-Total International Visitor Arrivals By Place Of Residence,2019 Feb,1499051
-Total International Visitor Arrivals By Place Of Residence,2019 Mar,1564664
+Others,2019 Jan,0
+Others,2019 Feb,0
+Others,2019 Mar,0
 Total International Visitor Arrivals By Place Of Residence,2019 Apr,1596724
 Total International Visitor Arrivals By Place Of Residence,2019 May,1487791
 Total International Visitor Arrivals By Place Of Residence,2019 Jun,1551847
@@ -4487,9 +4484,9 @@ Total International Visitor Arrivals By Place Of Residence,2020 Sep,9500
 Total International Visitor Arrivals By Place Of Residence,2020 Oct,13399
 Total International Visitor Arrivals By Place Of Residence,2020 Nov,14749
 Total International Visitor Arrivals By Place Of Residence,2020 Dec,24170
-Southeast Asia,2019 Jan,491810
-Southeast Asia,2019 Feb,455405
-Southeast Asia,2019 Mar,530303
+Total International Visitor Arrivals By Place Of Residence,2021 Jan,23366
+Total International Visitor Arrivals By Place Of Residence,2021 Feb,18141
+Total International Visitor Arrivals By Place Of Residence,2021 Mar,27202
 Southeast Asia,2019 Apr,554453
 Southeast Asia,2019 May,535242
 Southeast Asia,2019 Jun,622117
@@ -4511,9 +4508,9 @@ Southeast Asia,2020 Sep,3770
 Southeast Asia,2020 Oct,6378
 Southeast Asia,2020 Nov,6457
 Southeast Asia,2020 Dec,8826
-Brunei Darussalam,2019 Jan,5953
-Brunei Darussalam,2019 Feb,4105
-Brunei Darussalam,2019 Mar,7996
+Southeast Asia,2021 Jan,6786
+Southeast Asia,2021 Feb,5666
+Southeast Asia,2021 Mar,7331
 Brunei Darussalam,2019 Apr,5159
 Brunei Darussalam,2019 May,5370
 Brunei Darussalam,2019 Jun,5276
@@ -4535,9 +4532,9 @@ Brunei Darussalam,2020 Sep,91
 Brunei Darussalam,2020 Oct,120
 Brunei Darussalam,2020 Nov,104
 Brunei Darussalam,2020 Dec,170
-Indonesia,2019 Jan,261622
-Indonesia,2019 Feb,213991
-Indonesia,2019 Mar,249164
+Brunei Darussalam,2021 Jan,108
+Brunei Darussalam,2021 Feb,84
+Brunei Darussalam,2021 Mar,119
 Indonesia,2019 Apr,240868
 Indonesia,2019 May,215825
 Indonesia,2019 Jun,311036
@@ -4559,9 +4556,9 @@ Indonesia,2020 Sep,1428
 Indonesia,2020 Oct,2424
 Indonesia,2020 Nov,3121
 Indonesia,2020 Dec,4204
-Malaysia,2019 Jan,88293
-Malaysia,2019 Feb,88706
-Malaysia,2019 Mar,106200
+Indonesia,2021 Jan,2625
+Indonesia,2021 Feb,2176
+Indonesia,2021 Mar,3032
 Malaysia,2019 Apr,95076
 Malaysia,2019 May,106518
 Malaysia,2019 Jun,102074
@@ -4583,9 +4580,9 @@ Malaysia,2020 Sep,1063
 Malaysia,2020 Oct,1415
 Malaysia,2020 Nov,1270
 Malaysia,2020 Dec,1405
-Myanmar,2019 Jan,11074
-Myanmar,2019 Feb,10522
-Myanmar,2019 Mar,13499
+Malaysia,2021 Jan,1255
+Malaysia,2021 Feb,1130
+Malaysia,2021 Mar,1530
 Myanmar,2019 Apr,16252
 Myanmar,2019 May,13300
 Myanmar,2019 Jun,12899
@@ -4607,9 +4604,9 @@ Myanmar,2020 Sep,244
 Myanmar,2020 Oct,331
 Myanmar,2020 Nov,472
 Myanmar,2020 Dec,716
-Philippines,2019 Jan,49245
-Philippines,2019 Feb,52211
-Philippines,2019 Mar,59383
+Myanmar,2021 Jan,1223
+Myanmar,2021 Feb,905
+Myanmar,2021 Mar,964
 Philippines,2019 Apr,83453
 Philippines,2019 May,89800
 Philippines,2019 Jun,73977
@@ -4631,9 +4628,9 @@ Philippines,2020 Sep,360
 Philippines,2020 Oct,1076
 Philippines,2020 Nov,710
 Philippines,2020 Dec,1175
-Thailand,2019 Jan,34822
-Thailand,2019 Feb,33685
-Thailand,2019 Mar,45072
+Philippines,2021 Jan,763
+Philippines,2021 Feb,880
+Philippines,2021 Mar,1112
 Thailand,2019 Apr,57010
 Thailand,2019 May,45735
 Thailand,2019 Jun,35558
@@ -4655,9 +4652,9 @@ Thailand,2020 Sep,260
 Thailand,2020 Oct,229
 Thailand,2020 Nov,195
 Thailand,2020 Dec,323
-Vietnam,2019 Jan,32747
-Vietnam,2019 Feb,44283
-Vietnam,2019 Mar,41153
+Thailand,2021 Jan,221
+Thailand,2021 Feb,179
+Thailand,2021 Mar,178
 Vietnam,2019 Apr,45613
 Vietnam,2019 May,49071
 Vietnam,2019 Jun,72441
@@ -4679,9 +4676,9 @@ Vietnam,2020 Sep,310
 Vietnam,2020 Oct,759
 Vietnam,2020 Nov,566
 Vietnam,2020 Dec,803
-Other Markets In Southeast Asia,2019 Jan,8054
-Other Markets In Southeast Asia,2019 Feb,7902
-Other Markets In Southeast Asia,2019 Mar,7836
+Vietnam,2021 Jan,553
+Vietnam,2021 Feb,286
+Vietnam,2021 Mar,363
 Other Markets In Southeast Asia,2019 Apr,11022
 Other Markets In Southeast Asia,2019 May,9623
 Other Markets In Southeast Asia,2019 Jun,8856
@@ -4703,9 +4700,9 @@ Other Markets In Southeast Asia,2020 Sep,14
 Other Markets In Southeast Asia,2020 Oct,24
 Other Markets In Southeast Asia,2020 Nov,19
 Other Markets In Southeast Asia,2020 Dec,30
-Greater China,2019 Jan,393850
-Greater China,2019 Feb,423941
-Greater China,2019 Mar,365215
+Other Markets In Southeast Asia,2021 Jan,38
+Other Markets In Southeast Asia,2021 Feb,26
+Other Markets In Southeast Asia,2021 Mar,33
 Greater China,2019 Apr,389376
 Greater China,2019 May,349842
 Greater China,2019 Jun,338988
@@ -4727,9 +4724,9 @@ Greater China,2020 Sep,2845
 Greater China,2020 Oct,3626
 Greater China,2020 Nov,4475
 Greater China,2020 Dec,8422
-China,2019 Jan,320581
-China,2019 Feb,339550
-China,2019 Mar,300209
+Greater China,2021 Jan,7222
+Greater China,2021 Feb,4984
+Greater China,2021 Mar,9467
 China,2019 Apr,302098
 China,2019 May,283445
 China,2019 Jun,266107
@@ -4751,9 +4748,9 @@ China,2020 Sep,2422
 China,2020 Oct,3169
 China,2020 Nov,4007
 China,2020 Dec,7657
-Hong Kong SAR,2019 Jan,30056
-Hong Kong SAR,2019 Feb,38921
-Hong Kong SAR,2019 Mar,34355
+China,2021 Jan,6599
+China,2021 Feb,4498
+China,2021 Mar,8892
 Hong Kong SAR,2019 Apr,52206
 Hong Kong SAR,2019 May,36429
 Hong Kong SAR,2019 Jun,36226
@@ -4775,9 +4772,9 @@ Hong Kong SAR,2020 Sep,291
 Hong Kong SAR,2020 Oct,300
 Hong Kong SAR,2020 Nov,313
 Hong Kong SAR,2020 Dec,510
-Taiwan,2019 Jan,40086
-Taiwan,2019 Feb,42977
-Taiwan,2019 Mar,29032
+Hong Kong SAR,2021 Jan,288
+Hong Kong SAR,2021 Feb,245
+Hong Kong SAR,2021 Mar,245
 Taiwan,2019 Apr,32924
 Taiwan,2019 May,28308
 Taiwan,2019 Jun,34189
@@ -4799,9 +4796,9 @@ Taiwan,2020 Sep,128
 Taiwan,2020 Oct,152
 Taiwan,2020 Nov,146
 Taiwan,2020 Dec,244
-Other Markets In Greater China,2019 Jan,3127
-Other Markets In Greater China,2019 Feb,2493
-Other Markets In Greater China,2019 Mar,1619
+Taiwan,2021 Jan,325
+Taiwan,2021 Feb,231
+Taiwan,2021 Mar,316
 Other Markets In Greater China,2019 Apr,2148
 Other Markets In Greater China,2019 May,1660
 Other Markets In Greater China,2019 Jun,2466
@@ -4823,9 +4820,9 @@ Other Markets In Greater China,2020 Sep,4
 Other Markets In Greater China,2020 Oct,5
 Other Markets In Greater China,2020 Nov,9
 Other Markets In Greater China,2020 Dec,11
-North Asia,2019 Jan,139127
-North Asia,2019 Feb,132146
-North Asia,2019 Mar,131235
+Other Markets In Greater China,2021 Jan,10
+Other Markets In Greater China,2021 Feb,10
+Other Markets In Greater China,2021 Mar,14
 North Asia,2019 Apr,104688
 North Asia,2019 May,102715
 North Asia,2019 Jun,102441
@@ -4847,9 +4844,9 @@ North Asia,2020 Sep,568
 North Asia,2020 Oct,790
 North Asia,2020 Nov,1042
 North Asia,2020 Dec,1149
-Japan,2019 Jan,66402
-Japan,2019 Feb,69885
-Japan,2019 Mar,84048
+North Asia,2021 Jan,987
+North Asia,2021 Feb,743
+North Asia,2021 Mar,1008
 Japan,2019 Apr,65212
 Japan,2019 May,59138
 Japan,2019 Jun,56709
@@ -4871,9 +4868,9 @@ Japan,2020 Sep,353
 Japan,2020 Oct,513
 Japan,2020 Nov,763
 Japan,2020 Dec,712
-South Korea,2019 Jan,72704
-South Korea,2019 Feb,62241
-South Korea,2019 Mar,47168
+Japan,2021 Jan,555
+Japan,2021 Feb,358
+Japan,2021 Mar,601
 South Korea,2019 Apr,39464
 South Korea,2019 May,43561
 South Korea,2019 Jun,45706
@@ -4895,9 +4892,9 @@ South Korea,2020 Sep,215
 South Korea,2020 Oct,277
 South Korea,2020 Nov,279
 South Korea,2020 Dec,437
-Other Markets In North Asia,2019 Jan,21
-Other Markets In North Asia,2019 Feb,20
-Other Markets In North Asia,2019 Mar,19
+South Korea,2021 Jan,431
+South Korea,2021 Feb,385
+South Korea,2021 Mar,405
 Other Markets In North Asia,2019 Apr,12
 Other Markets In North Asia,2019 May,16
 Other Markets In North Asia,2019 Jun,26
@@ -4919,9 +4916,9 @@ Other Markets In North Asia,2020 Sep,0
 Other Markets In North Asia,2020 Oct,0
 Other Markets In North Asia,2020 Nov,0
 Other Markets In North Asia,2020 Dec,0
-South Asia,2019 Jan,126665
-South Asia,2019 Feb,108449
-South Asia,2019 Mar,128593
+Other Markets In North Asia,2021 Jan,1
+Other Markets In North Asia,2021 Feb,0
+Other Markets In North Asia,2021 Mar,2
 South Asia,2019 Apr,145854
 South Asia,2019 May,202168
 South Asia,2019 Jun,170742
@@ -4943,9 +4940,9 @@ South Asia,2020 Sep,487
 South Asia,2020 Oct,566
 South Asia,2020 Nov,653
 South Asia,2020 Dec,2670
-Bangladesh,2019 Jan,9960
-Bangladesh,2019 Feb,9321
-Bangladesh,2019 Mar,10894
+South Asia,2021 Jan,5186
+South Asia,2021 Feb,4697
+South Asia,2021 Mar,7233
 Bangladesh,2019 Apr,11091
 Bangladesh,2019 May,9595
 Bangladesh,2019 Jun,13393
@@ -4967,9 +4964,9 @@ Bangladesh,2020 Sep,36
 Bangladesh,2020 Oct,52
 Bangladesh,2020 Nov,65
 Bangladesh,2020 Dec,267
-India,2019 Jan,104562
-India,2019 Feb,88926
-India,2019 Mar,106506
+Bangladesh,2021 Jan,1027
+Bangladesh,2021 Feb,1203
+Bangladesh,2021 Mar,2736
 India,2019 Apr,120225
 India,2019 May,182727
 India,2019 Jun,144118
@@ -4991,9 +4988,9 @@ India,2020 Sep,394
 India,2020 Oct,428
 India,2020 Nov,500
 India,2020 Dec,2252
-Pakistan,2019 Jan,1959
-Pakistan,2019 Feb,1327
-Pakistan,2019 Mar,1419
+India,2021 Jan,3946
+India,2021 Feb,3215
+India,2021 Mar,4193
 Pakistan,2019 Apr,1293
 Pakistan,2019 May,856
 Pakistan,2019 Jun,2698
@@ -5015,9 +5012,9 @@ Pakistan,2020 Sep,22
 Pakistan,2020 Oct,28
 Pakistan,2020 Nov,18
 Pakistan,2020 Dec,37
-Sri Lanka,2019 Jan,6367
-Sri Lanka,2019 Feb,6277
-Sri Lanka,2019 Mar,7044
+Pakistan,2021 Jan,25
+Pakistan,2021 Feb,14
+Pakistan,2021 Mar,30
 Sri Lanka,2019 Apr,10438
 Sri Lanka,2019 May,6772
 Sri Lanka,2019 Jun,7221
@@ -5039,9 +5036,9 @@ Sri Lanka,2020 Sep,32
 Sri Lanka,2020 Oct,34
 Sri Lanka,2020 Nov,46
 Sri Lanka,2020 Dec,90
-Other Markets In South Asia,2019 Jan,3817
-Other Markets In South Asia,2019 Feb,2598
-Other Markets In South Asia,2019 Mar,2730
+Sri Lanka,2021 Jan,172
+Sri Lanka,2021 Feb,107
+Sri Lanka,2021 Mar,238
 Other Markets In South Asia,2019 Apr,2807
 Other Markets In South Asia,2019 May,2218
 Other Markets In South Asia,2019 Jun,3312
@@ -5063,9 +5060,9 @@ Other Markets In South Asia,2020 Sep,3
 Other Markets In South Asia,2020 Oct,24
 Other Markets In South Asia,2020 Nov,24
 Other Markets In South Asia,2020 Dec,24
-West Asia,2019 Jan,11527
-West Asia,2019 Feb,9935
-West Asia,2019 Mar,15025
+Other Markets In South Asia,2021 Jan,16
+Other Markets In South Asia,2021 Feb,158
+Other Markets In South Asia,2021 Mar,36
 West Asia,2019 Apr,14102
 West Asia,2019 May,8729
 West Asia,2019 Jun,14877
@@ -5087,9 +5084,9 @@ West Asia,2020 Sep,117
 West Asia,2020 Oct,128
 West Asia,2020 Nov,112
 West Asia,2020 Dec,175
-Iran,2019 Jan,420
-Iran,2019 Feb,446
-Iran,2019 Mar,1864
+West Asia,2021 Jan,141
+West Asia,2021 Feb,94
+West Asia,2021 Mar,142
 Iran,2019 Apr,323
 Iran,2019 May,212
 Iran,2019 Jun,388
@@ -5111,9 +5108,9 @@ Iran,2020 Sep,6
 Iran,2020 Oct,2
 Iran,2020 Nov,8
 Iran,2020 Dec,6
-Israel,2019 Jan,2374
-Israel,2019 Feb,1896
-Israel,2019 Mar,1945
+Iran,2021 Jan,4
+Iran,2021 Feb,4
+Iran,2021 Mar,8
 Israel,2019 Apr,2071
 Israel,2019 May,1523
 Israel,2019 Jun,1502
@@ -5135,9 +5132,9 @@ Israel,2020 Sep,13
 Israel,2020 Oct,27
 Israel,2020 Nov,37
 Israel,2020 Dec,49
-Kuwait,2019 Jan,1174
-Kuwait,2019 Feb,662
-Kuwait,2019 Mar,522
+Israel,2021 Jan,28
+Israel,2021 Feb,11
+Israel,2021 Mar,30
 Kuwait,2019 Apr,514
 Kuwait,2019 May,130
 Kuwait,2019 Jun,932
@@ -5159,9 +5156,9 @@ Kuwait,2020 Sep,3
 Kuwait,2020 Oct,0
 Kuwait,2020 Nov,0
 Kuwait,2020 Dec,1
-Saudi Arabia,2019 Jan,963
-Saudi Arabia,2019 Feb,765
-Saudi Arabia,2019 Mar,952
+Kuwait,2021 Jan,0
+Kuwait,2021 Feb,5
+Kuwait,2021 Mar,0
 Saudi Arabia,2019 Apr,1019
 Saudi Arabia,2019 May,378
 Saudi Arabia,2019 Jun,2204
@@ -5183,9 +5180,9 @@ Saudi Arabia,2020 Sep,3
 Saudi Arabia,2020 Oct,11
 Saudi Arabia,2020 Nov,11
 Saudi Arabia,2020 Dec,2
-United Arab Emirates,2019 Jan,4805
-United Arab Emirates,2019 Feb,4409
-United Arab Emirates,2019 Mar,7546
+Saudi Arabia,2021 Jan,11
+Saudi Arabia,2021 Feb,7
+Saudi Arabia,2021 Mar,1
 United Arab Emirates,2019 Apr,7716
 United Arab Emirates,2019 May,5297
 United Arab Emirates,2019 Jun,6917
@@ -5207,9 +5204,9 @@ United Arab Emirates,2020 Sep,69
 United Arab Emirates,2020 Oct,73
 United Arab Emirates,2020 Nov,48
 United Arab Emirates,2020 Dec,93
-Other Markets In West Asia,2019 Jan,1791
-Other Markets In West Asia,2019 Feb,1757
-Other Markets In West Asia,2019 Mar,2196
+United Arab Emirates,2021 Jan,70
+United Arab Emirates,2021 Feb,58
+United Arab Emirates,2021 Mar,67
 Other Markets In West Asia,2019 Apr,2459
 Other Markets In West Asia,2019 May,1189
 Other Markets In West Asia,2019 Jun,2934
@@ -5231,9 +5228,9 @@ Other Markets In West Asia,2020 Sep,23
 Other Markets In West Asia,2020 Oct,15
 Other Markets In West Asia,2020 Nov,8
 Other Markets In West Asia,2020 Dec,24
-Americas,2019 Jan,92393
-Americas,2019 Feb,77043
-Americas,2019 Mar,91115
+Other Markets In West Asia,2021 Jan,28
+Other Markets In West Asia,2021 Feb,9
+Other Markets In West Asia,2021 Mar,36
 Americas,2019 Apr,75440
 Americas,2019 May,69238
 Americas,2019 Jun,81305
@@ -5255,9 +5252,9 @@ Americas,2020 Sep,443
 Americas,2020 Oct,506
 Americas,2020 Nov,522
 Americas,2020 Dec,656
-Canada,2019 Jan,14958
-Canada,2019 Feb,13833
-Canada,2019 Mar,15968
+Americas,2021 Jan,669
+Americas,2021 Feb,523
+Americas,2021 Mar,582
 Canada,2019 Apr,11429
 Canada,2019 May,11015
 Canada,2019 Jun,7436
@@ -5279,9 +5276,9 @@ Canada,2020 Sep,45
 Canada,2020 Oct,47
 Canada,2020 Nov,62
 Canada,2020 Dec,71
-USA,2019 Jan,67151
-USA,2019 Feb,56240
-USA,2019 Mar,65415
+Canada,2021 Jan,87
+Canada,2021 Feb,76
+Canada,2021 Mar,77
 USA,2019 Apr,54189
 USA,2019 May,51455
 USA,2019 Jun,67088
@@ -5303,9 +5300,9 @@ USA,2020 Sep,356
 USA,2020 Oct,407
 USA,2020 Nov,414
 USA,2020 Dec,515
-Other Markets In Americas,2019 Jan,10284
-Other Markets In Americas,2019 Feb,6970
-Other Markets In Americas,2019 Mar,9732
+USA,2021 Jan,509
+USA,2021 Feb,387
+USA,2021 Mar,423
 Other Markets In Americas,2019 Apr,9822
 Other Markets In Americas,2019 May,6768
 Other Markets In Americas,2019 Jun,6781
@@ -5327,9 +5324,9 @@ Other Markets In Americas,2020 Sep,42
 Other Markets In Americas,2020 Oct,52
 Other Markets In Americas,2020 Nov,46
 Other Markets In Americas,2020 Dec,70
-Europe,2019 Jan,224478
-Europe,2019 Feb,213198
-Europe,2019 Mar,213342
+Other Markets In Americas,2021 Jan,73
+Other Markets In Americas,2021 Feb,60
+Other Markets In Americas,2021 Mar,82
 Europe,2019 Apr,181375
 Europe,2019 May,119900
 Europe,2019 Jun,110587
@@ -5351,9 +5348,9 @@ Europe,2020 Sep,1007
 Europe,2020 Oct,1066
 Europe,2020 Nov,968
 Europe,2020 Dec,1210
-Belgium & Luxembourg,2019 Jan,2632
-Belgium & Luxembourg,2019 Feb,2489
-Belgium & Luxembourg,2019 Mar,2800
+Europe,2021 Jan,1690
+Europe,2021 Feb,1128
+Europe,2021 Mar,1085
 Belgium & Luxembourg,2019 Apr,3530
 Belgium & Luxembourg,2019 May,1967
 Belgium & Luxembourg,2019 Jun,1860
@@ -5375,9 +5372,9 @@ Belgium & Luxembourg,2020 Sep,12
 Belgium & Luxembourg,2020 Oct,16
 Belgium & Luxembourg,2020 Nov,10
 Belgium & Luxembourg,2020 Dec,14
-Denmark,2019 Jan,3542
-Denmark,2019 Feb,4049
-Denmark,2019 Mar,3562
+Belgium & Luxembourg,2021 Jan,24
+Belgium & Luxembourg,2021 Feb,22
+Belgium & Luxembourg,2021 Mar,14
 Denmark,2019 Apr,3286
 Denmark,2019 May,1850
 Denmark,2019 Jun,1881
@@ -5399,9 +5396,9 @@ Denmark,2020 Sep,25
 Denmark,2020 Oct,19
 Denmark,2020 Nov,27
 Denmark,2020 Dec,18
-Finland,2019 Jan,3642
-Finland,2019 Feb,4220
-Finland,2019 Mar,3106
+Denmark,2021 Jan,49
+Denmark,2021 Feb,23
+Denmark,2021 Mar,30
 Finland,2019 Apr,2148
 Finland,2019 May,1483
 Finland,2019 Jun,1867
@@ -5423,9 +5420,9 @@ Finland,2020 Sep,21
 Finland,2020 Oct,18
 Finland,2020 Nov,17
 Finland,2020 Dec,12
-France,2019 Jan,18052
-France,2019 Feb,19884
-France,2019 Mar,19099
+Finland,2021 Jan,45
+Finland,2021 Feb,17
+Finland,2021 Mar,15
 France,2019 Apr,17974
 France,2019 May,14413
 France,2019 Jun,11822
@@ -5447,9 +5444,9 @@ France,2020 Sep,190
 France,2020 Oct,213
 France,2020 Nov,122
 France,2020 Dec,166
-Germany,2019 Jan,46784
-Germany,2019 Feb,41522
-Germany,2019 Mar,44963
+France,2021 Jan,402
+France,2021 Feb,204
+France,2021 Mar,147
 Germany,2019 Apr,33428
 Germany,2019 May,18753
 Germany,2019 Jun,17574
@@ -5471,9 +5468,9 @@ Germany,2020 Sep,78
 Germany,2020 Oct,121
 Germany,2020 Nov,114
 Germany,2020 Dec,172
-Italy,2019 Jan,10910
-Italy,2019 Feb,10085
-Italy,2019 Mar,7201
+Germany,2021 Jan,194
+Germany,2021 Feb,146
+Germany,2021 Mar,135
 Italy,2019 Apr,6381
 Italy,2019 May,4775
 Italy,2019 Jun,4404
@@ -5495,9 +5492,9 @@ Italy,2020 Sep,39
 Italy,2020 Oct,66
 Italy,2020 Nov,37
 Italy,2020 Dec,60
-Netherlands,2019 Jan,8212
-Netherlands,2019 Feb,7435
-Netherlands,2019 Mar,8288
+Italy,2021 Jan,193
+Italy,2021 Feb,70
+Italy,2021 Mar,73
 Netherlands,2019 Apr,7791
 Netherlands,2019 May,6589
 Netherlands,2019 Jun,5341
@@ -5519,9 +5516,9 @@ Netherlands,2020 Sep,41
 Netherlands,2020 Oct,77
 Netherlands,2020 Nov,76
 Netherlands,2020 Dec,89
-Norway,2019 Jan,2902
-Norway,2019 Feb,3441
-Norway,2019 Mar,2811
+Netherlands,2021 Jan,106
+Netherlands,2021 Feb,98
+Netherlands,2021 Mar,58
 Norway,2019 Apr,3405
 Norway,2019 May,1791
 Norway,2019 Jun,2319
@@ -5543,9 +5540,9 @@ Norway,2020 Sep,33
 Norway,2020 Oct,16
 Norway,2020 Nov,15
 Norway,2020 Dec,16
-Rep Of Ireland,2019 Jan,1999
-Rep Of Ireland,2019 Feb,1737
-Rep Of Ireland,2019 Mar,2115
+Norway,2021 Jan,45
+Norway,2021 Feb,31
+Norway,2021 Mar,23
 Rep Of Ireland,2019 Apr,2026
 Rep Of Ireland,2019 May,1623
 Rep Of Ireland,2019 Jun,2108
@@ -5567,9 +5564,9 @@ Rep Of Ireland,2020 Sep,24
 Rep Of Ireland,2020 Oct,10
 Rep Of Ireland,2020 Nov,13
 Rep Of Ireland,2020 Dec,17
-Russian Federation,2019 Jan,12763
-Russian Federation,2019 Feb,8145
-Russian Federation,2019 Mar,8585
+Rep Of Ireland,2021 Jan,16
+Rep Of Ireland,2021 Feb,14
+Rep Of Ireland,2021 Mar,12
 Russian Federation,2019 Apr,6112
 Russian Federation,2019 May,5276
 Russian Federation,2019 Jun,3535
@@ -5591,9 +5588,9 @@ Russian Federation,2020 Sep,24
 Russian Federation,2020 Oct,30
 Russian Federation,2020 Nov,36
 Russian Federation,2020 Dec,61
-Spain,2019 Jan,4212
-Spain,2019 Feb,4065
-Spain,2019 Mar,4274
+Russian Federation,2021 Jan,40
+Russian Federation,2021 Feb,42
+Russian Federation,2021 Mar,53
 Spain,2019 Apr,4865
 Spain,2019 May,3374
 Spain,2019 Jun,3746
@@ -5615,9 +5612,9 @@ Spain,2020 Sep,44
 Spain,2020 Oct,22
 Spain,2020 Nov,30
 Spain,2020 Dec,30
-Sweden,2019 Jan,7721
-Sweden,2019 Feb,5707
-Sweden,2019 Mar,4849
+Spain,2021 Jan,58
+Spain,2021 Feb,33
+Spain,2021 Mar,25
 Sweden,2019 Apr,3920
 Sweden,2019 May,2402
 Sweden,2019 Jun,2612
@@ -5639,9 +5636,9 @@ Sweden,2020 Sep,9
 Sweden,2020 Oct,24
 Sweden,2020 Nov,15
 Sweden,2020 Dec,21
-Switzerland,2019 Jan,9232
-Switzerland,2019 Feb,8564
-Switzerland,2019 Mar,8336
+Sweden,2021 Jan,37
+Sweden,2021 Feb,19
+Sweden,2021 Mar,50
 Switzerland,2019 Apr,9929
 Switzerland,2019 May,6347
 Switzerland,2019 Jun,5089
@@ -5663,9 +5660,9 @@ Switzerland,2020 Sep,43
 Switzerland,2020 Oct,77
 Switzerland,2020 Nov,50
 Switzerland,2020 Dec,63
-United Kingdom,2019 Jan,59288
-United Kingdom,2019 Feb,62481
-United Kingdom,2019 Mar,66796
+Switzerland,2021 Jan,51
+Switzerland,2021 Feb,77
+Switzerland,2021 Mar,53
 United Kingdom,2019 Apr,56004
 United Kingdom,2019 May,34740
 United Kingdom,2019 Jun,32813
@@ -5687,9 +5684,9 @@ United Kingdom,2020 Sep,253
 United Kingdom,2020 Oct,205
 United Kingdom,2020 Nov,267
 United Kingdom,2020 Dec,290
-Other Markets In Europe,2019 Jan,32587
-Other Markets In Europe,2019 Feb,29374
-Other Markets In Europe,2019 Mar,26557
+United Kingdom,2021 Jan,111
+United Kingdom,2021 Feb,146
+United Kingdom,2021 Mar,168
 Other Markets In Europe,2019 Apr,20576
 Other Markets In Europe,2019 May,14517
 Other Markets In Europe,2019 Jun,13616
@@ -5711,9 +5708,9 @@ Other Markets In Europe,2020 Sep,171
 Other Markets In Europe,2020 Oct,152
 Other Markets In Europe,2020 Nov,139
 Other Markets In Europe,2020 Dec,181
-Oceania,2019 Jan,137660
-Oceania,2019 Feb,74454
-Oceania,2019 Mar,83730
+Other Markets In Europe,2021 Jan,319
+Other Markets In Europe,2021 Feb,186
+Other Markets In Europe,2021 Mar,229
 Oceania,2019 Apr,124189
 Oceania,2019 May,94996
 Oceania,2019 Jun,104003
@@ -5735,9 +5732,9 @@ Oceania,2020 Sep,222
 Oceania,2020 Oct,290
 Oceania,2020 Nov,481
 Oceania,2020 Dec,1000
-Australia,2019 Jan,122672
-Australia,2019 Feb,66199
-Australia,2019 Mar,73841
+Oceania,2021 Jan,642
+Oceania,2021 Feb,271
+Oceania,2021 Mar,318
 Australia,2019 Apr,107503
 Australia,2019 May,80476
 Australia,2019 Jun,87793
@@ -5759,9 +5756,9 @@ Australia,2020 Sep,155
 Australia,2020 Oct,223
 Australia,2020 Nov,438
 Australia,2020 Dec,887
-New Zealand,2019 Jan,12969
-New Zealand,2019 Feb,6831
-New Zealand,2019 Mar,8108
+Australia,2021 Jan,579
+Australia,2021 Feb,234
+Australia,2021 Mar,274
 New Zealand,2019 Apr,14142
 New Zealand,2019 May,12791
 New Zealand,2019 Jun,14219
@@ -5783,9 +5780,9 @@ New Zealand,2020 Sep,63
 New Zealand,2020 Oct,63
 New Zealand,2020 Nov,38
 New Zealand,2020 Dec,106
-Other Markets In Oceania,2019 Jan,2019
-Other Markets In Oceania,2019 Feb,1424
-Other Markets In Oceania,2019 Mar,1781
+New Zealand,2021 Jan,63
+New Zealand,2021 Feb,31
+New Zealand,2021 Mar,28
 Other Markets In Oceania,2019 Apr,2544
 Other Markets In Oceania,2019 May,1729
 Other Markets In Oceania,2019 Jun,1991
@@ -5807,9 +5804,9 @@ Other Markets In Oceania,2020 Sep,4
 Other Markets In Oceania,2020 Oct,4
 Other Markets In Oceania,2020 Nov,5
 Other Markets In Oceania,2020 Dec,7
-Africa,2019 Jan,7083
-Africa,2019 Feb,4480
-Africa,2019 Mar,6106
+Other Markets In Oceania,2021 Jan,0
+Other Markets In Oceania,2021 Feb,6
+Other Markets In Oceania,2021 Mar,16
 Africa,2019 Apr,7247
 Africa,2019 May,4961
 Africa,2019 Jun,6787
@@ -5831,9 +5828,9 @@ Africa,2020 Sep,41
 Africa,2020 Oct,49
 Africa,2020 Nov,39
 Africa,2020 Dec,61
-Egypt,2019 Jan,349
-Egypt,2019 Feb,341
-Egypt,2019 Mar,314
+Africa,2021 Jan,42
+Africa,2021 Feb,35
+Africa,2021 Mar,36
 Egypt,2019 Apr,415
 Egypt,2019 May,198
 Egypt,2019 Jun,493
@@ -5855,9 +5852,9 @@ Egypt,2020 Sep,10
 Egypt,2020 Oct,6
 Egypt,2020 Nov,6
 Egypt,2020 Dec,13
-Mauritius,2019 Jan,973
-Mauritius,2019 Feb,842
-Mauritius,2019 Mar,846
+Egypt,2021 Jan,6
+Egypt,2021 Feb,6
+Egypt,2021 Mar,8
 Mauritius,2019 Apr,1192
 Mauritius,2019 May,590
 Mauritius,2019 Jun,802
@@ -5879,9 +5876,9 @@ Mauritius,2020 Sep,0
 Mauritius,2020 Oct,4
 Mauritius,2020 Nov,5
 Mauritius,2020 Dec,2
-South Africa (Rep Of),2019 Jan,3566
-South Africa (Rep Of),2019 Feb,1845
-South Africa (Rep Of),2019 Mar,3219
+Mauritius,2021 Jan,4
+Mauritius,2021 Feb,1
+Mauritius,2021 Mar,3
 South Africa (Rep Of),2019 Apr,3422
 South Africa (Rep Of),2019 May,2560
 South Africa (Rep Of),2019 Jun,3428
@@ -5903,9 +5900,9 @@ South Africa (Rep Of),2020 Sep,10
 South Africa (Rep Of),2020 Oct,14
 South Africa (Rep Of),2020 Nov,13
 South Africa (Rep Of),2020 Dec,15
-Other Markets In Africa,2019 Jan,2195
-Other Markets In Africa,2019 Feb,1452
-Other Markets In Africa,2019 Mar,1727
+South Africa (Rep Of),2021 Jan,10
+South Africa (Rep Of),2021 Feb,8
+South Africa (Rep Of),2021 Mar,8
 Other Markets In Africa,2019 Apr,2218
 Other Markets In Africa,2019 May,1613
 Other Markets In Africa,2019 Jun,2064
@@ -5927,9 +5924,9 @@ Other Markets In Africa,2020 Sep,21
 Other Markets In Africa,2020 Oct,25
 Other Markets In Africa,2020 Nov,15
 Other Markets In Africa,2020 Dec,31
-Others,2019 Jan,0
-Others,2019 Feb,0
-Others,2019 Mar,0
+Other Markets In Africa,2021 Jan,22
+Other Markets In Africa,2021 Feb,20
+Other Markets In Africa,2021 Mar,17
 Others,2019 Apr,0
 Others,2019 May,0
 Others,2019 Jun,0
@@ -5951,9 +5948,9 @@ Others,2020 Sep,0
 Others,2020 Oct,0
 Others,2020 Nov,0
 Others,2020 Dec,1
-Total International Visitor Arrivals By Place Of Residence,2021 Jan,23366
-Total International Visitor Arrivals By Place Of Residence,2021 Feb,18141
-Total International Visitor Arrivals By Place Of Residence,2021 Mar,27202
+Others,2021 Jan,1
+Others,2021 Feb,0
+Others,2021 Mar,0
 Total International Visitor Arrivals By Place Of Residence,2021 Apr,25737
 Total International Visitor Arrivals By Place Of Residence,2021 May,14190
 Total International Visitor Arrivals By Place Of Residence,2021 Jun,10029
@@ -5975,9 +5972,9 @@ Total International Visitor Arrivals By Place Of Residence,2022 Sep,782215
 Total International Visitor Arrivals By Place Of Residence,2022 Oct,816833
 Total International Visitor Arrivals By Place Of Residence,2022 Nov,816340
 Total International Visitor Arrivals By Place Of Residence,2022 Dec,931441
-Southeast Asia,2021 Jan,6786
-Southeast Asia,2021 Feb,5666
-Southeast Asia,2021 Mar,7331
+Total International Visitor Arrivals By Place Of Residence,2023 Jan,931814
+Total International Visitor Arrivals By Place Of Residence,2023 Feb,957844
+Total International Visitor Arrivals By Place Of Residence,2023 Mar,1021040
 Southeast Asia,2021 Apr,7262
 Southeast Asia,2021 May,4478
 Southeast Asia,2021 Jun,1561
@@ -5999,9 +5996,9 @@ Southeast Asia,2022 Sep,340369
 Southeast Asia,2022 Oct,374927
 Southeast Asia,2022 Nov,358257
 Southeast Asia,2022 Dec,438856
-Brunei Darussalam,2021 Jan,108
-Brunei Darussalam,2021 Feb,84
-Brunei Darussalam,2021 Mar,119
+Southeast Asia,2023 Jan,362255
+Southeast Asia,2023 Feb,376496
+Southeast Asia,2023 Mar,414934
 Brunei Darussalam,2021 Apr,80
 Brunei Darussalam,2021 May,48
 Brunei Darussalam,2021 Jun,64
@@ -6023,9 +6020,9 @@ Brunei Darussalam,2022 Sep,3809
 Brunei Darussalam,2022 Oct,3733
 Brunei Darussalam,2022 Nov,4273
 Brunei Darussalam,2022 Dec,7324
-Indonesia,2021 Jan,2625
-Indonesia,2021 Feb,2176
-Indonesia,2021 Mar,3032
+Brunei Darussalam,2023 Jan,3653
+Brunei Darussalam,2023 Feb,4739
+Brunei Darussalam,2023 Mar,4460
 Indonesia,2021 Apr,3278
 Indonesia,2021 May,1800
 Indonesia,2021 Jun,519
@@ -6047,9 +6044,9 @@ Indonesia,2022 Sep,120169
 Indonesia,2022 Oct,133408
 Indonesia,2022 Nov,144444
 Indonesia,2022 Dec,197261
-Malaysia,2021 Jan,1255
-Malaysia,2021 Feb,1130
-Malaysia,2021 Mar,1530
+Indonesia,2023 Jan,168975
+Indonesia,2023 Feb,156448
+Indonesia,2023 Mar,171507
 Malaysia,2021 Apr,1442
 Malaysia,2021 May,844
 Malaysia,2021 Jun,402
@@ -6071,9 +6068,9 @@ Malaysia,2022 Sep,81914
 Malaysia,2022 Oct,77092
 Malaysia,2022 Nov,72305
 Malaysia,2022 Dec,95475
-Myanmar,2021 Jan,1223
-Myanmar,2021 Feb,905
-Myanmar,2021 Mar,964
+Malaysia,2023 Jan,72756
+Malaysia,2023 Feb,88040
+Malaysia,2023 Mar,97835
 Myanmar,2021 Apr,1176
 Myanmar,2021 May,720
 Myanmar,2021 Jun,175
@@ -6095,9 +6092,9 @@ Myanmar,2022 Sep,8341
 Myanmar,2022 Oct,9078
 Myanmar,2022 Nov,9070
 Myanmar,2022 Dec,10523
-Philippines,2021 Jan,763
-Philippines,2021 Feb,880
-Philippines,2021 Mar,1112
+Myanmar,2023 Jan,8982
+Myanmar,2023 Feb,7734
+Myanmar,2023 Mar,9122
 Philippines,2021 Apr,789
 Philippines,2021 May,745
 Philippines,2021 Jun,262
@@ -6119,9 +6116,9 @@ Philippines,2022 Sep,44856
 Philippines,2022 Oct,56747
 Philippines,2022 Nov,54793
 Philippines,2022 Dec,56509
-Thailand,2021 Jan,221
-Thailand,2021 Feb,179
-Thailand,2021 Mar,178
+Philippines,2023 Jan,38484
+Philippines,2023 Feb,47446
+Philippines,2023 Mar,50591
 Thailand,2021 Apr,246
 Thailand,2021 May,163
 Thailand,2021 Jun,99
@@ -6143,9 +6140,9 @@ Thailand,2022 Sep,32426
 Thailand,2022 Oct,52274
 Thailand,2022 Nov,34566
 Thailand,2022 Dec,36006
-Vietnam,2021 Jan,553
-Vietnam,2021 Feb,286
-Vietnam,2021 Mar,363
+Thailand,2023 Jan,29735
+Thailand,2023 Feb,37156
+Thailand,2023 Mar,43145
 Vietnam,2021 Apr,239
 Vietnam,2021 May,147
 Vietnam,2021 Jun,36
@@ -6167,9 +6164,9 @@ Vietnam,2022 Sep,41129
 Vietnam,2022 Oct,36242
 Vietnam,2022 Nov,30175
 Vietnam,2022 Dec,27661
-Other Markets In Southeast Asia,2021 Jan,38
-Other Markets In Southeast Asia,2021 Feb,26
-Other Markets In Southeast Asia,2021 Mar,33
+Vietnam,2023 Jan,31824
+Vietnam,2023 Feb,27896
+Vietnam,2023 Mar,31347
 Other Markets In Southeast Asia,2021 Apr,12
 Other Markets In Southeast Asia,2021 May,11
 Other Markets In Southeast Asia,2021 Jun,4
@@ -6191,9 +6188,9 @@ Other Markets In Southeast Asia,2022 Sep,7725
 Other Markets In Southeast Asia,2022 Oct,6353
 Other Markets In Southeast Asia,2022 Nov,8631
 Other Markets In Southeast Asia,2022 Dec,8097
-Greater China,2021 Jan,7222
-Greater China,2021 Feb,4984
-Greater China,2021 Mar,9467
+Other Markets In Southeast Asia,2023 Jan,7846
+Other Markets In Southeast Asia,2023 Feb,7037
+Other Markets In Southeast Asia,2023 Mar,6927
 Greater China,2021 Apr,9591
 Greater China,2021 May,7852
 Greater China,2021 Jun,7383
@@ -6215,9 +6212,9 @@ Greater China,2022 Sep,36676
 Greater China,2022 Oct,42415
 Greater China,2022 Nov,49506
 Greater China,2022 Dec,60836
-China,2021 Jan,6599
-China,2021 Feb,4498
-China,2021 Mar,8892
+Greater China,2023 Jan,89388
+Greater China,2023 Feb,82278
+Greater China,2023 Mar,105132
 China,2021 Apr,9056
 China,2021 May,7388
 China,2021 Jun,6983
@@ -6239,9 +6236,9 @@ China,2022 Sep,14127
 China,2022 Oct,14971
 China,2022 Nov,16024
 China,2022 Dec,19685
-Hong Kong SAR,2021 Jan,288
-Hong Kong SAR,2021 Feb,245
-Hong Kong SAR,2021 Mar,245
+China,2023 Jan,28375
+China,2023 Feb,35312
+China,2023 Mar,60888
 Hong Kong SAR,2021 Apr,221
 Hong Kong SAR,2021 May,276
 Hong Kong SAR,2021 Jun,361
@@ -6263,9 +6260,9 @@ Hong Kong SAR,2022 Sep,13659
 Hong Kong SAR,2022 Oct,16052
 Hong Kong SAR,2022 Nov,19670
 Hong Kong SAR,2022 Dec,26605
-Taiwan,2021 Jan,325
-Taiwan,2021 Feb,231
-Taiwan,2021 Mar,316
+Hong Kong SAR,2023 Jan,26208
+Hong Kong SAR,2023 Feb,20227
+Hong Kong SAR,2023 Mar,23465
 Taiwan,2021 Apr,302
 Taiwan,2021 May,178
 Taiwan,2021 Jun,29
@@ -6287,9 +6284,9 @@ Taiwan,2022 Sep,7918
 Taiwan,2022 Oct,10543
 Taiwan,2022 Nov,12592
 Taiwan,2022 Dec,12603
-Other Markets In Greater China,2021 Jan,10
-Other Markets In Greater China,2021 Feb,10
-Other Markets In Greater China,2021 Mar,14
+Taiwan,2023 Jan,31444
+Taiwan,2023 Feb,25037
+Taiwan,2023 Mar,19204
 Other Markets In Greater China,2021 Apr,12
 Other Markets In Greater China,2021 May,10
 Other Markets In Greater China,2021 Jun,10
@@ -6311,9 +6308,9 @@ Other Markets In Greater China,2022 Sep,972
 Other Markets In Greater China,2022 Oct,849
 Other Markets In Greater China,2022 Nov,1220
 Other Markets In Greater China,2022 Dec,1943
-North Asia,2021 Jan,987
-North Asia,2021 Feb,743
-North Asia,2021 Mar,1008
+Other Markets In Greater China,2023 Jan,3361
+Other Markets In Greater China,2023 Feb,1702
+Other Markets In Greater China,2023 Mar,1575
 North Asia,2021 Apr,1068
 North Asia,2021 May,451
 North Asia,2021 Jun,219
@@ -6335,9 +6332,9 @@ North Asia,2022 Sep,45900
 North Asia,2022 Oct,45806
 North Asia,2022 Nov,54365
 North Asia,2022 Dec,52077
-Japan,2021 Jan,555
-Japan,2021 Feb,358
-Japan,2021 Mar,601
+North Asia,2023 Jan,78923
+North Asia,2023 Feb,97981
+North Asia,2023 Mar,71803
 Japan,2021 Apr,797
 Japan,2021 May,281
 Japan,2021 Jun,121
@@ -6359,9 +6356,9 @@ Japan,2022 Sep,19317
 Japan,2022 Oct,17459
 Japan,2022 Nov,22698
 Japan,2022 Dec,20209
-South Korea,2021 Jan,431
-South Korea,2021 Feb,385
-South Korea,2021 Mar,405
+Japan,2023 Jan,18335
+Japan,2023 Feb,32932
+Japan,2023 Mar,36302
 South Korea,2021 Apr,271
 South Korea,2021 May,170
 South Korea,2021 Jun,98
@@ -6383,9 +6380,9 @@ South Korea,2022 Sep,26520
 South Korea,2022 Oct,28294
 South Korea,2022 Nov,31627
 South Korea,2022 Dec,31817
-Other Markets In North Asia,2021 Jan,1
-Other Markets In North Asia,2021 Feb,0
-Other Markets In North Asia,2021 Mar,2
+South Korea,2023 Jan,60457
+South Korea,2023 Feb,64876
+South Korea,2023 Mar,35396
 Other Markets In North Asia,2021 Apr,0
 Other Markets In North Asia,2021 May,0
 Other Markets In North Asia,2021 Jun,0
@@ -6407,9 +6404,9 @@ Other Markets In North Asia,2022 Sep,63
 Other Markets In North Asia,2022 Oct,53
 Other Markets In North Asia,2022 Nov,40
 Other Markets In North Asia,2022 Dec,51
-South Asia,2021 Jan,5186
-South Asia,2021 Feb,4697
-South Asia,2021 Mar,7233
+Other Markets In North Asia,2023 Jan,131
+Other Markets In North Asia,2023 Feb,173
+Other Markets In North Asia,2023 Mar,105
 South Asia,2021 Apr,5640
 South Asia,2021 May,122
 South Asia,2021 Jun,19
@@ -6431,9 +6428,9 @@ South Asia,2022 Sep,104616
 South Asia,2022 Oct,101510
 South Asia,2022 Nov,91381
 South Asia,2022 Dec,91730
-Bangladesh,2021 Jan,1027
-Bangladesh,2021 Feb,1203
-Bangladesh,2021 Mar,2736
+South Asia,2023 Jan,72231
+South Asia,2023 Feb,76883
+South Asia,2023 Mar,92470
 Bangladesh,2021 Apr,1700
 Bangladesh,2021 May,32
 Bangladesh,2021 Jun,3
@@ -6455,9 +6452,9 @@ Bangladesh,2022 Sep,10694
 Bangladesh,2022 Oct,10975
 Bangladesh,2022 Nov,10481
 Bangladesh,2022 Dec,9857
-India,2021 Jan,3946
-India,2021 Feb,3215
-India,2021 Mar,4193
+Bangladesh,2023 Jan,8789
+Bangladesh,2023 Feb,8006
+Bangladesh,2023 Mar,9711
 India,2021 Apr,3729
 India,2021 May,84
 India,2021 Jun,12
@@ -6479,9 +6476,9 @@ India,2022 Sep,86393
 India,2022 Oct,81796
 India,2022 Nov,73694
 India,2022 Dec,74067
-Pakistan,2021 Jan,25
-Pakistan,2021 Feb,14
-Pakistan,2021 Mar,30
+India,2023 Jan,56605
+India,2023 Feb,61301
+India,2023 Mar,75339
 Pakistan,2021 Apr,13
 Pakistan,2021 May,0
 Pakistan,2021 Jun,0
@@ -6503,9 +6500,9 @@ Pakistan,2022 Sep,1199
 Pakistan,2022 Oct,1492
 Pakistan,2022 Nov,1643
 Pakistan,2022 Dec,1623
-Sri Lanka,2021 Jan,172
-Sri Lanka,2021 Feb,107
-Sri Lanka,2021 Mar,238
+Pakistan,2023 Jan,1452
+Pakistan,2023 Feb,1584
+Pakistan,2023 Mar,1060
 Sri Lanka,2021 Apr,165
 Sri Lanka,2021 May,5
 Sri Lanka,2021 Jun,2
@@ -6527,9 +6524,9 @@ Sri Lanka,2022 Sep,4430
 Sri Lanka,2022 Oct,4707
 Sri Lanka,2022 Nov,3896
 Sri Lanka,2022 Dec,4270
-Other Markets In South Asia,2021 Jan,16
-Other Markets In South Asia,2021 Feb,158
-Other Markets In South Asia,2021 Mar,36
+Sri Lanka,2023 Jan,3083
+Sri Lanka,2023 Feb,3829
+Sri Lanka,2023 Mar,4088
 Other Markets In South Asia,2021 Apr,33
 Other Markets In South Asia,2021 May,1
 Other Markets In South Asia,2021 Jun,2
@@ -6551,9 +6548,9 @@ Other Markets In South Asia,2022 Sep,1900
 Other Markets In South Asia,2022 Oct,2540
 Other Markets In South Asia,2022 Nov,1667
 Other Markets In South Asia,2022 Dec,1913
-West Asia,2021 Jan,141
-West Asia,2021 Feb,94
-West Asia,2021 Mar,142
+Other Markets In South Asia,2023 Jan,2302
+Other Markets In South Asia,2023 Feb,2163
+Other Markets In South Asia,2023 Mar,2272
 West Asia,2021 Apr,150
 West Asia,2021 May,108
 West Asia,2021 Jun,57
@@ -6575,9 +6572,9 @@ West Asia,2022 Sep,9810
 West Asia,2022 Oct,9382
 West Asia,2022 Nov,9139
 West Asia,2022 Dec,10007
-Iran,2021 Jan,4
-Iran,2021 Feb,4
-Iran,2021 Mar,8
+West Asia,2023 Jan,8180
+West Asia,2023 Feb,9159
+West Asia,2023 Mar,12923
 Iran,2021 Apr,4
 Iran,2021 May,0
 Iran,2021 Jun,0
@@ -6599,9 +6596,9 @@ Iran,2022 Sep,184
 Iran,2022 Oct,232
 Iran,2022 Nov,232
 Iran,2022 Dec,126
-Israel,2021 Jan,28
-Israel,2021 Feb,11
-Israel,2021 Mar,30
+Iran,2023 Jan,156
+Iran,2023 Feb,175
+Iran,2023 Mar,1414
 Israel,2021 Apr,62
 Israel,2021 May,48
 Israel,2021 Jun,30
@@ -6623,9 +6620,9 @@ Israel,2022 Sep,1990
 Israel,2022 Oct,2186
 Israel,2022 Nov,1403
 Israel,2022 Dec,916
-Kuwait,2021 Jan,0
-Kuwait,2021 Feb,5
-Kuwait,2021 Mar,0
+Israel,2023 Jan,1342
+Israel,2023 Feb,1510
+Israel,2023 Mar,1639
 Kuwait,2021 Apr,0
 Kuwait,2021 May,0
 Kuwait,2021 Jun,0
@@ -6647,9 +6644,9 @@ Kuwait,2022 Sep,468
 Kuwait,2022 Oct,222
 Kuwait,2022 Nov,229
 Kuwait,2022 Dec,476
-Saudi Arabia,2021 Jan,11
-Saudi Arabia,2021 Feb,7
-Saudi Arabia,2021 Mar,1
+Kuwait,2023 Jan,672
+Kuwait,2023 Feb,359
+Kuwait,2023 Mar,205
 Saudi Arabia,2021 Apr,7
 Saudi Arabia,2021 May,2
 Saudi Arabia,2021 Jun,1
@@ -6671,9 +6668,9 @@ Saudi Arabia,2022 Sep,813
 Saudi Arabia,2022 Oct,738
 Saudi Arabia,2022 Nov,1085
 Saudi Arabia,2022 Dec,689
-United Arab Emirates,2021 Jan,70
-United Arab Emirates,2021 Feb,58
-United Arab Emirates,2021 Mar,67
+Saudi Arabia,2023 Jan,532
+Saudi Arabia,2023 Feb,688
+Saudi Arabia,2023 Mar,880
 United Arab Emirates,2021 Apr,59
 United Arab Emirates,2021 May,42
 United Arab Emirates,2021 Jun,22
@@ -6695,9 +6692,9 @@ United Arab Emirates,2022 Sep,4980
 United Arab Emirates,2022 Oct,4671
 United Arab Emirates,2022 Nov,4888
 United Arab Emirates,2022 Dec,6135
-Other Markets In West Asia,2021 Jan,28
-Other Markets In West Asia,2021 Feb,9
-Other Markets In West Asia,2021 Mar,36
+United Arab Emirates,2023 Jan,4074
+United Arab Emirates,2023 Feb,4971
+United Arab Emirates,2023 Mar,6795
 Other Markets In West Asia,2021 Apr,18
 Other Markets In West Asia,2021 May,16
 Other Markets In West Asia,2021 Jun,4
@@ -6719,9 +6716,9 @@ Other Markets In West Asia,2022 Sep,1375
 Other Markets In West Asia,2022 Oct,1333
 Other Markets In West Asia,2022 Nov,1302
 Other Markets In West Asia,2022 Dec,1665
-Americas,2021 Jan,669
-Americas,2021 Feb,523
-Americas,2021 Mar,582
+Other Markets In West Asia,2023 Jan,1404
+Other Markets In West Asia,2023 Feb,1456
+Other Markets In West Asia,2023 Mar,1990
 Americas,2021 Apr,684
 Americas,2021 May,342
 Americas,2021 Jun,245
@@ -6743,9 +6740,9 @@ Americas,2022 Sep,46342
 Americas,2022 Oct,49922
 Americas,2022 Nov,61086
 Americas,2022 Dec,67342
-Canada,2021 Jan,87
-Canada,2021 Feb,76
-Canada,2021 Mar,77
+Americas,2023 Jan,67902
+Americas,2023 Feb,72702
+Americas,2023 Mar,73624
 Canada,2021 Apr,50
 Canada,2021 May,27
 Canada,2021 Jun,14
@@ -6767,9 +6764,9 @@ Canada,2022 Sep,6594
 Canada,2022 Oct,7217
 Canada,2022 Nov,9638
 Canada,2022 Dec,9047
-USA,2021 Jan,509
-USA,2021 Feb,387
-USA,2021 Mar,423
+Canada,2023 Jan,11207
+Canada,2023 Feb,13407
+Canada,2023 Mar,12626
 USA,2021 Apr,563
 USA,2021 May,254
 USA,2021 Jun,206
@@ -6791,9 +6788,9 @@ USA,2022 Sep,34503
 USA,2022 Oct,36734
 USA,2022 Nov,45666
 USA,2022 Dec,53688
-Other Markets In Americas,2021 Jan,73
-Other Markets In Americas,2021 Feb,60
-Other Markets In Americas,2021 Mar,82
+USA,2023 Jan,50492
+USA,2023 Feb,52830
+USA,2023 Mar,54157
 Other Markets In Americas,2021 Apr,71
 Other Markets In Americas,2021 May,61
 Other Markets In Americas,2021 Jun,25
@@ -6815,9 +6812,9 @@ Other Markets In Americas,2022 Sep,5245
 Other Markets In Americas,2022 Oct,5971
 Other Markets In Americas,2022 Nov,5782
 Other Markets In Americas,2022 Dec,4607
-Europe,2021 Jan,1690
-Europe,2021 Feb,1128
-Europe,2021 Mar,1085
+Other Markets In Americas,2023 Jan,6203
+Other Markets In Americas,2023 Feb,6465
+Other Markets In Americas,2023 Mar,6841
 Europe,2021 Apr,1014
 Europe,2021 May,499
 Europe,2021 Jun,286
@@ -6839,9 +6836,9 @@ Europe,2022 Sep,100653
 Europe,2022 Oct,103897
 Europe,2022 Nov,109366
 Europe,2022 Dec,102982
-Belgium & Luxembourg,2021 Jan,24
-Belgium & Luxembourg,2021 Feb,22
-Belgium & Luxembourg,2021 Mar,14
+Europe,2023 Jan,131839
+Europe,2023 Feb,156384
+Europe,2023 Mar,161938
 Belgium & Luxembourg,2021 Apr,26
 Belgium & Luxembourg,2021 May,26
 Belgium & Luxembourg,2021 Jun,6
@@ -6863,9 +6860,9 @@ Belgium & Luxembourg,2022 Sep,2190
 Belgium & Luxembourg,2022 Oct,1730
 Belgium & Luxembourg,2022 Nov,1965
 Belgium & Luxembourg,2022 Dec,1458
-Denmark,2021 Jan,49
-Denmark,2021 Feb,23
-Denmark,2021 Mar,30
+Belgium & Luxembourg,2023 Jan,1707
+Belgium & Luxembourg,2023 Feb,2079
+Belgium & Luxembourg,2023 Mar,2215
 Denmark,2021 Apr,23
 Denmark,2021 May,17
 Denmark,2021 Jun,3
@@ -6887,9 +6884,9 @@ Denmark,2022 Sep,2070
 Denmark,2022 Oct,2340
 Denmark,2022 Nov,2014
 Denmark,2022 Dec,1769
-Finland,2021 Jan,45
-Finland,2021 Feb,17
-Finland,2021 Mar,15
+Denmark,2023 Jan,2674
+Denmark,2023 Feb,3216
+Denmark,2023 Mar,2679
 Finland,2021 Apr,11
 Finland,2021 May,16
 Finland,2021 Jun,6
@@ -6911,9 +6908,9 @@ Finland,2022 Sep,1122
 Finland,2022 Oct,1759
 Finland,2022 Nov,1810
 Finland,2022 Dec,1391
-France,2021 Jan,402
-France,2021 Feb,204
-France,2021 Mar,147
+Finland,2023 Jan,2247
+Finland,2023 Feb,2312
+Finland,2023 Mar,2131
 France,2021 Apr,174
 France,2021 May,83
 France,2021 Jun,26
@@ -6935,9 +6932,9 @@ France,2022 Sep,10200
 France,2022 Oct,10665
 France,2022 Nov,10546
 France,2022 Dec,8554
-Germany,2021 Jan,194
-Germany,2021 Feb,146
-Germany,2021 Mar,135
+France,2023 Jan,9873
+France,2023 Feb,13722
+France,2023 Mar,12924
 Germany,2021 Apr,114
 Germany,2021 May,57
 Germany,2021 Jun,42
@@ -6959,9 +6956,9 @@ Germany,2022 Sep,17810
 Germany,2022 Oct,18184
 Germany,2022 Nov,18279
 Germany,2022 Dec,20499
-Italy,2021 Jan,193
-Italy,2021 Feb,70
-Italy,2021 Mar,73
+Germany,2023 Jan,26678
+Germany,2023 Feb,31063
+Germany,2023 Mar,34976
 Italy,2021 Apr,58
 Italy,2021 May,16
 Italy,2021 Jun,8
@@ -6983,9 +6980,9 @@ Italy,2022 Sep,4994
 Italy,2022 Oct,3697
 Italy,2022 Nov,3775
 Italy,2022 Dec,2777
-Netherlands,2021 Jan,106
-Netherlands,2021 Feb,98
-Netherlands,2021 Mar,58
+Italy,2023 Jan,4082
+Italy,2023 Feb,4861
+Italy,2023 Mar,4643
 Netherlands,2021 Apr,79
 Netherlands,2021 May,36
 Netherlands,2021 Jun,18
@@ -7007,9 +7004,9 @@ Netherlands,2022 Sep,6814
 Netherlands,2022 Oct,6523
 Netherlands,2022 Nov,5853
 Netherlands,2022 Dec,5634
-Norway,2021 Jan,45
-Norway,2021 Feb,31
-Norway,2021 Mar,23
+Netherlands,2023 Jan,6430
+Netherlands,2023 Feb,7053
+Netherlands,2023 Mar,6956
 Norway,2021 Apr,43
 Norway,2021 May,15
 Norway,2021 Jun,2
@@ -7031,9 +7028,9 @@ Norway,2022 Sep,1311
 Norway,2022 Oct,1771
 Norway,2022 Nov,1728
 Norway,2022 Dec,1610
-Rep Of Ireland,2021 Jan,16
-Rep Of Ireland,2021 Feb,14
-Rep Of Ireland,2021 Mar,12
+Norway,2023 Jan,1891
+Norway,2023 Feb,2439
+Norway,2023 Mar,2342
 Rep Of Ireland,2021 Apr,10
 Rep Of Ireland,2021 May,6
 Rep Of Ireland,2021 Jun,4
@@ -7055,9 +7052,9 @@ Rep Of Ireland,2022 Sep,1592
 Rep Of Ireland,2022 Oct,1530
 Rep Of Ireland,2022 Nov,1567
 Rep Of Ireland,2022 Dec,1359
-Russian Federation,2021 Jan,40
-Russian Federation,2021 Feb,42
-Russian Federation,2021 Mar,53
+Rep Of Ireland,2023 Jan,1767
+Rep Of Ireland,2023 Feb,1868
+Rep Of Ireland,2023 Mar,1992
 Russian Federation,2021 Apr,35
 Russian Federation,2021 May,17
 Russian Federation,2021 Jun,5
@@ -7079,9 +7076,9 @@ Russian Federation,2022 Sep,756
 Russian Federation,2022 Oct,1312
 Russian Federation,2022 Nov,2408
 Russian Federation,2022 Dec,3503
-Spain,2021 Jan,58
-Spain,2021 Feb,33
-Spain,2021 Mar,25
+Russian Federation,2023 Jan,6637
+Russian Federation,2023 Feb,7009
+Russian Federation,2023 Mar,6635
 Spain,2021 Apr,35
 Spain,2021 May,6
 Spain,2021 Jun,7
@@ -7103,9 +7100,9 @@ Spain,2022 Sep,4841
 Spain,2022 Oct,3987
 Spain,2022 Nov,3939
 Spain,2022 Dec,2604
-Sweden,2021 Jan,37
-Sweden,2021 Feb,19
-Sweden,2021 Mar,50
+Spain,2023 Jan,3229
+Spain,2023 Feb,3302
+Spain,2023 Mar,3936
 Sweden,2021 Apr,29
 Sweden,2021 May,6
 Sweden,2021 Jun,2
@@ -7127,9 +7124,9 @@ Sweden,2022 Sep,1429
 Sweden,2022 Oct,1913
 Sweden,2022 Nov,2091
 Sweden,2022 Dec,2510
-Switzerland,2021 Jan,51
-Switzerland,2021 Feb,77
-Switzerland,2021 Mar,53
+Sweden,2023 Jan,3234
+Sweden,2023 Feb,2967
+Sweden,2023 Mar,2786
 Switzerland,2021 Apr,49
 Switzerland,2021 May,23
 Switzerland,2021 Jun,12
@@ -7151,9 +7148,9 @@ Switzerland,2022 Sep,4225
 Switzerland,2022 Oct,5491
 Switzerland,2022 Nov,5151
 Switzerland,2022 Dec,4468
-United Kingdom,2021 Jan,111
-United Kingdom,2021 Feb,146
-United Kingdom,2021 Mar,168
+Switzerland,2023 Jan,5034
+Switzerland,2023 Feb,6310
+Switzerland,2023 Mar,5940
 United Kingdom,2021 Apr,136
 United Kingdom,2021 May,92
 United Kingdom,2021 Jun,100
@@ -7175,9 +7172,9 @@ United Kingdom,2022 Sep,29963
 United Kingdom,2022 Oct,30244
 United Kingdom,2022 Nov,33269
 United Kingdom,2022 Dec,33051
-Other Markets In Europe,2021 Jan,319
-Other Markets In Europe,2021 Feb,186
-Other Markets In Europe,2021 Mar,229
+United Kingdom,2023 Jan,38123
+United Kingdom,2023 Feb,45785
+United Kingdom,2023 Mar,50330
 Other Markets In Europe,2021 Apr,192
 Other Markets In Europe,2021 May,83
 Other Markets In Europe,2021 Jun,45
@@ -7199,9 +7196,9 @@ Other Markets In Europe,2022 Sep,11336
 Other Markets In Europe,2022 Oct,12751
 Other Markets In Europe,2022 Nov,14971
 Other Markets In Europe,2022 Dec,11795
-Oceania,2021 Jan,642
-Oceania,2021 Feb,271
-Oceania,2021 Mar,318
+Other Markets In Europe,2023 Jan,18233
+Other Markets In Europe,2023 Feb,22398
+Other Markets In Europe,2023 Mar,21453
 Oceania,2021 Apr,292
 Oceania,2021 May,294
 Oceania,2021 Jun,251
@@ -7223,9 +7220,9 @@ Oceania,2022 Sep,94039
 Oceania,2022 Oct,85122
 Oceania,2022 Nov,78869
 Oceania,2022 Dec,101182
-Australia,2021 Jan,579
-Australia,2021 Feb,234
-Australia,2021 Mar,274
+Oceania,2023 Jan,116794
+Oceania,2023 Feb,81765
+Oceania,2023 Mar,83827
 Australia,2021 Apr,242
 Australia,2021 May,250
 Australia,2021 Jun,193
@@ -7247,9 +7244,9 @@ Australia,2022 Sep,83070
 Australia,2022 Oct,73728
 Australia,2022 Nov,69046
 Australia,2022 Dec,89159
-New Zealand,2021 Jan,63
-New Zealand,2021 Feb,31
-New Zealand,2021 Mar,28
+Australia,2023 Jan,102888
+Australia,2023 Feb,72385
+Australia,2023 Mar,74268
 New Zealand,2021 Apr,39
 New Zealand,2021 May,32
 New Zealand,2021 Jun,58
@@ -7271,9 +7268,9 @@ New Zealand,2022 Sep,8796
 New Zealand,2022 Oct,8742
 New Zealand,2022 Nov,7289
 New Zealand,2022 Dec,9139
-Other Markets In Oceania,2021 Jan,0
-Other Markets In Oceania,2021 Feb,6
-Other Markets In Oceania,2021 Mar,16
+New Zealand,2023 Jan,10766
+New Zealand,2023 Feb,6821
+New Zealand,2023 Mar,6871
 Other Markets In Oceania,2021 Apr,11
 Other Markets In Oceania,2021 May,12
 Other Markets In Oceania,2021 Jun,0
@@ -7295,9 +7292,9 @@ Other Markets In Oceania,2022 Sep,2173
 Other Markets In Oceania,2022 Oct,2652
 Other Markets In Oceania,2022 Nov,2534
 Other Markets In Oceania,2022 Dec,2884
-Africa,2021 Jan,42
-Africa,2021 Feb,35
-Africa,2021 Mar,36
+Other Markets In Oceania,2023 Jan,3140
+Other Markets In Oceania,2023 Feb,2559
+Other Markets In Oceania,2023 Mar,2688
 Africa,2021 Apr,35
 Africa,2021 May,44
 Africa,2021 Jun,8
@@ -7319,9 +7316,9 @@ Africa,2022 Sep,3713
 Africa,2022 Oct,3738
 Africa,2022 Nov,4266
 Africa,2022 Dec,6334
-Egypt,2021 Jan,6
-Egypt,2021 Feb,6
-Egypt,2021 Mar,8
+Africa,2023 Jan,4182
+Africa,2023 Feb,4073
+Africa,2023 Mar,4300
 Egypt,2021 Apr,6
 Egypt,2021 May,5
 Egypt,2021 Jun,1
@@ -7343,9 +7340,9 @@ Egypt,2022 Sep,255
 Egypt,2022 Oct,259
 Egypt,2022 Nov,283
 Egypt,2022 Dec,220
-Mauritius,2021 Jan,4
-Mauritius,2021 Feb,1
-Mauritius,2021 Mar,3
+Egypt,2023 Jan,192
+Egypt,2023 Feb,205
+Egypt,2023 Mar,168
 Mauritius,2021 Apr,3
 Mauritius,2021 May,4
 Mauritius,2021 Jun,0
@@ -7367,9 +7364,9 @@ Mauritius,2022 Sep,210
 Mauritius,2022 Oct,226
 Mauritius,2022 Nov,663
 Mauritius,2022 Dec,643
-South Africa (Rep Of),2021 Jan,10
-South Africa (Rep Of),2021 Feb,8
-South Africa (Rep Of),2021 Mar,8
+Mauritius,2023 Jan,418
+Mauritius,2023 Feb,274
+Mauritius,2023 Mar,474
 South Africa (Rep Of),2021 Apr,12
 South Africa (Rep Of),2021 May,9
 South Africa (Rep Of),2021 Jun,6
@@ -7391,9 +7388,9 @@ South Africa (Rep Of),2022 Sep,1949
 South Africa (Rep Of),2022 Oct,1565
 South Africa (Rep Of),2022 Nov,1591
 South Africa (Rep Of),2022 Dec,3371
-Other Markets In Africa,2021 Jan,22
-Other Markets In Africa,2021 Feb,20
-Other Markets In Africa,2021 Mar,17
+South Africa (Rep Of),2023 Jan,2229
+South Africa (Rep Of),2023 Feb,1698
+South Africa (Rep Of),2023 Mar,1995
 Other Markets In Africa,2021 Apr,14
 Other Markets In Africa,2021 May,26
 Other Markets In Africa,2021 Jun,1
@@ -7415,9 +7412,9 @@ Other Markets In Africa,2022 Sep,1299
 Other Markets In Africa,2022 Oct,1688
 Other Markets In Africa,2022 Nov,1729
 Other Markets In Africa,2022 Dec,2100
-Others,2021 Jan,1
-Others,2021 Feb,0
-Others,2021 Mar,0
+Other Markets In Africa,2023 Jan,1343
+Other Markets In Africa,2023 Feb,1896
+Other Markets In Africa,2023 Mar,1663
 Others,2021 Apr,1
 Others,2021 May,0
 Others,2021 Jun,0
@@ -7439,9 +7436,9 @@ Others,2022 Sep,97
 Others,2022 Oct,114
 Others,2022 Nov,105
 Others,2022 Dec,95
-Total International Visitor Arrivals By Place Of Residence,2023 Jan,931814
-Total International Visitor Arrivals By Place Of Residence,2023 Feb,957844
-Total International Visitor Arrivals By Place Of Residence,2023 Mar,1021040
+Others,2023 Jan,120
+Others,2023 Feb,123
+Others,2023 Mar,89
 Total International Visitor Arrivals By Place Of Residence,2023 Apr,1128610
 Total International Visitor Arrivals By Place Of Residence,2023 May,1112512
 Total International Visitor Arrivals By Place Of Residence,2023 Jun,1129310
@@ -7463,9 +7460,9 @@ Total International Visitor Arrivals By Place Of Residence,2024 Sep,1270681
 Total International Visitor Arrivals By Place Of Residence,2024 Oct,1314493
 Total International Visitor Arrivals By Place Of Residence,2024 Nov,1234698
 Total International Visitor Arrivals By Place Of Residence,2024 Dec,1390641
-Southeast Asia,2023 Jan,362255
-Southeast Asia,2023 Feb,376496
-Southeast Asia,2023 Mar,414934
+Total International Visitor Arrivals By Place Of Residence,2025 Jan,1633495
+Total International Visitor Arrivals By Place Of Residence,2025 Feb,1377513
+Total International Visitor Arrivals By Place Of Residence,2025 Mar,1296605
 Southeast Asia,2023 Apr,489334
 Southeast Asia,2023 May,456263
 Southeast Asia,2023 Jun,475814
@@ -7487,9 +7484,9 @@ Southeast Asia,2024 Sep,417351
 Southeast Asia,2024 Oct,444034
 Southeast Asia,2024 Nov,437876
 Southeast Asia,2024 Dec,528320
-Brunei Darussalam,2023 Jan,3653
-Brunei Darussalam,2023 Feb,4739
-Brunei Darussalam,2023 Mar,4460
+Southeast Asia,2025 Jan,476556
+Southeast Asia,2025 Feb,419289
+Southeast Asia,2025 Mar,429836
 Brunei Darussalam,2023 Apr,5850
 Brunei Darussalam,2023 May,4570
 Brunei Darussalam,2023 Jun,4121
@@ -7511,9 +7508,9 @@ Brunei Darussalam,2024 Sep,3968
 Brunei Darussalam,2024 Oct,3959
 Brunei Darussalam,2024 Nov,4500
 Brunei Darussalam,2024 Dec,8439
-Indonesia,2023 Jan,168975
-Indonesia,2023 Feb,156448
-Indonesia,2023 Mar,171507
+Brunei Darussalam,2025 Jan,4535
+Brunei Darussalam,2025 Feb,3766
+Brunei Darussalam,2025 Mar,4435
 Indonesia,2023 Apr,220067
 Indonesia,2023 May,183758
 Indonesia,2023 Jun,217052
@@ -7535,9 +7532,9 @@ Indonesia,2024 Sep,173613
 Indonesia,2024 Oct,183714
 Indonesia,2024 Nov,194446
 Indonesia,2024 Dec,266033
-Malaysia,2023 Jan,72756
-Malaysia,2023 Feb,88040
-Malaysia,2023 Mar,97835
+Indonesia,2025 Jan,251772
+Indonesia,2025 Feb,192616
+Indonesia,2025 Mar,195890
 Malaysia,2023 Apr,98190
 Malaysia,2023 May,98347
 Malaysia,2023 Jun,85945
@@ -7559,9 +7556,9 @@ Malaysia,2024 Sep,112151
 Malaysia,2024 Oct,103432
 Malaysia,2024 Nov,101920
 Malaysia,2024 Dec,105622
-Myanmar,2023 Jan,8982
-Myanmar,2023 Feb,7734
-Myanmar,2023 Mar,9122
+Malaysia,2025 Jan,102328
+Malaysia,2025 Feb,105762
+Malaysia,2025 Mar,104150
 Myanmar,2023 Apr,11787
 Myanmar,2023 May,10104
 Myanmar,2023 Jun,9877
@@ -7583,9 +7580,9 @@ Myanmar,2024 Sep,9580
 Myanmar,2024 Oct,11801
 Myanmar,2024 Nov,11345
 Myanmar,2024 Dec,14421
-Philippines,2023 Jan,38484
-Philippines,2023 Feb,47446
-Philippines,2023 Mar,50591
+Myanmar,2025 Jan,11794
+Myanmar,2025 Feb,10923
+Myanmar,2025 Mar,14813
 Philippines,2023 Apr,57030
 Philippines,2023 May,59346
 Philippines,2023 Jun,71409
@@ -7607,9 +7604,9 @@ Philippines,2024 Sep,55976
 Philippines,2024 Oct,61489
 Philippines,2024 Nov,66942
 Philippines,2024 Dec,72162
-Thailand,2023 Jan,29735
-Thailand,2023 Feb,37156
-Thailand,2023 Mar,43145
+Philippines,2025 Jan,49088
+Philippines,2025 Feb,50154
+Philippines,2025 Mar,51623
 Thailand,2023 Apr,49727
 Thailand,2023 May,40375
 Thailand,2023 Jun,31029
@@ -7631,9 +7628,9 @@ Thailand,2024 Sep,27707
 Thailand,2024 Oct,44447
 Thailand,2024 Nov,26740
 Thailand,2024 Dec,30436
-Vietnam,2023 Jan,31824
-Vietnam,2023 Feb,27896
-Vietnam,2023 Mar,31347
+Thailand,2025 Jan,23423
+Thailand,2025 Feb,26711
+Thailand,2025 Mar,29757
 Vietnam,2023 Apr,36630
 Vietnam,2023 May,50765
 Vietnam,2023 Jun,48924
@@ -7655,9 +7652,9 @@ Vietnam,2024 Sep,27636
 Vietnam,2024 Oct,27140
 Vietnam,2024 Nov,24350
 Vietnam,2024 Dec,22642
-Other Markets In Southeast Asia,2023 Jan,7846
-Other Markets In Southeast Asia,2023 Feb,7037
-Other Markets In Southeast Asia,2023 Mar,6927
+Vietnam,2025 Jan,26655
+Vietnam,2025 Feb,23212
+Vietnam,2025 Mar,23240
 Other Markets In Southeast Asia,2023 Apr,10053
 Other Markets In Southeast Asia,2023 May,8998
 Other Markets In Southeast Asia,2023 Jun,7457
@@ -7679,9 +7676,9 @@ Other Markets In Southeast Asia,2024 Sep,6720
 Other Markets In Southeast Asia,2024 Oct,8052
 Other Markets In Southeast Asia,2024 Nov,7633
 Other Markets In Southeast Asia,2024 Dec,8565
-Greater China,2023 Jan,89388
-Greater China,2023 Feb,82278
-Greater China,2023 Mar,105132
+Other Markets In Southeast Asia,2025 Jan,6961
+Other Markets In Southeast Asia,2025 Feb,6145
+Other Markets In Southeast Asia,2025 Mar,5928
 Greater China,2023 Apr,150903
 Greater China,2023 May,148053
 Greater China,2023 Jun,167228
@@ -7703,9 +7700,9 @@ Greater China,2024 Sep,275553
 Greater China,2024 Oct,290844
 Greater China,2024 Nov,224281
 Greater China,2024 Dec,240770
-China,2023 Jan,28375
-China,2023 Feb,35312
-China,2023 Mar,60888
+Greater China,2025 Jan,452741
+Greater China,2025 Feb,324420
+Greater China,2025 Mar,238828
 China,2023 Apr,90725
 China,2023 May,95613
 China,2023 Jun,113290
@@ -7727,9 +7724,9 @@ China,2024 Sep,217205
 China,2024 Oct,234528
 China,2024 Nov,174751
 China,2024 Dec,193483
-Hong Kong SAR,2023 Jan,26208
-Hong Kong SAR,2023 Feb,20227
-Hong Kong SAR,2023 Mar,23465
+China,2025 Jan,376481
+China,2025 Feb,267974
+China,2025 Mar,187036
 Hong Kong SAR,2023 Apr,32791
 Hong Kong SAR,2023 May,26356
 Hong Kong SAR,2023 Jun,23179
@@ -7751,9 +7748,9 @@ Hong Kong SAR,2024 Sep,26627
 Hong Kong SAR,2024 Oct,25197
 Hong Kong SAR,2024 Nov,24541
 Hong Kong SAR,2024 Dec,23487
-Taiwan,2023 Jan,31444
-Taiwan,2023 Feb,25037
-Taiwan,2023 Mar,19204
+Hong Kong SAR,2025 Jan,25869
+Hong Kong SAR,2025 Feb,21228
+Hong Kong SAR,2025 Mar,23378
 Taiwan,2023 Apr,25280
 Taiwan,2023 May,24313
 Taiwan,2023 Jun,28980
@@ -7775,9 +7772,9 @@ Taiwan,2024 Sep,30408
 Taiwan,2024 Oct,29237
 Taiwan,2024 Nov,23190
 Taiwan,2024 Dec,20557
-Other Markets In Greater China,2023 Jan,3361
-Other Markets In Greater China,2023 Feb,1702
-Other Markets In Greater China,2023 Mar,1575
+Taiwan,2025 Jan,46126
+Taiwan,2025 Feb,33492
+Taiwan,2025 Mar,26892
 Other Markets In Greater China,2023 Apr,2107
 Other Markets In Greater China,2023 May,1771
 Other Markets In Greater China,2023 Jun,1779
@@ -7799,9 +7796,9 @@ Other Markets In Greater China,2024 Sep,1313
 Other Markets In Greater China,2024 Oct,1882
 Other Markets In Greater China,2024 Nov,1799
 Other Markets In Greater China,2024 Dec,3243
-North Asia,2023 Jan,78923
-North Asia,2023 Feb,97981
-North Asia,2023 Mar,71803
+Other Markets In Greater China,2025 Jan,4265
+Other Markets In Greater China,2025 Feb,1726
+Other Markets In Greater China,2025 Mar,1522
 North Asia,2023 Apr,54012
 North Asia,2023 May,68419
 North Asia,2023 Jun,65648
@@ -7823,9 +7820,9 @@ North Asia,2024 Sep,102800
 North Asia,2024 Oct,94009
 North Asia,2024 Nov,84039
 North Asia,2024 Dec,85933
-Japan,2023 Jan,18335
-Japan,2023 Feb,32932
-Japan,2023 Mar,36302
+North Asia,2025 Jan,119529
+North Asia,2025 Feb,128147
+North Asia,2025 Mar,104090
 Japan,2023 Apr,22134
 Japan,2023 May,29130
 Japan,2023 Jun,25370
@@ -7847,9 +7844,9 @@ Japan,2024 Sep,57825
 Japan,2024 Oct,51819
 Japan,2024 Nov,44327
 Japan,2024 Dec,43001
-South Korea,2023 Jan,60457
-South Korea,2023 Feb,64876
-South Korea,2023 Mar,35396
+Japan,2025 Jan,40053
+Japan,2025 Feb,55785
+Japan,2025 Mar,65548
 South Korea,2023 Apr,31780
 South Korea,2023 May,39203
 South Korea,2023 Jun,40187
@@ -7871,9 +7868,9 @@ South Korea,2024 Sep,44886
 South Korea,2024 Oct,42088
 South Korea,2024 Nov,39600
 South Korea,2024 Dec,42842
-Other Markets In North Asia,2023 Jan,131
-Other Markets In North Asia,2023 Feb,173
-Other Markets In North Asia,2023 Mar,105
+South Korea,2025 Jan,79301
+South Korea,2025 Feb,72230
+South Korea,2025 Mar,38446
 Other Markets In North Asia,2023 Apr,98
 Other Markets In North Asia,2023 May,86
 Other Markets In North Asia,2023 Jun,91
@@ -7895,9 +7892,9 @@ Other Markets In North Asia,2024 Sep,89
 Other Markets In North Asia,2024 Oct,102
 Other Markets In North Asia,2024 Nov,112
 Other Markets In North Asia,2024 Dec,90
-South Asia,2023 Jan,72231
-South Asia,2023 Feb,76883
-South Asia,2023 Mar,92470
+Other Markets In North Asia,2025 Jan,175
+Other Markets In North Asia,2025 Feb,132
+Other Markets In North Asia,2025 Mar,96
 South Asia,2023 Apr,114668
 South Asia,2023 May,147713
 South Asia,2023 Jun,133366
@@ -7919,9 +7916,9 @@ South Asia,2024 Sep,108914
 South Asia,2024 Oct,125793
 South Asia,2024 Nov,113092
 South Asia,2024 Dec,129414
-Bangladesh,2023 Jan,8789
-Bangladesh,2023 Feb,8006
-Bangladesh,2023 Mar,9711
+South Asia,2025 Jan,107445
+South Asia,2025 Feb,94262
+South Asia,2025 Mar,120378
 Bangladesh,2023 Apr,9824
 Bangladesh,2023 May,9529
 Bangladesh,2023 Jun,9685
@@ -7943,9 +7940,9 @@ Bangladesh,2024 Sep,11473
 Bangladesh,2024 Oct,12938
 Bangladesh,2024 Nov,11092
 Bangladesh,2024 Dec,13441
-India,2023 Jan,56605
-India,2023 Feb,61301
-India,2023 Mar,75339
+Bangladesh,2025 Jan,12532
+Bangladesh,2025 Feb,10851
+Bangladesh,2025 Mar,11219
 India,2023 Apr,97032
 India,2023 May,130444
 India,2023 Jun,114588
@@ -7967,9 +7964,9 @@ India,2024 Sep,87767
 India,2024 Oct,102233
 India,2024 Nov,92905
 India,2024 Dec,103740
-Pakistan,2023 Jan,1452
-Pakistan,2023 Feb,1584
-Pakistan,2023 Mar,1060
+India,2025 Jan,85400
+India,2025 Feb,74869
+India,2025 Mar,101198
 Pakistan,2023 Apr,684
 Pakistan,2023 May,1222
 Pakistan,2023 Jun,1724
@@ -7991,9 +7988,9 @@ Pakistan,2024 Sep,1459
 Pakistan,2024 Oct,1516
 Pakistan,2024 Nov,1569
 Pakistan,2024 Dec,2109
-Sri Lanka,2023 Jan,3083
-Sri Lanka,2023 Feb,3829
-Sri Lanka,2023 Mar,4088
+Pakistan,2025 Jan,1809
+Pakistan,2025 Feb,1708
+Pakistan,2025 Mar,569
 Sri Lanka,2023 Apr,4897
 Sri Lanka,2023 May,4276
 Sri Lanka,2023 Jun,4368
@@ -8015,9 +8012,9 @@ Sri Lanka,2024 Sep,5221
 Sri Lanka,2024 Oct,4837
 Sri Lanka,2024 Nov,4970
 Sri Lanka,2024 Dec,6804
-Other Markets In South Asia,2023 Jan,2302
-Other Markets In South Asia,2023 Feb,2163
-Other Markets In South Asia,2023 Mar,2272
+Sri Lanka,2025 Jan,4463
+Sri Lanka,2025 Feb,4342
+Sri Lanka,2025 Mar,4974
 Other Markets In South Asia,2023 Apr,2231
 Other Markets In South Asia,2023 May,2242
 Other Markets In South Asia,2023 Jun,3001
@@ -8039,9 +8036,9 @@ Other Markets In South Asia,2024 Sep,2994
 Other Markets In South Asia,2024 Oct,4269
 Other Markets In South Asia,2024 Nov,2556
 Other Markets In South Asia,2024 Dec,3320
-West Asia,2023 Jan,8180
-West Asia,2023 Feb,9159
-West Asia,2023 Mar,12923
+Other Markets In South Asia,2025 Jan,3241
+Other Markets In South Asia,2025 Feb,2492
+Other Markets In South Asia,2025 Mar,2418
 West Asia,2023 Apr,11604
 West Asia,2023 May,9408
 West Asia,2023 Jun,15806
@@ -8063,9 +8060,9 @@ West Asia,2024 Sep,15370
 West Asia,2024 Oct,14707
 West Asia,2024 Nov,15092
 West Asia,2024 Dec,15103
-Iran,2023 Jan,156
-Iran,2023 Feb,175
-Iran,2023 Mar,1414
+West Asia,2025 Jan,13666
+West Asia,2025 Feb,13566
+West Asia,2025 Mar,17669
 Iran,2023 Apr,421
 Iran,2023 May,190
 Iran,2023 Jun,322
@@ -8087,9 +8084,9 @@ Iran,2024 Sep,853
 Iran,2024 Oct,385
 Iran,2024 Nov,400
 Iran,2024 Dec,430
-Israel,2023 Jan,1342
-Israel,2023 Feb,1510
-Israel,2023 Mar,1639
+Iran,2025 Jan,390
+Iran,2025 Feb,325
+Iran,2025 Mar,1565
 Israel,2023 Apr,1275
 Israel,2023 May,1184
 Israel,2023 Jun,1012
@@ -8111,9 +8108,9 @@ Israel,2024 Sep,1779
 Israel,2024 Oct,2123
 Israel,2024 Nov,1877
 Israel,2024 Dec,1494
-Kuwait,2023 Jan,672
-Kuwait,2023 Feb,359
-Kuwait,2023 Mar,205
+Israel,2025 Jan,2116
+Israel,2025 Feb,2133
+Israel,2025 Mar,2413
 Kuwait,2023 Apr,308
 Kuwait,2023 May,305
 Kuwait,2023 Jun,967
@@ -8135,9 +8132,9 @@ Kuwait,2024 Sep,598
 Kuwait,2024 Oct,352
 Kuwait,2024 Nov,352
 Kuwait,2024 Dec,530
-Saudi Arabia,2023 Jan,532
-Saudi Arabia,2023 Feb,688
-Saudi Arabia,2023 Mar,880
+Kuwait,2025 Jan,754
+Kuwait,2025 Feb,496
+Kuwait,2025 Mar,243
 Saudi Arabia,2023 Apr,750
 Saudi Arabia,2023 May,836
 Saudi Arabia,2023 Jun,2965
@@ -8159,9 +8156,9 @@ Saudi Arabia,2024 Sep,1929
 Saudi Arabia,2024 Oct,1597
 Saudi Arabia,2024 Nov,3429
 Saudi Arabia,2024 Dec,1914
-United Arab Emirates,2023 Jan,4074
-United Arab Emirates,2023 Feb,4971
-United Arab Emirates,2023 Mar,6795
+Saudi Arabia,2025 Jan,2381
+Saudi Arabia,2025 Feb,1856
+Saudi Arabia,2025 Mar,1401
 United Arab Emirates,2023 Apr,6714
 United Arab Emirates,2023 May,5240
 United Arab Emirates,2023 Jun,7525
@@ -8183,9 +8180,9 @@ United Arab Emirates,2024 Sep,7831
 United Arab Emirates,2024 Oct,7301
 United Arab Emirates,2024 Nov,6699
 United Arab Emirates,2024 Dec,7869
-Other Markets In West Asia,2023 Jan,1404
-Other Markets In West Asia,2023 Feb,1456
-Other Markets In West Asia,2023 Mar,1990
+United Arab Emirates,2025 Jan,5750
+United Arab Emirates,2025 Feb,6240
+United Arab Emirates,2025 Mar,9571
 Other Markets In West Asia,2023 Apr,2136
 Other Markets In West Asia,2023 May,1653
 Other Markets In West Asia,2023 Jun,3015
@@ -8207,9 +8204,9 @@ Other Markets In West Asia,2024 Sep,2380
 Other Markets In West Asia,2024 Oct,2949
 Other Markets In West Asia,2024 Nov,2335
 Other Markets In West Asia,2024 Dec,2866
-Americas,2023 Jan,67902
-Americas,2023 Feb,72702
-Americas,2023 Mar,73624
+Other Markets In West Asia,2025 Jan,2275
+Other Markets In West Asia,2025 Feb,2516
+Other Markets In West Asia,2025 Mar,2476
 Americas,2023 Apr,61029
 Americas,2023 May,70426
 Americas,2023 Jun,70361
@@ -8231,9 +8228,9 @@ Americas,2024 Sep,64689
 Americas,2024 Oct,69879
 Americas,2024 Nov,86005
 Americas,2024 Dec,84452
-Canada,2023 Jan,11207
-Canada,2023 Feb,13407
-Canada,2023 Mar,12626
+Americas,2025 Jan,97422
+Americas,2025 Feb,89921
+Americas,2025 Mar,94760
 Canada,2023 Apr,9428
 Canada,2023 May,12592
 Canada,2023 Jun,6664
@@ -8255,9 +8252,9 @@ Canada,2024 Sep,9230
 Canada,2024 Oct,11402
 Canada,2024 Nov,14791
 Canada,2024 Dec,12839
-USA,2023 Jan,50492
-USA,2023 Feb,52830
-USA,2023 Mar,54157
+Canada,2025 Jan,16855
+Canada,2025 Feb,16299
+Canada,2025 Mar,17576
 USA,2023 Apr,44779
 USA,2023 May,50898
 USA,2023 Jun,59074
@@ -8279,9 +8276,9 @@ USA,2024 Sep,47493
 USA,2024 Oct,50339
 USA,2024 Nov,61005
 USA,2024 Dec,64842
-Other Markets In Americas,2023 Jan,6203
-Other Markets In Americas,2023 Feb,6465
-Other Markets In Americas,2023 Mar,6841
+USA,2025 Jan,70962
+USA,2025 Feb,65777
+USA,2025 Mar,68300
 Other Markets In Americas,2023 Apr,6822
 Other Markets In Americas,2023 May,6936
 Other Markets In Americas,2023 Jun,4623
@@ -8303,9 +8300,9 @@ Other Markets In Americas,2024 Sep,7966
 Other Markets In Americas,2024 Oct,8138
 Other Markets In Americas,2024 Nov,10209
 Other Markets In Americas,2024 Dec,6771
-Europe,2023 Jan,131839
-Europe,2023 Feb,156384
-Europe,2023 Mar,161938
+Other Markets In Americas,2025 Jan,9605
+Other Markets In Americas,2025 Feb,7845
+Other Markets In Americas,2025 Mar,8884
 Europe,2023 Apr,135415
 Europe,2023 May,113597
 Europe,2023 Jun,88537
@@ -8327,9 +8324,9 @@ Europe,2024 Sep,149578
 Europe,2024 Oct,151359
 Europe,2024 Nov,161891
 Europe,2024 Dec,155696
-Belgium & Luxembourg,2023 Jan,1707
-Belgium & Luxembourg,2023 Feb,2079
-Belgium & Luxembourg,2023 Mar,2215
+Europe,2025 Jan,200004
+Europe,2025 Feb,208194
+Europe,2025 Mar,193320
 Belgium & Luxembourg,2023 Apr,2144
 Belgium & Luxembourg,2023 May,2066
 Belgium & Luxembourg,2023 Jun,1646
@@ -8351,9 +8348,9 @@ Belgium & Luxembourg,2024 Sep,3334
 Belgium & Luxembourg,2024 Oct,2865
 Belgium & Luxembourg,2024 Nov,2906
 Belgium & Luxembourg,2024 Dec,2533
-Denmark,2023 Jan,2674
-Denmark,2023 Feb,3216
-Denmark,2023 Mar,2679
+Belgium & Luxembourg,2025 Jan,2634
+Belgium & Luxembourg,2025 Feb,2871
+Belgium & Luxembourg,2025 Mar,2813
 Denmark,2023 Apr,2407
 Denmark,2023 May,1727
 Denmark,2023 Jun,1499
@@ -8375,9 +8372,9 @@ Denmark,2024 Sep,2219
 Denmark,2024 Oct,2636
 Denmark,2024 Nov,2577
 Denmark,2024 Dec,2415
-Finland,2023 Jan,2247
-Finland,2023 Feb,2312
-Finland,2023 Mar,2131
+Denmark,2025 Jan,3162
+Denmark,2025 Feb,3909
+Denmark,2025 Mar,2935
 Finland,2023 Apr,1318
 Finland,2023 May,1122
 Finland,2023 Jun,1221
@@ -8399,9 +8396,9 @@ Finland,2024 Sep,1334
 Finland,2024 Oct,2470
 Finland,2024 Nov,2394
 Finland,2024 Dec,2839
-France,2023 Jan,9873
-France,2023 Feb,13722
-France,2023 Mar,12924
+Finland,2025 Jan,3613
+Finland,2025 Feb,3434
+Finland,2025 Mar,2827
 France,2023 Apr,13260
 France,2023 May,13557
 France,2023 Jun,9709
@@ -8423,9 +8420,9 @@ France,2024 Sep,14774
 France,2024 Oct,14969
 France,2024 Nov,13671
 France,2024 Dec,10947
-Germany,2023 Jan,26678
-Germany,2023 Feb,31063
-Germany,2023 Mar,34976
+France,2025 Jan,12948
+France,2025 Feb,18937
+France,2025 Mar,14771
 Germany,2023 Apr,24219
 Germany,2023 May,22534
 Germany,2023 Jun,15026
@@ -8447,9 +8444,9 @@ Germany,2024 Sep,23795
 Germany,2024 Oct,26180
 Germany,2024 Nov,26020
 Germany,2024 Dec,31729
-Italy,2023 Jan,4082
-Italy,2023 Feb,4861
-Italy,2023 Mar,4643
+Germany,2025 Jan,39376
+Germany,2025 Feb,39200
+Germany,2025 Mar,37577
 Italy,2023 Apr,4220
 Italy,2023 May,4092
 Italy,2023 Jun,3426
@@ -8471,9 +8468,9 @@ Italy,2024 Sep,8001
 Italy,2024 Oct,5864
 Italy,2024 Nov,5112
 Italy,2024 Dec,4828
-Netherlands,2023 Jan,6430
-Netherlands,2023 Feb,7053
-Netherlands,2023 Mar,6956
+Italy,2025 Jan,6086
+Italy,2025 Feb,5709
+Italy,2025 Mar,5354
 Netherlands,2023 Apr,6398
 Netherlands,2023 May,6631
 Netherlands,2023 Jun,5041
@@ -8495,9 +8492,9 @@ Netherlands,2024 Sep,7563
 Netherlands,2024 Oct,7381
 Netherlands,2024 Nov,7303
 Netherlands,2024 Dec,6643
-Norway,2023 Jan,1891
-Norway,2023 Feb,2439
-Norway,2023 Mar,2342
+Netherlands,2025 Jan,7685
+Netherlands,2025 Feb,7583
+Netherlands,2025 Mar,6761
 Norway,2023 Apr,1810
 Norway,2023 May,1210
 Norway,2023 Jun,1831
@@ -8519,9 +8516,9 @@ Norway,2024 Sep,1597
 Norway,2024 Oct,1710
 Norway,2024 Nov,2075
 Norway,2024 Dec,2130
-Rep Of Ireland,2023 Jan,1767
-Rep Of Ireland,2023 Feb,1868
-Rep Of Ireland,2023 Mar,1992
+Norway,2025 Jan,2603
+Norway,2025 Feb,2715
+Norway,2025 Mar,2254
 Rep Of Ireland,2023 Apr,1893
 Rep Of Ireland,2023 May,1777
 Rep Of Ireland,2023 Jun,1626
@@ -8543,9 +8540,9 @@ Rep Of Ireland,2024 Sep,2041
 Rep Of Ireland,2024 Oct,2137
 Rep Of Ireland,2024 Nov,2514
 Rep Of Ireland,2024 Dec,1992
-Russian Federation,2023 Jan,6637
-Russian Federation,2023 Feb,7009
-Russian Federation,2023 Mar,6635
+Rep Of Ireland,2025 Jan,2673
+Rep Of Ireland,2025 Feb,2453
+Rep Of Ireland,2025 Mar,2774
 Russian Federation,2023 Apr,5044
 Russian Federation,2023 May,3966
 Russian Federation,2023 Jun,2796
@@ -8567,9 +8564,9 @@ Russian Federation,2024 Sep,3475
 Russian Federation,2024 Oct,3905
 Russian Federation,2024 Nov,6235
 Russian Federation,2024 Dec,6109
-Spain,2023 Jan,3229
-Spain,2023 Feb,3302
-Spain,2023 Mar,3936
+Russian Federation,2025 Jan,10469
+Russian Federation,2025 Feb,7933
+Russian Federation,2025 Mar,6974
 Spain,2023 Apr,4517
 Spain,2023 May,3689
 Spain,2023 Jun,3562
@@ -8591,9 +8588,9 @@ Spain,2024 Sep,7460
 Spain,2024 Oct,5487
 Spain,2024 Nov,5432
 Spain,2024 Dec,4362
-Sweden,2023 Jan,3234
-Sweden,2023 Feb,2967
-Sweden,2023 Mar,2786
+Spain,2025 Jan,4376
+Spain,2025 Feb,4278
+Spain,2025 Mar,4586
 Sweden,2023 Apr,2150
 Sweden,2023 May,1585
 Sweden,2023 Jun,1538
@@ -8615,9 +8612,9 @@ Sweden,2024 Sep,1574
 Sweden,2024 Oct,2402
 Sweden,2024 Nov,2892
 Sweden,2024 Dec,4024
-Switzerland,2023 Jan,5034
-Switzerland,2023 Feb,6310
-Switzerland,2023 Mar,5940
+Sweden,2025 Jan,4674
+Sweden,2025 Feb,3959
+Sweden,2025 Mar,3083
 Switzerland,2023 Apr,7350
 Switzerland,2023 May,5383
 Switzerland,2023 Jun,3991
@@ -8639,9 +8636,9 @@ Switzerland,2024 Sep,6888
 Switzerland,2024 Oct,8051
 Switzerland,2024 Nov,7392
 Switzerland,2024 Dec,7536
-United Kingdom,2023 Jan,38123
-United Kingdom,2023 Feb,45785
-United Kingdom,2023 Mar,50330
+Switzerland,2025 Jan,8283
+Switzerland,2025 Feb,8167
+Switzerland,2025 Mar,7312
 United Kingdom,2023 Apr,41576
 United Kingdom,2023 May,30608
 United Kingdom,2023 Jun,24244
@@ -8663,9 +8660,9 @@ United Kingdom,2024 Sep,43032
 United Kingdom,2024 Oct,43943
 United Kingdom,2024 Nov,48607
 United Kingdom,2024 Dec,44650
-Other Markets In Europe,2023 Jan,18233
-Other Markets In Europe,2023 Feb,22398
-Other Markets In Europe,2023 Mar,21453
+United Kingdom,2025 Jan,56474
+United Kingdom,2025 Feb,60238
+United Kingdom,2025 Mar,63276
 Other Markets In Europe,2023 Apr,17109
 Other Markets In Europe,2023 May,13650
 Other Markets In Europe,2023 Jun,11381
@@ -8687,9 +8684,9 @@ Other Markets In Europe,2024 Sep,22491
 Other Markets In Europe,2024 Oct,21359
 Other Markets In Europe,2024 Nov,26761
 Other Markets In Europe,2024 Dec,22959
-Oceania,2023 Jan,116794
-Oceania,2023 Feb,81765
-Oceania,2023 Mar,83827
+Other Markets In Europe,2025 Jan,34948
+Other Markets In Europe,2025 Feb,36808
+Other Markets In Europe,2025 Mar,30023
 Oceania,2023 Apr,106741
 Oceania,2023 May,94073
 Oceania,2023 Jun,107915
@@ -8711,9 +8708,9 @@ Oceania,2024 Sep,130165
 Oceania,2024 Oct,118510
 Oceania,2024 Nov,106727
 Oceania,2024 Dec,139442
-Australia,2023 Jan,102888
-Australia,2023 Feb,72385
-Australia,2023 Mar,74268
+Oceania,2025 Jan,159560
+Oceania,2025 Feb,95304
+Oceania,2025 Mar,93049
 Australia,2023 Apr,92937
 Australia,2023 May,79700
 Australia,2023 Jun,90770
@@ -8735,9 +8732,9 @@ Australia,2024 Sep,110930
 Australia,2024 Oct,100935
 Australia,2024 Nov,92661
 Australia,2024 Dec,122321
-New Zealand,2023 Jan,10766
-New Zealand,2023 Feb,6821
-New Zealand,2023 Mar,6871
+Australia,2025 Jan,141337
+Australia,2025 Feb,85012
+Australia,2025 Mar,81781
 New Zealand,2023 Apr,11065
 New Zealand,2023 May,11146
 New Zealand,2023 Jun,13352
@@ -8759,9 +8756,9 @@ New Zealand,2024 Sep,15792
 New Zealand,2024 Oct,14003
 New Zealand,2024 Nov,10351
 New Zealand,2024 Dec,13038
-Other Markets In Oceania,2023 Jan,3140
-Other Markets In Oceania,2023 Feb,2559
-Other Markets In Oceania,2023 Mar,2688
+New Zealand,2025 Jan,14545
+New Zealand,2025 Feb,7521
+New Zealand,2025 Mar,8878
 Other Markets In Oceania,2023 Apr,2739
 Other Markets In Oceania,2023 May,3227
 Other Markets In Oceania,2023 Jun,3793
@@ -8783,9 +8780,9 @@ Other Markets In Oceania,2024 Sep,3443
 Other Markets In Oceania,2024 Oct,3572
 Other Markets In Oceania,2024 Nov,3715
 Other Markets In Oceania,2024 Dec,4083
-Africa,2023 Jan,4182
-Africa,2023 Feb,4073
-Africa,2023 Mar,4300
+Other Markets In Oceania,2025 Jan,3678
+Other Markets In Oceania,2025 Feb,2771
+Other Markets In Oceania,2025 Mar,2390
 Africa,2023 Apr,4812
 Africa,2023 May,4515
 Africa,2023 Jun,4575
@@ -8807,9 +8804,9 @@ Africa,2024 Sep,6193
 Africa,2024 Oct,5324
 Africa,2024 Nov,5659
 Africa,2024 Dec,11486
-Egypt,2023 Jan,192
-Egypt,2023 Feb,205
-Egypt,2023 Mar,168
+Africa,2025 Jan,6525
+Africa,2025 Feb,4378
+Africa,2025 Mar,4662
 Egypt,2023 Apr,155
 Egypt,2023 May,253
 Egypt,2023 Jun,211
@@ -8831,9 +8828,9 @@ Egypt,2024 Sep,267
 Egypt,2024 Oct,306
 Egypt,2024 Nov,364
 Egypt,2024 Dec,239
-Mauritius,2023 Jan,418
-Mauritius,2023 Feb,274
-Mauritius,2023 Mar,474
+Egypt,2025 Jan,426
+Egypt,2025 Feb,222
+Egypt,2025 Mar,152
 Mauritius,2023 Apr,581
 Mauritius,2023 May,363
 Mauritius,2023 Jun,349
@@ -8855,9 +8852,9 @@ Mauritius,2024 Sep,320
 Mauritius,2024 Oct,313
 Mauritius,2024 Nov,802
 Mauritius,2024 Dec,1077
-South Africa (Rep Of),2023 Jan,2229
-South Africa (Rep Of),2023 Feb,1698
-South Africa (Rep Of),2023 Mar,1995
+Mauritius,2025 Jan,487
+Mauritius,2025 Feb,381
+Mauritius,2025 Mar,282
 South Africa (Rep Of),2023 Apr,2177
 South Africa (Rep Of),2023 May,1823
 South Africa (Rep Of),2023 Jun,1946
@@ -8879,9 +8876,9 @@ South Africa (Rep Of),2024 Sep,2646
 South Africa (Rep Of),2024 Oct,1970
 South Africa (Rep Of),2024 Nov,1821
 South Africa (Rep Of),2024 Dec,5336
-Other Markets In Africa,2023 Jan,1343
-Other Markets In Africa,2023 Feb,1896
-Other Markets In Africa,2023 Mar,1663
+South Africa (Rep Of),2025 Jan,2942
+South Africa (Rep Of),2025 Feb,1470
+South Africa (Rep Of),2025 Mar,2069
 Other Markets In Africa,2023 Apr,1899
 Other Markets In Africa,2023 May,2076
 Other Markets In Africa,2023 Jun,2069
@@ -8903,9 +8900,9 @@ Other Markets In Africa,2024 Sep,2960
 Other Markets In Africa,2024 Oct,2735
 Other Markets In Africa,2024 Nov,2672
 Other Markets In Africa,2024 Dec,4834
-Others,2023 Jan,120
-Others,2023 Feb,123
-Others,2023 Mar,89
+Other Markets In Africa,2025 Jan,2670
+Other Markets In Africa,2025 Feb,2305
+Other Markets In Africa,2025 Mar,2159
 Others,2023 Apr,92
 Others,2023 May,45
 Others,2023 Jun,60
@@ -8927,189 +8924,6 @@ Others,2024 Sep,68
 Others,2024 Oct,34
 Others,2024 Nov,36
 Others,2024 Dec,25
-Total International Visitor Arrivals By Place Of Residence,2025 Jan,1633495
-Total International Visitor Arrivals By Place Of Residence,2025 Feb,1377513
-Total International Visitor Arrivals By Place Of Residence,2025 Mar,1296605
-Southeast Asia,2025 Jan,476556
-Southeast Asia,2025 Feb,419289
-Southeast Asia,2025 Mar,429836
-Brunei Darussalam,2025 Jan,4535
-Brunei Darussalam,2025 Feb,3766
-Brunei Darussalam,2025 Mar,4435
-Indonesia,2025 Jan,251772
-Indonesia,2025 Feb,192616
-Indonesia,2025 Mar,195890
-Malaysia,2025 Jan,102328
-Malaysia,2025 Feb,105762
-Malaysia,2025 Mar,104150
-Myanmar,2025 Jan,11794
-Myanmar,2025 Feb,10923
-Myanmar,2025 Mar,14813
-Philippines,2025 Jan,49088
-Philippines,2025 Feb,50154
-Philippines,2025 Mar,51623
-Thailand,2025 Jan,23423
-Thailand,2025 Feb,26711
-Thailand,2025 Mar,29757
-Vietnam,2025 Jan,26655
-Vietnam,2025 Feb,23212
-Vietnam,2025 Mar,23240
-Other Markets In Southeast Asia,2025 Jan,6961
-Other Markets In Southeast Asia,2025 Feb,6145
-Other Markets In Southeast Asia,2025 Mar,5928
-Greater China,2025 Jan,452741
-Greater China,2025 Feb,324420
-Greater China,2025 Mar,238828
-China,2025 Jan,376481
-China,2025 Feb,267974
-China,2025 Mar,187036
-Hong Kong SAR,2025 Jan,25869
-Hong Kong SAR,2025 Feb,21228
-Hong Kong SAR,2025 Mar,23378
-Taiwan,2025 Jan,46126
-Taiwan,2025 Feb,33492
-Taiwan,2025 Mar,26892
-Other Markets In Greater China,2025 Jan,4265
-Other Markets In Greater China,2025 Feb,1726
-Other Markets In Greater China,2025 Mar,1522
-North Asia,2025 Jan,119529
-North Asia,2025 Feb,128147
-North Asia,2025 Mar,104090
-Japan,2025 Jan,40053
-Japan,2025 Feb,55785
-Japan,2025 Mar,65548
-South Korea,2025 Jan,79301
-South Korea,2025 Feb,72230
-South Korea,2025 Mar,38446
-Other Markets In North Asia,2025 Jan,175
-Other Markets In North Asia,2025 Feb,132
-Other Markets In North Asia,2025 Mar,96
-South Asia,2025 Jan,107445
-South Asia,2025 Feb,94262
-South Asia,2025 Mar,120378
-Bangladesh,2025 Jan,12532
-Bangladesh,2025 Feb,10851
-Bangladesh,2025 Mar,11219
-India,2025 Jan,85400
-India,2025 Feb,74869
-India,2025 Mar,101198
-Pakistan,2025 Jan,1809
-Pakistan,2025 Feb,1708
-Pakistan,2025 Mar,569
-Sri Lanka,2025 Jan,4463
-Sri Lanka,2025 Feb,4342
-Sri Lanka,2025 Mar,4974
-Other Markets In South Asia,2025 Jan,3241
-Other Markets In South Asia,2025 Feb,2492
-Other Markets In South Asia,2025 Mar,2418
-West Asia,2025 Jan,13666
-West Asia,2025 Feb,13566
-West Asia,2025 Mar,17669
-Iran,2025 Jan,390
-Iran,2025 Feb,325
-Iran,2025 Mar,1565
-Israel,2025 Jan,2116
-Israel,2025 Feb,2133
-Israel,2025 Mar,2413
-Kuwait,2025 Jan,754
-Kuwait,2025 Feb,496
-Kuwait,2025 Mar,243
-Saudi Arabia,2025 Jan,2381
-Saudi Arabia,2025 Feb,1856
-Saudi Arabia,2025 Mar,1401
-United Arab Emirates,2025 Jan,5750
-United Arab Emirates,2025 Feb,6240
-United Arab Emirates,2025 Mar,9571
-Other Markets In West Asia,2025 Jan,2275
-Other Markets In West Asia,2025 Feb,2516
-Other Markets In West Asia,2025 Mar,2476
-Americas,2025 Jan,97422
-Americas,2025 Feb,89921
-Americas,2025 Mar,94760
-Canada,2025 Jan,16855
-Canada,2025 Feb,16299
-Canada,2025 Mar,17576
-USA,2025 Jan,70962
-USA,2025 Feb,65777
-USA,2025 Mar,68300
-Other Markets In Americas,2025 Jan,9605
-Other Markets In Americas,2025 Feb,7845
-Other Markets In Americas,2025 Mar,8884
-Europe,2025 Jan,200004
-Europe,2025 Feb,208194
-Europe,2025 Mar,193320
-Belgium & Luxembourg,2025 Jan,2634
-Belgium & Luxembourg,2025 Feb,2871
-Belgium & Luxembourg,2025 Mar,2813
-Denmark,2025 Jan,3162
-Denmark,2025 Feb,3909
-Denmark,2025 Mar,2935
-Finland,2025 Jan,3613
-Finland,2025 Feb,3434
-Finland,2025 Mar,2827
-France,2025 Jan,12948
-France,2025 Feb,18937
-France,2025 Mar,14771
-Germany,2025 Jan,39376
-Germany,2025 Feb,39200
-Germany,2025 Mar,37577
-Italy,2025 Jan,6086
-Italy,2025 Feb,5709
-Italy,2025 Mar,5354
-Netherlands,2025 Jan,7685
-Netherlands,2025 Feb,7583
-Netherlands,2025 Mar,6761
-Norway,2025 Jan,2603
-Norway,2025 Feb,2715
-Norway,2025 Mar,2254
-Rep Of Ireland,2025 Jan,2673
-Rep Of Ireland,2025 Feb,2453
-Rep Of Ireland,2025 Mar,2774
-Russian Federation,2025 Jan,10469
-Russian Federation,2025 Feb,7933
-Russian Federation,2025 Mar,6974
-Spain,2025 Jan,4376
-Spain,2025 Feb,4278
-Spain,2025 Mar,4586
-Sweden,2025 Jan,4674
-Sweden,2025 Feb,3959
-Sweden,2025 Mar,3083
-Switzerland,2025 Jan,8283
-Switzerland,2025 Feb,8167
-Switzerland,2025 Mar,7312
-United Kingdom,2025 Jan,56474
-United Kingdom,2025 Feb,60238
-United Kingdom,2025 Mar,63276
-Other Markets In Europe,2025 Jan,34948
-Other Markets In Europe,2025 Feb,36808
-Other Markets In Europe,2025 Mar,30023
-Oceania,2025 Jan,159560
-Oceania,2025 Feb,95304
-Oceania,2025 Mar,93049
-Australia,2025 Jan,141337
-Australia,2025 Feb,85012
-Australia,2025 Mar,81781
-New Zealand,2025 Jan,14545
-New Zealand,2025 Feb,7521
-New Zealand,2025 Mar,8878
-Other Markets In Oceania,2025 Jan,3678
-Other Markets In Oceania,2025 Feb,2771
-Other Markets In Oceania,2025 Mar,2390
-Africa,2025 Jan,6525
-Africa,2025 Feb,4378
-Africa,2025 Mar,4662
-Egypt,2025 Jan,426
-Egypt,2025 Feb,222
-Egypt,2025 Mar,152
-Mauritius,2025 Jan,487
-Mauritius,2025 Feb,381
-Mauritius,2025 Mar,282
-South Africa (Rep Of),2025 Jan,2942
-South Africa (Rep Of),2025 Feb,1470
-South Africa (Rep Of),2025 Mar,2069
-Other Markets In Africa,2025 Jan,2670
-Other Markets In Africa,2025 Feb,2305
-Other Markets In Africa,2025 Mar,2159
 Others,2025 Jan,47
 Others,2025 Feb,32
 Others,2025 Mar,13

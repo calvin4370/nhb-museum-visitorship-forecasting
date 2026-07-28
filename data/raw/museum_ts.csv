@@ -1,7 +1,4 @@
 Data Series,Reporting Period,Value
-Asian Civilisations Museum,2013 Jan,36
-Asian Civilisations Museum,2013 Feb,33.8
-Asian Civilisations Museum,2013 Mar,44.5
 Asian Civilisations Museum,2013 Apr,36.3
 Asian Civilisations Museum,2013 May,36.7
 Asian Civilisations Museum,2013 Jun,34.3
@@ -23,9 +20,9 @@ Asian Civilisations Museum,2014 Sep,27.9
 Asian Civilisations Museum,2014 Oct,33.2
 Asian Civilisations Museum,2014 Nov,27.3
 Asian Civilisations Museum,2014 Dec,27.3
-National Museum Of Singapore,2013 Jan,64.7
-National Museum Of Singapore,2013 Feb,74.5
-National Museum Of Singapore,2013 Mar,82
+Asian Civilisations Museum,2015 Jan,26.3
+Asian Civilisations Museum,2015 Feb,25.9
+Asian Civilisations Museum,2015 Mar,26
 National Museum Of Singapore,2013 Apr,70.4
 National Museum Of Singapore,2013 May,79.3
 National Museum Of Singapore,2013 Jun,97.6
@@ -47,9 +44,9 @@ National Museum Of Singapore,2014 Sep,63.7
 National Museum Of Singapore,2014 Oct,50.5
 National Museum Of Singapore,2014 Nov,50.9
 National Museum Of Singapore,2014 Dec,49.6
-Singapore Art Museum,2013 Jan,46.4
-Singapore Art Museum,2013 Feb,37.5
-Singapore Art Museum,2013 Mar,44.3
+National Museum Of Singapore,2015 Jan,50.9
+National Museum Of Singapore,2015 Feb,46.2
+National Museum Of Singapore,2015 Mar,56.3
 Singapore Art Museum,2013 Apr,39.3
 Singapore Art Museum,2013 May,54.2
 Singapore Art Museum,2013 Jun,90.3
@@ -71,9 +68,9 @@ Singapore Art Museum,2014 Sep,47.7
 Singapore Art Museum,2014 Oct,68.4
 Singapore Art Museum,2014 Nov,64.9
 Singapore Art Museum,2014 Dec,58.7
-Peranakan Museum,2013 Jan,15
-Peranakan Museum,2013 Feb,14
-Peranakan Museum,2013 Mar,14.7
+Singapore Art Museum,2015 Jan,84.3
+Singapore Art Museum,2015 Feb,49.8
+Singapore Art Museum,2015 Mar,67.2
 Peranakan Museum,2013 Apr,17.7
 Peranakan Museum,2013 May,28.2
 Peranakan Museum,2013 Jun,38.3
@@ -95,9 +92,9 @@ Peranakan Museum,2014 Sep,31.9
 Peranakan Museum,2014 Oct,30.9
 Peranakan Museum,2014 Nov,31
 Peranakan Museum,2014 Dec,29.8
-Science Centre Singapore,2013 Jan,67.5
-Science Centre Singapore,2013 Feb,59.9
-Science Centre Singapore,2013 Mar,56.7
+Peranakan Museum,2015 Jan,34.3
+Peranakan Museum,2015 Feb,32.5
+Peranakan Museum,2015 Mar,36
 Science Centre Singapore,2013 Apr,49.6
 Science Centre Singapore,2013 May,69.7
 Science Centre Singapore,2013 Jun,85.4
@@ -119,9 +116,9 @@ Science Centre Singapore,2014 Sep,64
 Science Centre Singapore,2014 Oct,70.8
 Science Centre Singapore,2014 Nov,86
 Science Centre Singapore,2014 Dec,128.4
-Night Safari,2013 Jan,93.3
-Night Safari,2013 Feb,88.2
-Night Safari,2013 Mar,97.2
+Science Centre Singapore,2015 Jan,58.3
+Science Centre Singapore,2015 Feb,68.9
+Science Centre Singapore,2015 Mar,75.5
 Night Safari,2013 Apr,81.8
 Night Safari,2013 May,96.6
 Night Safari,2013 Jun,96.8
@@ -143,6 +140,9 @@ Night Safari,2014 Sep,77.6
 Night Safari,2014 Oct,96.6
 Night Safari,2014 Nov,69.9
 Night Safari,2014 Dec,97.1
+Night Safari,2015 Jan,94.7
+Night Safari,2015 Feb,106.1
+Night Safari,2015 Mar,80.4
 River Wonders,2013 Apr,42
 River Wonders,2013 May,58.3
 River Wonders,2013 Jun,78.7
@@ -164,9 +164,9 @@ River Wonders,2014 Sep,68.3
 River Wonders,2014 Oct,84.7
 River Wonders,2014 Nov,85.6
 River Wonders,2014 Dec,91
-Singapore Zoological Gardens,2013 Jan,152
-Singapore Zoological Gardens,2013 Feb,136.7
-Singapore Zoological Gardens,2013 Mar,180.3
+River Wonders,2015 Jan,50.5
+River Wonders,2015 Feb,59.2
+River Wonders,2015 Mar,53.7
 Singapore Zoological Gardens,2013 Apr,127.3
 Singapore Zoological Gardens,2013 May,135.4
 Singapore Zoological Gardens,2013 Jun,143.2
@@ -188,9 +188,9 @@ Singapore Zoological Gardens,2014 Sep,118.3
 Singapore Zoological Gardens,2014 Oct,129.9
 Singapore Zoological Gardens,2014 Nov,125.4
 Singapore Zoological Gardens,2014 Dec,164.5
-Jurong Lake Gardens,2013 Jan,49.2
-Jurong Lake Gardens,2013 Feb,50.6
-Jurong Lake Gardens,2013 Mar,74.3
+Singapore Zoological Gardens,2015 Jan,129.7
+Singapore Zoological Gardens,2015 Feb,156.3
+Singapore Zoological Gardens,2015 Mar,127.9
 Jurong Lake Gardens,2013 Apr,49.8
 Jurong Lake Gardens,2013 May,57.3
 Jurong Lake Gardens,2013 Jun,58.9
@@ -212,6 +212,9 @@ Jurong Lake Gardens,2014 Sep,56.6
 Jurong Lake Gardens,2014 Oct,78.7
 Jurong Lake Gardens,2014 Nov,71.3
 Jurong Lake Gardens,2014 Dec,61.8
+Jurong Lake Gardens,2015 Jan,61.9
+Jurong Lake Gardens,2015 Feb,88.9
+Jurong Lake Gardens,2015 Mar,86.8
 Sun Yat Sen Nanyang Memorial Hall,2014 Jan,4.1
 Sun Yat Sen Nanyang Memorial Hall,2014 Feb,8.1
 Sun Yat Sen Nanyang Memorial Hall,2014 Mar,3.5
@@ -224,6 +227,9 @@ Sun Yat Sen Nanyang Memorial Hall,2014 Sep,8.8
 Sun Yat Sen Nanyang Memorial Hall,2014 Oct,17.7
 Sun Yat Sen Nanyang Memorial Hall,2014 Nov,10.6
 Sun Yat Sen Nanyang Memorial Hall,2014 Dec,7
+Sun Yat Sen Nanyang Memorial Hall,2015 Jan,4.5
+Sun Yat Sen Nanyang Memorial Hall,2015 Feb,18.7
+Sun Yat Sen Nanyang Memorial Hall,2015 Mar,3.7
 Malay Heritage Centre,2014 Jan,11.6
 Malay Heritage Centre,2014 Feb,12.1
 Malay Heritage Centre,2014 Mar,15.4
@@ -236,9 +242,9 @@ Malay Heritage Centre,2014 Sep,12.3
 Malay Heritage Centre,2014 Oct,18
 Malay Heritage Centre,2014 Nov,14.1
 Malay Heritage Centre,2014 Dec,9.1
-Asian Civilisations Museum,2015 Jan,26.3
-Asian Civilisations Museum,2015 Feb,25.9
-Asian Civilisations Museum,2015 Mar,26
+Malay Heritage Centre,2015 Jan,36.2
+Malay Heritage Centre,2015 Feb,36.8
+Malay Heritage Centre,2015 Mar,36.1
 Asian Civilisations Museum,2015 Apr,25.1
 Asian Civilisations Museum,2015 May,23.3
 Asian Civilisations Museum,2015 Jun,24.5
@@ -260,9 +266,9 @@ Asian Civilisations Museum,2016 Sep,50.8
 Asian Civilisations Museum,2016 Oct,53.6
 Asian Civilisations Museum,2016 Nov,40.4
 Asian Civilisations Museum,2016 Dec,40.3
-National Museum Of Singapore,2015 Jan,50.9
-National Museum Of Singapore,2015 Feb,46.2
-National Museum Of Singapore,2015 Mar,56.3
+Asian Civilisations Museum,2017 Jan,52.2
+Asian Civilisations Museum,2017 Feb,40.5
+Asian Civilisations Museum,2017 Mar,37.4
 National Museum Of Singapore,2015 Apr,89
 National Museum Of Singapore,2015 May,84
 National Museum Of Singapore,2015 Jun,76
@@ -284,9 +290,9 @@ National Museum Of Singapore,2016 Sep,62.7
 National Museum Of Singapore,2016 Oct,56.7
 National Museum Of Singapore,2016 Nov,56.2
 National Museum Of Singapore,2016 Dec,64.6
-Singapore Art Museum,2015 Jan,84.3
-Singapore Art Museum,2015 Feb,49.8
-Singapore Art Museum,2015 Mar,67.2
+National Museum Of Singapore,2017 Jan,65.7
+National Museum Of Singapore,2017 Feb,69.5
+National Museum Of Singapore,2017 Mar,60.7
 Singapore Art Museum,2015 Apr,72.9
 Singapore Art Museum,2015 May,82.7
 Singapore Art Museum,2015 Jun,95.6
@@ -308,9 +314,9 @@ Singapore Art Museum,2016 Sep,34.3
 Singapore Art Museum,2016 Oct,55.9
 Singapore Art Museum,2016 Nov,68
 Singapore Art Museum,2016 Dec,61.2
-Peranakan Museum,2015 Jan,34.3
-Peranakan Museum,2015 Feb,32.5
-Peranakan Museum,2015 Mar,36
+Singapore Art Museum,2017 Jan,61.5
+Singapore Art Museum,2017 Feb,67.4
+Singapore Art Museum,2017 Mar,24.6
 Peranakan Museum,2015 Apr,33.2
 Peranakan Museum,2015 May,38.3
 Peranakan Museum,2015 Jun,36.8
@@ -332,9 +338,9 @@ Peranakan Museum,2016 Sep,42.3
 Peranakan Museum,2016 Oct,41.4
 Peranakan Museum,2016 Nov,39.9
 Peranakan Museum,2016 Dec,41.2
-Science Centre Singapore,2015 Jan,58.3
-Science Centre Singapore,2015 Feb,68.9
-Science Centre Singapore,2015 Mar,75.5
+Peranakan Museum,2017 Jan,41.2
+Peranakan Museum,2017 Feb,40.5
+Peranakan Museum,2017 Mar,59.5
 Science Centre Singapore,2015 Apr,78.9
 Science Centre Singapore,2015 May,87.6
 Science Centre Singapore,2015 Jun,75.9
@@ -356,9 +362,9 @@ Science Centre Singapore,2016 Sep,57.9
 Science Centre Singapore,2016 Oct,69
 Science Centre Singapore,2016 Nov,95
 Science Centre Singapore,2016 Dec,114.5
-Night Safari,2015 Jan,94.7
-Night Safari,2015 Feb,106.1
-Night Safari,2015 Mar,80.4
+Science Centre Singapore,2017 Jan,78.7
+Science Centre Singapore,2017 Feb,70.4
+Science Centre Singapore,2017 Mar,80.1
 Night Safari,2015 Apr,78.8
 Night Safari,2015 May,101.2
 Night Safari,2015 Jun,93.9
@@ -380,9 +386,9 @@ Night Safari,2016 Sep,75
 Night Safari,2016 Oct,85.4
 Night Safari,2016 Nov,67.4
 Night Safari,2016 Dec,98
-River Wonders,2015 Jan,50.5
-River Wonders,2015 Feb,59.2
-River Wonders,2015 Mar,53.7
+Night Safari,2017 Jan,103.8
+Night Safari,2017 Feb,92.5
+Night Safari,2017 Mar,92.6
 River Wonders,2015 Apr,56.1
 River Wonders,2015 May,73.3
 River Wonders,2015 Jun,87.1
@@ -404,9 +410,9 @@ River Wonders,2016 Sep,55.1
 River Wonders,2016 Oct,75.6
 River Wonders,2016 Nov,56.9
 River Wonders,2016 Dec,101.9
-Singapore Zoological Gardens,2015 Jan,129.7
-Singapore Zoological Gardens,2015 Feb,156.3
-Singapore Zoological Gardens,2015 Mar,127.9
+River Wonders,2017 Jan,73.1
+River Wonders,2017 Feb,60.8
+River Wonders,2017 Mar,70.4
 Singapore Zoological Gardens,2015 Apr,133.3
 Singapore Zoological Gardens,2015 May,153.1
 Singapore Zoological Gardens,2015 Jun,190.1
@@ -428,9 +434,9 @@ Singapore Zoological Gardens,2016 Sep,119
 Singapore Zoological Gardens,2016 Oct,134.9
 Singapore Zoological Gardens,2016 Nov,117.4
 Singapore Zoological Gardens,2016 Dec,198.5
-Jurong Lake Gardens,2015 Jan,61.9
-Jurong Lake Gardens,2015 Feb,88.9
-Jurong Lake Gardens,2015 Mar,86.8
+Singapore Zoological Gardens,2017 Jan,161.9
+Singapore Zoological Gardens,2017 Feb,133.1
+Singapore Zoological Gardens,2017 Mar,145.5
 Jurong Lake Gardens,2015 Apr,96.9
 Jurong Lake Gardens,2015 May,85.8
 Jurong Lake Gardens,2015 Jun,87.4
@@ -452,9 +458,9 @@ Jurong Lake Gardens,2016 Sep,107.3
 Jurong Lake Gardens,2016 Oct,172.3
 Jurong Lake Gardens,2016 Nov,49.6
 Jurong Lake Gardens,2016 Dec,67.8
-Sun Yat Sen Nanyang Memorial Hall,2015 Jan,4.5
-Sun Yat Sen Nanyang Memorial Hall,2015 Feb,18.7
-Sun Yat Sen Nanyang Memorial Hall,2015 Mar,3.7
+Jurong Lake Gardens,2017 Jan,78.7
+Jurong Lake Gardens,2017 Feb,88.2
+Jurong Lake Gardens,2017 Mar,71.6
 Sun Yat Sen Nanyang Memorial Hall,2015 Apr,5.6
 Sun Yat Sen Nanyang Memorial Hall,2015 May,7.7
 Sun Yat Sen Nanyang Memorial Hall,2015 Jun,10.3
@@ -476,6 +482,9 @@ Sun Yat Sen Nanyang Memorial Hall,2016 Sep,28
 Sun Yat Sen Nanyang Memorial Hall,2016 Oct,15.9
 Sun Yat Sen Nanyang Memorial Hall,2016 Nov,22.8
 Sun Yat Sen Nanyang Memorial Hall,2016 Dec,11.8
+Sun Yat Sen Nanyang Memorial Hall,2017 Jan,15.5
+Sun Yat Sen Nanyang Memorial Hall,2017 Feb,11.3
+Sun Yat Sen Nanyang Memorial Hall,2017 Mar,8
 Indian Heritage Centre,2015 May,43.4
 Indian Heritage Centre,2015 Jun,23.9
 Indian Heritage Centre,2015 Jul,23.8
@@ -496,9 +505,9 @@ Indian Heritage Centre,2016 Sep,12.4
 Indian Heritage Centre,2016 Oct,15.8
 Indian Heritage Centre,2016 Nov,12.1
 Indian Heritage Centre,2016 Dec,9
-Malay Heritage Centre,2015 Jan,36.2
-Malay Heritage Centre,2015 Feb,36.8
-Malay Heritage Centre,2015 Mar,36.1
+Indian Heritage Centre,2017 Jan,12.7
+Indian Heritage Centre,2017 Feb,12.2
+Indian Heritage Centre,2017 Mar,14.9
 Malay Heritage Centre,2015 Apr,33.3
 Malay Heritage Centre,2015 May,37.6
 Malay Heritage Centre,2015 Jun,38.2
@@ -520,9 +529,9 @@ Malay Heritage Centre,2016 Sep,37.8
 Malay Heritage Centre,2016 Oct,41.6
 Malay Heritage Centre,2016 Nov,40.7
 Malay Heritage Centre,2016 Dec,43.1
-Asian Civilisations Museum,2017 Jan,52.2
-Asian Civilisations Museum,2017 Feb,40.5
-Asian Civilisations Museum,2017 Mar,37.4
+Malay Heritage Centre,2017 Jan,49.3
+Malay Heritage Centre,2017 Feb,57.3
+Malay Heritage Centre,2017 Mar,59.7
 Asian Civilisations Museum,2017 Apr,42.5
 Asian Civilisations Museum,2017 May,49.9
 Asian Civilisations Museum,2017 Jun,48
@@ -544,9 +553,9 @@ Asian Civilisations Museum,2018 Sep,37.3
 Asian Civilisations Museum,2018 Oct,49.7
 Asian Civilisations Museum,2018 Nov,43.7
 Asian Civilisations Museum,2018 Dec,41.4
-National Museum Of Singapore,2017 Jan,65.7
-National Museum Of Singapore,2017 Feb,69.5
-National Museum Of Singapore,2017 Mar,60.7
+Asian Civilisations Museum,2019 Jan,52
+Asian Civilisations Museum,2019 Feb,55.2
+Asian Civilisations Museum,2019 Mar,65.9
 National Museum Of Singapore,2017 Apr,49.2
 National Museum Of Singapore,2017 May,58.3
 National Museum Of Singapore,2017 Jun,64.1
@@ -568,9 +577,9 @@ National Museum Of Singapore,2018 Sep,68.9
 National Museum Of Singapore,2018 Oct,79.5
 National Museum Of Singapore,2018 Nov,68.4
 National Museum Of Singapore,2018 Dec,68.9
-Singapore Art Museum,2017 Jan,61.5
-Singapore Art Museum,2017 Feb,67.4
-Singapore Art Museum,2017 Mar,24.6
+National Museum Of Singapore,2019 Jan,74.6
+National Museum Of Singapore,2019 Feb,82.9
+National Museum Of Singapore,2019 Mar,85.6
 Singapore Art Museum,2017 Apr,11.5
 Singapore Art Museum,2017 May,38.7
 Singapore Art Museum,2017 Jun,37.6
@@ -592,9 +601,9 @@ Singapore Art Museum,2018 Sep,16.2
 Singapore Art Museum,2018 Oct,29.9
 Singapore Art Museum,2018 Nov,37.4
 Singapore Art Museum,2018 Dec,73.3
-Peranakan Museum,2017 Jan,41.2
-Peranakan Museum,2017 Feb,40.5
-Peranakan Museum,2017 Mar,59.5
+Singapore Art Museum,2019 Jan,87.6
+Singapore Art Museum,2019 Feb,50.6
+Singapore Art Museum,2019 Mar,56.7
 Peranakan Museum,2017 Apr,38
 Peranakan Museum,2017 May,38.9
 Peranakan Museum,2017 Jun,39.1
@@ -616,9 +625,9 @@ Peranakan Museum,2018 Sep,14.4
 Peranakan Museum,2018 Oct,14.6
 Peranakan Museum,2018 Nov,13.6
 Peranakan Museum,2018 Dec,12.5
-Science Centre Singapore,2017 Jan,78.7
-Science Centre Singapore,2017 Feb,70.4
-Science Centre Singapore,2017 Mar,80.1
+Peranakan Museum,2019 Jan,15.1
+Peranakan Museum,2019 Feb,14.7
+Peranakan Museum,2019 Mar,29.8
 Science Centre Singapore,2017 Apr,59.2
 Science Centre Singapore,2017 May,63.5
 Science Centre Singapore,2017 Jun,81.5
@@ -640,9 +649,9 @@ Science Centre Singapore,2018 Sep,69.7
 Science Centre Singapore,2018 Oct,68.1
 Science Centre Singapore,2018 Nov,63.3
 Science Centre Singapore,2018 Dec,70.5
-Night Safari,2017 Jan,103.8
-Night Safari,2017 Feb,92.5
-Night Safari,2017 Mar,92.6
+Science Centre Singapore,2019 Jan,71.4
+Science Centre Singapore,2019 Feb,66.7
+Science Centre Singapore,2019 Mar,88.5
 Night Safari,2017 Apr,99.9
 Night Safari,2017 May,109.7
 Night Safari,2017 Jun,112.6
@@ -664,9 +673,9 @@ Night Safari,2018 Sep,86.7
 Night Safari,2018 Oct,96.2
 Night Safari,2018 Nov,87.4
 Night Safari,2018 Dec,109.6
-River Wonders,2017 Jan,73.1
-River Wonders,2017 Feb,60.8
-River Wonders,2017 Mar,70.4
+Night Safari,2019 Jan,110.5
+Night Safari,2019 Feb,113
+Night Safari,2019 Mar,96.4
 River Wonders,2017 Apr,74.6
 River Wonders,2017 May,78.8
 River Wonders,2017 Jun,87.3
@@ -688,9 +697,9 @@ River Wonders,2018 Sep,74.4
 River Wonders,2018 Oct,75
 River Wonders,2018 Nov,65.5
 River Wonders,2018 Dec,98.9
-Singapore Zoological Gardens,2017 Jan,161.9
-Singapore Zoological Gardens,2017 Feb,133.1
-Singapore Zoological Gardens,2017 Mar,145.5
+River Wonders,2019 Jan,70.5
+River Wonders,2019 Feb,81.2
+River Wonders,2019 Mar,71.1
 Singapore Zoological Gardens,2017 Apr,156.6
 Singapore Zoological Gardens,2017 May,148.2
 Singapore Zoological Gardens,2017 Jun,160.2
@@ -712,9 +721,9 @@ Singapore Zoological Gardens,2018 Sep,159.7
 Singapore Zoological Gardens,2018 Oct,158.4
 Singapore Zoological Gardens,2018 Nov,144.5
 Singapore Zoological Gardens,2018 Dec,223.4
-Jurong Lake Gardens,2017 Jan,78.7
-Jurong Lake Gardens,2017 Feb,88.2
-Jurong Lake Gardens,2017 Mar,71.6
+Singapore Zoological Gardens,2019 Jan,148.8
+Singapore Zoological Gardens,2019 Feb,184.4
+Singapore Zoological Gardens,2019 Mar,149.6
 Jurong Lake Gardens,2017 Apr,68.7
 Jurong Lake Gardens,2017 May,71.4
 Jurong Lake Gardens,2017 Jun,92.8
@@ -736,9 +745,9 @@ Jurong Lake Gardens,2018 Sep,54.6
 Jurong Lake Gardens,2018 Oct,56.3
 Jurong Lake Gardens,2018 Nov,59.5
 Jurong Lake Gardens,2018 Dec,66.9
-Sun Yat Sen Nanyang Memorial Hall,2017 Jan,15.5
-Sun Yat Sen Nanyang Memorial Hall,2017 Feb,11.3
-Sun Yat Sen Nanyang Memorial Hall,2017 Mar,8
+Jurong Lake Gardens,2019 Jan,56.9
+Jurong Lake Gardens,2019 Feb,65.2
+Jurong Lake Gardens,2019 Mar,67.8
 Sun Yat Sen Nanyang Memorial Hall,2017 Apr,8.5
 Sun Yat Sen Nanyang Memorial Hall,2017 May,13.8
 Sun Yat Sen Nanyang Memorial Hall,2017 Jun,5.1
@@ -760,9 +769,9 @@ Sun Yat Sen Nanyang Memorial Hall,2018 Sep,35.6
 Sun Yat Sen Nanyang Memorial Hall,2018 Oct,14.6
 Sun Yat Sen Nanyang Memorial Hall,2018 Nov,18
 Sun Yat Sen Nanyang Memorial Hall,2018 Dec,8
-Indian Heritage Centre,2017 Jan,12.7
-Indian Heritage Centre,2017 Feb,12.2
-Indian Heritage Centre,2017 Mar,14.9
+Sun Yat Sen Nanyang Memorial Hall,2019 Jan,17.4
+Sun Yat Sen Nanyang Memorial Hall,2019 Feb,25.7
+Sun Yat Sen Nanyang Memorial Hall,2019 Mar,12.6
 Indian Heritage Centre,2017 Apr,12.5
 Indian Heritage Centre,2017 May,15.8
 Indian Heritage Centre,2017 Jun,11.6
@@ -784,9 +793,9 @@ Indian Heritage Centre,2018 Sep,19.6
 Indian Heritage Centre,2018 Oct,30.7
 Indian Heritage Centre,2018 Nov,23.9
 Indian Heritage Centre,2018 Dec,12
-Malay Heritage Centre,2017 Jan,49.3
-Malay Heritage Centre,2017 Feb,57.3
-Malay Heritage Centre,2017 Mar,59.7
+Indian Heritage Centre,2019 Jan,27.3
+Indian Heritage Centre,2019 Feb,13.8
+Indian Heritage Centre,2019 Mar,22.9
 Malay Heritage Centre,2017 Apr,50.6
 Malay Heritage Centre,2017 May,48.9
 Malay Heritage Centre,2017 Jun,70
@@ -808,9 +817,9 @@ Malay Heritage Centre,2018 Sep,50.6
 Malay Heritage Centre,2018 Oct,53.8
 Malay Heritage Centre,2018 Nov,58.5
 Malay Heritage Centre,2018 Dec,49.7
-Asian Civilisations Museum,2019 Jan,52
-Asian Civilisations Museum,2019 Feb,55.2
-Asian Civilisations Museum,2019 Mar,65.9
+Malay Heritage Centre,2019 Jan,69.8
+Malay Heritage Centre,2019 Feb,63
+Malay Heritage Centre,2019 Mar,66.7
 Asian Civilisations Museum,2019 Apr,48.5
 Asian Civilisations Museum,2019 May,47.4
 Asian Civilisations Museum,2019 Jun,58.1
@@ -832,9 +841,9 @@ Asian Civilisations Museum,2020 Sep,12
 Asian Civilisations Museum,2020 Oct,13.9
 Asian Civilisations Museum,2020 Nov,17.8
 Asian Civilisations Museum,2020 Dec,23.1
-National Museum Of Singapore,2019 Jan,74.6
-National Museum Of Singapore,2019 Feb,82.9
-National Museum Of Singapore,2019 Mar,85.6
+Asian Civilisations Museum,2021 Jan,19.4
+Asian Civilisations Museum,2021 Feb,17.9
+Asian Civilisations Museum,2021 Mar,23
 National Museum Of Singapore,2019 Apr,72.1
 National Museum Of Singapore,2019 May,66.6
 National Museum Of Singapore,2019 Jun,116.3
@@ -856,9 +865,9 @@ National Museum Of Singapore,2020 Sep,19.7
 National Museum Of Singapore,2020 Oct,28.6
 National Museum Of Singapore,2020 Nov,84.3
 National Museum Of Singapore,2020 Dec,84.4
-Singapore Art Museum,2019 Jan,87.6
-Singapore Art Museum,2019 Feb,50.6
-Singapore Art Museum,2019 Mar,56.7
+National Museum Of Singapore,2021 Jan,22.9
+National Museum Of Singapore,2021 Feb,21.5
+National Museum Of Singapore,2021 Mar,32
 Singapore Art Museum,2019 Apr,40.8
 Singapore Art Museum,2019 May,36
 Singapore Art Museum,2019 Jun,39
@@ -880,9 +889,9 @@ Singapore Art Museum,2020 Sep,15.2
 Singapore Art Museum,2020 Oct,15.3
 Singapore Art Museum,2020 Nov,15
 Singapore Art Museum,2020 Dec,27.9
-Peranakan Museum,2019 Jan,15.1
-Peranakan Museum,2019 Feb,14.7
-Peranakan Museum,2019 Mar,29.8
+Singapore Art Museum,2021 Jan,59.1
+Singapore Art Museum,2021 Feb,179.4
+Singapore Art Museum,2021 Mar,152.2
 Peranakan Museum,2019 Apr,0
 Peranakan Museum,2019 May,0
 Peranakan Museum,2019 Jun,0
@@ -904,9 +913,9 @@ Peranakan Museum,2020 Sep,0
 Peranakan Museum,2020 Oct,0
 Peranakan Museum,2020 Nov,0
 Peranakan Museum,2020 Dec,0
-Science Centre Singapore,2019 Jan,71.4
-Science Centre Singapore,2019 Feb,66.7
-Science Centre Singapore,2019 Mar,88.5
+Peranakan Museum,2021 Jan,0
+Peranakan Museum,2021 Feb,0
+Peranakan Museum,2021 Mar,0
 Science Centre Singapore,2019 Apr,63.4
 Science Centre Singapore,2019 May,73.8
 Science Centre Singapore,2019 Jun,108.4
@@ -928,9 +937,9 @@ Science Centre Singapore,2020 Sep,19.3
 Science Centre Singapore,2020 Oct,11.6
 Science Centre Singapore,2020 Nov,21.3
 Science Centre Singapore,2020 Dec,56.6
-Night Safari,2019 Jan,110.5
-Night Safari,2019 Feb,113
-Night Safari,2019 Mar,96.4
+Science Centre Singapore,2021 Jan,15.4
+Science Centre Singapore,2021 Feb,9.7
+Science Centre Singapore,2021 Mar,21.3
 Night Safari,2019 Apr,101.9
 Night Safari,2019 May,111
 Night Safari,2019 Jun,115.9
@@ -952,9 +961,9 @@ Night Safari,2020 Sep,20.8
 Night Safari,2020 Oct,28.8
 Night Safari,2020 Nov,25.1
 Night Safari,2020 Dec,64.4
-River Wonders,2019 Jan,70.5
-River Wonders,2019 Feb,81.2
-River Wonders,2019 Mar,71.1
+Night Safari,2021 Jan,22.4
+Night Safari,2021 Feb,21.7
+Night Safari,2021 Mar,46.4
 River Wonders,2019 Apr,74.4
 River Wonders,2019 May,75
 River Wonders,2019 Jun,85.8
@@ -976,9 +985,9 @@ River Wonders,2020 Sep,64.7
 River Wonders,2020 Oct,61.7
 River Wonders,2020 Nov,60.6
 River Wonders,2020 Dec,119.7
-Singapore Zoological Gardens,2019 Jan,148.8
-Singapore Zoological Gardens,2019 Feb,184.4
-Singapore Zoological Gardens,2019 Mar,149.6
+River Wonders,2021 Jan,41
+River Wonders,2021 Feb,42.2
+River Wonders,2021 Mar,77.2
 Singapore Zoological Gardens,2019 Apr,155.4
 Singapore Zoological Gardens,2019 May,145.1
 Singapore Zoological Gardens,2019 Jun,181.7
@@ -1000,9 +1009,9 @@ Singapore Zoological Gardens,2020 Sep,92.3
 Singapore Zoological Gardens,2020 Oct,100.2
 Singapore Zoological Gardens,2020 Nov,87.8
 Singapore Zoological Gardens,2020 Dec,169.2
-Jurong Lake Gardens,2019 Jan,56.9
-Jurong Lake Gardens,2019 Feb,65.2
-Jurong Lake Gardens,2019 Mar,67.8
+Singapore Zoological Gardens,2021 Jan,54.7
+Singapore Zoological Gardens,2021 Feb,67.2
+Singapore Zoological Gardens,2021 Mar,115.1
 Jurong Lake Gardens,2019 Apr,86
 Jurong Lake Gardens,2019 May,133.2
 Jurong Lake Gardens,2019 Jun,0
@@ -1024,9 +1033,9 @@ Jurong Lake Gardens,2020 Sep,0
 Jurong Lake Gardens,2020 Oct,0
 Jurong Lake Gardens,2020 Nov,0
 Jurong Lake Gardens,2020 Dec,0
-Sun Yat Sen Nanyang Memorial Hall,2019 Jan,17.4
-Sun Yat Sen Nanyang Memorial Hall,2019 Feb,25.7
-Sun Yat Sen Nanyang Memorial Hall,2019 Mar,12.6
+Jurong Lake Gardens,2021 Jan,0
+Jurong Lake Gardens,2021 Feb,0
+Jurong Lake Gardens,2021 Mar,0
 Sun Yat Sen Nanyang Memorial Hall,2019 Apr,12.6
 Sun Yat Sen Nanyang Memorial Hall,2019 May,12.3
 Sun Yat Sen Nanyang Memorial Hall,2019 Jun,22.8
@@ -1048,9 +1057,9 @@ Sun Yat Sen Nanyang Memorial Hall,2020 Sep,10.4
 Sun Yat Sen Nanyang Memorial Hall,2020 Oct,12.7
 Sun Yat Sen Nanyang Memorial Hall,2020 Nov,6.2
 Sun Yat Sen Nanyang Memorial Hall,2020 Dec,9.4
-Indian Heritage Centre,2019 Jan,27.3
-Indian Heritage Centre,2019 Feb,13.8
-Indian Heritage Centre,2019 Mar,22.9
+Sun Yat Sen Nanyang Memorial Hall,2021 Jan,13
+Sun Yat Sen Nanyang Memorial Hall,2021 Feb,20.4
+Sun Yat Sen Nanyang Memorial Hall,2021 Mar,9.7
 Indian Heritage Centre,2019 Apr,17.5
 Indian Heritage Centre,2019 May,15.2
 Indian Heritage Centre,2019 Jun,18.8
@@ -1072,9 +1081,9 @@ Indian Heritage Centre,2020 Sep,2.3
 Indian Heritage Centre,2020 Oct,2.8
 Indian Heritage Centre,2020 Nov,3.4
 Indian Heritage Centre,2020 Dec,2.5
-Malay Heritage Centre,2019 Jan,69.8
-Malay Heritage Centre,2019 Feb,63
-Malay Heritage Centre,2019 Mar,66.7
+Indian Heritage Centre,2021 Jan,8
+Indian Heritage Centre,2021 Feb,4.4
+Indian Heritage Centre,2021 Mar,9.4
 Malay Heritage Centre,2019 Apr,54.4
 Malay Heritage Centre,2019 May,81
 Malay Heritage Centre,2019 Jun,55.9
@@ -1096,9 +1105,9 @@ Malay Heritage Centre,2020 Sep,3.4
 Malay Heritage Centre,2020 Oct,4.7
 Malay Heritage Centre,2020 Nov,6.5
 Malay Heritage Centre,2020 Dec,10.9
-Asian Civilisations Museum,2021 Jan,19.4
-Asian Civilisations Museum,2021 Feb,17.9
-Asian Civilisations Museum,2021 Mar,23
+Malay Heritage Centre,2021 Jan,7
+Malay Heritage Centre,2021 Feb,8
+Malay Heritage Centre,2021 Mar,12.7
 Asian Civilisations Museum,2021 Apr,21.1
 Asian Civilisations Museum,2021 May,15.3
 Asian Civilisations Museum,2021 Jun,11.4
@@ -1120,9 +1129,9 @@ Asian Civilisations Museum,2022 Sep,32.4
 Asian Civilisations Museum,2022 Oct,39.1
 Asian Civilisations Museum,2022 Nov,32.7
 Asian Civilisations Museum,2022 Dec,27.1
-National Museum Of Singapore,2021 Jan,22.9
-National Museum Of Singapore,2021 Feb,21.5
-National Museum Of Singapore,2021 Mar,32
+Asian Civilisations Museum,2023 Jan,33.4
+Asian Civilisations Museum,2023 Feb,31.4
+Asian Civilisations Museum,2023 Mar,40
 National Museum Of Singapore,2021 Apr,27.2
 National Museum Of Singapore,2021 May,21.8
 National Museum Of Singapore,2021 Jun,20.5
@@ -1144,9 +1153,9 @@ National Museum Of Singapore,2022 Sep,62.8
 National Museum Of Singapore,2022 Oct,82.2
 National Museum Of Singapore,2022 Nov,73
 National Museum Of Singapore,2022 Dec,72.5
-Singapore Art Museum,2021 Jan,59.1
-Singapore Art Museum,2021 Feb,179.4
-Singapore Art Museum,2021 Mar,152.2
+National Museum Of Singapore,2023 Jan,71.3
+National Museum Of Singapore,2023 Feb,65.7
+National Museum Of Singapore,2023 Mar,67.8
 Singapore Art Museum,2021 Apr,60.8
 Singapore Art Museum,2021 May,9.3
 Singapore Art Museum,2021 Jun,17.7
@@ -1168,9 +1177,9 @@ Singapore Art Museum,2022 Sep,182.7
 Singapore Art Museum,2022 Oct,55.6
 Singapore Art Museum,2022 Nov,92.6
 Singapore Art Museum,2022 Dec,94.4
-Peranakan Museum,2021 Jan,0
-Peranakan Museum,2021 Feb,0
-Peranakan Museum,2021 Mar,0
+Singapore Art Museum,2023 Jan,114
+Singapore Art Museum,2023 Feb,76.5
+Singapore Art Museum,2023 Mar,73.8
 Peranakan Museum,2021 Apr,0
 Peranakan Museum,2021 May,0
 Peranakan Museum,2021 Jun,0
@@ -1192,9 +1201,9 @@ Peranakan Museum,2022 Sep,0
 Peranakan Museum,2022 Oct,0
 Peranakan Museum,2022 Nov,0
 Peranakan Museum,2022 Dec,0
-Science Centre Singapore,2021 Jan,15.4
-Science Centre Singapore,2021 Feb,9.7
-Science Centre Singapore,2021 Mar,21.3
+Peranakan Museum,2023 Jan,0
+Peranakan Museum,2023 Feb,18.8
+Peranakan Museum,2023 Mar,16.3
 Science Centre Singapore,2021 Apr,16
 Science Centre Singapore,2021 May,7.8
 Science Centre Singapore,2021 Jun,14.1
@@ -1216,9 +1225,9 @@ Science Centre Singapore,2022 Sep,35.3
 Science Centre Singapore,2022 Oct,33.9
 Science Centre Singapore,2022 Nov,29.8
 Science Centre Singapore,2022 Dec,49.7
-Night Safari,2021 Jan,22.4
-Night Safari,2021 Feb,21.7
-Night Safari,2021 Mar,46.4
+Science Centre Singapore,2023 Jan,25
+Science Centre Singapore,2023 Feb,18.5
+Science Centre Singapore,2023 Mar,36.1
 Night Safari,2021 Apr,27.8
 Night Safari,2021 May,16.2
 Night Safari,2021 Jun,21.9
@@ -1240,9 +1249,9 @@ Night Safari,2022 Sep,52.2
 Night Safari,2022 Oct,56.9
 Night Safari,2022 Nov,44.9
 Night Safari,2022 Dec,70.8
-River Wonders,2021 Jan,41
-River Wonders,2021 Feb,42.2
-River Wonders,2021 Mar,77.2
+Night Safari,2023 Jan,56.2
+Night Safari,2023 Feb,49.2
+Night Safari,2023 Mar,58.1
 River Wonders,2021 Apr,47.7
 River Wonders,2021 May,31.3
 River Wonders,2021 Jun,42.5
@@ -1264,9 +1273,9 @@ River Wonders,2022 Sep,60.7
 River Wonders,2022 Oct,60.4
 River Wonders,2022 Nov,57.4
 River Wonders,2022 Dec,79.6
-Singapore Zoological Gardens,2021 Jan,54.7
-Singapore Zoological Gardens,2021 Feb,67.2
-Singapore Zoological Gardens,2021 Mar,115.1
+River Wonders,2023 Jan,57.6
+River Wonders,2023 Feb,47.7
+River Wonders,2023 Mar,66.6
 Singapore Zoological Gardens,2021 Apr,64.1
 Singapore Zoological Gardens,2021 May,44.9
 Singapore Zoological Gardens,2021 Jun,65
@@ -1288,9 +1297,9 @@ Singapore Zoological Gardens,2022 Sep,94
 Singapore Zoological Gardens,2022 Oct,110.8
 Singapore Zoological Gardens,2022 Nov,88.1
 Singapore Zoological Gardens,2022 Dec,131.1
-Jurong Lake Gardens,2021 Jan,0
-Jurong Lake Gardens,2021 Feb,0
-Jurong Lake Gardens,2021 Mar,0
+Singapore Zoological Gardens,2023 Jan,83.9
+Singapore Zoological Gardens,2023 Feb,76.2
+Singapore Zoological Gardens,2023 Mar,103.6
 Jurong Lake Gardens,2021 Apr,0
 Jurong Lake Gardens,2021 May,0
 Jurong Lake Gardens,2021 Jun,0
@@ -1312,9 +1321,9 @@ Jurong Lake Gardens,2022 Sep,0
 Jurong Lake Gardens,2022 Oct,0
 Jurong Lake Gardens,2022 Nov,0
 Jurong Lake Gardens,2022 Dec,0
-Sun Yat Sen Nanyang Memorial Hall,2021 Jan,13
-Sun Yat Sen Nanyang Memorial Hall,2021 Feb,20.4
-Sun Yat Sen Nanyang Memorial Hall,2021 Mar,9.7
+Jurong Lake Gardens,2023 Jan,0
+Jurong Lake Gardens,2023 Feb,0
+Jurong Lake Gardens,2023 Mar,0
 Sun Yat Sen Nanyang Memorial Hall,2021 Apr,7.6
 Sun Yat Sen Nanyang Memorial Hall,2021 May,6.2
 Sun Yat Sen Nanyang Memorial Hall,2021 Jun,7.7
@@ -1336,9 +1345,9 @@ Sun Yat Sen Nanyang Memorial Hall,2022 Sep,12.2
 Sun Yat Sen Nanyang Memorial Hall,2022 Oct,3.9
 Sun Yat Sen Nanyang Memorial Hall,2022 Nov,2.8
 Sun Yat Sen Nanyang Memorial Hall,2022 Dec,2.7
-Indian Heritage Centre,2021 Jan,8
-Indian Heritage Centre,2021 Feb,4.4
-Indian Heritage Centre,2021 Mar,9.4
+Sun Yat Sen Nanyang Memorial Hall,2023 Jan,8.9
+Sun Yat Sen Nanyang Memorial Hall,2023 Feb,5.6
+Sun Yat Sen Nanyang Memorial Hall,2023 Mar,3.9
 Indian Heritage Centre,2021 Apr,9.4
 Indian Heritage Centre,2021 May,3.2
 Indian Heritage Centre,2021 Jun,2.1
@@ -1360,9 +1369,9 @@ Indian Heritage Centre,2022 Sep,11.6
 Indian Heritage Centre,2022 Oct,32.6
 Indian Heritage Centre,2022 Nov,9.9
 Indian Heritage Centre,2022 Dec,6.1
-Malay Heritage Centre,2021 Jan,7
-Malay Heritage Centre,2021 Feb,8
-Malay Heritage Centre,2021 Mar,12.7
+Indian Heritage Centre,2023 Jan,21.2
+Indian Heritage Centre,2023 Feb,11.5
+Indian Heritage Centre,2023 Mar,14.9
 Malay Heritage Centre,2021 Apr,9.5
 Malay Heritage Centre,2021 May,6.8
 Malay Heritage Centre,2021 Jun,4.5
@@ -1384,9 +1393,18 @@ Malay Heritage Centre,2022 Sep,22.8
 Malay Heritage Centre,2022 Oct,36.6
 Malay Heritage Centre,2022 Nov,0
 Malay Heritage Centre,2022 Dec,0
-Asian Civilisations Museum,2023 Jan,33.4
-Asian Civilisations Museum,2023 Feb,31.4
-Asian Civilisations Museum,2023 Mar,40
+Malay Heritage Centre,2023 Jan,0
+Malay Heritage Centre,2023 Feb,0
+Malay Heritage Centre,2023 Mar,0
+Children's Museum Singapore,2023 Jan,10.5
+Children's Museum Singapore,2023 Feb,16.5
+Children's Museum Singapore,2023 Mar,21.6
+Changi Chapel And Museum,2023 Jan,3.4
+Changi Chapel And Museum,2023 Feb,5
+Changi Chapel And Museum,2023 Mar,4.8
+Reflections At Bukit Chandu,2023 Jan,2.7
+Reflections At Bukit Chandu,2023 Feb,4.1
+Reflections At Bukit Chandu,2023 Mar,3.7
 Asian Civilisations Museum,2023 Apr,31.4
 Asian Civilisations Museum,2023 May,38.5
 Asian Civilisations Museum,2023 Jun,33.5
@@ -1408,9 +1426,9 @@ Asian Civilisations Museum,2024 Sep,25.7
 Asian Civilisations Museum,2024 Oct,36.2
 Asian Civilisations Museum,2024 Nov,34.1
 Asian Civilisations Museum,2024 Dec,22.7
-National Museum Of Singapore,2023 Jan,71.3
-National Museum Of Singapore,2023 Feb,65.7
-National Museum Of Singapore,2023 Mar,67.8
+Asian Civilisations Museum,2025 Jan,38.4
+Asian Civilisations Museum,2025 Feb,37.8
+Asian Civilisations Museum,2025 Mar,31.9
 National Museum Of Singapore,2023 Apr,70.1
 National Museum Of Singapore,2023 May,91.2
 National Museum Of Singapore,2023 Jun,106.5
@@ -1432,9 +1450,9 @@ National Museum Of Singapore,2024 Sep,70
 National Museum Of Singapore,2024 Oct,80
 National Museum Of Singapore,2024 Nov,59.4
 National Museum Of Singapore,2024 Dec,62.7
-Singapore Art Museum,2023 Jan,114
-Singapore Art Museum,2023 Feb,76.5
-Singapore Art Museum,2023 Mar,73.8
+National Museum Of Singapore,2025 Jan,102.1
+National Museum Of Singapore,2025 Feb,74.8
+National Museum Of Singapore,2025 Mar,53.9
 Singapore Art Museum,2023 Apr,64.1
 Singapore Art Museum,2023 May,57.8
 Singapore Art Museum,2023 Jun,66.1
@@ -1456,9 +1474,9 @@ Singapore Art Museum,2024 Sep,256.4
 Singapore Art Museum,2024 Oct,75.2
 Singapore Art Museum,2024 Nov,63.1
 Singapore Art Museum,2024 Dec,57.8
-Peranakan Museum,2023 Jan,0
-Peranakan Museum,2023 Feb,18.8
-Peranakan Museum,2023 Mar,16.3
+Singapore Art Museum,2025 Jan,67.3
+Singapore Art Museum,2025 Feb,67.1
+Singapore Art Museum,2025 Mar,83
 Peranakan Museum,2023 Apr,14.2
 Peranakan Museum,2023 May,16.1
 Peranakan Museum,2023 Jun,16.2
@@ -1480,9 +1498,9 @@ Peranakan Museum,2024 Sep,15.5
 Peranakan Museum,2024 Oct,11.9
 Peranakan Museum,2024 Nov,10.3
 Peranakan Museum,2024 Dec,9.1
-Science Centre Singapore,2023 Jan,25
-Science Centre Singapore,2023 Feb,18.5
-Science Centre Singapore,2023 Mar,36.1
+Peranakan Museum,2025 Jan,11.4
+Peranakan Museum,2025 Feb,10.9
+Peranakan Museum,2025 Mar,23.8
 Science Centre Singapore,2023 Apr,37.2
 Science Centre Singapore,2023 May,31.8
 Science Centre Singapore,2023 Jun,57.2
@@ -1504,6 +1522,9 @@ Science Centre Singapore,2024 Sep,64.7
 Science Centre Singapore,2024 Oct,72.9
 Science Centre Singapore,2024 Nov,101.6
 Science Centre Singapore,2024 Dec,70.8
+Science Centre Singapore,2025 Jan,77.4
+Science Centre Singapore,2025 Feb,67.6
+Science Centre Singapore,2025 Mar,75.3
 Mandai Bird Paradise,2023 Apr,13.3
 Mandai Bird Paradise,2023 May,105
 Mandai Bird Paradise,2023 Jun,121.5
@@ -1525,9 +1546,9 @@ Mandai Bird Paradise,2024 Sep,70.6
 Mandai Bird Paradise,2024 Oct,76.1
 Mandai Bird Paradise,2024 Nov,83.7
 Mandai Bird Paradise,2024 Dec,92.4
-Night Safari,2023 Jan,56.2
-Night Safari,2023 Feb,49.2
-Night Safari,2023 Mar,58.1
+Mandai Bird Paradise,2025 Jan,77.1
+Mandai Bird Paradise,2025 Feb,67.1
+Mandai Bird Paradise,2025 Mar,77.2
 Night Safari,2023 Apr,73.7
 Night Safari,2023 May,71.7
 Night Safari,2023 Jun,76.9
@@ -1549,9 +1570,9 @@ Night Safari,2024 Sep,74.9
 Night Safari,2024 Oct,87.7
 Night Safari,2024 Nov,63
 Night Safari,2024 Dec,85
-River Wonders,2023 Jan,57.6
-River Wonders,2023 Feb,47.7
-River Wonders,2023 Mar,66.6
+Night Safari,2025 Jan,105.1
+Night Safari,2025 Feb,86.5
+Night Safari,2025 Mar,76.2
 River Wonders,2023 Apr,69.9
 River Wonders,2023 May,49.3
 River Wonders,2023 Jun,77.2
@@ -1573,9 +1594,9 @@ River Wonders,2024 Sep,57.9
 River Wonders,2024 Oct,70.3
 River Wonders,2024 Nov,58.5
 River Wonders,2024 Dec,80.1
-Singapore Zoological Gardens,2023 Jan,83.9
-Singapore Zoological Gardens,2023 Feb,76.2
-Singapore Zoological Gardens,2023 Mar,103.6
+River Wonders,2025 Jan,82.5
+River Wonders,2025 Feb,69
+River Wonders,2025 Mar,62.8
 Singapore Zoological Gardens,2023 Apr,119.1
 Singapore Zoological Gardens,2023 May,114.6
 Singapore Zoological Gardens,2023 Jun,127.7
@@ -1597,9 +1618,9 @@ Singapore Zoological Gardens,2024 Sep,92.3
 Singapore Zoological Gardens,2024 Oct,113.7
 Singapore Zoological Gardens,2024 Nov,103.5
 Singapore Zoological Gardens,2024 Dec,130.2
-Jurong Lake Gardens,2023 Jan,0
-Jurong Lake Gardens,2023 Feb,0
-Jurong Lake Gardens,2023 Mar,0
+Singapore Zoological Gardens,2025 Jan,118.2
+Singapore Zoological Gardens,2025 Feb,109.4
+Singapore Zoological Gardens,2025 Mar,97.9
 Jurong Lake Gardens,2023 Apr,0
 Jurong Lake Gardens,2023 May,0
 Jurong Lake Gardens,2023 Jun,0
@@ -1621,9 +1642,9 @@ Jurong Lake Gardens,2024 Sep,875.7
 Jurong Lake Gardens,2024 Oct,737.6
 Jurong Lake Gardens,2024 Nov,626.8
 Jurong Lake Gardens,2024 Dec,670.5
-Sun Yat Sen Nanyang Memorial Hall,2023 Jan,8.9
-Sun Yat Sen Nanyang Memorial Hall,2023 Feb,5.6
-Sun Yat Sen Nanyang Memorial Hall,2023 Mar,3.9
+Jurong Lake Gardens,2025 Jan,547.5
+Jurong Lake Gardens,2025 Feb,541.1
+Jurong Lake Gardens,2025 Mar,547.8
 Sun Yat Sen Nanyang Memorial Hall,2023 Apr,5.1
 Sun Yat Sen Nanyang Memorial Hall,2023 May,3.3
 Sun Yat Sen Nanyang Memorial Hall,2023 Jun,5.1
@@ -1645,9 +1666,9 @@ Sun Yat Sen Nanyang Memorial Hall,2024 Sep,8.3
 Sun Yat Sen Nanyang Memorial Hall,2024 Oct,0
 Sun Yat Sen Nanyang Memorial Hall,2024 Nov,0
 Sun Yat Sen Nanyang Memorial Hall,2024 Dec,0
-Indian Heritage Centre,2023 Jan,21.2
-Indian Heritage Centre,2023 Feb,11.5
-Indian Heritage Centre,2023 Mar,14.9
+Sun Yat Sen Nanyang Memorial Hall,2025 Jan,0
+Sun Yat Sen Nanyang Memorial Hall,2025 Feb,0
+Sun Yat Sen Nanyang Memorial Hall,2025 Mar,0
 Indian Heritage Centre,2023 Apr,19
 Indian Heritage Centre,2023 May,17.4
 Indian Heritage Centre,2023 Jun,13.6
@@ -1669,9 +1690,9 @@ Indian Heritage Centre,2024 Sep,13.7
 Indian Heritage Centre,2024 Oct,43.9
 Indian Heritage Centre,2024 Nov,11
 Indian Heritage Centre,2024 Dec,6.3
-Malay Heritage Centre,2023 Jan,0
-Malay Heritage Centre,2023 Feb,0
-Malay Heritage Centre,2023 Mar,0
+Indian Heritage Centre,2025 Jan,20.3
+Indian Heritage Centre,2025 Feb,16.3
+Indian Heritage Centre,2025 Mar,13.3
 Malay Heritage Centre,2023 Apr,0
 Malay Heritage Centre,2023 May,0
 Malay Heritage Centre,2023 Jun,0
@@ -1693,9 +1714,9 @@ Malay Heritage Centre,2024 Sep,0
 Malay Heritage Centre,2024 Oct,0
 Malay Heritage Centre,2024 Nov,0
 Malay Heritage Centre,2024 Dec,0
-Children's Museum Singapore,2023 Jan,10.5
-Children's Museum Singapore,2023 Feb,16.5
-Children's Museum Singapore,2023 Mar,21.6
+Malay Heritage Centre,2025 Jan,0
+Malay Heritage Centre,2025 Feb,0
+Malay Heritage Centre,2025 Mar,0
 Children's Museum Singapore,2023 Apr,16.4
 Children's Museum Singapore,2023 May,15.6
 Children's Museum Singapore,2023 Jun,18.1
@@ -1717,9 +1738,9 @@ Children's Museum Singapore,2024 Sep,22.6
 Children's Museum Singapore,2024 Oct,15.6
 Children's Museum Singapore,2024 Nov,16
 Children's Museum Singapore,2024 Dec,17.3
-Changi Chapel And Museum,2023 Jan,3.4
-Changi Chapel And Museum,2023 Feb,5
-Changi Chapel And Museum,2023 Mar,4.8
+Children's Museum Singapore,2025 Jan,13.3
+Children's Museum Singapore,2025 Feb,11.3
+Children's Museum Singapore,2025 Mar,14.5
 Changi Chapel And Museum,2023 Apr,3.9
 Changi Chapel And Museum,2023 May,3.6
 Changi Chapel And Museum,2023 Jun,4.2
@@ -1741,9 +1762,9 @@ Changi Chapel And Museum,2024 Sep,3.2
 Changi Chapel And Museum,2024 Oct,3.6
 Changi Chapel And Museum,2024 Nov,3.4
 Changi Chapel And Museum,2024 Dec,3.2
-Reflections At Bukit Chandu,2023 Jan,2.7
-Reflections At Bukit Chandu,2023 Feb,4.1
-Reflections At Bukit Chandu,2023 Mar,3.7
+Changi Chapel And Museum,2025 Jan,3.3
+Changi Chapel And Museum,2025 Feb,4.5
+Changi Chapel And Museum,2025 Mar,4
 Reflections At Bukit Chandu,2023 Apr,3.2
 Reflections At Bukit Chandu,2023 May,2.7
 Reflections At Bukit Chandu,2023 Jun,2.7
@@ -1765,51 +1786,6 @@ Reflections At Bukit Chandu,2024 Sep,2
 Reflections At Bukit Chandu,2024 Oct,2.6
 Reflections At Bukit Chandu,2024 Nov,2.1
 Reflections At Bukit Chandu,2024 Dec,2.2
-Asian Civilisations Museum,2025 Jan,38.4
-Asian Civilisations Museum,2025 Feb,37.8
-Asian Civilisations Museum,2025 Mar,31.9
-National Museum Of Singapore,2025 Jan,102.1
-National Museum Of Singapore,2025 Feb,74.8
-National Museum Of Singapore,2025 Mar,53.9
-Singapore Art Museum,2025 Jan,67.3
-Singapore Art Museum,2025 Feb,67.1
-Singapore Art Museum,2025 Mar,83
-Peranakan Museum,2025 Jan,11.4
-Peranakan Museum,2025 Feb,10.9
-Peranakan Museum,2025 Mar,23.8
-Science Centre Singapore,2025 Jan,77.4
-Science Centre Singapore,2025 Feb,67.6
-Science Centre Singapore,2025 Mar,75.3
-Mandai Bird Paradise,2025 Jan,77.1
-Mandai Bird Paradise,2025 Feb,67.1
-Mandai Bird Paradise,2025 Mar,77.2
-Night Safari,2025 Jan,105.1
-Night Safari,2025 Feb,86.5
-Night Safari,2025 Mar,76.2
-River Wonders,2025 Jan,82.5
-River Wonders,2025 Feb,69
-River Wonders,2025 Mar,62.8
-Singapore Zoological Gardens,2025 Jan,118.2
-Singapore Zoological Gardens,2025 Feb,109.4
-Singapore Zoological Gardens,2025 Mar,97.9
-Jurong Lake Gardens,2025 Jan,547.5
-Jurong Lake Gardens,2025 Feb,541.1
-Jurong Lake Gardens,2025 Mar,547.8
-Sun Yat Sen Nanyang Memorial Hall,2025 Jan,0
-Sun Yat Sen Nanyang Memorial Hall,2025 Feb,0
-Sun Yat Sen Nanyang Memorial Hall,2025 Mar,0
-Indian Heritage Centre,2025 Jan,20.3
-Indian Heritage Centre,2025 Feb,16.3
-Indian Heritage Centre,2025 Mar,13.3
-Malay Heritage Centre,2025 Jan,0
-Malay Heritage Centre,2025 Feb,0
-Malay Heritage Centre,2025 Mar,0
-Children's Museum Singapore,2025 Jan,13.3
-Children's Museum Singapore,2025 Feb,11.3
-Children's Museum Singapore,2025 Mar,14.5
-Changi Chapel And Museum,2025 Jan,3.3
-Changi Chapel And Museum,2025 Feb,4.5
-Changi Chapel And Museum,2025 Mar,4
 Reflections At Bukit Chandu,2025 Jan,2
 Reflections At Bukit Chandu,2025 Feb,3.8
 Reflections At Bukit Chandu,2025 Mar,3.4
