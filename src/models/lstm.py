@@ -9,51 +9,51 @@ from keras.models import Sequential
 from keras.layers import LSTM, Dense
 
 def lstm(data, eval, h):
-    # Use only the 'Value' column for LSTM forecasting
-    values = data['value'].values.reshape(-1, 1)
-    
-    # Set seed, try to control randomness
+    feature_cols = ['value', 'intl_arrivals']
+    features = data[feature_cols].values          # (N, n_features)
+    target = data['value'].values.reshape(-1, 1)  # (N, 1)
+
+    # Set seed for reproducibility
     random_state = 42
     tf.random.set_seed(random_state)
     tf.config.experimental.enable_op_determinism()
 
-    # Normalize the values
-    scaler = MinMaxScaler(feature_range=(0, 1))
-    values_scaled = scaler.fit_transform(values)
+    # Normalize features and target separately, so the target scaler can invert
+    # the model's predictions back to the original scale.
+    feature_scaler = MinMaxScaler(feature_range=(0, 1))
+    features_scaled = feature_scaler.fit_transform(features)
+    target_scaler = MinMaxScaler(feature_range=(0, 1))
+    target_scaled = target_scaler.fit_transform(target)
 
-    # Define a function to create sequences for LSTM
-    def create_sequences(data, time_steps):
+    # Define a function to create sequences for LSTM: a window of `time_steps`
+    # feature rows (X) predicting the next target row (y).
+    def create_sequences(X_data, y_data, time_steps):
         X, y = [], []
-        for i in range(len(data) - time_steps):
-            X.append(data[i:i + time_steps])
-            y.append(data[i + time_steps])
+        for i in range(len(X_data) - time_steps):
+            X.append(X_data[i:i + time_steps])
+            y.append(y_data[i + time_steps])
         return np.array(X), np.array(y)
-    
+
     # Create train-test split (80-20), ensuring no missing rows
     time_steps = 12
+    n_features = features_scaled.shape[1]
     if eval:
-        train_size = int(len(values_scaled) * 0.8)
-
-        # Include the last `time_steps` rows of training in test
-        train = values_scaled[:train_size]
-        test = values_scaled[train_size - time_steps:]
-
-        # Create sequences
-        X_train, y_train = create_sequences(train, time_steps)
-        X_test, y_test = create_sequences(test, time_steps)
-    
+        train_size = int(len(features_scaled) * 0.8)
     else:
-        train_size = int(len(values_scaled)) - h
-        train = values_scaled[:train_size]
-        test = values_scaled[train_size - time_steps:]
-        
-        # Create sequences
-        X_train, y_train = create_sequences(train, time_steps)
-        X_test, y_test = create_sequences(test, time_steps)
+        train_size = len(features_scaled) - h
 
+    # Include the last `time_steps` rows of training in test
+    X_train_raw = features_scaled[:train_size]
+    y_train_raw = target_scaled[:train_size]
+    X_test_raw = features_scaled[train_size - time_steps:]
+    y_test_raw = target_scaled[train_size - time_steps:]
+
+    # Create sequences
+    X_train, y_train = create_sequences(X_train_raw, y_train_raw, time_steps)
+    X_test, y_test = create_sequences(X_test_raw, y_test_raw, time_steps)
 
     model = Sequential([
-        LSTM(50, return_sequences=True, input_shape=(time_steps, 1)),# need to change the number if add more exo variables
+        LSTM(50, return_sequences=True, input_shape=(time_steps, n_features)),
         LSTM(50, return_sequences=False),
         Dense(25),
         Dense(1)
@@ -68,11 +68,11 @@ def lstm(data, eval, h):
     test_predict = model.predict(X_test)
 
     # Inverse scale the predictions and actual values
-    test_predict = scaler.inverse_transform(test_predict)
+    test_predict = target_scaler.inverse_transform(test_predict)
 
     if eval:
         # Inverse scale the predictions and actual values
-        y_test_inv = scaler.inverse_transform(y_test)
+        y_test_inv = target_scaler.inverse_transform(y_test)
 
         # Compute RMSE and MAPE
         rmse_lstm = np.sqrt(mean_squared_error(y_test_inv, test_predict))

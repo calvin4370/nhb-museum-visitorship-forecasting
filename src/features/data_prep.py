@@ -1,6 +1,9 @@
 import numpy as np
 import pandas as pd
 
+# SingStat Table Series name
+INTL_ARRIVALS_SERIES = "Total International Visitor Arrivals By Place Of Residence"
+
 
 def sin_cos_month(df):
     # Cyclical encoding of month
@@ -20,7 +23,20 @@ def is_covid(df):
     return df
 
 
-def engineer_features(museum_ts):
+def add_intl_arrivals(df, arrivals):
+    """
+    Merges total international visitor arrivals into the df
+    """
+    arr = arrivals.loc[
+        arrivals["Data Series"] == INTL_ARRIVALS_SERIES,
+        ["Reporting Period", "Value"],
+    ].copy()
+    arr.rename(columns={"Value": "intl_arrivals"}, inplace=True)
+    arr["intl_arrivals"] = pd.to_numeric(arr["intl_arrivals"])
+    return df.merge(arr, on="Reporting Period", how="left")
+
+
+def engineer_features(museum_ts, arrivals):
     df = museum_ts.copy()
     df["timestamp"] = pd.to_datetime(df["Reporting Period"], format="%Y %b")
     df.rename(columns={"Value": "value"}, inplace=True)
@@ -30,7 +46,10 @@ def engineer_features(museum_ts):
     # from disk.
     df["value"] = pd.to_numeric(df["value"])
 
-    # Cyclocal encoding of month
+    # Add international arrivals column
+    df = add_intl_arrivals(df, arrivals)
+
+    # Cyclical encoding of month
     df = sin_cos_month(df)
 
     # Create lag features (1 to 12 months)
@@ -62,11 +81,11 @@ def add_monthly_avg(train_data, test_data):
     return train_data, test_data
 
 
-def prepare_eval_data(museum_ts):
+def prepare_eval_data(museum_ts, arrivals):
     """
     Build an 80/20 chronological train/test split
     """
-    df = engineer_features(museum_ts)
+    df = engineer_features(museum_ts, arrivals)
 
     split_point = int(len(df) * 0.8)
     train_data = df[:split_point]
@@ -78,12 +97,12 @@ def prepare_eval_data(museum_ts):
     return train_data, test_data, df
 
 
-def prepare_predict_data(museum_ts, h):
+def prepare_predict_data(museum_ts, arrivals, h):
     """
     Build a full-history train set plus a synthetic h-month-ahead future
     frame to for model to forecast.
     """
-    df = engineer_features(museum_ts)
+    df = engineer_features(museum_ts, arrivals)
     train_data = df
 
     # Create a synthetic future frame for h months ahead
@@ -117,6 +136,10 @@ def prepare_predict_data(museum_ts, h):
         ].fillna(0)
     for lag in range(1, 13):
         test_data.drop(f"lag_imp_{lag}", axis=1, inplace=True)
+
+    # Do the same forinternational arrivals
+    arrivals_monthly_avg = df.groupby("month")["intl_arrivals"].mean()
+    test_data["intl_arrivals"] = test_data["month"].map(arrivals_monthly_avg)
 
     full_data = pd.concat([df, test_data], axis=0, join="outer")
     return train_data, test_data, full_data

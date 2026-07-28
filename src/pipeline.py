@@ -12,7 +12,7 @@ from src.visualisation.timeplot import timeplot, forecast_table
 from src.models.model_registry import MODEL_REGISTRY
 
 
-def run_museum_pipeline(museum, visitors):
+def run_museum_pipeline(museum, visitors, arrivals):
     """
     Train and perform hyperparameter tuning for all 8 models for one museum,
     pick the best model by lowest RMSE, then predict with only that model,
@@ -26,7 +26,7 @@ def run_museum_pipeline(museum, visitors):
     museum_ts = visitors.loc[visitors.loc[:, "Data Series"] == museum, :]
 
     # Train and evaluate all models, performing hyperparameter tuning where applicable
-    train_data, test_data, full_data = prepare_eval_data(museum_ts)
+    train_data, test_data, full_data = prepare_eval_data(museum_ts, arrivals)
     full_data.to_csv(f"./data/processed/{museum_code}_eval.csv", index=False)
 
     eval_rows = []      # [(key, [Model, RMSE, MAPE]), ...]   (one per surviving model)
@@ -76,7 +76,7 @@ def run_museum_pipeline(museum, visitors):
     print(f"  [{museum}] winning model: {best_key} (RMSE={model_eval_df.loc[best_idx, 'RMSE']:.2f})")
 
     # Predict with only the winning model
-    predict_train, predict_test, predict_full = prepare_predict_data(museum_ts, h)
+    predict_train, predict_test, predict_full = prepare_predict_data(museum_ts, arrivals, h)
     predict_full.to_csv(f"./data/processed/{museum_code}_predict.csv", index=False)
     _, forecast, _ = MODEL_REGISTRY[best_key](
         predict_train, predict_test, predict_full, False,

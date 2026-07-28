@@ -9,18 +9,18 @@ from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_er
 
 
 def support_vec(train_data, test_data, eval, best_params=None):
-    # Set seed for random forest
+    # Set seed for reproducibility
     random_state = 42
 
     # Define features and target
-    features = ["sin_month", "cos_month", "monthly_avg", "is_covid"] + [
+    features = ["sin_month", "cos_month", "monthly_avg", "is_covid", "intl_arrivals"] + [
         f"lag_{i}" for i in range(1, 13)
     ]
     target = "value"
 
     # SVR requires features to be scaled
     scaler = StandardScaler()
-    X_train_scaled =pd.DataFrame(scaler.fit_transform(train_data[features]), columns=train_data[features].columns, index=train_data[features].index)
+    X_train_scaled = pd.DataFrame(scaler.fit_transform(train_data[features]), columns=train_data[features].columns, index=train_data[features].index)
     X_test_scaled = scaler.transform(test_data[features])
     y_train = train_data[target]
 
@@ -28,7 +28,7 @@ def support_vec(train_data, test_data, eval, best_params=None):
     train_data = pd.concat([X_train_scaled, y_train], axis=1)
 
     # If best_params is provided, use it
-        # Else, perform hyperparameter optimization with Optuna
+    # Else, perform hyperparameter optimization with Optuna
     if best_params is None:
         def objective(trial, data=train_data, val_size=10):
             # Define hyperparameter search space

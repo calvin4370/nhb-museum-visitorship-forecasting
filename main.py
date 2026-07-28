@@ -23,7 +23,7 @@ def main():
 
     for museum in museums:
         print(f"=== {museum} ===")
-        run_museum_pipeline(museum, visitors)
+        run_museum_pipeline(museum, visitors, arrivals)
         print(f"=== {museum} complete ===\n")
 
 
