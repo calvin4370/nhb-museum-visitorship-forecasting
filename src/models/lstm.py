@@ -18,12 +18,22 @@ def lstm(data, eval, h):
     tf.random.set_seed(random_state)
     tf.config.experimental.enable_op_determinism()
 
-    # Normalize features and target separately, so the target scaler can invert
-    # the model's predictions back to the original scale.
+    # Determine the train/test boundary first so the scalers can be fit on the
+    # training slice only. Fitting on the full series would leak the test (and,
+    # in predict mode, the synthetic future) min/max into normalization.
+    time_steps = 12
+    if eval:
+        train_size = int(len(features) * 0.8)
+    else:
+        train_size = len(features) - h
+
+    # Normalize features and target 
+    # Fit scalers on train data ONLY
     feature_scaler = MinMaxScaler(feature_range=(0, 1))
-    features_scaled = feature_scaler.fit_transform(features)
+    features_scaled = feature_scaler.fit(features[:train_size]).transform(features)
     target_scaler = MinMaxScaler(feature_range=(0, 1))
-    target_scaled = target_scaler.fit_transform(target)
+    target_scaled = target_scaler.fit(target[:train_size]).transform(target)
+    n_features = features_scaled.shape[1]
 
     # Define a function to create sequences for LSTM: a window of `time_steps`
     # feature rows (X) predicting the next target row (y).
@@ -34,14 +44,7 @@ def lstm(data, eval, h):
             y.append(y_data[i + time_steps])
         return np.array(X), np.array(y)
 
-    # Create train-test split (80-20), ensuring no missing rows
-    time_steps = 12
-    n_features = features_scaled.shape[1]
-    if eval:
-        train_size = int(len(features_scaled) * 0.8)
-    else:
-        train_size = len(features_scaled) - h
-
+    # Create train-test split (80-20), ensuring no missing rows.
     # Include the last `time_steps` rows of training in test
     X_train_raw = features_scaled[:train_size]
     y_train_raw = target_scaled[:train_size]
