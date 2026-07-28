@@ -3,7 +3,6 @@ import numpy as np
 
 import optuna
 from statsmodels.tsa.statespace.sarimax import SARIMAX
-from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
 import warnings
@@ -20,17 +19,10 @@ def sarimax_model(train_data, test_data, eval, best_params=None):
     # Set seed for reproducibility
     random_state = 42
 
-    # Standardise exogenous features
-    exog_scaler = StandardScaler()
-    train_scaled = train_data.copy()
-    train_scaled[features] = exog_scaler.fit_transform(train_data[features])
-    test_scaled = test_data.copy()
-    test_scaled[features] = exog_scaler.transform(test_data[features])
-
     # If best_params is provided, use it
     # Else, perform hyperparameter optimization with Optuna
     if best_params is None:
-        def objective(trial, data=train_scaled, val_size=10):
+        def objective(trial, data=train_data, val_size=10):
             # Define the search space
             # Non-seasonal params
             p = trial.suggest_int('p', 0, 5)
@@ -73,8 +65,8 @@ def sarimax_model(train_data, test_data, eval, best_params=None):
 
     # Train the best model
     best_model = SARIMAX(
-        endog=train_scaled[target],
-        exog=train_scaled[features],
+        endog=train_data[target],
+        exog=train_data[features],
         order=(best_params["p"], best_params["d"], best_params["q"]),
         seasonal_order=(best_params["P"], best_params["D"], best_params["Q"], 12),
         enforce_stationarity=False,
@@ -84,7 +76,7 @@ def sarimax_model(train_data, test_data, eval, best_params=None):
 
     # Forecasting
     forecast_periods = len(test_data["value"])
-    forecast = best_model_fitted.get_forecast(steps=forecast_periods, exog=test_scaled[features])
+    forecast = best_model_fitted.get_forecast(steps=forecast_periods, exog=test_data[features])
     test_data["Forecast"] = forecast.predicted_mean.values
 
     if eval:    
