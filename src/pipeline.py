@@ -12,12 +12,15 @@ from src.visualisation.timeplot import timeplot, forecast_table
 from src.models.model_registry import MODEL_REGISTRY
 
 
-def run_museum_pipeline(museum, visitors, arrivals):
+def run_museum_pipeline(museum, visitors, arrivals, models=None):
     """
     Train and perform hyperparameter tuning for all 8 models for one museum,
     pick the best model by lowest RMSE, then predict with only that model,
     reusing its tuned hyperparameters. All of this museum's outputs (plots,
     model_eval, predictions) are written to outputs/{museum_code}/ as they're produced.
+
+    `models` optionally restricts the run to a subset of registry keys (in
+    registry order); None runs every model.
     """
     museum_code = MUSEUM_CODES[museum]
     os.makedirs(f"./outputs/{museum_code}", exist_ok=True)
@@ -34,7 +37,11 @@ def run_museum_pipeline(museum, visitors, arrivals):
     tuned_params = {}   # key -> best_params (or None for non-tunable models)
     pretty_names = {}   # key -> pretty model name (e.g. "XGBoost"), for plot titles
 
-    for key, model_fn in MODEL_REGISTRY.items():
+    selected_models = (
+        MODEL_REGISTRY if models is None
+        else {key: MODEL_REGISTRY[key] for key in models}
+    )
+    for key, model_fn in selected_models.items():
         try:
             model_eval, forecast, best_params = model_fn(
                 train_data, test_data, full_data, True

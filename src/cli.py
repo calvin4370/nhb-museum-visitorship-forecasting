@@ -1,8 +1,8 @@
-"""Command-line argument parsing and museum-code validation for main.py."""
+"""Command-line argument parsing and museum-code/model-key validation for main.py."""
 import argparse
 import sys
 
-from config import MUSEUM_CODES
+from config import MUSEUM_CODES, MODEL_KEYS
 
 
 def parse_args():
@@ -13,6 +13,16 @@ def parse_args():
         type=str,
         default=None,
         help="Run for specific museums only (case-insensitive codes, e.g. python main.py --museum ACM PM). Omit to run all museums.",
+    )
+    parser.add_argument(
+        "--models", "-M",
+        nargs="+",
+        type=str,
+        default=None,
+        help=(
+            "Run specific models only (case-insensitive keys, e.g. python main.py --models rf xgb lstm). "
+            f"Choices: {', '.join(MODEL_KEYS)}. Omit to run all models."
+        ),
     )
     return parser.parse_args()
 
@@ -37,6 +47,30 @@ def resolve_museum_selection(raw_codes):
     # If no valid museum codes were provided, exit without running anything
     if not selected:
         print("No valid museum codes provided. Exiting now.")
+        sys.exit(1)
+
+    return selected
+
+
+def resolve_model_selection(raw_keys):
+    """
+    Validate CLI model keys (case-insensitive) against the model registry.
+    Prints one error line per invalid key; if none of the given keys are valid,
+    exits without running anything. Valid keys among an otherwise invalid list
+    still get run.
+    """
+    selected = []
+    for raw_key in raw_keys:
+        key = raw_key.lower()
+        if key not in MODEL_KEYS:
+            print(f'"{raw_key}" is not a valid model. Choose from: {", ".join(MODEL_KEYS)}.')
+            continue
+        if key not in selected:
+            selected.append(key)
+
+    # If no valid model keys were provided, exit without running anything
+    if not selected:
+        print("No valid models provided. Exiting now.")
         sys.exit(1)
 
     return selected
