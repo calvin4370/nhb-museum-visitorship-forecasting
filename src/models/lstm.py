@@ -11,15 +11,24 @@ from keras.layers import LSTM, Dense
 def lstm(data, eval, h):
     # Use only the 'Value' column for LSTM forecasting
     values = data['value'].values.reshape(-1, 1)
-    
+
     # Set seed, try to control randomness
     random_state = 42
     tf.random.set_seed(random_state)
     tf.config.experimental.enable_op_determinism()
 
-    # Normalize the values
+    # Determine the train/test boundary first so the scaler can be fit on the
+    # training slice only. Fitting on the full series would leak the test (and,
+    # in predict mode, the synthetic future) min/max into normalization.
+    time_steps = 12
+    if eval:
+        train_size = int(len(values) * 0.8)
+    else:
+        train_size = len(values) - h
+
+    # Normalize the values -- fit scaler on train data ONLY
     scaler = MinMaxScaler(feature_range=(0, 1))
-    values_scaled = scaler.fit_transform(values)
+    values_scaled = scaler.fit(values[:train_size]).transform(values)
 
     # Define a function to create sequences for LSTM
     def create_sequences(data, time_steps):
@@ -28,29 +37,15 @@ def lstm(data, eval, h):
             X.append(data[i:i + time_steps])
             y.append(data[i + time_steps])
         return np.array(X), np.array(y)
-    
-    # Create train-test split (80-20), ensuring no missing rows
-    time_steps = 12
-    if eval:
-        train_size = int(len(values_scaled) * 0.8)
 
-        # Include the last `time_steps` rows of training in test
-        train = values_scaled[:train_size]
-        test = values_scaled[train_size - time_steps:]
+    # Create train-test split (80-20), ensuring no missing rows.
+    # Include the last `time_steps` rows of training in test
+    train = values_scaled[:train_size]
+    test = values_scaled[train_size - time_steps:]
 
-        # Create sequences
-        X_train, y_train = create_sequences(train, time_steps)
-        X_test, y_test = create_sequences(test, time_steps)
-    
-    else:
-        train_size = int(len(values_scaled)) - h
-        train = values_scaled[:train_size]
-        test = values_scaled[train_size - time_steps:]
-        
-        # Create sequences
-        X_train, y_train = create_sequences(train, time_steps)
-        X_test, y_test = create_sequences(test, time_steps)
-
+    # Create sequences
+    X_train, y_train = create_sequences(train, time_steps)
+    X_test, y_test = create_sequences(test, time_steps)
 
     model = Sequential([
         LSTM(50, return_sequences=True, input_shape=(time_steps, 1)),# need to change the number if add more exo variables
