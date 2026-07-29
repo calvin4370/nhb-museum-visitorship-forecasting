@@ -21,6 +21,7 @@ def run_museum_pipeline(museum, visitors):
     """
     museum_code = MUSEUM_CODES[museum]
     os.makedirs(f"./outputs/{museum_code}", exist_ok=True)
+    os.makedirs("./data/processed", exist_ok=True)
 
     # Filter for the museum's visitors
     museum_ts = visitors.loc[visitors.loc[:, "Data Series"] == museum, :]
