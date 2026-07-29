@@ -10,7 +10,7 @@ horizon.
 MUSEUM_CODES = {
     "Asian Civilisations Museum": "ACM",
     "National Museum Of Singapore": "NMS",
-    "Peranakan Museum": "PM",
+    "Peranakan Museum": "TPM",
     "Indian Heritage Centre": "IHC",
     "Malay Heritage Centre": "MHC",
 }
