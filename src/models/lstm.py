@@ -1,12 +1,20 @@
+import os
+
 import numpy as np
 import pandas as pd
 
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 
+# Suppress TensorFlow logging before importing it. 
+# Set back to normal after import to only skip the 2 initialisation messages
+_stderr_fd = os.dup(2)
+os.dup2(os.open(os.devnull, os.O_WRONLY), 2)
 import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import LSTM, Dense
+os.dup2(_stderr_fd, 2)
+
 
 def lstm(data, eval, h):
     feature_cols = ['value', 'intl_arrivals']
