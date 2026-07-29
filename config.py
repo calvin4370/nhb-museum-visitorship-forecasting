@@ -4,13 +4,13 @@ institutions to forecast for, the reference data range, and the forecast
 horizon.
 """
 
-# These are the full names of the museums to forecast for, and their corresponding short codes
+# These are the full names of the museums (as stated in the SingStat tableBuilder API) to forecast for, and their corresponding short codes
 # Make sure to use the full names as they appear in the SingStat tableBuilder API, as they are used to filter the data for each museum.
 # The codes can be whatever you want
 MUSEUM_CODES = {
     "Asian Civilisations Museum": "ACM",
     "National Museum Of Singapore": "NMS",
-    "Peranakan Museum": "PM",
+    "Peranakan Museum": "TPM",
     "Indian Heritage Centre": "IHC",
     "Malay Heritage Centre": "MHC",
 }

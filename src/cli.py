@@ -4,25 +4,39 @@ import sys
 
 from config import MUSEUM_CODES, MODEL_KEYS
 
+# main.py help messages
+museum_flag_help = f"""Run for specific museums only (case-insensitive codes, e.g. python main.py --museum ACM TPM to only run pipelines for ACM and TPM).
+Choices: {', '.join(MUSEUM_CODES.keys())}
+Omit to run all museums.
+
+"""
+
+model_flag_help = f"""Run specific models only (case-insensitive keys, e.g. python main.py --models rf xgb lstm to only run the RF, XGB, and LSTM models).
+Choices: {', '.join(MODEL_KEYS)}
+Omit to run all models.
+"""
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Run the museum visitorship forecasting pipeline.")
+    parser = argparse.ArgumentParser(
+        prog="python main.py",
+        description="Run the museum visitorship forecasting pipeline.",
+        formatter_class=argparse.RawTextHelpFormatter, # allows my single string help messages to use newslines to split lines
+    )
     parser.add_argument(
         "--museum", "-m",
         nargs="+",
         type=str,
         default=None,
-        help="Run for specific museums only (case-insensitive codes, e.g. python main.py --museum ACM PM). Omit to run all museums.",
+        metavar="MUSEUM_CODE",
+        help=museum_flag_help,
     )
     parser.add_argument(
         "--models", "-M",
         nargs="+",
         type=str,
         default=None,
-        help=(
-            "Run specific models only (case-insensitive keys, e.g. python main.py --models rf xgb lstm). "
-            f"Choices: {', '.join(MODEL_KEYS)}. Omit to run all models."
-        ),
+        metavar="MODEL",
+        help=model_flag_help,
     )
     return parser.parse_args()
 

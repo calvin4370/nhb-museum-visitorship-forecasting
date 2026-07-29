@@ -1,5 +1,3 @@
-import os
-
 from config import MUSEUM_CODES, START_YEAR, START_MONTH, END_YEAR, END_MONTH
 from src.cli import parse_args, resolve_museum_selection, resolve_model_selection
 from src.data.singstat_api import singstat_api
