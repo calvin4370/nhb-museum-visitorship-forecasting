@@ -101,7 +101,7 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
     )
 
     # Predict with every surviving model, each reusing its own tuned hyperparameters
-    predict_train, predict_test, predict_full = prepare_predict_data(museum_ts, h)
+    predict_train, predict_test, predict_full = prepare_predict_data(museum_ts, arrivals, h)
     predict_full.to_csv(f"./data/processed/{museum_code}_predict.csv", index=False)
 
     per_model_fy = {}  # key -> Series (FY label -> total predicted visitors)
