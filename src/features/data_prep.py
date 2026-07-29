@@ -24,11 +24,9 @@ def engineer_features(museum_ts):
     df = museum_ts.copy()
     df["timestamp"] = pd.to_datetime(df["Reporting Period"], format="%Y %b")
     df.rename(columns={"Value": "value"}, inplace=True)
-    # SingStat's API returns numeric values as JSON strings (dtype object) --
-    # cast explicitly rather than relying on an implicit CSV round-trip to
-    # coerce the type, since museum_ts is now passed in memory, not re-read
-    # from disk.
-    df["value"] = pd.to_numeric(df["value"])
+
+    # Cast visitorship to numeric, coercing any non-numeric values (e.g., "-") to NaN. These will be dropped later.
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
 
     # Cyclocal encoding of month
     df = sin_cos_month(df)
@@ -36,7 +34,7 @@ def engineer_features(museum_ts):
     # Create lag features (1 to 12 months)
     for lag in range(1, 13):
         df[f"lag_{lag}"] = df["value"].shift(lag)
-    df.dropna(inplace=True) # Drop NaN rows created by lagging
+    df.dropna(inplace=True) # Drop NaN rows created by lagging or coerced "-" values
 
     # Create COVID indicator
     df = is_covid(df)
