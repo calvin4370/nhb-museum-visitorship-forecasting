@@ -1,0 +1,25 @@
+Institution,Model,Year,Month,Prediction
+Peranakan Museum,lstm,2026,4,17.106453
+Peranakan Museum,lstm,2026,5,16.699509
+Peranakan Museum,lstm,2026,6,17.422665
+Peranakan Museum,lstm,2026,7,17.334616
+Peranakan Museum,lstm,2026,8,17.825836
+Peranakan Museum,lstm,2026,9,23.810051
+Peranakan Museum,lstm,2026,10,18.80807
+Peranakan Museum,lstm,2026,11,17.822754
+Peranakan Museum,lstm,2026,12,16.322771
+Peranakan Museum,lstm,2027,1,15.559008
+Peranakan Museum,lstm,2027,2,15.723718
+Peranakan Museum,lstm,2027,3,16.334286
+Peranakan Museum,lstm,2027,4,19.255392
+Peranakan Museum,lstm,2027,5,17.772926
+Peranakan Museum,lstm,2027,6,18.227654
+Peranakan Museum,lstm,2027,7,17.925272
+Peranakan Museum,lstm,2027,8,18.327963
+Peranakan Museum,lstm,2027,9,23.810745
+Peranakan Museum,lstm,2027,10,18.724615
+Peranakan Museum,lstm,2027,11,17.789587
+Peranakan Museum,lstm,2027,12,16.373714
+Peranakan Museum,lstm,2028,1,15.671542
+Peranakan Museum,lstm,2028,2,15.874048
+Peranakan Museum,lstm,2028,3,16.444637
