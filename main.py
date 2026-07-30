@@ -18,6 +18,7 @@ def main():
     arrivals = singstat_api("M550001", START_YEAR, START_MONTH, END_YEAR, END_MONTH)
 
     # Save to csv
+    os.makedirs("./data/raw", exist_ok=True)
     visitors.to_csv("./data/raw/museum_ts.csv", index=False)
     arrivals.to_csv("./data/raw/intl_arrivals.csv", index=False)
 
