@@ -1,8 +1,54 @@
+import calendar
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
 import seaborn as sns
+
+# Half a month either side of an event, so a single-month one is spotlit rather than a hairline
+HALF_MONTH = pd.DateOffset(days=15)
+
+
+def _label_levels(ranges, starts, ends):
+    """Assign each range a stacking level so labels on overlapping ranges do not collide.
+
+    Args:
+        ranges: Sequence of ranges, in draw order.
+        starts: Callable returning a range's start.
+        ends: Callable returning a range's end.
+
+    Returns:
+        list[int]: Level per range -- how many earlier ranges it overlaps.
+    """
+    return [
+        sum(
+            1
+            for prev in ranges[:i]
+            if starts(prev) <= ends(r) and starts(r) <= ends(prev)
+        )
+        for i, r in enumerate(ranges)
+    ]
+
+
+def _label_anchor(start, end, lo, hi):
+    """Place a band's label, pinning it inside the axes when the band sits at an edge.
+
+    Args:
+        start: Left edge of the band.
+        end: Right edge of the band.
+        lo: Left axis bound.
+        hi: Right axis bound.
+
+    Returns:
+        tuple: (x position, horizontal alignment) for the label.
+    """
+    margin = (hi - lo) / 12
+    if start - lo < margin:
+        return start, "left"
+    if hi - end < margin:
+        return end, "right"
+    return start + (end - start) / 2, "center"
 
 
 def get_shape(df):
@@ -207,6 +253,171 @@ def plot_covid_period(df, title, xmin, xmax, covid_start, covid_end, ylabel="Mon
     ax.set_xlabel("")
     ax.set_ylabel(ylabel)
     ax.set_ylim(bottom=0)
+    ax.grid(False)
+    sns.despine()
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_seasonal_profile(df, title, xmin, xmax, exclude_ranges, month_ranges, footnote="", exclude_missing=True, ylabel="Average monthly visitors"):
+    """Plot mean visitorship per calendar month, with fixed-calendar events highlighted.
+
+    Args:
+        df: DataFrame with 'timestamp' and 'value' columns.
+        title: Title to display above the plot.
+        xmin: Start of the date range to average over.
+        xmax: End of the date range to average over.
+        exclude_ranges: Iterable of (start, end) date ranges to leave out, e.g. COVID.
+        month_ranges: Iterable of MonthRange to highlight, coloured from Set3.
+        footnote: Small grey note under the plot, e.g. what was excluded.
+        exclude_missing: If True, leave zero and missing months out of the
+            aggregation so closures do not drag the mean down.
+        ylabel: Y-axis label.
+    """
+    # Restrict to the date range, then drop each excluded range
+    data = df[df["timestamp"].between(xmin, xmax)]
+    for start, end in exclude_ranges:
+        data = data[~data["timestamp"].between(start, end)]
+
+    # Closure and gap months are not seasonality, so leave them out by default
+    if exclude_missing:
+        data = data[data["value"].notna() & (data["value"] != 0)]
+
+    # Mean visitorship for each calendar month, over every year kept
+    profile = data.groupby(data["timestamp"].dt.month)["value"].mean().reindex(range(1, 13))
+
+    # Line with a dot on every month
+    fig, ax = plt.subplots(figsize=(9, 4))
+    ax.plot(profile.index, profile.values, marker="o", zorder=3)
+    ax.set_xlim(0.5, 12.5)
+
+    # Each event spans half a month either side, labelled in full and stacked when overlapping
+    month_ranges = list(month_ranges)
+    colors = sns.color_palette("Set3", len(month_ranges))
+    levels = _label_levels(month_ranges, lambda r: r.start_month, lambda r: r.end_month)
+    xt = ax.get_xaxis_transform()  # x in data coords, y in axes fraction
+    for mr, color, level in zip(month_ranges, colors, levels):
+        start, end = mr.start_month - 0.5, mr.end_month + 0.5
+        ax.axvspan(start, end, color=color, zorder=0)
+        x, ha = _label_anchor(start, end, 0.5, 12.5)
+        ax.text(x, 0.97 - 0.08 * level, mr.name, transform=xt, ha=ha, va="top", fontsize=8)
+
+    # Ticks at every month, labelled with the short month code
+    ax.set_xticks(range(1, 13))
+    ax.set_xticklabels(calendar.month_abbr[1:])
+
+    # Headroom above the line so the labels do not sit on top of a peak
+    ax.set_ylim(0, profile.max() * (1.1 + 0.08 * max(levels, default=0)))
+
+    # Small grey note under the plot, with room reserved for it
+    if footnote:
+        fig.text(0.01, 0.01, footnote, fontsize=8, color="grey")
+
+    # Labels, bold title, and clean styling (no gridlines)
+    ax.set_title(title, fontweight="bold")
+    ax.set_xlabel("Month")
+    ax.set_ylabel(ylabel)
+    ax.set_ylim(bottom=0)
+    ax.grid(False)
+    sns.despine()
+    plt.tight_layout(rect=(0, 0.04, 1, 1) if footnote else None)
+    plt.show()
+
+
+def event_colors(event_ranges):
+    """Map each event name to its own Set3 colour, in the order the events appear.
+
+    Args:
+        event_ranges: Iterable of EventRange.
+
+    Returns:
+        dict: Event name to colour.
+    """
+    names = list(dict.fromkeys(e.name for e in event_ranges))
+    return dict(zip(names, sns.color_palette("Set3", len(names))))
+
+
+def plot_event_periods(df, title, xmin, xmax, event_ranges, colors=None, ylabel="Monthly visitorship ('000s)", y_millions=False):
+    """Plot the monthly series once per event, each event in its own Set3 colour.
+
+    One plot per event keeps the highlights readable.
+
+    Args:
+        df: DataFrame with 'timestamp' and 'value' columns.
+        title: Title to display above each plot; the event name is appended.
+        xmin: Left x-axis bound (shared across series).
+        xmax: Right x-axis bound (shared across series).
+        event_ranges: Iterable of EventRange, covering any number of events.
+        colors: Optional event name to colour map, so colours stay consistent
+            across calls that each plot only some of the events.
+        ylabel: Y-axis label (default is museum visitorship in thousands).
+        y_millions: If True, label y ticks in millions instead of a 1e6 offset.
+    """
+    # One Set3 colour per event, unless the caller supplied a shared map
+    event_ranges = [e for e in event_ranges if e.end >= xmin and e.start <= xmax]
+    names = list(dict.fromkeys(e.name for e in event_ranges))
+    colors = colors or event_colors(event_ranges)
+
+    # A plot of its own for each event
+    for name in names:
+        occurrences = [e for e in event_ranges if e.name == name]
+        _plot_one_event(df, f"{title} ({name})", xmin, xmax, occurrences, colors[name], ylabel, y_millions)
+
+
+def _plot_one_event(df, title, xmin, xmax, occurrences, color, ylabel, y_millions):
+    """Plot a monthly series with every occurrence of a single event highlighted.
+
+    Args:
+        df: DataFrame with 'timestamp' and 'value' columns.
+        title: Title to display above the plot.
+        xmin: Left x-axis bound.
+        xmax: Right x-axis bound.
+        occurrences: EventRange list for one event, already clipped to the range.
+        color: Colour for every band of this event.
+        ylabel: Y-axis label.
+        y_millions: If True, label y ticks in millions instead of a 1e6 offset.
+    """
+    # Reindex onto every month in range so gaps in the series show as gaps
+    full_idx = pd.date_range(xmin, xmax, freq="MS")
+    series = df.set_index("timestamp")["value"].reindex(full_idx)
+
+    # Line over the fixed x range
+    _, ax = plt.subplots(figsize=(12, 3))
+    line, = ax.plot(full_idx, series.values, zorder=3)
+    ax.set_xlim(xmin, xmax)
+
+    # Each occurrence spans half a month either side, labelled with the event code
+    xt = ax.get_xaxis_transform()  # x in data coords, y in axes fraction
+    for event in occurrences:
+        start, end = event.start - HALF_MONTH, event.end + HALF_MONTH
+        ax.axvspan(start, end, color=color, zorder=0)
+        x, ha = _label_anchor(start, end, xmin, xmax)
+        ax.text(x, 0.97, event.code, transform=xt, ha=ha, va="top", fontsize=8)
+
+        # Dot on each month the event covers
+        months = pd.date_range(event.start, event.end, freq="MS")
+        ax.scatter(months, series.reindex(months).values, color=line.get_color(), s=18, zorder=4)
+
+    # Vertical line at each year boundary
+    for year in range(xmin.year, xmax.year + 1):
+        ax.axvline(pd.Timestamp(year=year, month=1, day=1), color="lightgray", linewidth=1, zorder=1)
+
+    # Ticks only at each January, labelled with the year
+    ax.xaxis.set_major_locator(mdates.YearLocator())
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
+
+    # Y ticks in millions, so no 1e6 offset sits above the axis
+    if y_millions:
+        ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v / 1e6:g}"))
+
+    # Headroom above the line so the labels do not sit on top of a peak
+    top = series.max()
+    ax.set_ylim(0, top * 1.12 if top else None)
+
+    # Labels, bold title, and clean styling (no gridlines)
+    ax.set_title(title, fontweight="bold")
+    ax.set_xlabel("")
+    ax.set_ylabel(ylabel)
     ax.grid(False)
     sns.despine()
     plt.tight_layout()
