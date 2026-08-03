@@ -41,10 +41,9 @@ def engineer_features(museum_ts, arrivals):
     df["timestamp"] = pd.to_datetime(df["Reporting Period"], format="%Y %b")
     df.rename(columns={"Value": "value"}, inplace=True)
     # SingStat's API returns numeric values as JSON strings (dtype object) --
-    # cast explicitly rather than relying on an implicit CSV round-trip to
-    # coerce the type, since museum_ts is now passed in memory, not re-read
-    # from disk.
-    df["value"] = pd.to_numeric(df["value"])
+    # cast explicitly. Non-numeric placeholders (e.g. "-", closed months) coerce
+    # to NaN and are imputed as 0 visitors rather than dropped.
+    df["value"] = pd.to_numeric(df["value"], errors="coerce").fillna(0)
 
     # Add international arrivals column
     df = add_intl_arrivals(df, arrivals)
