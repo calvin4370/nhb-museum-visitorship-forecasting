@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 
+from config import COVID_START, COVID_END
+
 # SingStat Table Series name
 INTL_ARRIVALS_SERIES = "Total International Visitor Arrivals By Place Of Residence"
 
@@ -14,11 +16,9 @@ def sin_cos_month(df):
 
 
 def is_covid(df):
-    # Create COVID indicator, COVID impact captured between Apr 2020 to Feb 2023
-    covid_start = pd.Timestamp("2020-04-01")
-    covid_end = pd.Timestamp("2023-02-13")
+    # Create COVID indicator over the period defined in config
     df["is_covid"] = (
-        (df["timestamp"] >= covid_start) & (df["timestamp"] <= covid_end)
+        (df["timestamp"] >= COVID_START) & (df["timestamp"] <= COVID_END)
     ).astype(int)
     return df
 

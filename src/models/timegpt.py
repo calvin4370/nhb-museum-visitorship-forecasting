@@ -8,6 +8,8 @@ from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 
 from utilsforecast.losses import mae, mse, rmse, mape, smape
 
+from src.features.data_prep import is_covid
+
 def timegpt(train_data, test_data, eval):
     # Initialize NixtlaClient
     nixtla_api_key = os.getenv('nixtla_api_key')
@@ -21,9 +23,7 @@ def timegpt(train_data, test_data, eval):
     future_dates['intl_arrivals'] = test_data['intl_arrivals'].values
     future_dates['lag_1'] = train_data['value'].iloc[-1]  # Last value from train as lag_1
     future_dates['lag_12'] = train_data['value'].iloc[-12]  # Value 12 months back as lag_12
-    covid_start = pd.Timestamp('2020-04-01')
-    covid_end = pd.Timestamp('2023-02-13')
-    future_dates['is_covid'] = ((future_dates["timestamp"]>=covid_start) & (future_dates["timestamp"]<=covid_end)).astype(int)  
+    future_dates = is_covid(future_dates)
 
     # Forecast using Nixtla
     forecast_horizon = len(test_data)
