@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+from matplotlib.ticker import FuncFormatter
 import seaborn as sns
 
 
@@ -69,7 +70,7 @@ def _month_runs(months):
     return runs
 
 
-def plot_monthly_visitorship(df, title, xmin, xmax, ylabel="Monthly visitorship ('000s)", highlight_missing=True, train_test=False):
+def plot_monthly_visitorship(df, title, xmin, xmax, ylabel="Monthly visitorship ('000s)", highlight_missing=True, train_test=False, y_millions=False):
     """Plot a monthly series (e.g. museum visitorship or arrivals) over a shared date range.
 
     When enabled, zero months are shaded orange and missing months red, so gaps
@@ -85,6 +86,7 @@ def plot_monthly_visitorship(df, title, xmin, xmax, ylabel="Monthly visitorship 
             "onlyorange" shades both orange for a cleaner look; False disables shading.
         train_test: If given as (train_start, split, test_end), shade the train span
             green and the test span blue (behind other shading) and label each.
+        y_millions: If True, label y ticks in millions instead of a 1e6 offset.
     """
     # Line of visitorship over time, on a fixed x range
     _, ax = plt.subplots(figsize=(12, 3))
@@ -100,7 +102,7 @@ def plot_monthly_visitorship(df, title, xmin, xmax, ylabel="Monthly visitorship 
         ax.text(train_start + (split - train_start) / 2, 0.96, "Train", transform=xt,
                 ha="center", va="top", color="green", fontweight="bold")
         ax.text(split + (test_end - split) / 2, 0.96, "Test", transform=xt,
-                ha="center", va="top", color="blue", fontweight="bold")
+                ha="center", va="top", color="darkblue", fontweight="bold")
 
     # Optionally shade zero months (orange) and missing months -- absent rows or NaN (red)
     if highlight_missing:
@@ -128,11 +130,83 @@ def plot_monthly_visitorship(df, title, xmin, xmax, ylabel="Monthly visitorship 
     ax.xaxis.set_major_locator(mdates.YearLocator())
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
 
+    # Y ticks in millions, so no 1e6 offset sits above the axis
+    if y_millions:
+        ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v / 1e6:g}"))
+
     # Labels, bold title, and clean styling (no gridlines)
     ax.set_title(title, fontweight="bold")
     ax.set_xlabel("")
     ax.set_ylabel(ylabel)
     ax.set_ylim(bottom=0)  # anchor y-axis at 0 so zero months sit on the x-axis
+    ax.grid(False)
+    sns.despine()
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_covid_period(df, title, xmin, xmax, covid_start, covid_end, ylabel="Monthly visitorship ('000s)", y_millions=False):
+    """Plot a monthly series against the COVID period, with bad months marked as dots.
+
+    Zero months get an orange dot, missing months a red dot at 0, and any line
+    segment joining two such months is drawn red, so runs of bad data stand out
+    against the shaded COVID window.
+
+    Args:
+        df: DataFrame with 'timestamp' and 'value' columns.
+        title: Title to display above the plot.
+        xmin: Left x-axis bound (shared across series).
+        xmax: Right x-axis bound (shared across series).
+        covid_start: Start of the COVID period to shade.
+        covid_end: End of the COVID period to shade.
+        ylabel: Y-axis label (default is museum visitorship in thousands).
+        y_millions: If True, label y ticks in millions instead of a 1e6 offset.
+    """
+    # Reindex onto every month in range; absent months count as missing and plot at 0
+    full_idx = pd.date_range(xmin, xmax, freq="MS")
+    series = df.set_index("timestamp")["value"].reindex(full_idx)
+    missing = series.isna()
+    zero = series == 0
+    series = series.fillna(0)
+
+    # Line over the fixed x range, with the COVID period shaded light blue behind it
+    _, ax = plt.subplots(figsize=(12, 3))
+    ax.axvspan(covid_start, covid_end, color="lightblue", alpha=0.5, zorder=0)
+    ax.plot(full_idx, series.values, zorder=2)
+    ax.set_xlim(xmin, xmax)
+
+    # Label the shaded span, on top of the plot
+    xt = ax.get_xaxis_transform()  # x in data coords, y in axes fraction
+    ax.text(covid_start + (covid_end - covid_start) / 2, 0.96, "COVID Period", transform=xt,
+            ha="center", va="top", color="black", fontweight="bold")
+
+    # Segments between two flagged months redrawn in red
+    flagged = (zero | missing).values
+    for i in range(len(series) - 1):
+        if flagged[i] and flagged[i + 1]:
+            ax.plot(full_idx[i:i + 2], series.values[i:i + 2], color="red", zorder=3)
+
+    # A dot on each flagged month: orange for zero, red for missing
+    for mask, color in [(zero, "orange"), (missing, "red")]:
+        ax.scatter(full_idx[mask], series.values[mask], color=color, s=22, zorder=4)
+
+    # Vertical line at each year boundary
+    for year in range(xmin.year, xmax.year + 1):
+        ax.axvline(pd.Timestamp(year=year, month=1, day=1), color="lightgray", linewidth=1, zorder=1)
+
+    # Ticks only at each January, labelled with the year
+    ax.xaxis.set_major_locator(mdates.YearLocator())
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
+
+    # Y ticks in millions, so no 1e6 offset sits above the axis
+    if y_millions:
+        ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v / 1e6:g}"))
+
+    # Labels, bold title, and clean styling (no gridlines)
+    ax.set_title(title, fontweight="bold")
+    ax.set_xlabel("")
+    ax.set_ylabel(ylabel)
+    ax.set_ylim(bottom=0)
     ax.grid(False)
     sns.despine()
     plt.tight_layout()
