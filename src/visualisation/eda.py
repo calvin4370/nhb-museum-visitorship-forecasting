@@ -191,6 +191,74 @@ def plot_monthly_visitorship(df, title, xmin, xmax, ylabel="Monthly visitorship 
     plt.show()
 
 
+def plot_imputed_period(df, imputed, impute_ranges, title, xmin, xmax, ylabel="Monthly visitorship ('000s)", y_millions=False):
+    """Plot actual monthly visitorship against values imputed over labelled ranges.
+
+    Actuals are drawn in red and imputed months in light green with a dot per
+    month, each range shaded, bounded by vertical green lines and labelled along
+    the top. Where a range lies inside the data both lines are visible, and the
+    gap between them is the imputation error.
+
+    Args:
+        df (pd.DataFrame): Actuals, with 'timestamp' and 'value' columns.
+        imputed (pd.DataFrame): Imputed months, with 'timestamp' and 'value' columns.
+        impute_ranges (list[ImputeRange]): The labelled ranges `imputed` covers.
+        title (str): Title to display above the plot.
+        xmin (pd.Timestamp): Left x-axis bound.
+        xmax (pd.Timestamp): Right x-axis bound; extend past the data for future ranges.
+        ylabel (str): Y-axis label (default is museum visitorship in thousands).
+        y_millions (bool): If True, label y ticks in millions instead of a 1e6 offset.
+    """
+    # Reindex both onto every month in range so gaps show as breaks in the line
+    full_idx = pd.date_range(xmin, xmax, freq="MS")
+    actual = df.set_index("timestamp")["value"].reindex(full_idx)
+    imputed_line = imputed.set_index("timestamp")["value"].reindex(full_idx)
+
+    # Carry the last actual month before each range into the green line so they meet
+    for impute_range in impute_ranges:
+        prior = actual.loc[actual.index < impute_range.start].last_valid_index()
+        if prior is not None:
+            imputed_line.loc[prior] = actual.loc[prior]
+
+    _, ax = plt.subplots(figsize=(12, 3))
+    ax.plot(full_idx, actual.values, color="#c44e52", label="Actual", zorder=3)
+    ax.plot(full_idx, imputed_line.values, color="#8fd694", marker="o", markersize=3,
+            label="Imputed", zorder=4)
+    ax.set_xlim(xmin, xmax)
+
+    # Shade each range, mark its boundaries, and label it along the top
+    xt = ax.get_xaxis_transform()  # x in data coords, y in axes fraction
+    for impute_range in impute_ranges:
+        ax.axvspan(impute_range.start, impute_range.end, color="#8fd694", alpha=0.15, zorder=0)
+        for edge in (impute_range.start, impute_range.end):
+            ax.axvline(edge, color="#55a868", linewidth=1.2, zorder=1)
+        ax.text(impute_range.start + (impute_range.end - impute_range.start) / 2, 0.96,
+                impute_range.label, transform=xt, ha="center", va="top",
+                color="#55a868", fontweight="bold")
+
+    # Vertical line at each year boundary
+    for year in range(xmin.year, xmax.year + 1):
+        ax.axvline(pd.Timestamp(year=year, month=1, day=1), color="lightgray", linewidth=1, zorder=0)
+
+    # Ticks only at each January, labelled with the year
+    ax.xaxis.set_major_locator(mdates.YearLocator())
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
+
+    # Y ticks in millions, so no 1e6 offset sits above the axis
+    if y_millions:
+        ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v / 1e6:g}"))
+
+    ax.set_title(title, fontweight="bold")
+    ax.set_xlabel("")
+    ax.set_ylabel(ylabel)
+    ax.set_ylim(bottom=0)
+    ax.grid(False)
+    ax.legend(loc="upper left", frameon=False, fontsize=9)
+    sns.despine()
+    plt.tight_layout()
+    plt.show()
+
+
 def plot_covid_period(df, title, xmin, xmax, covid_start, covid_end, ylabel="Monthly visitorship ('000s)", y_millions=False):
     """Plot a monthly series against the COVID period, with bad months marked as dots.
 
@@ -324,39 +392,42 @@ def plot_seasonal_profile(df, title, xmin, xmax, exclude_ranges, month_ranges, f
     plt.show()
 
 
-def event_colors(event_ranges):
-    """Map each event name to its own Set3 colour, in the order the events appear.
+def event_colors(event_ranges, palette="Set3"):
+    """Map each event name to its own colour, in the order the events appear.
 
     Args:
-        event_ranges: Iterable of EventRange.
+        event_ranges (Iterable[EventRange]): Events to colour.
+        palette (str | list): Anything sns.color_palette accepts -- a palette
+            name, or an explicit colour list to draw from.
 
     Returns:
-        dict: Event name to colour.
+        dict[str, tuple]: Event name to RGB colour.
     """
     names = list(dict.fromkeys(e.name for e in event_ranges))
-    return dict(zip(names, sns.color_palette("Set3", len(names))))
+    return dict(zip(names, sns.color_palette(palette, len(names))))
 
 
-def plot_event_periods(df, title, xmin, xmax, event_ranges, colors=None, ylabel="Monthly visitorship ('000s)", y_millions=False):
-    """Plot the monthly series once per event, each event in its own Set3 colour.
+def plot_event_periods(df, title, xmin, xmax, event_ranges, colors=None, palette="Set3", ylabel="Monthly visitorship ('000s)", y_millions=False):
+    """Plot the monthly series once per event, each event in its own colour.
 
     One plot per event keeps the highlights readable.
 
     Args:
-        df: DataFrame with 'timestamp' and 'value' columns.
-        title: Title to display above each plot; the event name is appended.
-        xmin: Left x-axis bound (shared across series).
-        xmax: Right x-axis bound (shared across series).
-        event_ranges: Iterable of EventRange, covering any number of events.
-        colors: Optional event name to colour map, so colours stay consistent
-            across calls that each plot only some of the events.
-        ylabel: Y-axis label (default is museum visitorship in thousands).
-        y_millions: If True, label y ticks in millions instead of a 1e6 offset.
+        df (pd.DataFrame): Frame with 'timestamp' and 'value' columns.
+        title (str): Title to display above each plot; the event name is appended.
+        xmin (pd.Timestamp): Left x-axis bound (shared across series).
+        xmax (pd.Timestamp): Right x-axis bound (shared across series).
+        event_ranges (Iterable[EventRange]): Events, covering any number of names.
+        colors (dict | None): Optional event name to colour map, so colours stay
+            consistent across calls that each plot only some of the events.
+        palette (str | list): Palette used when `colors` is not given (default "Set3").
+        ylabel (str): Y-axis label (default is museum visitorship in thousands).
+        y_millions (bool): If True, label y ticks in millions instead of a 1e6 offset.
     """
-    # One Set3 colour per event, unless the caller supplied a shared map
+    # One colour per event, unless the caller supplied a shared map
     event_ranges = [e for e in event_ranges if e.end >= xmin and e.start <= xmax]
     names = list(dict.fromkeys(e.name for e in event_ranges))
-    colors = colors or event_colors(event_ranges)
+    colors = colors or event_colors(event_ranges, palette)
 
     # A plot of its own for each event
     for name in names:

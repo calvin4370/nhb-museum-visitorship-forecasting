@@ -7,6 +7,24 @@ from config import COVID_START, COVID_END
 INTL_ARRIVALS_SERIES = "Total International Visitor Arrivals By Place Of Residence"
 
 
+class ImputeRange:
+    """A labelled month range to impute, e.g. the test period or the predict period."""
+
+    def __init__(self, label, start, end):
+        """
+        Args:
+            label (str): Name drawn on the plot, e.g. "Predict period".
+            start (pd.Timestamp): Month-start Timestamp of the range's first month.
+            end (pd.Timestamp): Month-start Timestamp of the range's last month.
+        """
+        self.label = label
+        self.start = start
+        self.end = end
+
+    def __repr__(self):
+        return f"ImputeRange({self.label!r}, {self.start:%Y-%m}, {self.end:%Y-%m})"
+
+
 def sin_cos_month(df):
     # Cyclical encoding of month
     df["month"] = df["timestamp"].dt.month
@@ -78,6 +96,50 @@ def add_monthly_avg(train_data, test_data):
     test_data = pd.merge(test_data, monthly_avg, on="month", how="left")
 
     return train_data, test_data
+
+
+def impute_monthly_avg(df, impute_ranges, window_years=None):
+    """Impute a monthly series over given ranges with the historical calendar-month mean.
+
+    Each range is filled from history strictly before that range starts, so a
+    range lying inside the data is never imputed from itself.
+
+    Args:
+        df (pd.DataFrame): Frame with 'timestamp' and 'value' columns.
+        impute_ranges (list[ImputeRange]): Labelled ranges to impute, inclusive of
+            both endpoints.
+        window_years (int | None): Years of history before each range to average
+            over; None uses all history available before the range.
+
+    Returns:
+        pd.DataFrame: 'label', 'timestamp' and imputed 'value', one row per imputed month.
+    """
+    history = df[["timestamp", "value"]].sort_values("timestamp")
+
+    frames = []
+    for impute_range in impute_ranges:
+        # Only history before the range, optionally limited to a trailing window
+        source = history[history["timestamp"] < impute_range.start]
+        if window_years is not None:
+            source = source[
+                source["timestamp"]
+                >= impute_range.start - pd.DateOffset(years=window_years)
+            ]
+
+        # Mean per calendar month, mapped onto every month in the range
+        monthly_avg = source.groupby(source["timestamp"].dt.month)["value"].mean()
+        months = pd.date_range(impute_range.start, impute_range.end, freq="MS")
+        frames.append(
+            pd.DataFrame(
+                {
+                    "label": impute_range.label,
+                    "timestamp": months,
+                    "value": months.month.map(monthly_avg),
+                }
+            )
+        )
+
+    return pd.concat(frames, ignore_index=True)
 
 
 def prepare_eval_data(museum_ts, arrivals):
