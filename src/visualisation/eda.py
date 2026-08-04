@@ -119,8 +119,8 @@ def _month_runs(months):
 def plot_monthly_visitorship(df, title, xmin, xmax, ylabel="Monthly visitorship ('000s)", highlight_missing=True, train_test=False, y_millions=False):
     """Plot a monthly series (e.g. museum visitorship or arrivals) over a shared date range.
 
-    When enabled, zero months are shaded orange and missing months red, so gaps
-    and closures are visible against the fixed [xmin, xmax] x-axis.
+    When enabled, zero months get an orange dot and missing months a red one, both
+    sitting at 0, so gaps and closures are visible against the fixed [xmin, xmax] x-axis.
 
     Args:
         df: DataFrame with 'timestamp' and 'value' columns.
@@ -128,8 +128,8 @@ def plot_monthly_visitorship(df, title, xmin, xmax, ylabel="Monthly visitorship 
         xmin: Left x-axis bound (shared across series).
         xmax: Right x-axis bound (shared across series).
         ylabel: Y-axis label (default is museum visitorship in thousands).
-        highlight_missing: If True, shade zero months orange and missing months red;
-            "onlyorange" shades both orange for a cleaner look; False disables shading.
+        highlight_missing: If True, dot zero months orange and missing months red;
+            "onlyorange" dots both orange for a cleaner look; False disables the dots.
         train_test: If given as (train_start, split, test_end), shade the train span
             green and the test span blue (behind other shading) and label each.
         y_millions: If True, label y ticks in millions instead of a 1e6 offset.
@@ -150,23 +150,20 @@ def plot_monthly_visitorship(df, title, xmin, xmax, ylabel="Monthly visitorship 
         ax.text(split + (test_end - split) / 2, 0.96, "Test", transform=xt,
                 ha="center", va="top", color="darkblue", fontweight="bold")
 
-    # Optionally shade zero months (orange) and missing months -- absent rows or NaN (red)
+    # Optionally dot zero months (orange) and missing months -- absent rows or NaN (red)
     if highlight_missing:
         full_idx = pd.date_range(xmin, xmax, freq="MS")
-        zero_months = pd.DatetimeIndex(df.loc[df["value"] == 0, "timestamp"])
-        missing_months = full_idx.difference(pd.DatetimeIndex(df["timestamp"]))
-        missing_months = missing_months.union(pd.DatetimeIndex(df.loc[df["value"].isna(), "timestamp"]))
+        series = df.set_index("timestamp")["value"].reindex(full_idx)
+        zero = series == 0
+        missing = series.isna()
 
         # "onlyorange" collapses the missing colour into orange for a cleaner look
         missing_color = "orange" if highlight_missing == "onlyorange" else "red"
 
-        # Draw each as merged contiguous blocks; a lone month becomes a single 1.5-wide line
-        for months, color in [(zero_months, "orange"), (missing_months, missing_color)]:
-            for start, end in _month_runs(months):
-                if start == end:
-                    ax.axvline(start, color=color, linewidth=1.5, zorder=0)
-                else:
-                    ax.axvspan(start, end, color=color, alpha=0.3, linewidth=0, zorder=0)
+        # One dot per flagged month, sitting at 0 and unconnected
+        at_zero = series.fillna(0)
+        for mask, color in [(zero, "orange"), (missing, missing_color)]:
+            ax.scatter(full_idx[mask], at_zero[mask], color=color, s=22, zorder=4)
 
     # Vertical line at each year boundary
     for year in range(xmin.year, xmax.year + 1):
@@ -184,7 +181,10 @@ def plot_monthly_visitorship(df, title, xmin, xmax, ylabel="Monthly visitorship 
     ax.set_title(title, fontweight="bold")
     ax.set_xlabel("")
     ax.set_ylabel(ylabel)
-    ax.set_ylim(bottom=0)  # anchor y-axis at 0 so zero months sit on the x-axis
+
+    # Anchor at 0 so zero months sit on the x-axis, with 10% headroom above the series
+    # so the train/test labels have somewhere to sit
+    ax.set_ylim(0, ax.get_ylim()[1] * 1.1)
     ax.grid(False)
     sns.despine()
     plt.tight_layout()
