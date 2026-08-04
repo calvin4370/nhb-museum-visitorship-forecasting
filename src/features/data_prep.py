@@ -1,10 +1,13 @@
 import numpy as np
 import pandas as pd
 
-from config import COVID_START, COVID_END
+from config import COVID_START, COVID_END, END_YEAR, END_MONTH
 
 # SingStat Table Series name
 INTL_ARRIVALS_SERIES = "Total International Visitor Arrivals By Place Of Residence"
+
+# Last month of the configured data window, the anchor every museum forecasts on from
+PERIOD_END = pd.to_datetime(f"{END_YEAR} {END_MONTH}", format="%Y %b")
 
 
 class ImputeRange:
@@ -158,18 +161,57 @@ def prepare_eval_data(museum_ts, arrivals):
     return train_data, test_data, df
 
 
+def pad_to_period_end(museum_ts):
+    """Pad a museum's raw series with zero-visitor rows up to the configured end month.
+
+    Only months at or after the museum's first record are added, so one that opened
+    late keeps its true start instead of gaining zeros for months before it existed.
+    Padding keeps every museum's history ending at PERIOD_END, which is what lets the
+    positional lag features below stay aligned to the calendar.
+
+    Args:
+        museum_ts (pd.DataFrame): Raw SingStat rows for one museum.
+
+    Returns:
+        pd.DataFrame: The same rows plus a zero-valued row per absent month, in date order.
+    """
+    df = museum_ts.copy()
+    months = pd.to_datetime(df["Reporting Period"], format="%Y %b")
+
+    # Months the API returned nothing for, between this museum's first record and the end
+    absent = pd.date_range(months.min(), PERIOD_END, freq="MS").difference(
+        pd.DatetimeIndex(months)
+    )
+    if absent.empty:
+        return df
+
+    # Reporting Period must be a real label so add_intl_arrivals can still merge on it
+    padding = pd.DataFrame(
+        {
+            "Data Series": df["Data Series"].iloc[0],
+            "Reporting Period": absent.strftime("%Y %b"),
+            "Value": 0,
+        }
+    )
+    padded = pd.concat([df, padding], ignore_index=True)
+
+    # engineer_features shifts by position, so the rows have to be in date order
+    order = pd.to_datetime(padded["Reporting Period"], format="%Y %b")
+    return padded.assign(_order=order).sort_values("_order").drop(columns="_order").reset_index(drop=True)
+
+
 def prepare_predict_data(museum_ts, arrivals, h):
     """
     Build a full-history train set plus a synthetic h-month-ahead future
     frame to for model to forecast.
     """
-    df = engineer_features(museum_ts, arrivals)
+    df = engineer_features(pad_to_period_end(museum_ts), arrivals)
     train_data = df
 
-    # Create a synthetic future frame for h months ahead
-    last_date = df["timestamp"].max()
+    # Every museum forecasts the same h months on from the configured end of the data,
+    # rather than from its own last reported month
     forecast_horizon = pd.date_range(
-        start=last_date + pd.DateOffset(months=1), periods=h, freq="MS"
+        start=PERIOD_END + pd.DateOffset(months=1), periods=h, freq="MS"
     )
     test_data = pd.DataFrame({"timestamp": forecast_horizon, "value": np.nan})
     test_data["Data Series"] = df["Data Series"].iloc[-1]
