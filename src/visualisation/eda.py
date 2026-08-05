@@ -6,6 +6,8 @@ import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
 import seaborn as sns
 
+from src.features.data_prep import impute_monthly_avg
+
 # Half a month either side of an event, so a single-month one is spotlit rather than a hairline
 HALF_MONTH = pd.DateOffset(days=15)
 
@@ -257,6 +259,35 @@ def plot_imputed_period(df, imputed, impute_ranges, title, xmin, xmax, ylabel="M
     sns.despine()
     plt.tight_layout()
     plt.show()
+
+
+def plot_imputations(df, name, impute_ranges, xmax=None, window_years=None, ylabel="Monthly visitorship ('000s)", y_millions=False):
+    """Plot a series' actuals with every given range imputed, on a single plot.
+
+    Args:
+        df (pd.DataFrame): Actuals, with 'timestamp' and 'value' columns.
+        name (str): Series name for the title, e.g. "ACM" or "International Arrivals".
+        impute_ranges (list[ImputeRange]): Labelled ranges to impute.
+        xmax (pd.Timestamp | None): Right x-axis bound; None ends at the last range,
+            so every series plotted with the same ranges shares an axis.
+        window_years (int | None): Years of history to average over; None uses all
+            history before each range, as the pipeline does today.
+        ylabel (str): Y-axis label (default is museum visitorship in thousands).
+        y_millions (bool): If True, label y ticks in millions instead of a 1e6 offset.
+    """
+    method = "full period" if window_years is None else f"past {window_years}-year"
+
+    imputed = impute_monthly_avg(df, impute_ranges, window_years=window_years)
+    plot_imputed_period(
+        df,
+        imputed,
+        impute_ranges,
+        title=f"{name}: Imputed with {method} historical monthly mean",
+        xmin=df["timestamp"].min(),
+        xmax=xmax if xmax is not None else max(r.end for r in impute_ranges),
+        ylabel=ylabel,
+        y_millions=y_millions,
+    )
 
 
 def plot_covid_period(df, title, xmin, xmax, covid_start, covid_end, ylabel="Monthly visitorship ('000s)", y_millions=False):
