@@ -46,15 +46,25 @@ def write_summary_txt(save_path, eval_table, fy_table, per_model_fy_table):
     """
     Writes the 3 tables to the report file
     """
+    # eval_table is sorted lowest-RMSE-first, so its first row is the winning model,
+    # and the FY totals are built from that model's forecast
+    winning_model = eval_table.iloc[0]["Model"]
+
+    # Each section is a title, its table, and an optional footer line under it
     sections = [
-        ("Model Evaluation", eval_table),
-        ("Total Visitors by Financial Year", fy_table),
-        ("Forecast FY Totals by Model", per_model_fy_table),
+        ("Model Evaluation", eval_table, f"Winning model: {winning_model}"),
+        (f"Total Visitors by Financial Year ({winning_model})", fy_table, ""),
+        ("Forecast FY Totals by Model", per_model_fy_table, ""),
     ]
+
+    # Build up the lines to be written to the file
     lines = []
-    for title, table in sections:
+    for title, table, footer in sections:
         lines.append(f"======== {title} ========")
         lines.append(format_table(table))
-        lines.append("")
+        if footer:
+            lines.append(footer)
+        lines.append("\n")
+
     with open(save_path, "w", encoding="utf-8") as f:
-        f.write("\n\n".join(lines))
+        f.write("\n".join(lines))
