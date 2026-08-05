@@ -6,7 +6,7 @@ from config import MUSEUM_CODES, MODEL_KEYS
 
 # main.py help messages
 museum_flag_help = f"""Run for specific museums only (case-insensitive codes, e.g. python main.py --museum ACM TPM to only run pipelines for ACM and TPM).
-Choices: {', '.join(MUSEUM_CODES.keys())}
+Choices: {', '.join(MUSEUM_CODES.values())}
 Omit to run all museums.
 
 """
