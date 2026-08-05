@@ -17,11 +17,14 @@ Omit to run all models.
 """
 
 def parse_args():
+    # Set up the command-line argument parser
     parser = argparse.ArgumentParser(
         prog="python main.py",
         description="Run the museum visitorship forecasting pipeline.",
         formatter_class=argparse.RawTextHelpFormatter, # allows my single string help messages to use newslines to split lines
     )
+
+    # --museum / -m flag for selecting specific museums to run
     parser.add_argument(
         "--museum", "-m",
         nargs="+",
@@ -30,6 +33,8 @@ def parse_args():
         metavar="MUSEUM_CODE",
         help=museum_flag_help,
     )
+
+    # --models / -M flag for selecting specific models to run
     parser.add_argument(
         "--models", "-M",
         nargs="+",
