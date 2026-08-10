@@ -72,10 +72,16 @@ def engineer_features(museum_ts, arrivals):
     # Cyclical encoding of month
     df = sin_cos_month(df)
 
+    # Arrivals are a separate SingStat table and can be published later than the visitorship one.
+    if df["intl_arrivals"].isna().any():
+        raise ValueError("No international arrivals data to impute from")
+
     # Create lag features (1 to 12 months)
     for lag in range(1, 13):
         df[f"lag_{lag}"] = df["value"].shift(lag)
-    df.dropna(inplace=True) # Drop NaN rows created by lagging
+
+    # Drop only the 12 leading months the lag features cannot fill
+    df.dropna(subset=[f"lag_{lag}" for lag in range(1, 13)], inplace=True)
 
     # Create COVID indicator
     df = is_covid(df)
@@ -207,6 +213,14 @@ def prepare_predict_data(museum_ts, arrivals, h):
     """
     df = engineer_features(pad_to_period_end(museum_ts), arrivals)
     train_data = df
+
+    # The lag features below are built by position, so a history that stops short of
+    # PERIOD_END would shift every one of them without raising anything
+    if df["timestamp"].max() != PERIOD_END:
+        raise ValueError(
+            f"History ends {df['timestamp'].max():%Y-%m}, expected {PERIOD_END:%Y-%m}; "
+            "lag features would be misaligned"
+        )
 
     # Every museum forecasts the same h months on from the configured end of the data,
     # rather than from its own last reported month
