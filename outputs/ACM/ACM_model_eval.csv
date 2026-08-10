@@ -1,3 +1,0 @@
-Institution,Model,RMSE,MAPE
-Asian Civilisations Museum,Holt-Winters exponential smoothing,10.68,17.93%
-Asian Civilisations Museum,Baseline Monthly Mean,15.85,30.54%
