@@ -89,14 +89,30 @@ def engineer_features(museum_ts, arrivals):
     return df
 
 
+def exclude_covid(df):
+    """Drop the rows falling inside the configured COVID period.
+
+    Args:
+        df (pd.DataFrame): Frame with a 'timestamp' column.
+
+    Returns:
+        pd.DataFrame: Only the rows outside COVID_START..COVID_END.
+    """
+    return df[(df["timestamp"] < COVID_START) | (df["timestamp"] > COVID_END)]
+
+
 def add_monthly_avg(train_data, test_data):
     """
     Monthly average computed on train only (avoid leakage), merged into test.
+    COVID months are excluded so the average reflects normal visitorship.
     """
     train_data = train_data.copy()
-    train_data["monthly_avg"] = train_data.groupby(train_data["month"])[
-        "value"
-    ].transform("mean")
+
+    # Average over non-COVID months only, then map back onto every train row
+    month_means = exclude_covid(train_data).groupby("month")["value"].mean()
+    if month_means.isna().any() or len(month_means) < train_data["month"].nunique():
+        raise ValueError("Some calendar months have no non-COVID data to average")
+    train_data["monthly_avg"] = train_data["month"].map(month_means)
 
     # Get a df of unique month -> monthly_avg pairs from train data only
     monthly_avg = train_data[["month", "monthly_avg"]].drop_duplicates()
@@ -257,8 +273,10 @@ def prepare_predict_data(museum_ts, arrivals, h):
     for lag in range(1, 13):
         test_data.drop(f"lag_imp_{lag}", axis=1, inplace=True)
 
-    # Do the same forinternational arrivals
-    arrivals_monthly_avg = df.groupby("month")["intl_arrivals"].mean()
+    # Do the same for international arrivals, likewise excluding COVID months
+    arrivals_monthly_avg = exclude_covid(df).groupby("month")["intl_arrivals"].mean()
+    if arrivals_monthly_avg.isna().any() or len(arrivals_monthly_avg) < 12:
+        raise ValueError("Some calendar months have no non-COVID arrivals to average")
     test_data["intl_arrivals"] = test_data["month"].map(arrivals_monthly_avg)
 
     # train_data, not df: it is the copy carrying monthly_avg
