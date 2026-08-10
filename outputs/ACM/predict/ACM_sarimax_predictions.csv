@@ -1,0 +1,25 @@
+Institution,Model,Year,Month,Prediction
+Asian Civilisations Museum,sarimax,2026,4,41.559164822490864
+Asian Civilisations Museum,sarimax,2026,5,52.71402808165257
+Asian Civilisations Museum,sarimax,2026,6,45.70203940077292
+Asian Civilisations Museum,sarimax,2026,7,50.45807069269307
+Asian Civilisations Museum,sarimax,2026,8,55.83344001230596
+Asian Civilisations Museum,sarimax,2026,9,47.76561933217712
+Asian Civilisations Museum,sarimax,2026,10,55.88840879081451
+Asian Civilisations Museum,sarimax,2026,11,56.400812665128775
+Asian Civilisations Museum,sarimax,2026,12,43.289895988835966
+Asian Civilisations Museum,sarimax,2027,1,68.22673628290131
+Asian Civilisations Museum,sarimax,2027,2,68.11853731226924
+Asian Civilisations Museum,sarimax,2027,3,57.89563248598855
+Asian Civilisations Museum,sarimax,2027,4,67.66251633935062
+Asian Civilisations Museum,sarimax,2027,5,87.04722464781783
+Asian Civilisations Museum,sarimax,2027,6,74.30730800199707
+Asian Civilisations Museum,sarimax,2027,7,75.83201808354268
+Asian Civilisations Museum,sarimax,2027,8,79.52011066106738
+Asian Civilisations Museum,sarimax,2027,9,70.74549326314799
+Asian Civilisations Museum,sarimax,2027,10,80.18044848940418
+Asian Civilisations Museum,sarimax,2027,11,84.92545680035954
+Asian Civilisations Museum,sarimax,2027,12,64.48497217404827
+Asian Civilisations Museum,sarimax,2028,1,97.38184132869924
+Asian Civilisations Museum,sarimax,2028,2,99.41618318749576
+Asian Civilisations Museum,sarimax,2028,3,86.2216423628345
