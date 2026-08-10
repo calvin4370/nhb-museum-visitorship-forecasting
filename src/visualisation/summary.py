@@ -10,7 +10,7 @@ import pandas as pd
 def FY_label(timestamp):
     """
     Returns the Financial Year label from the timestamp.
-    Financial years run from April to March, e.g. FY2026 is Apr 2026 - Mar 2026.
+    Financial years run from April to March, e.g. FY2026 is Apr 2026 - Mar 2027.
     """
     year = timestamp.year if timestamp.month >= 4 else timestamp.year - 1
     return f"FY{year}"
@@ -53,7 +53,7 @@ def write_summary_txt(save_path, eval_table, fy_table, per_model_fy_table):
     # Each section is a title, its table, and an optional footer line under it
     sections = [
         ("Model Evaluation", eval_table, f"Winning model: {winning_model}"),
-        (f"Total Visitors by Financial Year ({winning_model})", fy_table, ""),
+        (f"Total Visitors ('000s) by Financial Year ({winning_model})", fy_table, ""),
         ("Forecast FY Totals by Model", per_model_fy_table, ""),
     ]
 
