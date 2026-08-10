@@ -1,6 +1,11 @@
 import numpy as np
 import pandas as pd
 
+# Period of COVID impact: Apr 2020 (circuit breaker, museums shut) to
+# 13 Feb 2023 (DORSCON Green, remaining border restrictions lifted)
+COVID_START = pd.Timestamp("2020-04-01")
+COVID_END = pd.Timestamp("2023-02-13")
+
 
 def sin_cos_month(df):
     # Cyclical encoding of month
@@ -11,11 +16,9 @@ def sin_cos_month(df):
 
 
 def is_covid(df):
-    # Create COVID indicator, COVID impact captured between Apr 2020 to Feb 2023
-    covid_start = pd.Timestamp("2020-04-01")
-    covid_end = pd.Timestamp("2023-02-13")
+    # Create COVID indicator over the period defined at the top of this module
     df["is_covid"] = (
-        (df["timestamp"] >= covid_start) & (df["timestamp"] <= covid_end)
+        (df["timestamp"] >= COVID_START) & (df["timestamp"] <= COVID_END)
     ).astype(int)
     return df
 
@@ -28,7 +31,7 @@ def engineer_features(museum_ts):
     # Cast visitorship to numeric, coercing any non-numeric values (e.g., "-") to NaN. These will be dropped later.
     df["value"] = pd.to_numeric(df["value"], errors="coerce")
 
-    # Cyclocal encoding of month
+    # Cyclical encoding of month
     df = sin_cos_month(df)
 
     # Create lag features (1 to 12 months)
@@ -45,11 +48,18 @@ def engineer_features(museum_ts):
 def add_monthly_avg(train_data, test_data):
     """
     Monthly average computed on train only (avoid leakage), merged into test.
+    COVID months are excluded so the average reflects normal visitorship.
     """
     train_data = train_data.copy()
-    train_data["monthly_avg"] = train_data.groupby(train_data["month"])[
-        "value"
-    ].transform("mean")
+
+    # Average over non-COVID months only, then map back onto every train row
+    normal = train_data[
+        (train_data["timestamp"] < COVID_START) | (train_data["timestamp"] > COVID_END)
+    ]
+    month_means = normal.groupby("month")["value"].mean()
+    if month_means.isna().any() or len(month_means) < train_data["month"].nunique():
+        raise ValueError("Some calendar months have no non-COVID data to average")
+    train_data["monthly_avg"] = train_data["month"].map(month_means)
 
     # Get a df of unique month -> monthly_avg pairs from train data only
     monthly_avg = train_data[["month", "monthly_avg"]].drop_duplicates()
