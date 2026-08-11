@@ -1,0 +1,40 @@
+======== Model Evaluation ========
+Model                               RMSE   MAPE                    
+XGBoost                             4.09   1833571934321932032.00% 
+LSTM                                4.58   2056846647549069568.00% 
+Random Forest Regressor             8.03   3425108767374461440.00% 
+Baseline Monthly Mean               9.33   3984530901087665664.00% 
+Support Vector Regression           12.20  5040266878927548416.00% 
+SARIMAX                             20.94  9256959246737227776.00% 
+Holt-Winters exponential smoothing  32.88  13052763019298254848.00%
+Winning model: XGBoost
+
+
+======== Total Visitors ('000s) by Financial Year (XGBoost) ========
+FY                   Total Visitors ('000s)
+FY2014               109.1                 
+FY2015               504.2                 
+FY2016               558.1                 
+FY2017               718.1                 
+FY2018               741.6                 
+FY2019               675.1                 
+FY2020               59.5                  
+FY2021               84.7                  
+FY2022               171.5                 
+FY2023               0.0                   
+FY2024               0.0                   
+FY2025 (Prediction)  177.9                 
+FY2026 (Prediction)  458.9                 
+FY2027 (Prediction)  169.4                 
+
+
+======== Forecast FY Totals by Model ========
+Model                               RMSE   MAPE                      FY2025  FY2026  FY2027
+XGBoost                             4.09   1833571934321932032.00%   177.9   458.9   169.4 
+LSTM                                4.58   2056846647549069568.00%   230.8   415.7   127.9 
+Random Forest Regressor             8.03   3425108767374461440.00%   163.4   483.7   170.8 
+Baseline Monthly Mean               9.33   3984530901087665664.00%   28.2    28.2    0.0   
+Support Vector Regression           12.20  5040266878927548416.00%   235.7   419.8   126.6 
+SARIMAX                             20.94  9256959246737227776.00%   179.0   391.3   133.7 
+Holt-Winters exponential smoothing  32.88  13052763019298254848.00%  -9.8    33.0    26.4  
+
