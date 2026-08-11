@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 
 from config import COVID_START, COVID_END, END_YEAR, END_MONTH
+from src.events.event_range import EventRange
 
 # SingStat Table Series name
 INTL_ARRIVALS_SERIES = "Total International Visitor Arrivals By Place Of Residence"
@@ -44,6 +45,42 @@ def is_covid(df):
     return df
 
 
+def add_event_flag(df, event_stem, col):
+    """Flag the months covered by any occurrence of one recorded event.
+
+    Args:
+        df (pd.DataFrame): Frame with a 'timestamp' column.
+        event_stem (str): Event CSV stem in event_ranges/, e.g. "deepavali".
+        col (str): Name of the indicator column to add.
+
+    Returns:
+        pd.DataFrame: The same frame with `col` added, 1 inside an occurrence else 0.
+    """
+    occurrences = EventRange.from_folder(names=[event_stem])
+
+    # A month counts if it falls inside any one of the event's occurrences
+    covered = pd.Series(False, index=df.index)
+    for event in occurrences:
+        covered |= df["timestamp"].between(event.start, event.end)
+
+    # Convert booleans to 0/1 to represent whether that event occurred in that month, and add to the frame
+    df[col] = covered.astype(int)
+    return df
+
+
+def add_event_features(df):
+    """Add every event indicator the models can draw on.
+
+    Args:
+        df (pd.DataFrame): Frame with a 'timestamp' column.
+
+    Returns:
+        pd.DataFrame: The same frame with one indicator column per event.
+    """
+    # Computed for every museum; the per-museum feature list decides who uses them
+    return add_event_flag(df=df, event_stem="deepavali", col="is_deepavali")
+
+
 def add_intl_arrivals(df, arrivals):
     """
     Merges total international visitor arrivals into the df
@@ -83,8 +120,11 @@ def engineer_features(museum_ts, arrivals):
     # Drop only the 12 leading months the lag features cannot fill
     df.dropna(subset=[f"lag_{lag}" for lag in range(1, 13)], inplace=True)
 
-    # Create COVID indicator
+    # Create COVID features
     df = is_covid(df)
+
+    # Add event features (for now only is_deepavali)
+    df = add_event_features(df)
 
     return df
 
@@ -250,6 +290,7 @@ def prepare_predict_data(museum_ts, arrivals, h):
     test_data["Data Series"] = df["Data Series"].iloc[-1]
     test_data = sin_cos_month(test_data)
     test_data = is_covid(test_data)
+    test_data = add_event_features(test_data)
 
     # Concatenate the last 12 months of actual data with the synthetic future frame
     new_df = df.tail(12)

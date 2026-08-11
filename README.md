@@ -1,5 +1,7 @@
 # Visitor Forecast 
 
+add: remember to update deepavali.csv manually
+
 ## Project folder structure 
 Look at Combined folder (where all the codes are consolidated at)  
 ```

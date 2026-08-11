@@ -7,7 +7,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from config import MUSEUM_CODES, h
+from config import MUSEUM_CODES, h, features_for
 from src.features.data_prep import prepare_eval_data, prepare_predict_data
 from src.visualisation.timeplot import timeplot, forecast_table, top_n_timeplot
 from src.visualisation.summary import FY_totals, write_summary_txt
@@ -31,9 +31,18 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
     # Filter for the museum's visitors
     museum_ts = visitors.loc[visitors.loc[:, "Data Series"] == museum, :]
 
+    # Resolved once so eval and predict tune and forecast on the same features
+    features = features_for(museum_code)
+
     # Train and evaluate all models, performing hyperparameter tuning where applicable
     train_data, test_data, full_data = prepare_eval_data(museum_ts, arrivals)
     full_data.to_csv(f"./data/processed/{museum_code}_eval.csv", index=False)
+
+    # Fail loudly here rather than deep inside a model mid-run. Checked on
+    # train_data, not full_data: monthly_avg is added by the train/test split
+    missing = [f for f in features if f not in train_data.columns]
+    if missing:
+        raise ValueError(f"{museum_code} features not engineered: {', '.join(missing)}")
 
     eval_rows = []  # [(key, [Model, RMSE, MAPE]), ...]   (one per surviving model)
     tuned_params = {}  # key -> best_params (or None for non-tunable models)
@@ -46,7 +55,7 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
     for key, model_fn in selected_models.items():
         try:
             model_eval, forecast, best_params = model_fn(
-                train_data, test_data, full_data, True
+                train_data, test_data, full_data, True, features
             )
         except Exception as e:
             print(f"  [{museum}] {key} failed during eval, skipping: {e}")
@@ -116,6 +125,7 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
             predict_test,
             predict_full,
             False,
+            features,
             best_params=tuned_params[key],
         )
 

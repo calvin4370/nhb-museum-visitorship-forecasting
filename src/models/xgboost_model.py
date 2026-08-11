@@ -6,11 +6,8 @@ from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_er
 from sklearn.model_selection import TimeSeriesSplit
 from xgboost import XGBRegressor
 
-def xgb(train_data, test_data, eval, best_params=None):
-    # Define features and target
-    features = ["sin_month", "cos_month", "monthly_avg", "is_covid", "intl_arrivals"] + [
-        f"lag_{i}" for i in range(1, 13)
-    ]
+def xgb(train_data, test_data, eval, features, best_params=None):
+    # Target the caller's feature list predicts
     target = "value"
 
     # Set seed for random forest

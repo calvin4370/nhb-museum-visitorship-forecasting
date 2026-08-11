@@ -8,14 +8,11 @@ from sklearn.svm import SVR
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
 
-def support_vec(train_data, test_data, eval, best_params=None):
+def support_vec(train_data, test_data, eval, features, best_params=None):
     # Set seed for reproducibility
     random_state = 42
 
-    # Define features and target
-    features = ["sin_month", "cos_month", "monthly_avg", "is_covid", "intl_arrivals"] + [
-        f"lag_{i}" for i in range(1, 13)
-    ]
+    # Target the caller's feature list predicts
     target = "value"
 
     # SVR requires features to be scaled
