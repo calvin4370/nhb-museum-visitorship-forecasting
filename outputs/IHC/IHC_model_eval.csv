@@ -1,0 +1,8 @@
+Institution,Model,RMSE,MAPE
+Indian Heritage Centre,Holt-Winters exponential smoothing,6.21,36.59%
+Indian Heritage Centre,Random Forest Regressor,6.78,31.97%
+Indian Heritage Centre,Support Vector Regression,7.13,34.54%
+Indian Heritage Centre,LSTM,7.24,45.22%
+Indian Heritage Centre,XGBoost,7.29,33.50%
+Indian Heritage Centre,Baseline Monthly Mean,8.79,33.24%
+Indian Heritage Centre,SARIMAX,10.16,69.28%
