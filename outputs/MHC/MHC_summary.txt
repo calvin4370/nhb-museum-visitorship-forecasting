@@ -1,0 +1,40 @@
+======== Model Evaluation ========
+Model                               RMSE   MAPE                    
+Baseline Monthly Mean               9.33   3984530901087665664.00% 
+SARIMAX                             11.17  4389134190229710336.00% 
+Random Forest Regressor             18.99  8387621762797078528.00% 
+Support Vector Regression           20.28  8895863727909204992.00% 
+LSTM                                20.78  9103488266962408448.00% 
+Holt-Winters exponential smoothing  32.88  13052763019298254848.00%
+XGBoost                             34.04  14907159966279270400.00%
+Winning model: Baseline Monthly Mean
+
+
+======== Total Visitors ('000s) by Financial Year (Baseline Monthly Mean) ========
+FY                   Total Visitors ('000s)
+FY2014               109.1                 
+FY2015               504.2                 
+FY2016               558.1                 
+FY2017               718.1                 
+FY2018               741.6                 
+FY2019               675.1                 
+FY2020               59.5                  
+FY2021               84.7                  
+FY2022               171.5                 
+FY2023               0.0                   
+FY2024               0.0                   
+FY2025               0.0                   
+FY2026 (Prediction)  0.0                   
+FY2027 (Prediction)  0.0                   
+
+
+======== Forecast FY Totals by Model ========
+Model                               RMSE   MAPE                      FY2026  FY2027
+Baseline Monthly Mean               9.33   3984530901087665664.00%   0.0     0.0   
+SARIMAX                             11.17  4389134190229710336.00%   182.5   195.8 
+Random Forest Regressor             18.99  8387621762797078528.00%   236.9   337.9 
+Support Vector Regression           20.28  8895863727909204992.00%   257.6   317.1 
+LSTM                                20.78  9103488266962408448.00%   232.2   383.2 
+Holt-Winters exponential smoothing  32.88  13052763019298254848.00%  214.3   484.6 
+XGBoost                             34.04  14907159966279270400.00%  289.2   306.1 
+

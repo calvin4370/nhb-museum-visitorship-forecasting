@@ -1,0 +1,38 @@
+======== Model Evaluation ========
+Model                               RMSE  MAPE  
+Holt-Winters exponential smoothing  6.21  36.59%
+LSTM                                6.37  40.41%
+Support Vector Regression           6.60  30.52%
+Random Forest Regressor             6.68  29.80%
+XGBoost                             6.81  27.98%
+SARIMAX                             8.16  47.09%
+Baseline Monthly Mean               8.79  33.24%
+Winning model: Holt-Winters exponential smoothing
+
+
+======== Total Visitors ('000s) by Financial Year (Holt-Winters exponential smoothing) ========
+FY                   Total Visitors ('000s)
+FY2016               138.9                 
+FY2017               185.5                 
+FY2018               236.3                 
+FY2019               210.5                 
+FY2020               37.6                  
+FY2021               46.5                  
+FY2022               148.6                 
+FY2023               216.2                 
+FY2024               215.3                 
+FY2025               218.2                 
+FY2026 (Prediction)  232.8                 
+FY2027 (Prediction)  245.9                 
+
+
+======== Forecast FY Totals by Model ========
+Model                               RMSE  MAPE    FY2026  FY2027
+Holt-Winters exponential smoothing  6.21  36.59%  232.8   245.9 
+LSTM                                6.37  40.41%  194.4   199.2 
+Support Vector Regression           6.60  30.52%  171.8   164.8 
+Random Forest Regressor             6.68  29.80%  189.6   184.6 
+XGBoost                             6.81  27.98%  186.3   176.3 
+SARIMAX                             8.16  47.09%  249.8   299.1 
+Baseline Monthly Mean               8.79  33.24%  216.6   216.6 
+
