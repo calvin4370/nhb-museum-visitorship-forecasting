@@ -8,7 +8,7 @@ pipeline can loop over them generically:
 (hw, lstm, timegpt, baseline) absorb it in their adapter rather than their
 own signature.
 """
-from config import h, MODEL_KEYS
+from config import h, MODEL_KEYS, lstm_channels
 from src.models.randomforest import randomforest
 from src.models.xgboost_model import xgb
 from src.models.lstm import lstm
@@ -35,8 +35,8 @@ def _univariate_tunable_adapter(model_fn):
 
 def _lstm_adapter(train_data, test_data, full_data, run_eval, features, best_params=None):
     """lstm has a different signature (full_data, run_eval, h), no tuning, and
-    reads its own LSTM_FEATURES as per-timestep channels."""
-    model_eval, forecast = lstm(full_data, run_eval, h)
+    reads the museum's non-lag features as per-timestep channels."""
+    model_eval, forecast = lstm(full_data, run_eval, h, lstm_channels(features))
     return model_eval, forecast, None
 
 

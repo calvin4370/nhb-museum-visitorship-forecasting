@@ -6,7 +6,6 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 
-from config import LSTM_FEATURES
 
 # Suppress TensorFlow logging before importing it. 
 # Set back to normal after import to only skip the 2 initialisation messages
@@ -18,8 +17,8 @@ from keras.layers import LSTM, Dense
 os.dup2(_stderr_fd, 2)
 
 
-def lstm(data, eval, h):
-    features = data[LSTM_FEATURES].values         # (N, n_features)
+def lstm(data, eval, h, feature_cols):
+    features = data[feature_cols].values          # (N, n_features)
     target = data['value'].values.reshape(-1, 1)  # (N, 1)
 
     # Set seed for reproducibility

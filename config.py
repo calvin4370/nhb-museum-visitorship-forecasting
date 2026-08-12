@@ -38,14 +38,22 @@ BASE_FEATURES = ["sin_month", "cos_month", "monthly_avg", "is_covid", "intl_arri
     f"lag_{i}" for i in range(1, 13)
 ]
 
-# Per-museum overrides; a museum absent here uses BASE_FEATURES as-is.
-# Enable is_deepavali for IHC only once the refactor is confirmed to be a no-op:
-#     MUSEUM_FEATURES = {"IHC": BASE_FEATURES + ["is_deepavali"]}
-MUSEUM_FEATURES = {}
+# Per-museum overrides; a museum absent here uses BASE_FEATURES as-is
+MUSEUM_FEATURES = {"IHC": BASE_FEATURES + ["is_deepavali"]}
 
-# LSTM reads features as per-timestep channels. Same set the tabular models use,
-# minus the lag columns, which its 12-step input window already supplies
-LSTM_FEATURES = ["value", "sin_month", "cos_month", "monthly_avg", "is_covid", "intl_arrivals"]
+
+def lstm_channels(features):
+    """Return the per-timestep channels the LSTM should read.
+
+    Args:
+        features (list[str]): A museum's tabular feature list.
+
+    Returns:
+        list[str]: 'value' plus every non-lag feature. The 12-step input window
+            already supplies the lag columns, so passing them again would feed
+            the same history back once per timestep.
+    """
+    return ["value"] + [f for f in features if not f.startswith("lag_")]
 
 
 def features_for(museum_code):
