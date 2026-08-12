@@ -1,0 +1,8 @@
+Institution,Model,RMSE,MAPE
+National Museum Of Singapore,XGBoost,16.96,17.06%
+National Museum Of Singapore,Random Forest Regressor,17.48,17.02%
+National Museum Of Singapore,SARIMAX,18.79,15.99%
+National Museum Of Singapore,Support Vector Regression,19.38,16.54%
+National Museum Of Singapore,LSTM,23.71,18.76%
+National Museum Of Singapore,Baseline Monthly Mean,36.40,30.13%
+National Museum Of Singapore,Holt-Winters exponential smoothing,77.05,79.90%
