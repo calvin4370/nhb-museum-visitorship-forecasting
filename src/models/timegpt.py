@@ -25,6 +25,7 @@ def timegpt(train_data, test_data, eval):
     future_dates['lag_12'] = train_data['value'].iloc[-12]  # Value 12 months back as lag_12
     future_dates = is_covid(future_dates)
     future_dates = add_event_features(future_dates)
+    future_dates['is_closed'] = 0  # forecast assumes every museum stays open
 
     # Forecast using Nixtla
     forecast_horizon = len(test_data)
@@ -33,7 +34,7 @@ def timegpt(train_data, test_data, eval):
     #finetune_loss = 'rmse'  # tried tuning for rmse but got both worse results fr rmse and mape
 
     forecast_df = nixtla_client.forecast(
-        df=train_data[['timestamp', 'value', 'sin_month', 'cos_month', 'monthly_avg', 'intl_arrivals', 'lag_1', 'lag_12', "is_covid"]],
+        df=train_data[['timestamp', 'value', 'sin_month', 'cos_month', 'monthly_avg', 'intl_arrivals', 'lag_1', 'lag_12', "is_covid", "is_closed"]],
         h=forecast_horizon,
         time_col="timestamp",
         target_col="value",

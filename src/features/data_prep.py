@@ -45,6 +45,12 @@ def is_covid(df):
     return df
 
 
+def is_closed(df):
+    # A reported zero means the museum took no visitors that month
+    df["is_closed"] = (df["value"] == 0).astype(int)
+    return df
+
+
 def add_event_flag(df, event_stem, col):
     """Flag the months covered by any occurrence of one recorded event.
 
@@ -102,6 +108,9 @@ def engineer_features(museum_ts, arrivals):
     # cast explicitly. Non-numeric placeholders (e.g. "-", closed months) coerce
     # to NaN and are imputed as 0 visitors rather than dropped.
     df["value"] = pd.to_numeric(df["value"], errors="coerce").fillna(0)
+
+    # Flag closures only after the coercion above, so imputed months count as closed
+    df = is_closed(df)
 
     # Add international arrivals column
     df = add_intl_arrivals(df, arrivals)
@@ -291,6 +300,9 @@ def prepare_predict_data(museum_ts, arrivals, h):
     test_data = sin_cos_month(test_data)
     test_data = is_covid(test_data)
     test_data = add_event_features(test_data)
+
+    # Assume museums stay open throughout prediction period
+    test_data["is_closed"] = 0
 
     # Concatenate the last 12 months of actual data with the synthetic future frame
     new_df = df.tail(12)
