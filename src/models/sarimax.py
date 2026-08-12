@@ -59,8 +59,8 @@ def sarimax_model(train_data, test_data, eval, best_params=None):
                     exog=tr_exog,
                     order=(p, d, q),
                     seasonal_order=(P, D, Q, 12),
-                    enforce_stationarity=False,
-                    enforce_invertibility=False
+                    enforce_stationarity=True,
+                    enforce_invertibility=True
                 )
 
                 # Train model with suggested parameters
@@ -84,8 +84,8 @@ def sarimax_model(train_data, test_data, eval, best_params=None):
         exog=train_exog,
         order=(best_params["p"], best_params["d"], best_params["q"]),
         seasonal_order=(best_params["P"], best_params["D"], best_params["Q"], 12),
-        enforce_stationarity=False,
-        enforce_invertibility=False,
+        enforce_stationarity=True,
+        enforce_invertibility=True,
     )
     best_model_fitted = best_model.fit()
 
