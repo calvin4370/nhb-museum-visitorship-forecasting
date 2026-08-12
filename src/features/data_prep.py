@@ -73,7 +73,11 @@ def prepare_eval_data(museum_ts):
     # Create monthly average feature for train and test using only train data to avoid leakage
     train_data, test_data = add_monthly_avg(train_data, test_data)
 
-    return train_data, test_data, df
+    # Rebuilt from the two halves rather than returning df, so the frame the
+    # sequence models read carries monthly_avg as well
+    full_data = pd.concat([train_data, test_data], ignore_index=True)
+
+    return train_data, test_data, full_data
 
 
 def prepare_predict_data(museum_ts, h):
@@ -116,5 +120,6 @@ def prepare_predict_data(museum_ts, h):
     for lag in range(1, 13):
         test_data.drop(f"lag_imp_{lag}", axis=1, inplace=True)
 
-    full_data = pd.concat([df, test_data], axis=0, join="outer")
+    # train_data, not df: it is the copy carrying monthly_avg
+    full_data = pd.concat([train_data, test_data], axis=0, join="outer")
     return train_data, test_data, full_data

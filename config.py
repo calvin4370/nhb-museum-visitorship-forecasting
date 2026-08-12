@@ -23,3 +23,7 @@ END_YEAR, END_MONTH = 2026, "Mar"
 
 # Number of months to forecast, default 2 years (i.e., 24 months)
 h = 24
+
+# LSTM reads features as per-timestep channels. Same set the tabular models use,
+# minus the lag columns, which its 12-step input window already supplies
+LSTM_FEATURES = ["value", "sin_month", "cos_month", "monthly_avg", "is_covid"]
