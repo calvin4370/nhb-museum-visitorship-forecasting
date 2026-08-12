@@ -1,0 +1,40 @@
+======== Model Evaluation ========
+Model                               RMSE   MAPE  
+XGBoost                             7.03   13.23%
+Random Forest Regressor             7.22   14.00%
+Holt-Winters exponential smoothing  8.07   13.49%
+Support Vector Regression           8.26   14.15%
+SARIMAX                             8.27   16.63%
+LSTM                                9.35   22.09%
+Baseline Monthly Mean               15.85  30.54%
+Winning model: XGBoost
+
+
+======== Total Visitors ('000s) by Financial Year (XGBoost) ========
+FY                   Total Visitors ('000s)
+FY2014               78.2                  
+FY2015               413.4                 
+FY2016               522.4                 
+FY2017               483.7                 
+FY2018               572.7                 
+FY2019               586.8                 
+FY2020               153.2                 
+FY2021               197.1                 
+FY2022               372.8                 
+FY2023               424.4                 
+FY2024               401.6                 
+FY2025               529.9                 
+FY2026 (Prediction)  471.9                 
+FY2027 (Prediction)  489.7                 
+
+
+======== Forecast FY Totals by Model ========
+Model                               RMSE   MAPE    FY2026  FY2027
+XGBoost                             7.03   13.23%  471.9   489.7 
+Random Forest Regressor             7.22   14.00%  497.1   483.0 
+Holt-Winters exponential smoothing  8.07   13.49%  676.8   791.9 
+Support Vector Regression           8.26   14.15%  456.0   523.9 
+SARIMAX                             8.27   16.63%  539.7   528.3 
+LSTM                                9.35   22.09%  468.3   456.9 
+Baseline Monthly Mean               15.85  30.54%  452.0   452.0 
+
