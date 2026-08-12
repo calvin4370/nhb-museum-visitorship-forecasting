@@ -164,7 +164,10 @@ def prepare_eval_data(museum_ts, arrivals):
     # Create monthly average feature for train and test using only train data to avoid leakage
     train_data, test_data = add_monthly_avg(train_data, test_data)
 
-    return train_data, test_data, df
+    # full_data needs to be recreated from train_data and test_data to keep the added monthly_avg
+    full_data = pd.concat([train_data, test_data], ignore_index=True)
+
+    return train_data, test_data, full_data
 
 
 def pad_to_period_end(museum_ts):
@@ -258,5 +261,6 @@ def prepare_predict_data(museum_ts, arrivals, h):
     arrivals_monthly_avg = df.groupby("month")["intl_arrivals"].mean()
     test_data["intl_arrivals"] = test_data["month"].map(arrivals_monthly_avg)
 
-    full_data = pd.concat([df, test_data], axis=0, join="outer")
+    # train_data, not df: it is the copy carrying monthly_avg
+    full_data = pd.concat([train_data, test_data], axis=0, join="outer")
     return train_data, test_data, full_data

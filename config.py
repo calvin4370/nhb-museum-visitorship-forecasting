@@ -30,5 +30,9 @@ COVID_END = pd.Timestamp("2023-02-13") # 13 Feb 2023 (DORSCON Green, remaining b
 # Number of months to forecast, default 2 years (i.e., 24 months)
 h = 24
 
-# Short model keys, in the order the pipeline runs them. 
+# Short model keys, in the order the pipeline runs them.
 MODEL_KEYS = ["rf", "xgb", "svr", "hw", "sarimax", "lstm", "timegpt", "baseline"]
+
+# LSTM reads features as per-timestep channels. Same set the tabular models use,
+# minus the lag columns, which its 12-step input window already supplies
+LSTM_FEATURES = ["value", "sin_month", "cos_month", "monthly_avg", "is_covid", "intl_arrivals"]
