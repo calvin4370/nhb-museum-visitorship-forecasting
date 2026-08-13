@@ -331,6 +331,6 @@ def prepare_predict_data(museum_ts, arrivals, h):
         raise ValueError("Some calendar months have no non-COVID arrivals to average")
     future_frame["intl_arrivals"] = future_frame["month"].map(arrivals_monthly_avg)
 
-    # train_data, not df: it is the copy carrying monthly_avg
+    # must concat full_data + future_frame, to preserve monthly_avg and intl_arrivals features for future_frame
     combined_history = pd.concat([full_data, future_frame], axis=0, join="outer")
     return full_data, future_frame, combined_history
