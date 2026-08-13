@@ -320,5 +320,5 @@ def prepare_predict_data(museum_ts, arrivals, h):
     future_frame["intl_arrivals"] = future_frame["month"].map(arrivals_monthly_avg)
 
     # train_data, not df: it is the copy carrying monthly_avg
-    full_data = pd.concat([full_data, future_frame], axis=0, join="outer")
-    return full_data, future_frame, full_data
+    combined_history = pd.concat([full_data, future_frame], axis=0, join="outer")
+    return full_data, future_frame, combined_history
