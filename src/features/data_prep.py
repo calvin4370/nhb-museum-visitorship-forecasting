@@ -270,14 +270,13 @@ def prepare_predict_data(museum_ts, arrivals, h):
     Build a full-history train set plus a synthetic h-month-ahead future
     frame to for model to forecast.
     """
-    df = engineer_features(pad_to_period_end(museum_ts), arrivals)
-    train_data = df
+    full_data = engineer_features(pad_to_period_end(museum_ts), arrivals)
 
     # The lag features below are built by position, so a history that stops short of
     # PERIOD_END would shift every one of them without raising anything
-    if df["timestamp"].max() != PERIOD_END:
+    if full_data["timestamp"].max() != PERIOD_END:
         raise ValueError(
-            f"History ends {df['timestamp'].max():%Y-%m}, expected {PERIOD_END:%Y-%m}; "
+            f"History ends {full_data['timestamp'].max():%Y-%m}, expected {PERIOD_END:%Y-%m}; "
             "lag features would be misaligned"
         )
 
@@ -286,40 +285,40 @@ def prepare_predict_data(museum_ts, arrivals, h):
     forecast_horizon = pd.date_range(
         start=PERIOD_END + pd.DateOffset(months=1), periods=h, freq="MS"
     )
-    test_data = pd.DataFrame({"timestamp": forecast_horizon, "value": np.nan})
-    test_data["Data Series"] = df["Data Series"].iloc[-1]
-    test_data = sin_cos_month(test_data)
-    test_data = is_covid(test_data)
-    test_data = add_event_features(test_data)
+    future_frame = pd.DataFrame({"timestamp": forecast_horizon, "value": np.nan})
+    future_frame["Data Series"] = full_data["Data Series"].iloc[-1]
+    future_frame = sin_cos_month(future_frame)
+    future_frame = is_covid(future_frame)
+    future_frame = add_event_features(future_frame)
 
     # Concatenate the last 12 months of actual data with the synthetic future frame
-    new_df = df.tail(12)
-    new_df = pd.concat([new_df, test_data], axis=0, join="outer")
+    new_df = full_data.tail(12)
+    new_df = pd.concat([new_df, future_frame], axis=0, join="outer")
 
     # Create lag features (1 to 12 months); missing ones imputed by monthly average
     for lag in range(1, 13):
-        test_data[f"lag_{lag}"] = new_df["value"].shift(lag)
+        future_frame[f"lag_{lag}"] = new_df["value"].shift(lag)
 
-    train_data, test_data = add_monthly_avg(train_data, test_data)
+    full_data, future_frame = add_monthly_avg(full_data, future_frame)
 
     # Impute missing lag features with monthly averages
     # Note: Decision made to impute missing lag features with monthly averages 
     # instead recursive forecasting to avoid error propagation
-    test_data["value"] = test_data["monthly_avg"]
+    future_frame["value"] = future_frame["monthly_avg"]
     for lag in range(1, 13):
-        test_data[f"lag_imp_{lag}"] = test_data["value"].shift(lag)
-        test_data[f"lag_{lag}"] = test_data[f"lag_{lag}"].fillna(0) + test_data[
+        future_frame[f"lag_imp_{lag}"] = future_frame["value"].shift(lag)
+        future_frame[f"lag_{lag}"] = future_frame[f"lag_{lag}"].fillna(0) + future_frame[
             f"lag_imp_{lag}"
         ].fillna(0)
     for lag in range(1, 13):
-        test_data.drop(f"lag_imp_{lag}", axis=1, inplace=True)
+        future_frame.drop(f"lag_imp_{lag}", axis=1, inplace=True)
 
     # Do the same for international arrivals, likewise excluding COVID months
-    arrivals_monthly_avg = exclude_covid(df).groupby("month")["intl_arrivals"].mean()
+    arrivals_monthly_avg = exclude_covid(full_data).groupby("month")["intl_arrivals"].mean()
     if arrivals_monthly_avg.isna().any() or len(arrivals_monthly_avg) < 12:
         raise ValueError("Some calendar months have no non-COVID arrivals to average")
-    test_data["intl_arrivals"] = test_data["month"].map(arrivals_monthly_avg)
+    future_frame["intl_arrivals"] = future_frame["month"].map(arrivals_monthly_avg)
 
     # train_data, not df: it is the copy carrying monthly_avg
-    full_data = pd.concat([train_data, test_data], axis=0, join="outer")
-    return train_data, test_data, full_data
+    full_data = pd.concat([full_data, future_frame], axis=0, join="outer")
+    return full_data, future_frame, full_data
