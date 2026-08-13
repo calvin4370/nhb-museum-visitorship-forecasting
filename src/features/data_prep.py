@@ -301,7 +301,7 @@ def prepare_predict_data(museum_ts, arrivals, h):
     future_frame = add_event_features(future_frame)
 
     # Assume museums stay open throughout prediction period
-    test_data["is_closed"] = 0
+    future_frame["is_closed"] = 0
 
     # Concatenate the last 12 months of actual data with the synthetic future frame
     new_df = full_data.tail(12)
