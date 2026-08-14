@@ -382,8 +382,11 @@ See `outputs/{MUSEUM_CODE}` for full results
 #### Manual maintenance of input files
 - `deepavali.csv`, which contains the specific months each year when Deepavali occurs (it hovers between Oct and Nov) must be extended manually. Govt only gazettes official Deepavali holiday dates 1.5-2 years in advance
 
+
 <br>
 
 ## Roadmap
 - Implement TimeGPT models, .env for storing TimeGPT API keys
 - Adjust MHC's training window such that test set isn't completely 0
+- Replace the plot's confidence band with a real prediction interval
+- Trim the lag feature set to remove useless lag features
