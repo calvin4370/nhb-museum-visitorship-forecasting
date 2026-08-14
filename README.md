@@ -1,4 +1,5 @@
 # Museum Visitorship Forecasting
+Last updated on *14 Aug 2026* (after adding `is_closed` feature)
 
 ## Overview
 Forecasts monthly visitorship for five National Heritage Board (NHB) museums up to 24 months ahead of training data. The forecasts are meant to serve as an additional reference point during workplan target setting.
@@ -253,6 +254,120 @@ The main pipeline results summary for each museum. Three tables:
 
 ## Results
 
+### Model Performance
+| Museum | Winning model | RMSE | MAPE | Decrease in RMSE vs `baseline` |
+| --- | --- | --- | --- | --- |
+| ACM | Random Forest | 7.23 | 14.00% | −54% |
+| NMS | XGBoost | 16.64 | 15.38% | −54% |
+| TPM | Support Vector Regression | 2.64 | 12.46% | −74% |
+| IHC | SARIMAX | 5.30 | 22.55% | −40% |
+| MHC | Support Vector Regression | 3.43 | * | −63% |
+
+* For MHC, all models' MAPEs exploded during evaluation as its held out test set is entirely included in its closure from Oct 2022 to Apr 2026, where visitorship was 0 (See [Limitations](#limitations))
+
+* RMSE is in thousands of visitors and is **not comparable across museums**: TPM's 2.64 and NMS's 16.64 mostly reflect that NMS is roughly six times larger. Use MAPE for cross-museum comparison.
+
+### Model Forecasts
+From each museum's winning model. FY runs April–March. FY total visitorship is reported **in thousands**.
+
+| Museum | FY2025 (actual) | FY2026 ('000s) | FY2027 ('000s) |
+| --- | --- | --- | --- |
+| ACM | 529.9 | 496.8 | 482.9 |
+| NMS | 1,056.5 | 1,045.8 | 991.1 |
+| IHC | 218.2 | 251.5 | 258.7 |
+| TPM | 167.6 | 216.7 | 237.3 |
+| MHC | 0.0 (closed) | 425.9 | 489.9 |
+
+By museum,
+
+#### ACM
+
+<table>
+  <thead>
+    <tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026 ('000s)</th><th>FY2027 ('000s)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>Random Forest Regressor</b></td><td>7.23</td><td>14.00%</td><td>496.8</td><td>482.9</td></tr>
+    <tr><td>Support Vector Regression</td><td>7.25</td><td>12.62%</td><td>490.3</td><td>482.6</td></tr>
+    <tr><td>XGBoost</td><td>7.50</td><td>14.55%</td><td>483.1</td><td>492.1</td></tr>
+    <tr><td>Holt-Winters exponential smoothing</td><td>8.07</td><td>13.49%</td><td>676.8</td><td>791.9</td></tr>
+    <tr><td>LSTM</td><td>9.69</td><td>22.90%</td><td>468.2</td><td>456.7</td></tr>
+    <tr><td>SARIMAX</td><td>10.98</td><td>17.40%</td><td>637.4</td><td>773.3</td></tr>
+    <tr><td>Baseline Monthly Mean</td><td>15.85</td><td>30.54%</td><td>452.0</td><td>452.0</td></tr>
+  </tbody>
+</table>
+
+#### NMS
+
+<table>
+  <thead>
+    <tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026 ('000s)</th><th>FY2027 ('000s)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>XGBoost</b></td><td>16.64</td><td>15.38%</td><td>1,045.8</td><td>991.1</td></tr>
+    <tr><td>Random Forest Regressor</td><td>17.19</td><td>16.65%</td><td>1,037.0</td><td>992.0</td></tr>
+    <tr><td>Support Vector Regression</td><td>19.32</td><td>16.35%</td><td>993.6</td><td>1,084.8</td></tr>
+    <tr><td>LSTM</td><td>23.46</td><td>18.68%</td><td>925.2</td><td>916.3</td></tr>
+    <tr><td>SARIMAX</td><td>26.49</td><td>26.50%</td><td>1,006.9</td><td>1,054.8</td></tr>
+    <tr><td>Baseline Monthly Mean</td><td>36.40</td><td>30.13%</td><td>1,040.0</td><td>1,040.0</td></tr>
+    <tr><td>Holt-Winters exponential smoothing</td><td>77.05</td><td>79.90%</td><td>1,025.4</td><td>962.9</td></tr>
+  </tbody>
+</table>
+
+#### TPM
+
+<table>
+  <thead>
+    <tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026 ('000s)</th><th>FY2027 ('000s)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>Support Vector Regression</b></td><td>2.64</td><td>12.46%</td><td>216.7</td><td>237.3</td></tr>
+    <tr><td>XGBoost</td><td>3.05</td><td>18.16%</td><td>195.0</td><td>233.8</td></tr>
+    <tr><td>Random Forest Regressor</td><td>4.73</td><td>27.03%</td><td>195.6</td><td>192.7</td></tr>
+    <tr><td>SARIMAX</td><td>7.18</td><td>43.21%</td><td>88.4</td><td>30.6</td></tr>
+    <tr><td>LSTM</td><td>10.15</td><td>57.64%</td><td>242.9</td><td>275.5</td></tr>
+    <tr><td>Baseline Monthly Mean</td><td>10.17</td><td>68.14%</td><td>170.1</td><td>170.1</td></tr>
+    <tr><td>Holt-Winters exponential smoothing</td><td>10.24</td><td>69.26%</td><td>271.4</td><td>363.4</td></tr>
+  </tbody>
+</table>
+
+#### IHC
+
+<table>
+  <thead>
+    <tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026 ('000s)</th><th>FY2027 ('000s)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>SARIMAX</b></td><td>5.30</td><td>22.55%</td><td>251.5</td><td>258.7</td></tr>
+    <tr><td>Support Vector Regression</td><td>6.06</td><td>33.05%</td><td>217.3</td><td>214.2</td></tr>
+    <tr><td>LSTM</td><td>6.11</td><td>36.31%</td><td>238.8</td><td>232.3</td></tr>
+    <tr><td>Random Forest Regressor</td><td>6.18</td><td>28.02%</td><td>216.6</td><td>213.2</td></tr>
+    <tr><td>Holt-Winters exponential smoothing</td><td>6.21</td><td>36.59%</td><td>232.8</td><td>245.9</td></tr>
+    <tr><td>XGBoost</td><td>7.00</td><td>29.89%</td><td>218.6</td><td>211.5</td></tr>
+    <tr><td>Baseline Monthly Mean</td><td>8.79</td><td>33.24%</td><td>216.6</td><td>216.6</td></tr>
+  </tbody>
+</table>
+
+#### MHC
+
+<table>
+  <thead>
+    <tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026 ('000s)</th><th>FY2027 ('000s)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>Support Vector Regression</b></td><td>3.43</td><td>n/a</td><td>425.9</td><td>489.9</td></tr>
+    <tr><td>LSTM</td><td>3.69</td><td>n/a</td><td>427.9</td><td>572.5</td></tr>
+    <tr><td>Baseline Monthly Mean</td><td>9.33</td><td>n/a</td><td>0.0</td><td>0.0</td></tr>
+    <tr><td>SARIMAX</td><td>10.47</td><td>n/a</td><td>351.9</td><td>360.6</td></tr>
+    <tr><td>Random Forest Regressor</td><td>19.48</td><td>n/a</td><td>343.9</td><td>463.3</td></tr>
+    <tr><td>XGBoost</td><td>30.74</td><td>n/a</td><td>417.3</td><td>506.9</td></tr>
+    <tr><td>Holt-Winters exponential smoothing</td><td>32.88</td><td>n/a</td><td>214.3</td><td>484.6</td></tr>
+  </tbody>
+</table>
+
+
+
+See `outputs/{MUSEUM_CODE}` for full results
 
 <br>
 
