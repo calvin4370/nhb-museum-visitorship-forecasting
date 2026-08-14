@@ -80,7 +80,27 @@ python main.py
 <br>
 
 ## Usage
+`python main.py` trains 8 models each for 5 museums
 
+Run `python main.py --help` to see the available flag arguments
+
+```
+usage: python main.py [-h] [--museum MUSEUM_CODE [MUSEUM_CODE ...]] [--models MODEL [MODEL ...]]
+
+Run the museum visitorship forecasting pipeline.
+
+options:
+  -h, --help            show this help message and exit
+  --museum MUSEUM_CODE [MUSEUM_CODE ...], -m MUSEUM_CODE [MUSEUM_CODE ...]
+                        Run for specific museums only (case-insensitive codes, e.g. python main.py --museum ACM TPM to only run pipelines for ACM and TPM).
+                        Choices: ACM, NMS, TPM, IHC, MHC
+                        Omit to run all museums.
+                        
+  --models MODEL [MODEL ...], -M MODEL [MODEL ...]
+                        Run specific models only (case-insensitive keys, e.g. python main.py --models rf xgb lstm to only run the RF, XGB, and LSTM models).
+                        Choices: rf, xgb, svr, hw, sarimax, lstm, timegpt, baseline
+                        Omit to run all models.
+```
 
 <br>
 
