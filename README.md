@@ -223,6 +223,30 @@ The target column is `value`, which represents monthly museum visitorship (in th
 <br>
 
 ## Outputs
+Each run writes singstat API data to `data/` and writes one folder per museum (with its own museum code, `CODE`) under `outputs/`
+
+```
+outputs/{CODE}/
+├── {CODE}_summary.txt                          # Human-readable report (see below)
+├── {CODE}_model_eval.csv                       # Institution, Model, RMSE, MAPE (lowest-RMSE first)
+├── eval/
+│   └── {CODE}_eval_{model}_timeplot.png        # Test-period fit, one per model
+└── predict/
+    ├── {CODE}_predict_{model}_timeplot.png     # Forecast, one per model
+    ├── {CODE}_predict_top3_timeplot.png        # Top 3 models by RMSE, overlaid
+    └── {CODE}_{model}_predictions.csv          # Institution, Model, Year, Month, Prediction
+```
+
+
+### `{CODE}_summary.txt`
+
+The main pipeline results summary for each museum. Three tables:
+
+| Table | Contents |
+| --- | --- |
+| **1. Model Evaluation** | Every model's RMSE and MAPE on the test period, ranked lowest-RMSE-first |
+| **2. Total Visitors by Financial Year** | Historical actuals and the winning model's forecast in one column. |
+| **3. Forecast FY Totals by Model** | Every model's own FY totals alongside its RMSE and MAPE |
 
 
 <br>
