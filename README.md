@@ -38,6 +38,44 @@ The requested window is set by `START_YEAR`/`START_MONTH` and `END_YEAR`/`END_MO
 
 ## Quick Start
 
+This project makes use of **Python 3.11.9** and several package versions require this specific Python version.
+
+#### 1. Using `uv` to isolate both Python and package versions (recommended)
+Windows Powershell
+```powershell
+pip install uv
+uv venv --python 3.11.9
+.venv\Scripts\Activate.ps1
+uv pip install -r requirements.txt
+```
+
+bash/zsh (Max/Linux)
+```bash
+pip install uv
+uv venv --python 3.11.9
+source .venv/bin/activate
+uv pip install -r requirements.txt
+```
+
+**Alternatively, if you use base `venv`, you need to install and run the correct python version too (3.11.9)**
+Windows Powershell
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+bash/zsh (Max/Linux)
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+#### 2. Run the pipeline for all museums and models
+```bash
+python main.py
+```
 
 <br>
 
