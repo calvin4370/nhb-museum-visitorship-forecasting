@@ -372,7 +372,15 @@ See `outputs/{MUSEUM_CODE}` for full results
 <br>
 
 ## Limitations
-add: remember to update deepavali.csv manually
+#### Year 2 forecasts is a flattened seasonal baseline
+- As prediction period unknown lag features and `intl_arrivals` are imputed with historical full training period monthly means (excluding COVID from the calculations), the 2nd forecast year, is made up entirely of imputed lag features and `intl_arrivals` and will thus lead to a repeating seasonal trend
+
+#### Some museums have long closed periods with no visitors
+- While historical training period used is Jan 2014 to Mar 2026, TPM only opened, TPM closed between and MHC closed between Oct 2022 and Apr 2026
+- For MHC, evaluation MAPE is exploded as its test set falls entirely within its closure period
+
+#### Manual maintenance of input files
+- `deepavali.csv`, which contains the specific months each year when Deepavali occurs (it hovers between Oct and Nov) must be extended manually. Govt only gazettes official Deepavali holiday dates 1.5-2 years in advance
 
 <br>
 
