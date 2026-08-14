@@ -105,11 +105,57 @@ options:
 <br>
 
 ## Project Structure
-
+```
+visitor_forecast/
+├── main.py                   # Entry point: fetch data, then run the pipeline per museum
+├── config.py                 # Museums, date range, horizon, feature sets, model keys
+├── requirements.txt
+├── notebooks/
+│   └── 01_eda.ipynb          # Exploratory data analysis
+├── scripts/testing/          # One-off scripts used to probe the SingStat API's limits
+├── src/
+│   ├── cli.py                # Argument parsing, museum-code and model-key validation
+│   ├── pipeline.py           # Per-museum orchestration: evaluate, rank, forecast, report
+│   ├── data/
+│   │   └── singstat_api.py   # SingStat TableBuilder client (request chunking, throttling)
+│   ├── features/
+│   │   └── data_prep.py      # Feature engineering, train/test preparation, imputation
+│   ├── events/
+│   │   ├── event_range.py    # Loader for dated event occurrences
+│   │   ├── event_ranges/     # One CSV per event, one row per occurrence
+│   │   ├── month_range.py    # Loader for fixed-calendar events
+│   │   └── month_ranges.csv  # Events that fall in the same month every year
+│   ├── models/               # The eight forecasting models, plus model_registry.py
+│   └── visualisation/
+│       ├── timeplot.py       # Evaluation and forecast plots
+│       ├── summary.py        # Financial-year totals and the summary report
+│       └── eda.py            # Plotting helpers used only by the notebook
+├── data/                     # Generated at runtime
+│   ├── raw/                  # Raw API responses
+│   └── processed/            # Engineered features per museum
+└── outputs/                  # Generated at runtime, one folder per museum
+```
 
 <br>
 
 ## Configuration
+### `config.py`
+
+| Setting | Controls |
+| --- | --- |
+| `MUSEUM_CODES` | Which museums to forecast. Keys must match the SingStat series name exactly; the codes are yours to choose and are used in CLI flags, output folders and filenames. |
+| `START_YEAR`/`START_MONTH`, `END_YEAR`/`END_MONTH` | The historical window requested from SingStat for training. e.g. Jan 2014 - Mar 2026|
+| `COVID_START`, `COVID_END` | The period flagged by `is_covid`, and excluded when computing historical monthly averages. |
+| `h` | Forecast horizon in months (default 24). Forecasting starts the month after `END_YEAR`/`END_MONTH`. |
+| `MODEL_KEYS` | Which models run, and in what order. Must match the keys in `src/models/model_registry.py`. |
+| `BASE_FEATURES` | The feature set every museum's tabular models train on. |
+| `MUSEUM_FEATURES` | Per-museum overrides of that feature set. |
+
+
+<br>
+
+### `.env`
+- For environment variables (currently not yet implemented)
 
 
 <br>
