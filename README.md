@@ -1,7 +1,5 @@
 # Museum Visitorship Forecasting
 
-add: remember to update deepavali.csv manually
-
 ## Overview
 Forecasts monthly visitorship for five National Heritage Board (NHB) museums up to 24 months ahead of training data. The forecasts are meant to serve as an additional reference point during workplan target setting.
 
@@ -161,7 +159,66 @@ visitor_forecast/
 <br>
 
 ## Methodology
+### Models Trained
+| Key | Model | Sees | Tuned |
+| --- | --- | --- | --- |
+| `baseline` | Calendar-month mean of the last 36 months | history only | — |
+| `hw` | Holt-Winters exponential smoothing, 12-month seasonality | history only | Optuna |
+| `sarimax` | SARIMAX, orders `(p,d,q)(P,D,Q,12)` searched, features as standardised regressors | full feature set | Optuna |
+| `rf` | Random Forest | full feature set | Optuna |
+| `xgb` | XGBoost | full feature set | Optuna |
+| `svr` | Support Vector Regression, kernel searched (`linear`/`rbf`/`poly`) | full feature set | Optuna |
+| `lstm` | Two stacked LSTM layers (50 units) → Dense(25) → Dense(1), 12-month input window, 50 epochs | feature set except lag features | — |
 
+Note: `timegpt` is not currently implemented yet
+
+
+<br>
+
+### Features
+The target column is `value`, which represents monthly museum visitorship (in thousands).
+
+`BASE_FEATURES` includes all the features most multivariate models take.
+
+| Feature | Description | Used in |
+| --- | --- | --- |
+| `sin_month`, `cos_month` | Cyclical encoding of the calendar month, so December and January sit next to each other | `BASE_FEATURES` |
+| `monthly_avg` | Mean visitorship for that calendar month. Computed on training data only, with COVID months excluded | `BASE_FEATURES` |
+| `lag_1` … `lag_12` (12 features) | Visitorship in the time periods 1 to 12 months earlier | `BASE_FEATURES` (except LSTM) |
+| `is_covid` | `1` for months inside `COVID_START`–`COVID_END`. `0` otherwise. | `BASE_FEATURES` |
+| `intl_arrivals` | Total international visitor arrivals that month | `BASE_FEATURES` |
+| `is_deepavali` | `1` when Deepavali falls in that month. see [Methodology](#methodology) | only IHC |
+| `is_closed` | `1` when reported visitorship is zero, `0` otherwise. SingStat sometimes reports closed months as `"-"`, which is imputed with 0 visitors | `BASE_FEATURES` |
+
+
+<br>
+
+### Pipeline
+#### Preprocessing
+- The first 12 months of every museum's history are dropped, since their lag features cannot be filled.
+- Historical visitorship data is split into a chronological `80/20` train-test split.
+- Months with `"-"`/`NA` visitorship (when museums were closed *after their first month of operation onwards) are kept and imputed with `0` where necessary, and `is_closed` is set to `1` 
+    - Museums that opened later (currently only TPM) do not get 0s appended to fill the front of the training window
+
+
+#### Model Training
+- Models are trained on the 80% training set
+- Models which include hyperparameter tuning are validated on a held out portion of the training set through 50 Optuna trials
+    - For `hw`, `sarimax` and `svr`, a single trailing 10-month holdout is used for validation
+    - For `rf` and `xgb`, `TimeSeriesSplit(n_splits=3)` is used to average out RMSE across the 3 folds
+    - All five Optuna objective functions minimise RMSE.
+- Models are evaluated on the 20% held out test set to calculate evaluation metrics e.g. RMSE, MAPE
+- Tuned hyperparameters are reused to refit the final prediction models using the full 100% historical series.
+
+
+#### Forecasting
+- All surviving models are used to produce a forecast, and their predictions are output in order of their evaluation performance (best first)
+- Museums whose data ends before the configured window (e.g. MHC being closed from 30 Oct 2022 - 25 April 2026) are padded with zero-visitor months, so every museum forecasts the same `h` months from the same starting point.
+- A `h=24` months future frame is built to facilitate predictions for each model. Known future features like `sin_month`, `cos_month` are filled in. lag feature values for the 1st forecasted year are filled in from the end of the training data where known.
+- COVID months (defined in `config.py`) were excluded from the calculation of historical monthly averages (for the `monthly_avg` feature)
+    - Including them dragged the averages ~14–34% below current levels and tended to make the models underpredict future visitorship
+- Musuems are assumbed to be open throughout the forecast period, so `is_closed` is set to `0` for all `h` months
+- Unknown future feature values like lag features and `intl_arrivals` are imputed from full training period historical monthly means. Similarly, the defined COVID period is excluded from these calculations to prevent underrepresenting future feature values and underpredicting future museum visitorship.
 
 <br>
 
@@ -176,7 +233,7 @@ visitor_forecast/
 <br>
 
 ## Limitations
-
+add: remember to update deepavali.csv manually
 
 <br>
 
