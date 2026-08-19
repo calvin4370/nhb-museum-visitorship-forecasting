@@ -150,18 +150,31 @@ def exclude_covid(df):
     return df[(df["timestamp"] < COVID_START) | (df["timestamp"] > COVID_END)]
 
 
+def exclude_closed(df):
+    """Drop the rows where the museum was closed (0 visitors).
+
+    Args:
+        df (pd.DataFrame): Frame with an 'is_closed' column.
+
+    Returns:
+        pd.DataFrame: Only the rows the museum was open for.
+    """
+    return df[df["is_closed"] == 0]
+
+
 def add_monthly_avg(train_data, test_data):
     """
     Monthly average computed on train only (avoid leakage), merged into test.
-    COVID months are excluded so the average reflects normal visitorship.
+    COVID and closure months are excluded so the average reflects normal visitorship.
     """
     train_data = train_data.copy()
 
-    # Average over non-COVID months only, then map back onto every train row
-    month_means = exclude_covid(train_data).groupby("month")["value"].mean()
-    if month_means.isna().any() or len(month_means) < train_data["month"].nunique():
-        raise ValueError("Some calendar months have no non-COVID data to average")
-    train_data["monthly_avg"] = train_data["month"].map(month_means)
+    # Average over open, non-COVID months only, then map back onto every train row
+    normal_months = exclude_closed(exclude_covid(train_data))
+    monthly_means = normal_months.groupby("month")["value"].mean()
+    if monthly_means.isna().any() or len(monthly_means) < train_data["month"].nunique():
+        raise ValueError("Some calendar months have no open non-COVID data to average")
+    train_data["monthly_avg"] = train_data["month"].map(monthly_means)
 
     # Get a df of unique month -> monthly_avg pairs from train data only
     monthly_avg = train_data[["month", "monthly_avg"]].drop_duplicates()
@@ -325,10 +338,11 @@ def prepare_predict_data(museum_ts, arrivals, h):
     for lag in range(1, 13):
         future_frame.drop(f"lag_imp_{lag}", axis=1, inplace=True)
 
-    # Do the same for international arrivals, likewise excluding COVID months
-    arrivals_monthly_avg = exclude_covid(full_data).groupby("month")["intl_arrivals"].mean()
+    # Do the same for international arrivals, likewise over open non-COVID months
+    normal = exclude_closed(exclude_covid(full_data))
+    arrivals_monthly_avg = normal.groupby("month")["intl_arrivals"].mean()
     if arrivals_monthly_avg.isna().any() or len(arrivals_monthly_avg) < 12:
-        raise ValueError("Some calendar months have no non-COVID arrivals to average")
+        raise ValueError("Some calendar months have no open non-COVID arrivals to average")
     future_frame["intl_arrivals"] = future_frame["month"].map(arrivals_monthly_avg)
 
     # must concat full_data + future_frame, to preserve monthly_avg and intl_arrivals features for future_frame
