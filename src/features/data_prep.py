@@ -338,11 +338,11 @@ def prepare_predict_data(museum_ts, arrivals, h):
     for lag in range(1, 13):
         future_frame.drop(f"lag_imp_{lag}", axis=1, inplace=True)
 
-    # Do the same for international arrivals, likewise over open non-COVID months
-    normal = exclude_closed(exclude_covid(full_data))
-    arrivals_monthly_avg = normal.groupby("month")["intl_arrivals"].mean()
+    # Do the same for international arrivals, excluding COVID only: arrivals are a
+    # national series, unaffected by whether this one museum was closed
+    arrivals_monthly_avg = exclude_covid(full_data).groupby("month")["intl_arrivals"].mean()
     if arrivals_monthly_avg.isna().any() or len(arrivals_monthly_avg) < 12:
-        raise ValueError("Some calendar months have no open non-COVID arrivals to average")
+        raise ValueError("Some calendar months have no non-COVID arrivals to average")
     future_frame["intl_arrivals"] = future_frame["month"].map(arrivals_monthly_avg)
 
     # must concat full_data + future_frame, to preserve monthly_avg and intl_arrivals features for future_frame
