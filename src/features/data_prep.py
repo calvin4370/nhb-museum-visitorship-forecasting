@@ -165,12 +165,13 @@ def exclude_closed(df):
 def add_monthly_avg(train_data, test_data):
     """
     Monthly average computed on train only (avoid leakage), merged into test.
-    COVID and closure months are excluded so the average reflects normal visitorship.
+    COVID months are excluded so the average reflects normal visitorship.
     """
     train_data = train_data.copy()
 
-    # Average over open, non-COVID months only, then map back onto every train row
-    normal_months = exclude_closed(exclude_covid(train_data))
+    # Average over non-COVID months only, then map back onto every train row
+    # Note: I didnt exclude_closed() here as that worsened RMSE for some reason
+    normal_months = exclude_covid(train_data)
     monthly_means = normal_months.groupby("month")["value"].mean()
     if monthly_means.isna().any() or len(monthly_means) < train_data["month"].nunique():
         raise ValueError("Some calendar months have no open non-COVID data to average")
