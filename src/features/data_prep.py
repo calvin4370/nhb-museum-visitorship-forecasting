@@ -220,7 +220,9 @@ def prepare_eval_data(museum_ts, arrivals):
     """
     Build an 80/20 chronological train/test split
     """
-    df = engineer_features(museum_ts, arrivals)
+    # Padded as prepare_predict_data does, so a museum whose data stops early still
+    # splits on the same months as the rest rather than seven months earlier
+    df = engineer_features(pad_to_period_end(museum_ts), arrivals)
 
     split_point = int(len(df) * 0.8)
     train_data = df[:split_point]
