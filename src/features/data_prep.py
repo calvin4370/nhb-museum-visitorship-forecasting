@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from config import COVID_START, COVID_END, END_YEAR, END_MONTH
+from config import COVID_START, COVID_END, END_YEAR, END_MONTH, EXCLUDE_COVID_PERIOD
 from src.events.event_range import EventRange
 
 # SingStat Table Series name
@@ -111,6 +111,11 @@ def engineer_features(museum_ts, arrivals):
 
     # Flag closures only after the coercion above, so imputed months count as closed
     df = is_closed(df)
+
+    # Cut COVID out before the positional lags below are built, so the months after it
+    # lag onto the months before it rather than onto COVID values
+    if EXCLUDE_COVID_PERIOD:
+        df = exclude_covid(df)
 
     # Add international arrivals column
     df = add_intl_arrivals(df, arrivals)

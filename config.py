@@ -23,9 +23,13 @@ MUSEUM_CODES = {
 START_YEAR, START_MONTH = 2014, "Jan"
 END_YEAR, END_MONTH = 2026, "Mar"
 
-# Period flagged by the is_covid feature: 
+# Period flagged by the is_covid feature:
 COVID_START = pd.Timestamp("2020-04-01") # Apr 2020 (circuit breaker, museums shut)
 COVID_END = pd.Timestamp("2023-02-13") # 13 Feb 2023 (DORSCON Green, remaining border restrictions lifted)
+
+# When True the COVID months are cut out of every museum's history entirely, so the
+# months after COVID lag straight onto the months before it. Leaves is_covid all-zero.
+EXCLUDE_COVID_PERIOD = False
 
 # Number of months to forecast, default 2 years (i.e., 24 months)
 h = 24
