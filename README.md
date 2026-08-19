@@ -1,47 +1,392 @@
-# Visitor Forecast 
+# Museum Visitorship Forecasting
+Last updated on *14 Aug 2026* (after adding `is_closed` feature)
 
-add: remember to update deepavali.csv manually
+## Overview
+Forecasts monthly visitorship for five National Heritage Board (NHB) museums up to 24 months ahead of training data. The forecasts are meant to serve as an additional reference point during workplan target setting.
 
-## Project folder structure 
-Look at Combined folder (where all the codes are consolidated at)  
+**Museum Scope:**
+| Code | Museum |
+| --- | --- |
+| ACM | Asian Civilisations Museum |
+| NMS | National Museum of Singapore |
+| TPM | The Peranakan Museum |
+| IHC | Indian Heritage Centre |
+| MHC | Malay Heritage Centre |
+
+Both the historical window for training and the forecast horizon are configurable (see [Configuration](#configuration)). 
+
+Read [Limitations](#limitations) before using any figure for planning.
+
+
+<br>
+
+## Data Source
+
+### SingStat TableBuilder API
+| Series | Table ID | Used as |
+| --- | --- | --- |
+| Monthly museum visitorship | `M891071` | forecast target (`value`) |
+| Total international visitor arrivals | `M550001` | exogenous feature (`intl_arrivals`) |
+
+Both series are fetched at runtime by `src/data/singstat_api.py`.
+
+The requested window is set by `START_YEAR`/`START_MONTH` and `END_YEAR`/`END_MONTH` in `config.py` (currently Jan 2014 – Mar 2026, monthly). Raw responses are written to `data/raw/museum_ts.csv` and `data/raw/intl_arrivals.csv` for reference.
+
+
+<br>
+
+## Quick Start
+
+This project makes use of **Python 3.11.9** and several package versions require this specific Python version.
+
+#### 1. Using `uv` to isolate both Python and package versions (recommended)
+Windows Powershell
+```powershell
+pip install uv
+uv venv --python 3.11.9
+.venv\Scripts\Activate.ps1
+uv pip install -r requirements.txt
 ```
-Combined/  
-├── data/                # Data files from singstat api calls  
-  ├── intl_arrivals.csv  
-  ├── museum_ts.csv  
-├── models/                # Python codes for different models  
-  ├── baseline.py
-  ├── holtwinters.py
-  ├── lstm.py  
-  ├── randomforest.py
-  ├── sarimax.py
-  ├── svr.py
-  ├── timegpt.py  
-  ├── xgboost.py
-├── timeplot_output/      #Time plot outputs of actual v.s. predicted values
-  ├── baseline_timeplot.png
-  ├── hw_timeplot.png
-  ├── lstm_timeplot.png
-  ├── rf_timeplot.png
-  ├── sarimax_timeplot.png
-  ├── svr_timeplot.png
-  ├── timegpt_timeplot.png
-  ├── xgb_timeplot.png
-├── utils/  
-  ├── data_prep.py         # Data preparation codes  
-  ├── singstat_api.py      # Singstat Table Builder API calls
-  ├── timeplot.py          # Functions to output timeplots and predictions data frame
-├── main.py                # Run main.py  
-├── model_eval.csv         # Output for model evaluation
-├── predictions.csv         # Output for model prediction  
-├── requirements.txt       # requirements.txt for python codes
+
+bash/zsh (Max/Linux)
+```bash
+pip install uv
+uv venv --python 3.11.9
+source .venv/bin/activate
+uv pip install -r requirements.txt
 ```
 
-## Data files
-- acm_ts.csv: museum visitorship of ACM
-- intl_arrivals.csv: international arrivals\
-Both data are pulled via api calls from Singstat Table Builder website.
+**Alternatively, if you use base `venv`, you need to install and run the correct python version too (3.11.9)**
+Windows Powershell
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
 
-## Notes
-1. requirements.txt only contains required packages under python but not R.
-2. Most classical time series modelling are readily available in R, hence R is used for that purpose. 
+bash/zsh (Max/Linux)
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+#### 2. Run the pipeline for all museums and models
+```bash
+python main.py
+```
+
+<br>
+
+## Usage
+`python main.py` trains 8 models each for 5 museums
+
+Run `python main.py --help` to see the available flag arguments
+
+```
+usage: python main.py [-h] [--museum MUSEUM_CODE [MUSEUM_CODE ...]] [--models MODEL [MODEL ...]]
+
+Run the museum visitorship forecasting pipeline.
+
+options:
+  -h, --help            show this help message and exit
+  --museum MUSEUM_CODE [MUSEUM_CODE ...], -m MUSEUM_CODE [MUSEUM_CODE ...]
+                        Run for specific museums only (case-insensitive codes, e.g. python main.py --museum ACM TPM to only run pipelines for ACM and TPM).
+                        Choices: ACM, NMS, TPM, IHC, MHC
+                        Omit to run all museums.
+                        
+  --models MODEL [MODEL ...], -M MODEL [MODEL ...]
+                        Run specific models only (case-insensitive keys, e.g. python main.py --models rf xgb lstm to only run the RF, XGB, and LSTM models).
+                        Choices: rf, xgb, svr, hw, sarimax, lstm, timegpt, baseline
+                        Omit to run all models.
+```
+
+<br>
+
+## Project Structure
+```
+visitor_forecast/
+├── main.py                   # Entry point: fetch data, then run the pipeline per museum
+├── config.py                 # Museums, date range, horizon, feature sets, model keys
+├── requirements.txt
+├── notebooks/
+│   └── 01_eda.ipynb          # Exploratory data analysis
+├── scripts/testing/          # One-off scripts used to probe the SingStat API's limits
+├── src/
+│   ├── cli.py                # Argument parsing, museum-code and model-key validation
+│   ├── pipeline.py           # Per-museum orchestration: evaluate, rank, forecast, report
+│   ├── data/
+│   │   └── singstat_api.py   # SingStat TableBuilder client (request chunking, throttling)
+│   ├── features/
+│   │   └── data_prep.py      # Feature engineering, train/test preparation, imputation
+│   ├── events/
+│   │   ├── event_range.py    # Loader for dated event occurrences
+│   │   ├── event_ranges/     # One CSV per event, one row per occurrence
+│   │   ├── month_range.py    # Loader for fixed-calendar events
+│   │   └── month_ranges.csv  # Events that fall in the same month every year
+│   ├── models/               # The eight forecasting models, plus model_registry.py
+│   └── visualisation/
+│       ├── timeplot.py       # Evaluation and forecast plots
+│       ├── summary.py        # Financial-year totals and the summary report
+│       └── eda.py            # Plotting helpers used only by the notebook
+├── data/                     # Generated at runtime
+│   ├── raw/                  # Raw API responses
+│   └── processed/            # Engineered features per museum
+└── outputs/                  # Generated at runtime, one folder per museum
+```
+
+<br>
+
+## Configuration
+### `config.py`
+
+| Setting | Controls |
+| --- | --- |
+| `MUSEUM_CODES` | Which museums to forecast. Keys must match the SingStat series name exactly; the codes are yours to choose and are used in CLI flags, output folders and filenames. |
+| `START_YEAR`/`START_MONTH`, `END_YEAR`/`END_MONTH` | The historical window requested from SingStat for training. e.g. Jan 2014 - Mar 2026|
+| `COVID_START`, `COVID_END` | The period flagged by `is_covid`, and excluded when computing historical monthly averages. |
+| `h` | Forecast horizon in months (default 24). Forecasting starts the month after `END_YEAR`/`END_MONTH`. |
+| `MODEL_KEYS` | Which models run, and in what order. Must match the keys in `src/models/model_registry.py`. |
+| `BASE_FEATURES` | The feature set every museum's tabular models train on. |
+| `MUSEUM_FEATURES` | Per-museum overrides of that feature set. |
+
+
+<br>
+
+### `.env`
+- For environment variables (currently not yet implemented)
+
+
+<br>
+
+## Methodology
+### Models Trained
+| Key | Model | Sees | Tuned |
+| --- | --- | --- | --- |
+| `baseline` | Calendar-month mean of the last 36 months | history only | — |
+| `hw` | Holt-Winters exponential smoothing, 12-month seasonality | history only | Optuna |
+| `sarimax` | SARIMAX, orders `(p,d,q)(P,D,Q,12)` searched, features as standardised regressors | full feature set | Optuna |
+| `rf` | Random Forest | full feature set | Optuna |
+| `xgb` | XGBoost | full feature set | Optuna |
+| `svr` | Support Vector Regression, kernel searched (`linear`/`rbf`/`poly`) | full feature set | Optuna |
+| `lstm` | Two stacked LSTM layers (50 units) → Dense(25) → Dense(1), 12-month input window, 50 epochs | feature set except lag features | — |
+
+Note: `timegpt` is not currently implemented yet
+
+
+<br>
+
+### Features
+The target column is `value`, which represents monthly museum visitorship (in thousands).
+
+`BASE_FEATURES` includes all the features most multivariate models take.
+
+| Feature | Description | Used in |
+| --- | --- | --- |
+| `sin_month`, `cos_month` | Cyclical encoding of the calendar month, so December and January sit next to each other | `BASE_FEATURES` |
+| `monthly_avg` | Mean visitorship for that calendar month. Computed on training data only, with COVID months excluded | `BASE_FEATURES` |
+| `lag_1` … `lag_12` (12 features) | Visitorship in the time periods 1 to 12 months earlier | `BASE_FEATURES` (except LSTM) |
+| `is_covid` | `1` for months inside `COVID_START`–`COVID_END`. `0` otherwise. | `BASE_FEATURES` |
+| `intl_arrivals` | Total international visitor arrivals that month | `BASE_FEATURES` |
+| `is_deepavali` | `1` when Deepavali falls in that month. see [Methodology](#methodology) | only IHC |
+| `is_closed` | `1` when reported visitorship is zero, `0` otherwise. SingStat sometimes reports closed months as `"-"`, which is imputed with 0 visitors | `BASE_FEATURES` |
+
+
+<br>
+
+### Pipeline
+#### Preprocessing
+- The first 12 months of every museum's history are dropped, since their lag features cannot be filled.
+- Historical visitorship data is split into a chronological `80/20` train-test split.
+- Months with `"-"`/`NA` visitorship (when museums were closed *after their first month of operation onwards) are kept and imputed with `0` where necessary, and `is_closed` is set to `1` 
+    - Museums that opened later (currently only TPM) do not get 0s appended to fill the front of the training window
+
+
+#### Model Training
+- Models are trained on the 80% training set
+- Models which include hyperparameter tuning are validated on a held out portion of the training set through 50 Optuna trials
+    - For `hw`, `sarimax` and `svr`, a single trailing 10-month holdout is used for validation
+    - For `rf` and `xgb`, `TimeSeriesSplit(n_splits=3)` is used to average out RMSE across the 3 folds
+    - All five Optuna objective functions minimise RMSE.
+- Models are evaluated on the 20% held out test set to calculate evaluation metrics e.g. RMSE, MAPE
+- Tuned hyperparameters are reused to refit the final prediction models using the full 100% historical series.
+
+
+#### Forecasting
+- All surviving models are used to produce a forecast, and their predictions are output in order of their evaluation performance (best first)
+- Museums whose data ends before the configured window (e.g. MHC being closed from 30 Oct 2022 - 25 April 2026) are padded with zero-visitor months, so every museum forecasts the same `h` months from the same starting point.
+- A `h=24` months future frame is built to facilitate predictions for each model. Known future features like `sin_month`, `cos_month` are filled in. lag feature values for the 1st forecasted year are filled in from the end of the training data where known.
+- COVID months (defined in `config.py`) were excluded from the calculation of historical monthly averages (for the `monthly_avg` feature)
+    - Including them dragged the averages ~14–34% below current levels and tended to make the models underpredict future visitorship
+- Musuems are assumbed to be open throughout the forecast period, so `is_closed` is set to `0` for all `h` months
+- Unknown future feature values like lag features and `intl_arrivals` are imputed from full training period historical monthly means. Similarly, the defined COVID period is excluded from these calculations to prevent underrepresenting future feature values and underpredicting future museum visitorship.
+
+<br>
+
+## Outputs
+Each run writes singstat API data to `data/` and writes one folder per museum (with its own museum code, `CODE`) under `outputs/`
+
+```
+outputs/{CODE}/
+├── {CODE}_summary.txt                          # Human-readable report (see below)
+├── {CODE}_model_eval.csv                       # Institution, Model, RMSE, MAPE (lowest-RMSE first)
+├── eval/
+│   └── {CODE}_eval_{model}_timeplot.png        # Test-period fit, one per model
+└── predict/
+    ├── {CODE}_predict_{model}_timeplot.png     # Forecast, one per model
+    ├── {CODE}_predict_top3_timeplot.png        # Top 3 models by RMSE, overlaid
+    └── {CODE}_{model}_predictions.csv          # Institution, Model, Year, Month, Prediction
+```
+
+
+### `{CODE}_summary.txt`
+
+The main pipeline results summary for each museum. Three tables:
+
+| Table | Contents |
+| --- | --- |
+| **1. Model Evaluation** | Every model's RMSE and MAPE on the test period, ranked lowest-RMSE-first |
+| **2. Total Visitors by Financial Year** | Historical actuals and the winning model's forecast in one column. |
+| **3. Forecast FY Totals by Model** | Every model's own FY totals alongside its RMSE and MAPE |
+
+
+<br>
+
+## Results
+
+### Model Performance
+| Museum | Winning model | RMSE | MAPE | Decrease in RMSE vs `baseline` |
+| --- | --- | --- | --- | --- |
+| ACM | Random Forest | 7.23 | 14.00% | −54% |
+| NMS | XGBoost | 16.64 | 15.38% | −54% |
+| TPM | Support Vector Regression | 2.64 | 12.46% | −74% |
+| IHC | SARIMAX | 5.30 | 22.55% | −40% |
+| MHC | Support Vector Regression | 3.43 | * | −63% |
+
+* For MHC, all models' MAPEs exploded during evaluation as its held out test set is entirely included in its closure from Oct 2022 to Apr 2026, where visitorship was 0 (See [Limitations](#limitations))
+
+* RMSE is in thousands of visitors and is **not comparable across museums**: TPM's 2.64 and NMS's 16.64 mostly reflect that NMS is roughly six times larger. Use MAPE for cross-museum comparison.
+
+### Model Forecasts
+From each museum's winning model. FY runs April–March. FY total visitorship is reported **in thousands**.
+
+| Museum | FY2025 (actual) | FY2026 ('000s) | FY2027 ('000s) |
+| --- | --- | --- | --- |
+| ACM | 529.9 | 496.8 | 482.9 |
+| NMS | 1,056.5 | 1,045.8 | 991.1 |
+| IHC | 218.2 | 251.5 | 258.7 |
+| TPM | 167.6 | 216.7 | 237.3 |
+| MHC | 0.0 (closed) | 425.9 | 489.9 |
+
+By museum,
+
+#### ACM
+
+<table>
+  <thead>
+    <tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026 ('000s)</th><th>FY2027 ('000s)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>Random Forest Regressor</b></td><td>7.23</td><td>14.00%</td><td>496.8</td><td>482.9</td></tr>
+    <tr><td>Support Vector Regression</td><td>7.25</td><td>12.62%</td><td>490.3</td><td>482.6</td></tr>
+    <tr><td>XGBoost</td><td>7.50</td><td>14.55%</td><td>483.1</td><td>492.1</td></tr>
+    <tr><td>Holt-Winters exponential smoothing</td><td>8.07</td><td>13.49%</td><td>676.8</td><td>791.9</td></tr>
+    <tr><td>LSTM</td><td>9.69</td><td>22.90%</td><td>468.2</td><td>456.7</td></tr>
+    <tr><td>SARIMAX</td><td>10.98</td><td>17.40%</td><td>637.4</td><td>773.3</td></tr>
+    <tr><td>Baseline Monthly Mean</td><td>15.85</td><td>30.54%</td><td>452.0</td><td>452.0</td></tr>
+  </tbody>
+</table>
+
+#### NMS
+
+<table>
+  <thead>
+    <tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026 ('000s)</th><th>FY2027 ('000s)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>XGBoost</b></td><td>16.64</td><td>15.38%</td><td>1,045.8</td><td>991.1</td></tr>
+    <tr><td>Random Forest Regressor</td><td>17.19</td><td>16.65%</td><td>1,037.0</td><td>992.0</td></tr>
+    <tr><td>Support Vector Regression</td><td>19.32</td><td>16.35%</td><td>993.6</td><td>1,084.8</td></tr>
+    <tr><td>LSTM</td><td>23.46</td><td>18.68%</td><td>925.2</td><td>916.3</td></tr>
+    <tr><td>SARIMAX</td><td>26.49</td><td>26.50%</td><td>1,006.9</td><td>1,054.8</td></tr>
+    <tr><td>Baseline Monthly Mean</td><td>36.40</td><td>30.13%</td><td>1,040.0</td><td>1,040.0</td></tr>
+    <tr><td>Holt-Winters exponential smoothing</td><td>77.05</td><td>79.90%</td><td>1,025.4</td><td>962.9</td></tr>
+  </tbody>
+</table>
+
+#### TPM
+
+<table>
+  <thead>
+    <tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026 ('000s)</th><th>FY2027 ('000s)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>Support Vector Regression</b></td><td>2.64</td><td>12.46%</td><td>216.7</td><td>237.3</td></tr>
+    <tr><td>XGBoost</td><td>3.05</td><td>18.16%</td><td>195.0</td><td>233.8</td></tr>
+    <tr><td>Random Forest Regressor</td><td>4.73</td><td>27.03%</td><td>195.6</td><td>192.7</td></tr>
+    <tr><td>SARIMAX</td><td>7.18</td><td>43.21%</td><td>88.4</td><td>30.6</td></tr>
+    <tr><td>LSTM</td><td>10.15</td><td>57.64%</td><td>242.9</td><td>275.5</td></tr>
+    <tr><td>Baseline Monthly Mean</td><td>10.17</td><td>68.14%</td><td>170.1</td><td>170.1</td></tr>
+    <tr><td>Holt-Winters exponential smoothing</td><td>10.24</td><td>69.26%</td><td>271.4</td><td>363.4</td></tr>
+  </tbody>
+</table>
+
+#### IHC
+
+<table>
+  <thead>
+    <tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026 ('000s)</th><th>FY2027 ('000s)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>SARIMAX</b></td><td>5.30</td><td>22.55%</td><td>251.5</td><td>258.7</td></tr>
+    <tr><td>Support Vector Regression</td><td>6.06</td><td>33.05%</td><td>217.3</td><td>214.2</td></tr>
+    <tr><td>LSTM</td><td>6.11</td><td>36.31%</td><td>238.8</td><td>232.3</td></tr>
+    <tr><td>Random Forest Regressor</td><td>6.18</td><td>28.02%</td><td>216.6</td><td>213.2</td></tr>
+    <tr><td>Holt-Winters exponential smoothing</td><td>6.21</td><td>36.59%</td><td>232.8</td><td>245.9</td></tr>
+    <tr><td>XGBoost</td><td>7.00</td><td>29.89%</td><td>218.6</td><td>211.5</td></tr>
+    <tr><td>Baseline Monthly Mean</td><td>8.79</td><td>33.24%</td><td>216.6</td><td>216.6</td></tr>
+  </tbody>
+</table>
+
+#### MHC
+
+<table>
+  <thead>
+    <tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026 ('000s)</th><th>FY2027 ('000s)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>Support Vector Regression</b></td><td>3.43</td><td>n/a</td><td>425.9</td><td>489.9</td></tr>
+    <tr><td>LSTM</td><td>3.69</td><td>n/a</td><td>427.9</td><td>572.5</td></tr>
+    <tr><td>Baseline Monthly Mean</td><td>9.33</td><td>n/a</td><td>0.0</td><td>0.0</td></tr>
+    <tr><td>SARIMAX</td><td>10.47</td><td>n/a</td><td>351.9</td><td>360.6</td></tr>
+    <tr><td>Random Forest Regressor</td><td>19.48</td><td>n/a</td><td>343.9</td><td>463.3</td></tr>
+    <tr><td>XGBoost</td><td>30.74</td><td>n/a</td><td>417.3</td><td>506.9</td></tr>
+    <tr><td>Holt-Winters exponential smoothing</td><td>32.88</td><td>n/a</td><td>214.3</td><td>484.6</td></tr>
+  </tbody>
+</table>
+
+
+
+See `outputs/{MUSEUM_CODE}` for full results
+
+<br>
+
+## Limitations
+#### Year 2 forecasts is a flattened seasonal baseline
+- As prediction period unknown lag features and `intl_arrivals` are imputed with historical full training period monthly means (excluding COVID from the calculations), the 2nd forecast year, is made up entirely of imputed lag features and `intl_arrivals` and will thus lead to a repeating seasonal trend
+
+#### Some museums have long closed periods with no visitors
+- While historical training period used is Jan 2014 to Mar 2026, TPM only opened, TPM closed between and MHC closed between Oct 2022 and Apr 2026
+- For MHC, evaluation MAPE is exploded as its test set falls entirely within its closure period
+
+#### Manual maintenance of input files
+- `deepavali.csv`, which contains the specific months each year when Deepavali occurs (it hovers between Oct and Nov) must be extended manually. Govt only gazettes official Deepavali holiday dates 1.5-2 years in advance
+
+
+<br>
+
+## Roadmap
+- Implement TimeGPT models, .env for storing TimeGPT API keys
+- Adjust MHC's training window such that test set isn't completely 0
+- Replace the plot's confidence band with a real prediction interval
+- Trim the lag feature set to remove useless lag features
