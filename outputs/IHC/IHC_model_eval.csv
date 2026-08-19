@@ -1,6 +1,6 @@
 Institution,Model,RMSE,MAPE
+Indian Heritage Centre,LSTM,6.06,36.75%
 Indian Heritage Centre,Support Vector Regression,6.06,33.05%
-Indian Heritage Centre,LSTM,6.13,36.33%
 Indian Heritage Centre,Random Forest Regressor,6.18,28.02%
 Indian Heritage Centre,Holt-Winters exponential smoothing,6.21,36.59%
 Indian Heritage Centre,XGBoost,6.57,30.04%

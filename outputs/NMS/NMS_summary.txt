@@ -4,7 +4,7 @@ Random Forest Regressor             17.19  16.65%
 XGBoost                             18.34  17.94%
 SARIMAX                             18.79  19.18%
 Support Vector Regression           19.32  16.35%
-LSTM                                23.53  19.01%
+LSTM                                23.86  19.12%
 Baseline Monthly Mean               36.40  30.13%
 Holt-Winters exponential smoothing  77.05  79.90%
 Winning model: Random Forest Regressor
@@ -34,7 +34,7 @@ Random Forest Regressor             17.19  16.65%  1,037.0  992.0
 XGBoost                             18.34  17.94%  1,046.9  1,038.6
 SARIMAX                             18.79  19.18%  1,039.2  1,038.3
 Support Vector Regression           19.32  16.35%  993.6    1,084.8
-LSTM                                23.53  19.01%  929.9    928.5  
+LSTM                                23.86  19.12%  937.5    933.9  
 Baseline Monthly Mean               36.40  30.13%  1,040.0  1,040.0
 Holt-Winters exponential smoothing  77.05  79.90%  1,025.4  962.9  
 
