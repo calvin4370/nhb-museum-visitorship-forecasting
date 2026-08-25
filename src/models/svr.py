@@ -31,8 +31,7 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
     if best_params is None:
         def objective(trial, data=train_data, val_size=10):
             # Define hyperparameter search space
-            # No 'poly': an unbounded kernel fed its own output diverges under
-            # recursive forecasting, overflowing within ~13 steps
+            # No 'poly': an unbounded kernel diverges under recursive forecasting
             kernel = trial.suggest_categorical('kernel', ['linear', 'rbf'])
             C = trial.suggest_loguniform('C', 1e-3, 1e3)
             epsilon = trial.suggest_loguniform('epsilon', 1e-3, 1)
@@ -74,8 +73,7 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
     best_model = SVR(**best_params)
     best_model.fit(X_train_scaled, y_train)
 
-    # Forecasting. Eval has real lags; predict mode forecasts off its own output,
-    # scaling each row with the same fitted scaler before it reaches the model
+    # Forecasting: recursive rows go through the fitted scaler
     if eval:
         forecast = best_model.predict(X_test_scaled)
     else:

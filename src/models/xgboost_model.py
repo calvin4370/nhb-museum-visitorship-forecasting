@@ -53,7 +53,7 @@ def xgb(train_data, test_data, eval, features, best_params=None):
     best_model = XGBRegressor(**best_params, random_state=random_state)
     best_model.fit(train_data[features], train_data[target])
 
-    # Forecasting. Eval has real lags; predict mode forecasts off its own output
+    # Forecasting: eval has real lags, predict recurses off its own output
     if eval:
         forecast = best_model.predict(test_data[features])
     else:

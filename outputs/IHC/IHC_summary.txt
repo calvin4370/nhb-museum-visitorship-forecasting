@@ -1,16 +1,16 @@
 ======== Model Evaluation ========
 Model                               RMSE  MAPE  
-Support Vector Regression           6.06  33.05%
-LSTM                                6.08  36.59%
+SARIMAX                             5.05  26.83%
+LSTM                                5.85  36.69%
 Random Forest Regressor             6.18  28.02%
 Holt-Winters exponential smoothing  6.21  36.59%
+Support Vector Regression           6.29  32.77%
 XGBoost                             6.57  30.04%
-SARIMAX                             6.79  32.64%
 Baseline Monthly Mean               8.79  33.24%
-Winning model: Support Vector Regression
+Winning model: SARIMAX
 
 
-======== Total Visitors ('000s) by Financial Year (Support Vector Regression) ========
+======== Total Visitors ('000s) by Financial Year (SARIMAX) ========
 FY                   Total Visitors ('000s)
 FY2016               138.9                 
 FY2017               185.5                 
@@ -22,17 +22,17 @@ FY2022               148.6
 FY2023               216.2                 
 FY2024               215.3                 
 FY2025               218.2                 
-FY2026 (Prediction)  217.3                 
-FY2027 (Prediction)  214.2                 
+FY2026 (Prediction)  220.1                 
+FY2027 (Prediction)  217.8                 
 
 
 ======== Forecast FY Totals by Model ========
 Model                               RMSE  MAPE    FY2026  FY2027
-Support Vector Regression           6.06  33.05%  217.3   214.2 
-LSTM                                6.08  36.59%  236.6   227.0 
-Random Forest Regressor             6.18  28.02%  216.6   213.2 
+SARIMAX                             5.05  26.83%  220.1   217.8 
+LSTM                                5.85  36.69%  237.8   233.8 
+Random Forest Regressor             6.18  28.02%  216.5   216.5 
 Holt-Winters exponential smoothing  6.21  36.59%  232.8   245.9 
-XGBoost                             6.57  30.04%  220.1   212.8 
-SARIMAX                             6.79  32.64%  262.8   319.9 
+Support Vector Regression           6.29  32.77%  221.9   214.7 
+XGBoost                             6.57  30.04%  225.2   228.2 
 Baseline Monthly Mean               8.79  33.24%  216.6   216.6 
 
