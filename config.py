@@ -29,7 +29,7 @@ COVID_END = pd.Timestamp("2023-02-13") # 13 Feb 2023 (DORSCON Green, remaining b
 
 # When True the COVID months are cut out of every museum's history entirely, so the
 # months after COVID lag straight onto the months before it. Leaves is_covid all-zero.
-EXCLUDE_COVID_PERIOD = False
+EXCLUDE_COVID_PERIOD = True
 
 # Number of months to forecast, default 2 years (i.e., 24 months)
 h = 24
@@ -38,9 +38,9 @@ h = 24
 MODEL_KEYS = ["rf", "xgb", "svr", "hw", "sarimax", "lstm", "timegpt", "baseline"]
 
 # Features every museum's tabular models (rf, xgb, svr, sarimax) train on
-BASE_FEATURES = ["sin_month", "cos_month", "monthly_avg", "is_covid", "is_closed", "intl_arrivals"] + [
+BASE_FEATURES = ["sin_month", "cos_month", "monthly_avg", "is_closed", "intl_arrivals"] + [
     f"lag_{i}" for i in range(1, 13)
-]
+] # NOTE: for tests 6a and 6b, is_covid was removed
 
 # Per-museum overrides; a museum absent here uses BASE_FEATURES as-is
 MUSEUM_FEATURES = {"IHC": BASE_FEATURES + ["is_deepavali"]}
