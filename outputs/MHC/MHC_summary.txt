@@ -3,9 +3,9 @@ Model                               RMSE   MAPE
 XGBoost                             4.09   1833571934321932032.00% 
 Random Forest Regressor             8.03   3425108767374461440.00% 
 Baseline Monthly Mean               9.33   3984530901087665664.00% 
-LSTM                                10.36  4556630034590042624.00% 
-Support Vector Regression           12.20  5040266878927548416.00% 
-SARIMAX                             20.94  9256959246737227776.00% 
+LSTM                                10.06  4359216360155734528.00% 
+Support Vector Regression           12.52  5214816409599343616.00% 
+SARIMAX                             13.59  5113309555389607936.00% 
 Holt-Winters exponential smoothing  32.88  13052763019298254848.00%
 Winning model: XGBoost
 
@@ -23,18 +23,18 @@ FY2021               84.7
 FY2022               171.5                 
 FY2023               0.0                   
 FY2024               0.0                   
-FY2025 (Prediction)  177.9                 
-FY2026 (Prediction)  458.9                 
-FY2027 (Prediction)  169.4                 
+FY2025 (Prediction)  0.0                   
+FY2026 (Prediction)  0.0                   
+FY2027 (Prediction)  0.0                   
 
 
 ======== Forecast FY Totals by Model ========
 Model                               RMSE   MAPE                      FY2025  FY2026  FY2027
-XGBoost                             4.09   1833571934321932032.00%   177.9   458.9   169.4 
-Random Forest Regressor             8.03   3425108767374461440.00%   163.4   483.7   170.8 
+XGBoost                             4.09   1833571934321932032.00%   0.0     0.0     0.0   
+Random Forest Regressor             8.03   3425108767374461440.00%   0.0     0.0     0.0   
 Baseline Monthly Mean               9.33   3984530901087665664.00%   28.2    28.2    0.0   
-LSTM                                10.36  4556630034590042624.00%   184.3   435.9   138.9 
-Support Vector Regression           12.20  5040266878927548416.00%   235.7   419.8   126.6 
-SARIMAX                             20.94  9256959246737227776.00%   179.0   391.3   133.7 
+LSTM                                10.06  4359216360155734528.00%   13.4    56.4    30.8  
+Support Vector Regression           12.52  5214816409599343616.00%   8.1     19.5    8.2   
+SARIMAX                             13.59  5113309555389607936.00%   -49.8   -218.3  -115.3
 Holt-Winters exponential smoothing  32.88  13052763019298254848.00%  -9.8    33.0    26.4  
 

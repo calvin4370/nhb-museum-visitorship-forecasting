@@ -1,16 +1,16 @@
 ======== Model Evaluation ========
 Model                               RMSE   MAPE  
-SARIMAX                             2.71   15.00%
-Support Vector Regression           4.13   22.72%
-LSTM                                5.33   34.39%
+Support Vector Regression           3.37   15.87%
+SARIMAX                             3.80   15.50%
+LSTM                                4.91   31.12%
 Random Forest Regressor             5.43   24.77%
 XGBoost                             5.88   30.29%
 Baseline Monthly Mean               10.17  68.14%
 Holt-Winters exponential smoothing  10.24  69.26%
-Winning model: SARIMAX
+Winning model: Support Vector Regression
 
 
-======== Total Visitors ('000s) by Financial Year (SARIMAX) ========
+======== Total Visitors ('000s) by Financial Year (Support Vector Regression) ========
 FY                   Total Visitors ('000s)
 FY2014               102.8                 
 FY2015               470.6                 
@@ -24,17 +24,17 @@ FY2022               35.1
 FY2023               172.6                 
 FY2024               170.1                 
 FY2025               167.6                 
-FY2026 (Prediction)  156.1                 
-FY2027 (Prediction)  199.8                 
+FY2026 (Prediction)  157.7                 
+FY2027 (Prediction)  156.5                 
 
 
 ======== Forecast FY Totals by Model ========
 Model                               RMSE   MAPE    FY2026  FY2027
-SARIMAX                             2.71   15.00%  156.1   199.8 
-Support Vector Regression           4.13   22.72%  158.7   159.1 
-LSTM                                5.33   34.39%  261.1   287.8 
-Random Forest Regressor             5.43   24.77%  198.8   192.8 
-XGBoost                             5.88   30.29%  244.4   245.0 
+Support Vector Regression           3.37   15.87%  157.7   156.5 
+SARIMAX                             3.80   15.50%  156.6   157.6 
+LSTM                                4.91   31.12%  141.6   153.6 
+Random Forest Regressor             5.43   24.77%  190.4   176.0 
+XGBoost                             5.88   30.29%  111.0   9.8   
 Baseline Monthly Mean               10.17  68.14%  170.1   170.1 
 Holt-Winters exponential smoothing  10.24  69.26%  271.4   363.4 
 

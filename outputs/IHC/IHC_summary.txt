@@ -1,12 +1,12 @@
 ======== Model Evaluation ========
-Model                               RMSE   MAPE  
-Holt-Winters exponential smoothing  6.21   36.59%
-XGBoost                             6.76   32.70%
-Random Forest Regressor             6.99   32.93%
-LSTM                                7.17   42.66%
-Support Vector Regression           7.50   38.06%
-Baseline Monthly Mean               8.79   33.24%
-SARIMAX                             10.19  69.43%
+Model                               RMSE  MAPE  
+Holt-Winters exponential smoothing  6.21  36.59%
+XGBoost                             6.76  32.70%
+Random Forest Regressor             6.99  32.93%
+LSTM                                7.22  42.55%
+Support Vector Regression           7.50  38.07%
+Baseline Monthly Mean               8.79  33.24%
+SARIMAX                             9.09  36.49%
 Winning model: Holt-Winters exponential smoothing
 
 
@@ -27,12 +27,12 @@ FY2027 (Prediction)  245.9
 
 
 ======== Forecast FY Totals by Model ========
-Model                               RMSE   MAPE    FY2026  FY2027
-Holt-Winters exponential smoothing  6.21   36.59%  232.8   245.9 
-XGBoost                             6.76   32.70%  226.0   216.8 
-Random Forest Regressor             6.99   32.93%  217.3   215.5 
-LSTM                                7.17   42.66%  235.5   235.2 
-Support Vector Regression           7.50   38.06%  205.0   203.7 
-Baseline Monthly Mean               8.79   33.24%  216.6   216.6 
-SARIMAX                             10.19  69.43%  227.5   252.8 
+Model                               RMSE  MAPE    FY2026  FY2027
+Holt-Winters exponential smoothing  6.21  36.59%  232.8   245.9 
+XGBoost                             6.76  32.70%  222.2   216.0 
+Random Forest Regressor             6.99  32.93%  213.4   214.1 
+LSTM                                7.22  42.55%  252.8   245.7 
+Support Vector Regression           7.50  38.07%  203.2   201.9 
+Baseline Monthly Mean               8.79  33.24%  216.6   216.6 
+SARIMAX                             9.09  36.49%  209.6   208.1 
 
