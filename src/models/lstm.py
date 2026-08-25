@@ -7,6 +7,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 
 from config import LSTM_FEATURES
+from src.models.recursive import bound_prediction
 
 # Suppress TensorFlow logging before importing it. 
 # Set back to normal after import to only skip the 2 initialisation messages
@@ -83,16 +84,20 @@ def lstm(data, eval, h):
         test_predict = model.predict(X_test, verbose=0)
     else:
         sequence = features_scaled.copy()
+        ceiling = 2 * data['value'].iloc[:train_size].max()
         scaled_predictions = []
         for step in range(len(sequence) - train_size):
             end = train_size + step
             window = sequence[end - time_steps:end][np.newaxis, ...]
-            scaled_prediction = model.predict(window, verbose=0)[0, 0]
-            scaled_predictions.append(scaled_prediction)
 
             # The two scalers are fitted separately, so round-trip through real
             # units rather than assuming the target and channel 0 share a scale
-            value = target_scaler.inverse_transform([[scaled_prediction]])[0][0]
+            value = target_scaler.inverse_transform(
+                [[model.predict(window, verbose=0)[0, 0]]]
+            )[0][0]
+            value = bound_prediction(value, data['monthly_avg'].iloc[end], ceiling)
+
+            scaled_predictions.append(target_scaler.transform([[value]])[0][0])
             sequence[end, 0] = (
                 value - feature_scaler.data_min_[0]
             ) / feature_scaler.data_range_[0]

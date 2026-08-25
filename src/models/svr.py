@@ -34,7 +34,9 @@ def support_vec(train_data, test_data, eval, best_params=None):
     if best_params is None:
         def objective(trial, data=train_data, val_size=10):
             # Define hyperparameter search space
-            kernel = trial.suggest_categorical('kernel', ['linear', 'rbf', 'poly'])
+            # No 'poly': an unbounded kernel fed its own output diverges under
+            # recursive forecasting, overflowing within ~13 steps
+            kernel = trial.suggest_categorical('kernel', ['linear', 'rbf'])
             C = trial.suggest_loguniform('C', 1e-3, 1e3)
             epsilon = trial.suggest_loguniform('epsilon', 1e-3, 1)
 
@@ -83,6 +85,7 @@ def support_vec(train_data, test_data, eval, best_params=None):
             lambda row: float(best_model.predict(scaler.transform(row))[0]),
             test_data,
             features,
+            upper=2 * y_train.max(),
         )
     test_data["Forecast"] = forecast
 

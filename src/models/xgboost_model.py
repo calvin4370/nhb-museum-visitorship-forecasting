@@ -61,7 +61,10 @@ def xgb(train_data, test_data, eval, best_params=None):
         forecast = best_model.predict(test_data[features])
     else:
         forecast = recursive_forecast(
-            lambda row: float(best_model.predict(row)[0]), test_data, features
+            lambda row: float(best_model.predict(row)[0]),
+            test_data,
+            features,
+            upper=2 * train_data[target].max(),
         )
     test_data["Forecast"] = forecast
 
