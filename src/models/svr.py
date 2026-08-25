@@ -4,6 +4,8 @@ import numpy as np
 
 import optuna
 from sklearn.preprocessing import StandardScaler
+
+from src.models.recursive import recursive_forecast
 from sklearn.svm import SVR
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
@@ -74,7 +76,14 @@ def support_vec(train_data, test_data, eval, best_params=None):
     best_model.fit(X_train_scaled, y_train)
 
     # Forecasting
-    forecast = best_model.predict(X_test_scaled)
+    if eval:
+        forecast = best_model.predict(X_test_scaled)
+    else:
+        forecast = recursive_forecast(
+            lambda row: float(best_model.predict(scaler.transform(row))[0]),
+            test_data,
+            features,
+        )
     test_data["Forecast"] = forecast
 
     # Metrics Calculation

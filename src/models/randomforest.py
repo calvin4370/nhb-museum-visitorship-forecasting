@@ -6,6 +6,8 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 from sklearn.model_selection import TimeSeriesSplit
 
+from src.models.recursive import recursive_forecast
+
 def randomforest(train_data, test_data, eval, best_params=None):
     # Define features and target
     features = ["sin_month", "cos_month", "monthly_avg", "is_covid"] + [
@@ -57,8 +59,14 @@ def randomforest(train_data, test_data, eval, best_params=None):
     best_model = RandomForestRegressor(**best_params, random_state=random_state)
     best_model.fit(train_data[features], train_data[target])
 
-    # Forecasting
-    forecast = best_model.predict(test_data[features])
+    # Forecasting. Eval has real lags, so it predicts in one batch; predict mode
+    # has none beyond the first year and forecasts off its own earlier output
+    if eval:
+        forecast = best_model.predict(test_data[features])
+    else:
+        forecast = recursive_forecast(
+            lambda row: float(best_model.predict(row)[0]), test_data, features
+        )
     test_data["Forecast"] = forecast
 
     if eval:

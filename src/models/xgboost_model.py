@@ -4,6 +4,8 @@ import pandas as pd
 import optuna
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 from sklearn.model_selection import TimeSeriesSplit
+
+from src.models.recursive import recursive_forecast
 from xgboost import XGBRegressor
 
 def xgb(train_data, test_data, eval, best_params=None):
@@ -55,7 +57,12 @@ def xgb(train_data, test_data, eval, best_params=None):
     best_model.fit(train_data[features], train_data[target])
 
     # Forecasting
-    forecast = best_model.predict(test_data[features])
+    if eval:
+        forecast = best_model.predict(test_data[features])
+    else:
+        forecast = recursive_forecast(
+            lambda row: float(best_model.predict(row)[0]), test_data, features
+        )
     test_data["Forecast"] = forecast
 
     if eval:

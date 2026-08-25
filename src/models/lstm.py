@@ -75,8 +75,29 @@ def lstm(data, eval, h):
     # Train the model
     model.fit(X_train, y_train, batch_size=1, epochs=50, verbose=0)
 
-    # Predict values
-    test_predict = model.predict(X_test)
+    # Predict values. Eval reads real history, so every window is genuine and the
+    # whole test set can go in one batch. Predict mode has no actuals past the
+    # training edge, so each step's output is written back into the 'value' channel
+    # (index 0) and becomes part of the next window.
+    if eval:
+        test_predict = model.predict(X_test, verbose=0)
+    else:
+        sequence = features_scaled.copy()
+        scaled_predictions = []
+        for step in range(len(sequence) - train_size):
+            end = train_size + step
+            window = sequence[end - time_steps:end][np.newaxis, ...]
+            scaled_prediction = model.predict(window, verbose=0)[0, 0]
+            scaled_predictions.append(scaled_prediction)
+
+            # The two scalers are fitted separately, so round-trip through real
+            # units rather than assuming the target and channel 0 share a scale
+            value = target_scaler.inverse_transform([[scaled_prediction]])[0][0]
+            sequence[end, 0] = (
+                value - feature_scaler.data_min_[0]
+            ) / feature_scaler.data_range_[0]
+
+        test_predict = np.array(scaled_predictions).reshape(-1, 1)
 
     # Inverse scale the predictions and actual values
     test_predict = target_scaler.inverse_transform(test_predict)

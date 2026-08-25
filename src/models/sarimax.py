@@ -11,9 +11,10 @@ warnings.filterwarnings('ignore')
 
 def sarimax_model(train_data, test_data, eval, best_params=None):
     # Define features and target
-    features = ["sin_month", "cos_month", "monthly_avg", "is_covid"] + [
-        f"lag_{i}" for i in range(1, 13)
-    ]
+    # No lag exog: SARIMAX already carries the series' own past through its AR and
+    # seasonal terms, so get_forecast iterates recursively without being handed
+    # lag columns that would have to be imputed across the predict horizon
+    features = ["sin_month", "cos_month", "monthly_avg", "is_covid"]
     target = "value"
 
     # Set seed for reproducibility
