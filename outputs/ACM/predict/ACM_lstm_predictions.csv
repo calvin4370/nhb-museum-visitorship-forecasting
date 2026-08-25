@@ -1,0 +1,25 @@
+Institution,Model,Year,Month,Prediction
+Asian Civilisations Museum,lstm,2026,4,46.625458
+Asian Civilisations Museum,lstm,2026,5,45.668846
+Asian Civilisations Museum,lstm,2026,6,44.261887
+Asian Civilisations Museum,lstm,2026,7,44.44106
+Asian Civilisations Museum,lstm,2026,8,42.46403
+Asian Civilisations Museum,lstm,2026,9,38.256504
+Asian Civilisations Museum,lstm,2026,10,38.054134
+Asian Civilisations Museum,lstm,2026,11,34.776325
+Asian Civilisations Museum,lstm,2026,12,35.397923
+Asian Civilisations Museum,lstm,2027,1,43.66472
+Asian Civilisations Museum,lstm,2027,2,39.231483
+Asian Civilisations Museum,lstm,2027,3,42.997414
+Asian Civilisations Museum,lstm,2027,4,40.134865
+Asian Civilisations Museum,lstm,2027,5,44.55679
+Asian Civilisations Museum,lstm,2027,6,39.682236
+Asian Civilisations Museum,lstm,2027,7,41.853695
+Asian Civilisations Museum,lstm,2027,8,39.579964
+Asian Civilisations Museum,lstm,2027,9,36.79713
+Asian Civilisations Museum,lstm,2027,10,38.19
+Asian Civilisations Museum,lstm,2027,11,35.32623
+Asian Civilisations Museum,lstm,2027,12,36.952847
+Asian Civilisations Museum,lstm,2028,1,46.137096
+Asian Civilisations Museum,lstm,2028,2,40.433193
+Asian Civilisations Museum,lstm,2028,3,43.62811

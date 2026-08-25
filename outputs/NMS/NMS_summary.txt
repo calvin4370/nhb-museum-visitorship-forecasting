@@ -1,0 +1,36 @@
+======== Model Evaluation ========
+Model                      RMSE   MAPE  
+Baseline Monthly Mean      13.33  11.91%
+Support Vector Regression  13.85  14.95%
+LSTM                       14.69  13.15%
+SARIMAX                    14.88  17.42%
+XGBoost                    15.08  14.14%
+Random Forest Regressor    16.69  15.87%
+Winning model: Baseline Monthly Mean
+
+
+======== Total Visitors ('000s) by Financial Year (Baseline Monthly Mean) ========
+FY                   Total Visitors ('000s)
+FY2014               153.4                 
+FY2015               783.1                 
+FY2016               811.4                 
+FY2017               930.7                 
+FY2018               977.6                 
+FY2019               1,003.8               
+FY2022               67.8                  
+FY2023               1,065.4               
+FY2024               998.1                 
+FY2025               1,056.5               
+FY2026 (Prediction)  1,040.0               
+FY2027 (Prediction)  1,040.0               
+
+
+======== Forecast FY Totals by Model ========
+Model                      RMSE   MAPE    FY2026   FY2027 
+Baseline Monthly Mean      13.33  11.91%  1,040.0  1,040.0
+Support Vector Regression  13.85  14.95%  953.6    977.2  
+LSTM                       14.69  13.15%  950.7    925.4  
+SARIMAX                    14.88  17.42%  1,290.8  1,491.0
+XGBoost                    15.08  14.14%  983.5    993.8  
+Random Forest Regressor    16.69  15.87%  1,007.5  982.2  
+
