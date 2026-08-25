@@ -17,6 +17,11 @@ def sarimax_model(train_data, test_data, eval, features, best_params=None):
     # Set seed for reproducibility
     random_state = 42
 
+    # Drop the lag exog: SARIMAX already carries the series' own past through its
+    # AR and seasonal terms, so get_forecast iterates recursively without being
+    # handed lag columns that would have to be imputed across the predict horizon
+    features = [f for f in features if not f.startswith("lag_")]
+
     # Standardise exogenous features
     scaler = StandardScaler()
     train_exog = pd.DataFrame(

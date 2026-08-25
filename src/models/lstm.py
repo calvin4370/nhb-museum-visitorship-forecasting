@@ -6,6 +6,8 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 
+from src.models.recursive import bound_prediction
+
 
 # Suppress TensorFlow logging before importing it. 
 # Set back to normal after import to only skip the 2 initialisation messages
@@ -75,8 +77,33 @@ def lstm(data, eval, h, feature_cols):
     # Train the model
     model.fit(X_train, y_train, batch_size=1, epochs=50, verbose=0)
 
-    # Predict values
-    test_predict = model.predict(X_test)
+    # Predict values. Eval reads real history, so every window is genuine and the
+    # whole test set can go in one batch. Predict mode has no actuals past the
+    # training edge, so each step's output is written back into the 'value' channel
+    # (index 0 of feature_cols) and becomes part of the next window.
+    if eval:
+        test_predict = model.predict(X_test, verbose=0)
+    else:
+        sequence = features_scaled.copy()
+        ceiling = 2 * data['value'].iloc[:train_size].max()
+        scaled_predictions = []
+        for step in range(len(sequence) - train_size):
+            end = train_size + step
+            window = sequence[end - time_steps:end][np.newaxis, ...]
+
+            # The two scalers are fitted separately, so round-trip through real
+            # units rather than assuming the target and channel 0 share a scale
+            value = target_scaler.inverse_transform(
+                [[model.predict(window, verbose=0)[0, 0]]]
+            )[0][0]
+            value = bound_prediction(value, data['monthly_avg'].iloc[end], ceiling)
+
+            scaled_predictions.append(target_scaler.transform([[value]])[0][0])
+            sequence[end, 0] = (
+                value - feature_scaler.data_min_[0]
+            ) / feature_scaler.data_range_[0]
+
+        test_predict = np.array(scaled_predictions).reshape(-1, 1)
 
     # Inverse scale the predictions and actual values
     test_predict = target_scaler.inverse_transform(test_predict)
