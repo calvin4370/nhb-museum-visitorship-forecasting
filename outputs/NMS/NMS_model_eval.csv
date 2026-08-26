@@ -1,7 +1,7 @@
 Institution,Model,RMSE,MAPE
-National Museum Of Singapore,Baseline Monthly Mean,13.33,11.91%
-National Museum Of Singapore,Support Vector Regression,13.85,14.95%
-National Museum Of Singapore,LSTM,14.69,13.15%
-National Museum Of Singapore,SARIMAX,14.88,17.42%
-National Museum Of Singapore,XGBoost,15.08,14.14%
-National Museum Of Singapore,Random Forest Regressor,16.69,15.87%
+National Museum Of Singapore,Baseline Monthly Mean,16.96,15.56%
+National Museum Of Singapore,Support Vector Regression,17.35,17.51%
+National Museum Of Singapore,LSTM,18.69,16.78%
+National Museum Of Singapore,XGBoost,20.87,19.24%
+National Museum Of Singapore,Random Forest Regressor,24.24,21.62%
+National Museum Of Singapore,SARIMAX,39.51,41.36%

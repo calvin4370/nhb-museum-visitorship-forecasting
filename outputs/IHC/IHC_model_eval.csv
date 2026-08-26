@@ -1,7 +1,7 @@
 Institution,Model,RMSE,MAPE
-Indian Heritage Centre,XGBoost,3.60,21.59%
-Indian Heritage Centre,Support Vector Regression,4.46,31.37%
-Indian Heritage Centre,Random Forest Regressor,4.57,30.95%
-Indian Heritage Centre,Baseline Monthly Mean,5.59,35.27%
-Indian Heritage Centre,LSTM,5.89,43.86%
-Indian Heritage Centre,SARIMAX,6.52,48.06%
+Indian Heritage Centre,Random Forest Regressor,5.77,28.53%
+Indian Heritage Centre,Baseline Monthly Mean,5.82,30.97%
+Indian Heritage Centre,SARIMAX,5.89,29.19%
+Indian Heritage Centre,LSTM,6.28,40.71%
+Indian Heritage Centre,XGBoost,6.54,31.03%
+Indian Heritage Centre,Support Vector Regression,6.85,41.69%

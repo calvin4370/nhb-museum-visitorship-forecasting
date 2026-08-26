@@ -1,11 +1,11 @@
 ======== Model Evaluation ========
 Model                      RMSE   MAPE                    
 Random Forest Regressor    0.00   0.00%                   
-XGBoost                    1.29   370067978386145280.00%  
-LSTM                       2.21   841361593697566720.00%  
-Support Vector Regression  5.25   1867014592249734400.00% 
-SARIMAX                    6.21   2374089913175271424.00% 
-Baseline Monthly Mean      33.38  14544750296561960960.00%
+LSTM                       3.48   1284617792785248768.00% 
+Support Vector Regression  7.05   2772846599230627328.00% 
+XGBoost                    13.75  6142968362463687680.00% 
+SARIMAX                    36.52  15608506350773225472.00%
+Baseline Monthly Mean      46.14  20183215330033274880.00%
 Winning model: Random Forest Regressor
 
 
@@ -21,16 +21,16 @@ FY2022               0.0
 FY2023               0.0                   
 FY2024               0.0                   
 FY2025               0.0                   
-FY2026 (Prediction)  503.4                 
-FY2027 (Prediction)  581.4                 
+FY2026 (Prediction)  547.4                 
+FY2027 (Prediction)  580.2                 
 
 
 ======== Forecast FY Totals by Model ========
 Model                      RMSE   MAPE                      FY2026  FY2027
-Random Forest Regressor    0.00   0.00%                     503.4   581.4 
-XGBoost                    1.29   370067978386145280.00%    546.9   603.6 
-LSTM                       2.21   841361593697566720.00%    400.7   526.1 
-Support Vector Regression  5.25   1867014592249734400.00%   547.1   624.4 
-SARIMAX                    6.21   2374089913175271424.00%   582.7   625.1 
-Baseline Monthly Mean      33.38  14544750296561960960.00%  0.0     0.0   
+Random Forest Regressor    0.00   0.00%                     547.4   580.2 
+LSTM                       3.48   1284617792785248768.00%   401.2   524.1 
+Support Vector Regression  7.05   2772846599230627328.00%   545.8   624.5 
+XGBoost                    13.75  6142968362463687680.00%   539.6   607.4 
+SARIMAX                    36.52  15608506350773225472.00%  561.5   624.1 
+Baseline Monthly Mean      46.14  20183215330033274880.00%  0.0     0.0   
 
