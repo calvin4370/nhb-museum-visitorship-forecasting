@@ -231,7 +231,8 @@ def impute_monthly_avg(df, impute_ranges, window_years=None):
 
 def prepare_eval_data(museum_ts, arrivals):
     """
-    Build an 80/20 chronological train/test split
+    Build an 80/20 chronological train/test split, with the test frame carrying
+    the same information set predict has: no observed values inside the horizon
     """
     # Padded as prepare_predict_data does, so a museum whose data stops early still
     # splits on the same months as the rest rather than seven months earlier
@@ -243,6 +244,15 @@ def prepare_eval_data(museum_ts, arrivals):
 
     # Create monthly average feature for train and test using only train data to avoid leakage
     train_data, test_data = add_monthly_avg(train_data, test_data)
+
+    # Match predict's information set for the exogenous inputs. Lags need no fill here:
+    # the models recurse over eval too, overwriting only the lags that point at a
+    # forecast month and leaving those reaching back into history real.
+    arrivals_monthly_avg = exclude_covid(train_data).groupby("month")["intl_arrivals"].mean()
+    if arrivals_monthly_avg.isna().any() or len(arrivals_monthly_avg) < 12:
+        raise ValueError("Some calendar months have no non-COVID arrivals to average")
+    test_data["intl_arrivals"] = test_data["month"].map(arrivals_monthly_avg)
+    test_data["is_closed"] = 0
 
     # full_data needs to be recreated from train_data and test_data to keep the added monthly_avg
     full_data = pd.concat([train_data, test_data], ignore_index=True)

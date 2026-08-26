@@ -77,29 +77,27 @@ def lstm(data, eval, h, feature_cols):
     # Train the model
     model.fit(X_train, y_train, batch_size=1, epochs=50, verbose=0)
 
-    # Predict values: eval batches real windows, predict feeds each output back
-    if eval:
-        test_predict = model.predict(X_test, verbose=0)
-    else:
-        sequence = features_scaled.copy()
-        ceiling = 2 * data['value'].iloc[:train_size].max()
-        scaled_predictions = []
-        for step in range(len(sequence) - train_size):
-            end = train_size + step
-            window = sequence[end - time_steps:end][np.newaxis, ...]
+    # Predict values: eval and predict both feed each output back into the next
+    # window, so neither reads an actual from inside the horizon
+    sequence = features_scaled.copy()
+    ceiling = 2 * data['value'].iloc[:train_size].max()
+    scaled_predictions = []
+    for step in range(len(sequence) - train_size):
+        end = train_size + step
+        window = sequence[end - time_steps:end][np.newaxis, ...]
 
-            # Scalers are fitted separately, so round-trip through real units
-            value = target_scaler.inverse_transform(
-                [[model.predict(window, verbose=0)[0, 0]]]
-            )[0][0]
-            value = bound_prediction(value, data['monthly_avg'].iloc[end], ceiling)
+        # Scalers are fitted separately, so round-trip through real units
+        value = target_scaler.inverse_transform(
+            [[model.predict(window, verbose=0)[0, 0]]]
+        )[0][0]
+        value = bound_prediction(value, data['monthly_avg'].iloc[end], ceiling)
 
-            scaled_predictions.append(target_scaler.transform([[value]])[0][0])
-            sequence[end, 0] = (
-                value - feature_scaler.data_min_[0]
-            ) / feature_scaler.data_range_[0]
+        scaled_predictions.append(target_scaler.transform([[value]])[0][0])
+        sequence[end, 0] = (
+            value - feature_scaler.data_min_[0]
+        ) / feature_scaler.data_range_[0]
 
-        test_predict = np.array(scaled_predictions).reshape(-1, 1)
+    test_predict = np.array(scaled_predictions).reshape(-1, 1)
 
     # Inverse scale the predictions and actual values
     test_predict = target_scaler.inverse_transform(test_predict)

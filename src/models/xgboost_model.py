@@ -53,16 +53,14 @@ def xgb(train_data, test_data, eval, features, best_params=None):
     best_model = XGBRegressor(**best_params, random_state=random_state)
     best_model.fit(train_data[features], train_data[target])
 
-    # Forecasting: eval has real lags, predict recurses off its own output
-    if eval:
-        forecast = best_model.predict(test_data[features])
-    else:
-        forecast = recursive_forecast(
-            lambda row: float(best_model.predict(row)[0]),
-            test_data,
-            features,
-            upper=2 * train_data[target].max(),
-        )
+    # Forecasting: eval and predict both recurse, so both score the same
+    # information set -- no observed values inside the horizon
+    forecast = recursive_forecast(
+        lambda row: float(best_model.predict(row)[0]),
+        test_data,
+        features,
+        upper=2 * train_data[target].max(),
+    )
     test_data["Forecast"] = forecast
 
     if eval:

@@ -20,7 +20,6 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
     # SVR requires features to be scaled
     scaler = StandardScaler()
     X_train_scaled = pd.DataFrame(scaler.fit_transform(train_data[features]), columns=train_data[features].columns, index=train_data[features].index)
-    X_test_scaled = scaler.transform(test_data[features])
     y_train = train_data[target]
 
     # New train dataset containing scaled features
@@ -73,16 +72,14 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
     best_model = SVR(**best_params)
     best_model.fit(X_train_scaled, y_train)
 
-    # Forecasting: recursive rows go through the fitted scaler
-    if eval:
-        forecast = best_model.predict(X_test_scaled)
-    else:
-        forecast = recursive_forecast(
-            lambda row: float(best_model.predict(scaler.transform(row))[0]),
-            test_data,
-            features,
-            upper=2 * y_train.max(),
-        )
+    # Forecasting: eval and predict both recurse, each row scaled with the
+    # fitted scaler on its way to the model
+    forecast = recursive_forecast(
+        lambda row: float(best_model.predict(scaler.transform(row))[0]),
+        test_data,
+        features,
+        upper=2 * y_train.max(),
+    )
     test_data["Forecast"] = forecast
 
     # Metrics Calculation
