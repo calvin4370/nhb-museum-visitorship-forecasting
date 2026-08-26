@@ -35,6 +35,17 @@ def lstm(data, eval, h, feature_cols):
     else:
         train_size = len(features) - h
 
+    # Match predict's information set. In predict the horizon's 'value' channel is
+    # already the climatology, since prepare_predict_data seeds it from monthly_avg.
+    # Eval reads real actuals there, so the window would see the very months it is
+    # meant to forecast -- substitute the climatology to score the same problem.
+    # `target` is untouched: it stays the real series the forecast is scored against.
+    if eval:
+        features = features.copy()
+        features[train_size:, feature_cols.index('value')] = features[
+            train_size:, feature_cols.index('monthly_avg')
+        ]
+
     # Normalize features and target 
     # Fit scalers on train data ONLY
     feature_scaler = MinMaxScaler(feature_range=(0, 1))
