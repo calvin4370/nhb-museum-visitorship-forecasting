@@ -4,6 +4,7 @@ import numpy as np
 import optuna
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from src.models.fitted import Fitted
+from sklearn.model_selection import TimeSeriesSplit
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
@@ -32,7 +33,7 @@ def sarimax_model(train_data, test_data, eval, features, best_params=None):
     # If best_params is provided, use it
     # Else, perform hyperparameter optimization with Optuna
     if best_params is None:
-        def objective(trial, val_size=10):
+        def objective(trial):
             # Define the search space
             # Non-seasonal params
             p = trial.suggest_int('p', 0, 5)
@@ -43,30 +44,34 @@ def sarimax_model(train_data, test_data, eval, features, best_params=None):
             D = trial.suggest_int('D', 0, 1)
             Q = trial.suggest_int('Q', 0, 2)
 
-            # Split endog/exog into train and validation sets (endog stays
-            # unscaled -- only exog needs standardising)
-            tr_endog = train_data[target][:-val_size]
-            val_endog = train_data[target][-val_size:]
-            tr_exog = train_exog[:-val_size]
-            val_exog = train_exog[-val_size:]
+            # Rolling-origin folds, each validating a full 12-month season. Endog
+            # stays unscaled -- only exog needs standardising
+            tscv = TimeSeriesSplit(n_splits=3, test_size=12)
+            errors = []
 
-            # Try fitting the model with suggested params
             try:
-                model = SARIMAX(
-                    endog=tr_endog,
-                    exog=tr_exog,
-                    order=(p, d, q),
-                    seasonal_order=(P, D, Q, 12),
-                    enforce_stationarity=True,
-                    enforce_invertibility=True
-                )
+                for train_idx, val_idx in tscv.split(train_data):
+                    tr_endog = train_data[target].iloc[train_idx]
+                    val_endog = train_data[target].iloc[val_idx]
+                    tr_exog = train_exog.iloc[train_idx]
+                    val_exog = train_exog.iloc[val_idx]
 
-                # Train model with suggested parameters
-                fitted_model = model.fit(disp=False)
+                    fitted_model = SARIMAX(
+                        endog=tr_endog,
+                        exog=tr_exog,
+                        order=(p, d, q),
+                        seasonal_order=(P, D, Q, 12),
+                        enforce_stationarity=True,
+                        enforce_invertibility=True
+                    ).fit(disp=False)
 
-                # Score on held-out val_data
-                val_forecast = fitted_model.get_forecast(steps=val_size, exog=val_exog)
-                return root_mean_squared_error(val_endog, val_forecast.predicted_mean)
+                    val_forecast = fitted_model.get_forecast(
+                        steps=len(val_idx), exog=val_exog
+                    )
+                    errors.append(
+                        root_mean_squared_error(val_endog, val_forecast.predicted_mean)
+                    )
+                return np.mean(errors)
 
             except Exception as e:
                 return float('inf')

@@ -4,6 +4,7 @@ import numpy as np
 
 import optuna
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import TimeSeriesSplit
 
 from src.models.fitted import Fitted
 from sklearn.svm import SVR
@@ -29,7 +30,7 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
     # If best_params is provided, use it
     # Else, perform hyperparameter optimization with Optuna
     if best_params is None:
-        def objective(trial, data=train_data, val_size=10):
+        def objective(trial, data=train_data):
             # Define hyperparameter search space
             kernel = trial.suggest_categorical('kernel', ['linear', 'rbf', 'poly'])
             C = trial.suggest_loguniform('C', 1e-3, 1e3)
@@ -49,16 +50,18 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
             else:
                 model = SVR(kernel=kernel, C=C, epsilon=epsilon, gamma=gamma)
 
-            # Split data into train and validation sets
-            train_data = data[:-val_size]
-            val_data = data[-val_size:]
+            # Rolling-origin folds, each validating a full 12-month season
+            tscv = TimeSeriesSplit(n_splits=3, test_size=12)
+            errors = []
 
-            # Try fitting the model with suggested params
             try:
-                model.fit(train_data[features], train_data[target])
-                y_pred = model.predict(val_data[features])
-                rmse = root_mean_squared_error(val_data[target], y_pred)
-                return rmse
+                for train_idx, val_idx in tscv.split(data):
+                    tr, val = data.iloc[train_idx], data.iloc[val_idx]
+                    model.fit(tr[features], tr[target])
+                    errors.append(
+                        root_mean_squared_error(val[target], model.predict(val[features]))
+                    )
+                return np.mean(errors)
 
             except Exception as e:
                 return float('inf')
