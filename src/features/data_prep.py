@@ -7,6 +7,9 @@ from src.events.event_range import EventRange
 # SingStat Table Series name
 INTL_ARRIVALS_SERIES = "Total International Visitor Arrivals By Place Of Residence"
 
+# Months held out for evaluation, fixed so every branch scores the same window
+TEST_MONTHS = 27
+
 # Last month of the configured data window, the anchor every museum forecasts on from
 PERIOD_END = pd.to_datetime(f"{END_YEAR} {END_MONTH}", format="%Y %b")
 
@@ -236,13 +239,15 @@ def impute_monthly_avg(df, impute_ranges, window_years=None):
 
 def prepare_eval_data(museum_ts, arrivals):
     """
-    Build an 80/20 chronological train/test split
+    Build a chronological train/test split with a fixed-length test period
     """
     # Padded as prepare_predict_data does, so a museum whose data stops early still
     # splits on the same months as the rest rather than seven months earlier
     df = engineer_features(pad_to_period_end(museum_ts), arrivals)
 
-    split_point = int(len(df) * 0.8)
+    # Fixed test length, not a fraction: rows dropped from history would
+    # otherwise shift the test window and make branches incomparable
+    split_point = len(df) - TEST_MONTHS
     train_data = df[:split_point]
     test_data = df[split_point:]
 
