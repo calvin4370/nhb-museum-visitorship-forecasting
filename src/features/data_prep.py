@@ -1,14 +1,11 @@
 import numpy as np
 import pandas as pd
 
-from config import COVID_START, COVID_END, END_YEAR, END_MONTH, EXCLUDE_COVID_PERIOD
+from config import COVID_START, COVID_END, END_YEAR, END_MONTH, EXCLUDE_COVID_PERIOD, TEST_MONTHS
 from src.events.event_range import EventRange
 
 # SingStat Table Series name
 INTL_ARRIVALS_SERIES = "Total International Visitor Arrivals By Place Of Residence"
-
-# Months held out for evaluation, fixed so every branch scores the same window
-TEST_MONTHS = 27
 
 # Last month of the configured data window, the anchor every museum forecasts on from
 PERIOD_END = pd.to_datetime(f"{END_YEAR} {END_MONTH}", format="%Y %b")

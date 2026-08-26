@@ -6,6 +6,8 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 
+from config import TEST_MONTHS
+
 
 # Suppress TensorFlow logging before importing it. 
 # Set back to normal after import to only skip the 2 initialisation messages
@@ -31,7 +33,7 @@ def lstm(data, eval, h, feature_cols):
     # in predict mode, the synthetic future) min/max into normalization.
     time_steps = 12
     if eval:
-        train_size = int(len(features) * 0.8)
+        train_size = len(features) - TEST_MONTHS
     else:
         train_size = len(features) - h
 

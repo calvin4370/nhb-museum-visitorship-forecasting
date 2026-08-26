@@ -34,6 +34,9 @@ EXCLUDE_COVID_PERIOD = True
 # Number of months to forecast, default 2 years (i.e., 24 months)
 h = 24
 
+# Months held out for evaluation, fixed so every branch scores the same window
+TEST_MONTHS = 27
+
 # Short model keys, in the order the pipeline runs them.
 MODEL_KEYS = ["rf", "xgb", "svr", "hw", "sarimax", "lstm", "timegpt", "baseline"]
 
