@@ -1,11 +1,11 @@
 ======== Model Evaluation ========
 Model                               RMSE  MAPE  
-SARIMAX                             5.05  26.83%
-LSTM                                5.85  36.69%
-Random Forest Regressor             6.18  28.02%
+SARIMAX                             5.31  29.14%
+Random Forest Regressor             5.76  29.45%
+XGBoost                             5.80  30.16%
+LSTM                                5.94  36.27%
+Support Vector Regression           5.95  30.38%
 Holt-Winters exponential smoothing  6.21  36.59%
-Support Vector Regression           6.29  32.77%
-XGBoost                             6.57  30.04%
 Baseline Monthly Mean               8.79  33.24%
 Winning model: SARIMAX
 
@@ -28,11 +28,11 @@ FY2027 (Prediction)  217.8
 
 ======== Forecast FY Totals by Model ========
 Model                               RMSE  MAPE    FY2026  FY2027
-SARIMAX                             5.05  26.83%  220.1   217.8 
-LSTM                                5.85  36.69%  237.8   233.8 
-Random Forest Regressor             6.18  28.02%  216.5   216.5 
+SARIMAX                             5.31  29.14%  220.1   217.8 
+Random Forest Regressor             5.76  29.45%  216.5   216.5 
+XGBoost                             5.80  30.16%  225.2   228.2 
+LSTM                                5.94  36.27%  239.3   235.3 
+Support Vector Regression           5.95  30.38%  221.9   214.7 
 Holt-Winters exponential smoothing  6.21  36.59%  232.8   245.9 
-Support Vector Regression           6.29  32.77%  221.9   214.7 
-XGBoost                             6.57  30.04%  225.2   228.2 
 Baseline Monthly Mean               8.79  33.24%  216.6   216.6 
 
