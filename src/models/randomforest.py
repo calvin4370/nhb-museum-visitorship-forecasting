@@ -30,7 +30,7 @@ def randomforest(train_data, test_data, eval, features, best_params=None):
             }
 
             model = RandomForestRegressor(**params, random_state=random_state)
-            tscv = TimeSeriesSplit(n_splits=3)
+            tscv = TimeSeriesSplit(n_splits=3, test_size=12)
             errors = []
 
             for train_idx, val_idx in tscv.split(train_data):
