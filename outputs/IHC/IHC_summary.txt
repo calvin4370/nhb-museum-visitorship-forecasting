@@ -1,11 +1,11 @@
 ======== Model Evaluation ========
 Model                               RMSE  MAPE  
-Support Vector Regression           6.06  33.05%
-LSTM                                6.08  36.59%
-Random Forest Regressor             6.18  28.02%
+Support Vector Regression           5.47  28.25%
+XGBoost                             5.55  26.64%
+LSTM                                5.86  36.00%
+Random Forest Regressor             5.92  27.60%
 Holt-Winters exponential smoothing  6.21  36.59%
-XGBoost                             6.57  30.04%
-SARIMAX                             6.79  32.64%
+SARIMAX                             7.28  48.48%
 Baseline Monthly Mean               8.79  33.24%
 Winning model: Support Vector Regression
 
@@ -28,11 +28,11 @@ FY2027 (Prediction)  214.2
 
 ======== Forecast FY Totals by Model ========
 Model                               RMSE  MAPE    FY2026  FY2027
-Support Vector Regression           6.06  33.05%  217.3   214.2 
-LSTM                                6.08  36.59%  236.6   227.0 
-Random Forest Regressor             6.18  28.02%  216.6   213.2 
+Support Vector Regression           5.47  28.25%  217.3   214.2 
+XGBoost                             5.55  26.64%  220.1   212.8 
+LSTM                                5.86  36.00%  237.7   231.1 
+Random Forest Regressor             5.92  27.60%  216.6   213.2 
 Holt-Winters exponential smoothing  6.21  36.59%  232.8   245.9 
-XGBoost                             6.57  30.04%  220.1   212.8 
-SARIMAX                             6.79  32.64%  262.8   319.9 
+SARIMAX                             7.28  48.48%  262.8   319.9 
 Baseline Monthly Mean               8.79  33.24%  216.6   216.6 
 

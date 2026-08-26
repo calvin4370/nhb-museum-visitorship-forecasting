@@ -1,16 +1,16 @@
 ======== Model Evaluation ========
 Model                               RMSE   MAPE                    
-Random Forest Regressor             0.46   203362289995157280.00%  
-LSTM                                1.52   578545795294336896.00%  
-Support Vector Regression           4.38   1610208932043001344.00% 
-SARIMAX                             7.53   2990824173340762624.00% 
 Baseline Monthly Mean               8.26   3450535714501395456.00% 
-XGBoost                             16.43  7090830008051545088.00% 
+Random Forest Regressor             47.62  20567820747532308480.00%
 Holt-Winters exponential smoothing  48.69  19157701695627796480.00%
-Winning model: Random Forest Regressor
+SARIMAX                             49.36  21973855966396555264.00%
+Support Vector Regression           49.51  22056915048013836288.00%
+XGBoost                             52.75  23267133554528772096.00%
+LSTM                                52.96  22996217146461630464.00%
+Winning model: Baseline Monthly Mean
 
 
-======== Total Visitors ('000s) by Financial Year (Random Forest Regressor) ========
+======== Total Visitors ('000s) by Financial Year (Baseline Monthly Mean) ========
 FY                   Total Visitors ('000s)
 FY2014               109.1                 
 FY2015               504.2                 
@@ -24,17 +24,17 @@ FY2022               171.5
 FY2023               0.0                   
 FY2024               0.0                   
 FY2025               0.0                   
-FY2026 (Prediction)  432.8                 
-FY2027 (Prediction)  639.7                 
+FY2026 (Prediction)  0.0                   
+FY2027 (Prediction)  0.0                   
 
 
 ======== Forecast FY Totals by Model ========
 Model                               RMSE   MAPE                      FY2026  FY2027
-Random Forest Regressor             0.46   203362289995157280.00%    432.8   639.7 
-LSTM                                1.52   578545795294336896.00%    506.1   704.8 
-Support Vector Regression           4.38   1610208932043001344.00%   540.3   636.0 
-SARIMAX                             7.53   2990824173340762624.00%   524.9   627.6 
 Baseline Monthly Mean               8.26   3450535714501395456.00%   0.0     0.0   
-XGBoost                             16.43  7090830008051545088.00%   533.9   642.2 
+Random Forest Regressor             47.62  20567820747532308480.00%  432.8   639.7 
 Holt-Winters exponential smoothing  48.69  19157701695627796480.00%  10.5    38.5  
+SARIMAX                             49.36  21973855966396555264.00%  524.9   627.6 
+Support Vector Regression           49.51  22056915048013836288.00%  540.3   636.0 
+XGBoost                             52.75  23267133554528772096.00%  533.9   642.2 
+LSTM                                52.96  22996217146461630464.00%  538.3   695.1 
 
