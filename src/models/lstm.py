@@ -1,4 +1,5 @@
 import os
+import logging
 
 import numpy as np
 import pandas as pd
@@ -8,14 +9,13 @@ from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 
 from config import LSTM_FEATURES
 
-# Suppress TensorFlow logging before importing it. 
-# Set back to normal after import to only skip the 2 initialisation messages
-_stderr_fd = os.dup(2)
-os.dup2(os.open(os.devnull, os.O_WRONLY), 2)
+# Suppress TensorFlow's C++ startup messages and Python deprecation warnings.
+# Both must be set before importing it, which is when they are emitted.
+os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "3")
+logging.getLogger("tensorflow").setLevel(logging.ERROR)
 import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import LSTM, Dense
-os.dup2(_stderr_fd, 2)
 
 
 def lstm(data, eval, h):
