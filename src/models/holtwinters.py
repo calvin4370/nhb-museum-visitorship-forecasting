@@ -4,6 +4,7 @@ import numpy as np
 import optuna
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
 from sklearn.model_selection import TimeSeriesSplit
+from src.models.fitted import Fitted
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
 def hw(train_data, test_data, eval, best_params=None):
@@ -84,4 +85,4 @@ def hw(train_data, test_data, eval, best_params=None):
     else:
         model_eval = []
 
-    return model_eval, forecast.values, best_params
+    return model_eval, forecast.values, best_params, Fitted(best_model_fitted)

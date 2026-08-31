@@ -7,6 +7,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import TimeSeriesSplit
 
 from src.models.recursive import recursive_forecast
+from src.models.fitted import Fitted
 from sklearn.svm import SVR
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
@@ -97,4 +98,6 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
     else:
         model_eval = []
 
-    return model_eval, forecast, best_params
+    # SVR was fitted on scaled inputs, so raw rows go through the same scaler
+    fitted = Fitted(best_model, lambda X: best_model.predict(scaler.transform(X)))
+    return model_eval, forecast, best_params, fitted

@@ -2,7 +2,10 @@
 pipeline can loop over them generically:
 
     adapter(train_data, test_data, full_data, run_eval, features, best_params=None)
-        -> (model_eval, forecast, best_params)
+        -> (model_eval, forecast, best_params, fitted)
+
+`fitted` is a Fitted holding the trained estimator for saving, and where the
+model has a tabular feature interface, a callable to predict raw rows with it.
 
 `features` is the museum's tabular feature list; models that do not read it
 (hw, lstm, timegpt, baseline) absorb it in their adapter rather than their
@@ -36,15 +39,15 @@ def _univariate_tunable_adapter(model_fn):
 def _lstm_adapter(train_data, test_data, full_data, run_eval, features, best_params=None):
     """lstm has a different signature (full_data, run_eval, h), no tuning, and
     reads the museum's non-lag features as per-timestep channels."""
-    model_eval, forecast = lstm(full_data, run_eval, h, lstm_channels(features))
-    return model_eval, forecast, None
+    model_eval, forecast, fitted = lstm(full_data, run_eval, h, lstm_channels(features))
+    return model_eval, forecast, None, fitted
 
 
 def _simple_adapter(model_fn):
-    """timegpt / baseline: no tunable hyperparameters."""
+    """timegpt / baseline: no tunable hyperparameters, and no model object to save."""
     def adapter(train_data, test_data, full_data, run_eval, features, best_params=None):
         model_eval, forecast = model_fn(train_data, test_data, run_eval)
-        return model_eval, forecast, None
+        return model_eval, forecast, None, None
     return adapter
 
 

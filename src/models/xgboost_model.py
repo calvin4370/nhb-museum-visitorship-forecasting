@@ -6,6 +6,7 @@ from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_er
 from sklearn.model_selection import TimeSeriesSplit
 
 from src.models.recursive import recursive_forecast
+from src.models.fitted import Fitted
 from xgboost import XGBRegressor
 
 def xgb(train_data, test_data, eval, features, best_params=None):
@@ -74,4 +75,4 @@ def xgb(train_data, test_data, eval, features, best_params=None):
     else:
         model_eval = []
 
-    return model_eval, forecast, best_params
+    return model_eval, forecast, best_params, Fitted(best_model, best_model.predict)

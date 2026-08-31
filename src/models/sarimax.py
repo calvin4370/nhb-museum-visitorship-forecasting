@@ -4,6 +4,7 @@ import numpy as np
 import optuna
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from sklearn.model_selection import TimeSeriesSplit
+from src.models.fitted import Fitted
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
@@ -108,4 +109,9 @@ def sarimax_model(train_data, test_data, eval, features, best_params=None):
     else:
         model_eval = []
 
-    return model_eval, test_data["Forecast"], best_params
+    # Exog is standardised, so raw rows are scaled before being forecast on
+    def predict_exog(X):
+        exog = pd.DataFrame(scaler.transform(X[features]), columns=features, index=X.index)
+        return best_model_fitted.get_forecast(steps=len(X), exog=exog).predicted_mean.values
+
+    return model_eval, test_data["Forecast"], best_params, Fitted(best_model_fitted, predict_exog)
