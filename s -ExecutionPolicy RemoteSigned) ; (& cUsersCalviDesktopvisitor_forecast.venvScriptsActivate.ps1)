@@ -1,0 +1,91 @@
+[33ma9fb54c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfix/sarimax-bug[m[33m, [m[1;31morigin/fix/sarimax-bug[m[33m)[m feat(lstm): add base features except lag features to LSTM input
+[33m934ad12[m feat(summary): update pipeline summary output to more descriptive
+[33mfd9d4d7[m feat(outputs): update summary report to be more descriptive
+[33mc6e6eaf[m fix: ensure raw data folder is initialised if needed
+[33m4ec8986[m chore: clear data files in preparation for pipeline comparison test
+[33m0b1bb21[m feat: update pipeline outputs
+[33mecf86a4[m fix: cast visitorship to numeric, coercing any non-numeric values (e.g. '-') to NaN
+[33m3743858[m fix: missing initialisation of output folder
+[33mc1d9a81[m config: Update config date range to 2014 Jan - 2026 Mar for comparison between pipelines
+[33mb33dbaf[m fix: successfully suppress tensorflow startup messages directly in lstm.py
+[33m6edf5c1[m fix: fit LSTM's MinMaxScalers on train data only
+[33mec68bd7[m fix: fix wrong import path in pipeline.py
+[33m7623204[m fix: fix SARIMAX bugs
+[33md2626f4[m refactor: clean up main.py
+[33m5ec7d80[m feature: add pacakge for command-line argument parsing and museum-code validation for main.py
+[33m2ac7532[m refactor: clean up output filenames and plot titles
+[33m915916e[m feature: automate museum and mode selection
+[33m6e3780b[m chore: rename folder
+[33mbd2ad00[m chore: move old outputs into archive
+[33m41c5328[m refactor: split data_prep function into 2
+[33mea3d0f1[m refactor: split data/ folder into raw/ and processed/ data
+[33mc4ae06e[m feature: rewrite model function signatures
+[33m7d8b08e[m[33m ([m[1;31morigin/testing/singstat-api[m[33m)[m fix: add contextual error handling to singstat api
+[33ma41e7bd[m fix: chunk singstat api requests
+[33m24788af[m testing: investigate api call max length error
+[33m475e004[m testing: inspect output for singstat api
+[33mbd4e244[m testing: add script for calling singstat api
+[33m26d5845[m[33m ([m[1;31morigin/refactor/repo-structure[m[33m)[m style: clean up src/ codes with prettier
+[33meda7e1f[m chore: initialise gitignore and delete unnecessary cache files
+[33mfea0320[m refactor: reorganise output files and plots into an output folder
+[33m6ec4e34[m refactor: rename xgboost.py to xgboost_model.py to avoid shadowing xgboost package import
+[33mea6f771[m refactor: rearrange python files into src/ folder and subfolders
+[33m5fdcdf5[m refactor: archive legacy code and old exploratory notebooks into 'archived/' folder
+[33m60798d5[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Update main.py
+[33mafbe0be[m updated plot labels
+[33m89074eb[m regen output
+[33m5ec9ed7[m regen output
+[33mada087c[m output regen
+[33mbb42a58[m added covid external regressor
+[33mdfc8094[m added covid external regressor
+[33mdef2c53[m Update README.md
+[33m92c8a03[m Update README.md
+[33m93e659a[m add predictions csv
+[33m55932aa[m added eval param to differentiate model eval and pred
+[33m329a43b[m added def for formatting predictions
+[33m083f447[m added future time periods for forecasting
+[33m23da5d4[m added eval param
+[33md9a435a[m updated main.py
+[33me7064f3[m rerun model eval results
+[33m6c4cd76[m re-run time plots output
+[33m89ff413[m updated calculation of monthly mean
+[33mffdaf6d[m add more models
+[33m07af816[m updated requirements.txt
+[33m599d233[m Update README.md on folder structure
+[33m02cd733[m update all model fitting files to output predict
+[33m0aa7ab8[m delete
+[33m3ff1fd4[m add output time plots
+[33m605cbe0[m add new folder
+[33mbecff2a[m updated main.py
+[33mdf0a00b[m add timeplot.py
+[33m19180aa[m updated requirements.txt
+[33md8c7c14[m Update README.md
+[33m2ebebf0[m Update README.md
+[33m612ed58[m Update README.md
+[33ma8c4e58[m Update README.md
+[33mdb56217[m add model evaluation output
+[33m60f80a4[m add data from singstat api call
+[33m2b59ba0[m add data from singstat api call
+[33m3873d92[m data from singstat api call
+[33m1e9b246[m add singstat api codes
+[33m7190990[m add data preparation codes
+[33mad85253[m add xgboost model
+[33m02c2874[m add timegpt model
+[33m25e5655[m add random forest regressor model
+[33m3895be3[m add lstm model
+[33m53a7f36[m add requirements.txt for pipeline
+[33m97c7980[m Combined python codes into a pipeline
+[33m3401813[m added baseline model of monthly mean
+[33mc8ca8c5[m Merge branch 'main' of https://github.com/nileux/visitor_forecast
+[33m0a9b9b7[m update lstm
+[33mbcf31a0[m Merge pull request #1 from nileux/tanshuying-ensemble-code
+[33m31d06c1[m Add files via upload
+[33m6340594[m Merge branch 'main' of https://github.com/nileux/visitor_forecast
+[33me172360[m lstm exploration
+[33m0ab94d6[m update codes with SARIMA and SARIMAX
+[33m264dc8f[m TimeGPT exploration update
+[33ma5a48e9[m Update README.md
+[33mdb44aa3[m Update README.md
+[33m0b8fd4f[m Update README.md
+[33m24910e5[m add codes and data files
+[33m7191570[m Initial commit
