@@ -59,6 +59,21 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
         eval_rows.append((key, model_eval))
         tuned_params[key] = best_params
         pretty_names[key] = model_eval[0]
+
+        # Save eval-period predictions
+        eval_forecast_df = forecast_table(key, np.asarray(forecast).ravel())
+        eval_forecast_df["Institution"] = museum
+        eval_forecast_df["Year"] = test_data["timestamp"].dt.year.values
+        eval_forecast_df["Month"] = test_data["timestamp"].dt.month.values
+        eval_forecast_df["Actual"] = test_data["value"].values
+        eval_forecast_df = eval_forecast_df[
+            ["Institution", "Model", "Year", "Month", "Actual", "Prediction"]
+        ]
+        eval_forecast_df.to_csv(
+            f"./outputs/{museum_code}/eval/{museum_code}_{key}_predictions.csv",
+            index=False,
+        )
+
         timeplot(
             f"./outputs/{museum_code}/eval/{museum_code}_eval_{key}_timeplot.png",
             f"{museum_code} — {model_eval[0]} Eval",
