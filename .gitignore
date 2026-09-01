@@ -9,3 +9,6 @@ env/
 
 # Secrets
 .env
+
+# Model artifacts
+outputs/models/
