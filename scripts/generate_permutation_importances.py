@@ -1,5 +1,5 @@
 """
-Regenerate every museum's feature importance report from the CSVs already on
+Regenerate every museum's permutation importance report from the CSVs already on
 disk, without re-running the pipelines.
 """
 import sys

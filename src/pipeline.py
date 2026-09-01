@@ -229,7 +229,7 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
     if importance_rows:
         importance = pd.concat(importance_rows, ignore_index=True)
         importance.insert(0, "Institution", museum)
-        importance.to_csv(f"{artifact_dir}/feature_importance.csv", index=False)
+        importance.to_csv(f"{artifact_dir}/permutation_importance.csv", index=False)
 
 
     # Write the summary report to outputs/{museum_code}/{museum_code}_summary.txt
@@ -240,5 +240,5 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
         per_model_fy_table=per_model_fy_df,
     )
 
-    # Generate the feature importance report
+    # Generate the permutation importance report
     build_report(museum_code)
