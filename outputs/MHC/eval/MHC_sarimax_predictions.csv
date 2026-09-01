@@ -1,0 +1,27 @@
+Institution,Model,Year,Month,Actual,Prediction
+Malay Heritage Centre,sarimax,2023,6,0.0,9.072128626572184
+Malay Heritage Centre,sarimax,2023,7,0.0,19.582858800295938
+Malay Heritage Centre,sarimax,2023,8,0.0,11.363864244645406
+Malay Heritage Centre,sarimax,2023,9,0.0,2.5478152782684385
+Malay Heritage Centre,sarimax,2023,10,0.0,2.3282983738238388
+Malay Heritage Centre,sarimax,2023,11,0.0,5.353792795573613
+Malay Heritage Centre,sarimax,2023,12,0.0,8.881747820186646
+Malay Heritage Centre,sarimax,2024,1,0.0,14.078320512306362
+Malay Heritage Centre,sarimax,2024,2,0.0,13.379057106402351
+Malay Heritage Centre,sarimax,2024,3,0.0,10.839836735645322
+Malay Heritage Centre,sarimax,2024,4,0.0,7.394814498397581
+Malay Heritage Centre,sarimax,2024,5,0.0,8.827296836902942
+Malay Heritage Centre,sarimax,2024,6,0.0,13.048866396272944
+Malay Heritage Centre,sarimax,2024,7,0.0,22.085341358745715
+Malay Heritage Centre,sarimax,2024,8,0.0,18.310538148241534
+Malay Heritage Centre,sarimax,2024,9,0.0,3.3189610499587
+Malay Heritage Centre,sarimax,2024,10,0.0,10.002410716348702
+Malay Heritage Centre,sarimax,2024,11,0.0,7.8078128475496555
+Malay Heritage Centre,sarimax,2024,12,0.0,11.575518483172143
+Malay Heritage Centre,sarimax,2025,1,0.0,18.199366519754825
+Malay Heritage Centre,sarimax,2025,2,0.0,12.498719254245618
+Malay Heritage Centre,sarimax,2025,3,0.0,7.450858914919582
+Malay Heritage Centre,sarimax,2025,4,0.0,8.375609948443254
+Malay Heritage Centre,sarimax,2025,5,0.0,10.584315133976467
+Malay Heritage Centre,sarimax,2025,6,0.0,12.833536639006152
+Malay Heritage Centre,sarimax,2025,7,0.0,23.481991538751622

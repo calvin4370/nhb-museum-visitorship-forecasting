@@ -1,0 +1,25 @@
+Institution,Model,Year,Month,Prediction
+Malay Heritage Centre,lstm,2026,4,-7.9636226
+Malay Heritage Centre,lstm,2026,5,-0.5410761
+Malay Heritage Centre,lstm,2026,6,11.07993
+Malay Heritage Centre,lstm,2026,7,21.9818
+Malay Heritage Centre,lstm,2026,8,32.42123
+Malay Heritage Centre,lstm,2026,9,33.289192
+Malay Heritage Centre,lstm,2026,10,36.30037
+Malay Heritage Centre,lstm,2026,11,35.640633
+Malay Heritage Centre,lstm,2026,12,35.41548
+Malay Heritage Centre,lstm,2027,1,39.155483
+Malay Heritage Centre,lstm,2027,2,37.981636
+Malay Heritage Centre,lstm,2027,3,31.21493
+Malay Heritage Centre,lstm,2027,4,28.220116
+Malay Heritage Centre,lstm,2027,5,31.57969
+Malay Heritage Centre,lstm,2027,6,37.683453
+Malay Heritage Centre,lstm,2027,7,41.423042
+Malay Heritage Centre,lstm,2027,8,45.486618
+Malay Heritage Centre,lstm,2027,9,39.48899
+Malay Heritage Centre,lstm,2027,10,40.649403
+Malay Heritage Centre,lstm,2027,11,38.376793
+Malay Heritage Centre,lstm,2027,12,37.364117
+Malay Heritage Centre,lstm,2028,1,40.447605
+Malay Heritage Centre,lstm,2028,2,38.623222
+Malay Heritage Centre,lstm,2028,3,31.389505
