@@ -13,6 +13,7 @@ from src.visualisation.timeplot import timeplot, forecast_table, top_n_timeplot
 from src.visualisation.summary import FY_totals, write_summary_txt
 from src.models.model_registry import MODEL_REGISTRY
 from src.analysis.artifacts import museum_dir, save_model
+from src.visualisation.feature_report import build_report
 from src.analysis.importance import permutation_importance
 
 
@@ -245,12 +246,14 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
         importance.insert(0, "Institution", museum)
         importance.to_csv(f"{artifact_dir}/feature_importance.csv", index=False)
 
+
     # Write the summary report to outputs/{museum_code}/{museum_code}_summary.txt
-    # (drop Institution from the txt's eval table -- it's a per-museum file, so
-    # the column is redundant there; the CSV keeps it since it's a plain data export)
     write_summary_txt(
         f"./outputs/{museum_code}/{museum_code}_summary.txt",
         eval_table=model_eval_df_formatted.drop(columns="Institution"),
         fy_table=fy_table,
         per_model_fy_table=per_model_fy_df,
     )
+
+    # Generate the feature importance report
+    build_report(museum_code)
