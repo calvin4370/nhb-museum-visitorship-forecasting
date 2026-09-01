@@ -1,0 +1,40 @@
+======== Model Evaluation ========
+Model                               RMSE  MAPE                   
+LSTM                                2.22  858659951509746688.00% 
+Support Vector Regression           3.89  1438296623827096064.00%
+XGBoost                             4.56  1695836034043691520.00%
+Random Forest Regressor             4.66  2096411149748996864.00%
+Holt-Winters exponential smoothing  4.92  1823584433231552768.00%
+SARIMAX                             5.23  1686625314764167424.00%
+Baseline Monthly Mean               8.26  3450535714501395456.00%
+Winning model: LSTM
+
+
+======== Total Visitors ('000s) by Financial Year (LSTM) ========
+FY                   Total Visitors ('000s)
+FY2014               109.1                 
+FY2015               504.2                 
+FY2016               558.1                 
+FY2017               718.1                 
+FY2018               741.6                 
+FY2019               675.1                 
+FY2020               59.5                  
+FY2021               84.7                  
+FY2022               171.5                 
+FY2023               0.0                   
+FY2024               0.0                   
+FY2025               0.0                   
+FY2026 (Prediction)  430.6                 
+FY2027 (Prediction)  735.3                 
+
+
+======== Forecast FY Totals by Model ========
+Model                               RMSE  MAPE                     FY2026  FY2027
+LSTM                                2.22  858659951509746688.00%   430.6   735.3 
+Support Vector Regression           3.89  1438296623827096064.00%  411.8   581.5 
+XGBoost                             4.56  1695836034043691520.00%  374.9   527.7 
+Random Forest Regressor             4.66  2096411149748996864.00%  121.2   268.9 
+Holt-Winters exponential smoothing  4.92  1823584433231552768.00%  -19.9   -61.3 
+SARIMAX                             5.23  1686625314764167424.00%  156.7   132.6 
+Baseline Monthly Mean               8.26  3450535714501395456.00%  0.0     0.0   
+
