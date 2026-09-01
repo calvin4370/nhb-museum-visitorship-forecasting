@@ -9,7 +9,6 @@ import pandas as pd
 from src.analysis.importance import FEATURE_GROUPS
 
 MODELS_DIR = "./outputs/models"
-REPORTS_DIR = "./outputs/feature_importances"
 PRETTY_NAMES = {
     "rf": "Random Forest Regressor",
     "xgb": "XGBoost",
@@ -99,10 +98,10 @@ def build_report(museum_code):
     Returns:
         str | None: The file written, or None if the inputs were missing.
     """
-    importance_path = f"{MODELS_DIR}/{museum_code}/feature_importance.csv"
+    importance_path = f"{MODELS_DIR}/{museum_code}/permutation_importance.csv"
     eval_path = f"./outputs/{museum_code}/{museum_code}_model_eval.csv"
     if not os.path.exists(importance_path) or not os.path.exists(eval_path):
-        print(f"  [{museum_code}] no feature importance to report, skipping")
+        print(f"  [{museum_code}] no permutation importance to report, skipping")
         return None
 
     importance = pd.read_csv(importance_path)
@@ -125,7 +124,7 @@ def build_report(museum_code):
 
     # Build the report in parts, then write it to disk at once.
     parts = [
-        f"# [{museum_code}] Feature Importances\n",
+        f"# [{museum_code}] Permutation Importances\n",
         INTRO,
         "\n## Feature groups\n",
         _groups_table(features),
@@ -152,8 +151,7 @@ def build_report(museum_code):
         parts.append("\n**By individual feature**\n")
         parts.append(_importance_table(table[table["group"] == "single"]))
 
-    os.makedirs(REPORTS_DIR, exist_ok=True)
-    target = f"{REPORTS_DIR}/{museum_code}_feature_importances.md"
+    target = f"./outputs/{museum_code}/{museum_code}_permutation_importances.md"
     with open(target, "w", encoding="utf-8") as f:
         f.write("\n".join(parts) + "\n")
     return target
