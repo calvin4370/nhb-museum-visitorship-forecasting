@@ -10,6 +10,7 @@ import pandas as pd
 from config import MUSEUM_CODES, MODEL_NAMES, h, features_for
 from src.features.data_prep import prepare_eval_data, prepare_predict_data
 from src.visualisation.timeplot import timeplot, forecast_table, top_n_timeplot
+from src.visualisation.jj_new_plots import new_timeplot, new_top_n_timeplot
 from src.visualisation.summary import FY_totals, write_summary_txt, write_summary_md
 from src.models.model_registry import MODEL_REGISTRY
 from src.analysis.artifacts import museum_dir, save_model
@@ -101,6 +102,14 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
             forecast,
             True,
         )
+        new_timeplot(
+            f"./outputs/{museum_code}/eval/{museum_code}_eval_{key}_timeplot.png",
+            f"{museum_code} — {model_eval[0]} Eval",
+            train_data,
+            test_data,
+            forecast,
+            True,
+        )
 
     if not eval_rows:
         raise RuntimeError(
@@ -169,6 +178,14 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
             forecast,
             False,
         )
+        new_timeplot(
+            f"./outputs/{museum_code}/predict/{museum_code}_predict_{key}_timeplot.png",
+            f"{museum_code} — {pretty_names[key]} Predict",
+            predict_train,
+            predict_test,
+            forecast,
+            False,
+        )
 
         # Save the per-model predictions to outputs/{museum_code}/predict/
         forecast_df = forecast_table(key, np.asarray(forecast))
@@ -204,6 +221,13 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
     # model_eval_df["_key"] is already sorted lowest-RMSE-first.
     top3_keys = list(model_eval_df["_key"])[:3]
     top_n_timeplot(
+        f"./outputs/{museum_code}/predict/{museum_code}_predict_top3_timeplot.png",
+        f"{museum_code} — Top 3 Models Predict",
+        predict_train,
+        predict_test,
+        [(key, per_model_forecast[key]) for key in top3_keys],
+    )
+    new_top_n_timeplot(
         f"./outputs/{museum_code}/predict/{museum_code}_predict_top3_timeplot.png",
         f"{museum_code} — Top 3 Models Predict",
         predict_train,
@@ -304,6 +328,14 @@ def regen_museum_outputs(museum):
             pd.read_csv(path)["Prediction"].values,
             True,
         )
+        new_timeplot(
+            f"./outputs/{museum_code}/eval/{museum_code}_eval_{key}_timeplot.png",
+            f"{museum_code} — {MODEL_NAMES[key]} Eval",
+            train_data,
+            test_data,
+            pd.read_csv(path)["Prediction"].values,
+            True,
+        )
 
     # Redraw each predict plot, collecting the forecasts the tables are built from
     per_model_fy = {}
@@ -317,6 +349,14 @@ def regen_museum_outputs(museum):
         timeplot(
             f"./outputs/{museum_code}/predict/{museum_code}_predict_{key}_timeplot.png",
             f"{museum_code} - {MODEL_NAMES[key]} Predict",
+            predict_train,
+            predict_test,
+            forecast,
+            False,
+        )
+        new_timeplot(
+            f"./outputs/{museum_code}/predict/{museum_code}_predict_{key}_timeplot.png",
+            f"{museum_code} — {MODEL_NAMES[key]} Predict",
             predict_train,
             predict_test,
             forecast,
@@ -337,6 +377,13 @@ def regen_museum_outputs(museum):
     top_n_timeplot(
         f"./outputs/{museum_code}/predict/{museum_code}_predict_top3_timeplot.png",
         f"{museum_code} - Top 3 Models Predict",
+        predict_train,
+        predict_test,
+        [(key, per_model_forecast[key]) for key in top3_keys],
+    )
+    new_top_n_timeplot(
+        f"./outputs/{museum_code}/predict/{museum_code}_predict_top3_timeplot.png",
+        f"{museum_code} — Top 3 Models Predict",
         predict_train,
         predict_test,
         [(key, per_model_forecast[key]) for key in top3_keys],
