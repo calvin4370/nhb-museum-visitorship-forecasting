@@ -1,16 +1,20 @@
-======== Model Evaluation ========
-Model                               RMSE   MAPE  
-Random Forest Regressor             17.19  16.65%
-XGBoost                             18.34  17.94%
-SARIMAX                             18.79  19.18%
-Support Vector Regression           19.32  16.35%
-LSTM                                23.45  18.50%
-Baseline Monthly Mean               36.40  30.13%
-Holt-Winters exponential smoothing  77.05  79.90%
-Winning model: Random Forest Regressor
+[--------------- Summary Report (NMS) ---------------]
+Branch:    feature/summary-outputs
+Generated: 9 Sep 2026 1.14am
+
+======== Model Evaluation Results + Predictions ========
+Model                               RMSE   MAPE    FY2026   FY2027 
+XGBoost                             16.34  17.40%  1,042.5  1,007.5
+Support Vector Regression           19.61  14.77%  904.8    912.3  
+SARIMAX                             20.07  20.48%  1,006.4  1,028.7
+Random Forest Regressor             21.68  18.90%  1,030.7  977.9  
+LSTM                                23.59  18.60%  937.8    931.4  
+Baseline Monthly Mean               36.40  30.13%  1,040.0  1,040.0
+Holt-Winters exponential smoothing  43.75  35.34%  1,275.8  1,375.8
 
 
-======== Total Visitors ('000s) by Financial Year (Random Forest Regressor) ========
+======== Total Visitors ('000s) by Financial Year ========
+(XGBoost)
 FY                   Total Visitors ('000s)
 FY2014               153.4                 
 FY2015               783.1                 
@@ -24,17 +28,6 @@ FY2022               852.9
 FY2023               1,065.4               
 FY2024               998.1                 
 FY2025               1,056.5               
-FY2026 (Prediction)  1,037.0               
-FY2027 (Prediction)  992.0                 
-
-
-======== Forecast FY Totals by Model ========
-Model                               RMSE   MAPE    FY2026   FY2027 
-Random Forest Regressor             17.19  16.65%  1,037.0  992.0  
-XGBoost                             18.34  17.94%  1,046.9  1,038.6
-SARIMAX                             18.79  19.18%  1,039.2  1,038.3
-Support Vector Regression           19.32  16.35%  993.6    1,084.8
-LSTM                                23.45  18.50%  931.4    928.6  
-Baseline Monthly Mean               36.40  30.13%  1,040.0  1,040.0
-Holt-Winters exponential smoothing  77.05  79.90%  1,025.4  962.9  
+FY2026 (Prediction)  1,042.5               
+FY2027 (Prediction)  1,007.5               
 
