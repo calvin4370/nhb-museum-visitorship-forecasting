@@ -250,6 +250,7 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
     # Write the summary report to outputs/{museum_code}/{museum_code}_summary.txt
     write_summary_txt(
         f"./outputs/{museum_code}/{museum_code}_summary.txt",
+        museum_code=museum_code,
         eval_table=model_eval_df_formatted.drop(columns="Institution"),
         fy_table=fy_table,
         per_model_fy_table=per_model_fy_df,
