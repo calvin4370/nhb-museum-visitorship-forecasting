@@ -16,6 +16,12 @@ Choices: {', '.join(MODEL_KEYS)}
 Omit to run all models.
 """
 
+regen_flag_help = """Skip all model training and rebuild the plots and summary reports from the last run's saved predictions.
+Reads data/processed/ and the per-model prediction CSVs already under outputs/, so no data is fetched and nothing is refitted.
+
+"""
+
+
 def parse_args():
     # Set up the command-line argument parser
     parser = argparse.ArgumentParser(
@@ -42,6 +48,12 @@ def parse_args():
         default=None,
         metavar="MODEL",
         help=model_flag_help,
+    )
+    # --regen-outputs / -r flag for redrawing outputs without retraining
+    parser.add_argument(
+        "--regen-outputs", "-r",
+        action="store_true",
+        help=regen_flag_help,
     )
     return parser.parse_args()
 
