@@ -54,6 +54,11 @@ def FY_totals(df, value_col="value"):
     return df.groupby(labels)[value_col].sum().sort_index()
 
 
+# ============================================================ #
+# Summary TXT
+# ============================================================ #
+
+
 def format_table(df, sep="  "):
     """
     Render a DataFrame as plain text with every column left-aligned and
@@ -103,6 +108,93 @@ def write_summary_txt(save_path, museum_code, eval_table, fy_table, per_model_fy
     lines.append(f"({winning_model})")
     lines.append(format_table(fy_table))
     lines.append("\n")
+
+    with open(save_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+
+
+# ============================================================ #
+# Summary MD
+# ============================================================ #
+
+# Fixed pixel widths for the FY tables' two columns, so the tables that sit
+# beside each other line up. Their content is the same shape for every museum.
+FY_TABLE_WIDTHS = [140, 150]
+
+def format_html_table(df, align=None, widths=None):
+    """
+    Render a DataFrame as an HTML table. Markdown renderers pass HTML through,
+    and it stays more compact than a pipe table. `align` sets the legacy float
+    attribute and `widths` the per-column pixel widths -- both survive GitHub's
+    sanitiser, where inline CSS does not.
+    """
+    attr = f' align="{align}"' if align else ""
+    head = "".join(
+        f'<th width="{widths[i]}">{col}</th>' if widths else f"<th>{col}</th>"
+        for i, col in enumerate(df.columns)
+    )
+    body = "".join(
+        "<tr>" + "".join(f"<td>{value}</td>" for value in row) + "</tr>"
+        for row in df.astype(str).values
+    )
+    return f"<table{attr}><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>"
+
+
+def split_rows(df, parts=2):
+    """
+    Splits a table's rows into `parts` frames, filled top to bottom, so they can
+    be rendered as separate tables sitting next to each other.
+    """
+    per_part = -(-len(df) // parts)  # ceiling division
+    return [df.iloc[i:i + per_part] for i in range(0, len(df), per_part)]
+
+
+def format_html_tables_side_by_side(frames, widths=None):
+    """
+    Renders each frame as its own table, all sharing one set of column widths,
+    with the first floated left and the last right so they sit apart. Clears the
+    float afterwards so whatever follows starts below them.
+    """
+    aligns = ["left"] * (len(frames) - 1) + ["right"]
+    tables = "".join(
+        format_html_table(frame, align=align, widths=widths)
+        for frame, align in zip(frames, aligns)
+    )
+    return tables + '<br clear="all">'
+
+
+def write_summary_md(save_path, museum_code, eval_table, fy_table, per_model_fy_table):
+    """
+    Writes the same report as write_summary_txt, in markdown, to `save_path`.
+    """
+    # eval_table is sorted lowest-RMSE-first, so its first row is the winning model,
+    # and the FY totals are built from that model's forecast
+    winning_model = eval_table.iloc[0]["Model"]
+
+    # Document title
+    lines = [f"## Summary Report ({museum_code})", ""]
+
+    # Append Provenance in a code block
+    branch = git_branch()
+    lines.append("```")
+    if branch:
+        lines.append(f"Branch:    {branch}")
+    lines.append(f"Generated: {timestamp_now()}")
+    lines.append("```")
+    lines.append("")
+
+    # Append Table 1: Every model's eval metrics alongside its own forecast FY totals
+    lines.append("### Model Evaluation Results + Predictions")
+    lines.append("")
+    lines.append(format_html_table(per_model_fy_table))
+    lines.append("")
+
+    # Append Table 2: Historical then predicted FY totals, from the winning model's forecast,
+    # split across two side-by-side tables to keep the whole report screenshotable
+    lines.append(f"### Total Visitors ('000s) by Financial Year ({winning_model})")
+    lines.append("")
+    lines.append(format_html_tables_side_by_side(split_rows(fy_table), FY_TABLE_WIDTHS))
+    lines.append("")
 
     with open(save_path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))

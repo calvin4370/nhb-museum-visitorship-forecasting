@@ -10,7 +10,7 @@ import pandas as pd
 from config import MUSEUM_CODES, h, features_for
 from src.features.data_prep import prepare_eval_data, prepare_predict_data
 from src.visualisation.timeplot import timeplot, forecast_table, top_n_timeplot
-from src.visualisation.summary import FY_totals, write_summary_txt
+from src.visualisation.summary import FY_totals, write_summary_txt, write_summary_md
 from src.models.model_registry import MODEL_REGISTRY
 from src.analysis.artifacts import museum_dir, save_model
 from src.visualisation.feature_report import build_report
@@ -250,6 +250,13 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
     # Write the summary report to outputs/{museum_code}/{museum_code}_summary.txt
     write_summary_txt(
         f"./outputs/{museum_code}/{museum_code}_summary.txt",
+        museum_code=museum_code,
+        eval_table=model_eval_df_formatted.drop(columns="Institution"),
+        fy_table=fy_table,
+        per_model_fy_table=per_model_fy_df,
+    )
+    write_summary_md(
+        f"./outputs/{museum_code}/{museum_code}_summary.md",
         museum_code=museum_code,
         eval_table=model_eval_df_formatted.drop(columns="Institution"),
         fy_table=fy_table,
