@@ -1,16 +1,20 @@
-======== Model Evaluation ========
-Model                               RMSE   MAPE  
-Support Vector Regression           2.67   12.54%
-XGBoost                             3.05   18.16%
-Random Forest Regressor             4.73   27.03%
-SARIMAX                             5.20   29.83%
-LSTM                                8.93   55.09%
-Baseline Monthly Mean               10.17  68.14%
-Holt-Winters exponential smoothing  10.24  69.26%
-Winning model: Support Vector Regression
+[--------------- Summary Report (TPM) ---------------]
+Branch:    feature/JJ-plots
+Generated: 8 Sep 2026 10.00pm
+
+======== Model Evaluation Results + Predictions ========
+Model                               RMSE   MAPE    FY2026  FY2027
+Support Vector Regression           2.67   12.54%  238.5   269.4 
+XGBoost                             3.05   18.16%  201.8   249.2 
+Random Forest Regressor             4.73   27.03%  217.9   234.5 
+SARIMAX                             5.20   29.83%  82.8    69.5  
+Baseline Monthly Mean               10.17  68.14%  170.1   170.1 
+Holt-Winters exponential smoothing  10.24  69.26%  271.4   363.4 
+LSTM                                10.91  64.32%  261.7   294.2 
 
 
-======== Total Visitors ('000s) by Financial Year (Support Vector Regression) ========
+======== Total Visitors ('000s) by Financial Year ========
+(Support Vector Regression)
 FY                   Total Visitors ('000s)
 FY2014               102.8                 
 FY2015               470.6                 
@@ -26,15 +30,4 @@ FY2024               170.1
 FY2025               167.6                 
 FY2026 (Prediction)  238.5                 
 FY2027 (Prediction)  269.4                 
-
-
-======== Forecast FY Totals by Model ========
-Model                               RMSE   MAPE    FY2026  FY2027
-Support Vector Regression           2.67   12.54%  238.5   269.4 
-XGBoost                             3.05   18.16%  201.8   249.2 
-Random Forest Regressor             4.73   27.03%  217.9   234.5 
-SARIMAX                             5.20   29.83%  83.4    71.3  
-LSTM                                8.93   55.09%  256.3   300.3 
-Baseline Monthly Mean               10.17  68.14%  170.1   170.1 
-Holt-Winters exponential smoothing  10.24  69.26%  271.4   363.4 
 
