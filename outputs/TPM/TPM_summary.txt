@@ -1,20 +1,20 @@
 [--------------- Summary Report (TPM) ---------------]
 Branch:    feature/JJ-plots
-Generated: 8 Sep 2026 10.00pm
+Generated: 9 Sep 2026 2.30am
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE   MAPE    FY2026  FY2027
-Support Vector Regression           2.67   12.54%  238.5   269.4 
-XGBoost                             3.05   18.16%  201.8   249.2 
-Random Forest Regressor             4.73   27.03%  217.9   234.5 
-SARIMAX                             5.20   29.83%  82.8    69.5  
+SARIMAX                             2.93   17.26%  154.0   178.5 
+XGBoost                             3.29   22.28%  194.9   209.1 
+Support Vector Regression           3.72   19.80%  244.5   312.9 
+Random Forest Regressor             4.06   21.44%  218.1   237.8 
+LSTM                                9.20   53.13%  253.4   294.0 
 Baseline Monthly Mean               10.17  68.14%  170.1   170.1 
-Holt-Winters exponential smoothing  10.24  69.26%  271.4   363.4 
-LSTM                                10.91  64.32%  261.7   294.2 
+Holt-Winters exponential smoothing  12.93  88.56%  166.6   171.6 
 
 
 ======== Total Visitors ('000s) by Financial Year ========
-(Support Vector Regression)
+(SARIMAX)
 FY                   Total Visitors ('000s)
 FY2014               102.8                 
 FY2015               470.6                 
@@ -28,6 +28,6 @@ FY2022               35.1
 FY2023               172.6                 
 FY2024               170.1                 
 FY2025               167.6                 
-FY2026 (Prediction)  238.5                 
-FY2027 (Prediction)  269.4                 
+FY2026 (Prediction)  154.0                 
+FY2027 (Prediction)  178.5                 
 
