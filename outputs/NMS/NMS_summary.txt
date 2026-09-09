@@ -1,6 +1,6 @@
 [--------------- Summary Report (NMS) ---------------]
 Branch:    test/run-pipelines-7a
-Generated: 9 Sep 2026 11.20am
+Generated: 9 Sep 2026 2.42pm
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE   MAPE    FY2026   FY2027 
@@ -8,7 +8,7 @@ XGBoost                             17.81  19.13%  1,081.8  1,003.4
 Random Forest Regressor             21.41  18.73%  1,028.0  976.7  
 SARIMAX                             23.15  27.17%  1,010.2  1,051.2
 LSTM                                23.45  18.81%  933.8    923.7  
-Baseline Monthly Mean               36.40  30.13%  1,040.0  1,040.0
+Baseline Monthly Mean               36.4   30.13%  1,040.0  1,040.0
 Holt-Winters exponential smoothing  43.75  35.34%  1,275.8  1,375.8
 
 
