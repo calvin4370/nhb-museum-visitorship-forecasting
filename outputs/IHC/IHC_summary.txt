@@ -1,6 +1,6 @@
 [--------------- Summary Report (IHC) ---------------]
 Branch:    feature/JJ-plots
-Generated: 9 Sep 2026 2.50am
+Generated: 9 Sep 2026 9.58am
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE  MAPE    FY2026  FY2027

@@ -1,6 +1,6 @@
 [--------------- Summary Report (ACM) ---------------]
 Branch:    feature/JJ-plots
-Generated: 9 Sep 2026 1.56am
+Generated: 9 Sep 2026 9.58am
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE   MAPE    FY2026  FY2027
@@ -9,7 +9,7 @@ Support Vector Regression           7.31   14.44%  475.1   472.6
 XGBoost                             7.75   14.25%  491.3   492.9 
 LSTM                                9.55   23.10%  470.5   461.6 
 SARIMAX                             9.91   21.02%  638.3   739.5 
-Holt-Winters exponential smoothing  10.10  16.85%  713.9   837.8 
+Holt-Winters exponential smoothing  10.1   16.85%  713.9   837.8 
 Baseline Monthly Mean               15.85  30.54%  452.0   452.0 
 
 

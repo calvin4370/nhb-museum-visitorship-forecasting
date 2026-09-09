@@ -1,13 +1,18 @@
 """
-Builds outputs/{museum}/{museum}_summary.txt: 
-A report combining each model's eval metrics with its own predicted FY totals, and the
+Builds: 
+- outputs/{museum}/{museum}_summary.txt
+- outputs/{museum}/{museum}_summary.md
+Each is a report combining each model's eval metrics with its own predicted FY totals, and the
 historical + predicted total visitors by financial year.
 """
 
+import os
 import subprocess
 from datetime import datetime
 
 import pandas as pd
+
+from config import MODEL_NAMES
 
 
 def git_branch():
@@ -27,7 +32,7 @@ def git_branch():
 
 def timestamp_now():
     """
-    Returns the current local time as e.g. "8 Sep 2026 7.56pm". 
+    Returns the current local time as e.g. "8 Sep 2026 7.56pm".
     Built manually rather than with strftime, as its no-leading-zero codes differ per platform.
     """
     now = datetime.now()
@@ -47,7 +52,7 @@ def FY_label(timestamp):
 
 def FY_totals(df, value_col="value"):
     """
-    Sums `value_col` per financial year. 
+    Sums `value_col` per financial year.
     Returns a Series indexed by FY label.
     """
     labels = df["timestamp"].apply(FY_label)
@@ -79,7 +84,7 @@ def format_table(df, sep="  "):
 def write_summary_txt(save_path, museum_code, eval_table, fy_table, per_model_fy_table):
     """
     Writes the report file containing model evaluation results and predictions
-    to a txt file at `save_path`. 
+    to a txt file at `save_path`.
     """
     # eval_table is sorted lowest-RMSE-first, so its first row is the winning model,
     # and the FY totals are built from that model's forecast
@@ -119,7 +124,11 @@ def write_summary_txt(save_path, museum_code, eval_table, fy_table, per_model_fy
 
 # Fixed pixel widths for the FY tables' two columns, so the tables that sit
 # beside each other line up. Their content is the same shape for every museum.
-FY_TABLE_WIDTHS = [140, 150]
+FY_TABLE_WIDTHS = [138, 148]
+
+# Subfolders jj_new_plots.py writes its seaborn versions into
+EVAL_PLOT_DIR = "jj-new-eval-plots"
+PREDICT_PLOT_DIR = "jj-new-predict-plots"
 
 def format_html_table(df, align=None, widths=None):
     """
@@ -146,7 +155,7 @@ def split_rows(df, parts=2):
     be rendered as separate tables sitting next to each other.
     """
     per_part = -(-len(df) // parts)  # ceiling division
-    return [df.iloc[i:i + per_part] for i in range(0, len(df), per_part)]
+    return [df.iloc[i : i + per_part] for i in range(0, len(df), per_part)]
 
 
 def format_html_tables_side_by_side(frames, widths=None):
@@ -195,6 +204,20 @@ def write_summary_md(save_path, museum_code, eval_table, fy_table, per_model_fy_
     lines.append("")
     lines.append(format_html_tables_side_by_side(split_rows(fy_table), FY_TABLE_WIDTHS))
     lines.append("")
+
+    # Append the best eval plot and the top-3 predictions plot
+    key_by_name = {name: key for key, name in MODEL_NAMES.items()}
+    best_key = key_by_name.get(winning_model)
+    plots = [
+        f"eval/{EVAL_PLOT_DIR}/{museum_code}_eval_{best_key}_timeplot.png",
+        f"predict/{PREDICT_PLOT_DIR}/{museum_code}_predict_top3_timeplot.png",
+    ]
+    for relative in plots:
+        # skip missing plots
+        if not os.path.exists(os.path.join(os.path.dirname(save_path), relative)):
+            continue
+        lines.append(f"![]({relative})")
+        lines.append("")
 
     with open(save_path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))

@@ -1,6 +1,6 @@
 [--------------- Summary Report (TPM) ---------------]
 Branch:    feature/JJ-plots
-Generated: 9 Sep 2026 2.30am
+Generated: 9 Sep 2026 9.58am
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE   MAPE    FY2026  FY2027
@@ -8,7 +8,7 @@ SARIMAX                             2.93   17.26%  154.0   178.5
 XGBoost                             3.29   22.28%  194.9   209.1 
 Support Vector Regression           3.72   19.80%  244.5   312.9 
 Random Forest Regressor             4.06   21.44%  218.1   237.8 
-LSTM                                9.20   53.13%  253.4   294.0 
+LSTM                                9.2    53.13%  253.4   294.0 
 Baseline Monthly Mean               10.17  68.14%  170.1   170.1 
 Holt-Winters exponential smoothing  12.93  88.56%  166.6   171.6 
 

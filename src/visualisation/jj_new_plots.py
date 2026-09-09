@@ -113,7 +113,7 @@ def new_timeplot(original_path, title_prefix, train_data, test_data, forecast, e
     _style_axes(ax, plot_data, _plot_title(title_prefix, plot_data))
     ax.legend(fontsize=7, frameon=True, loc="upper right")
     plt.tight_layout()
-    plt.savefig(new_plot_path(original_path, eval), dpi=150)
+    plt.savefig(new_plot_path(original_path, eval), dpi=300)
     plt.close()
 
 
@@ -141,5 +141,5 @@ def new_top_n_timeplot(original_path, title_prefix, train_data, test_data, model
     _style_axes(ax, plot_data, _plot_title(title_prefix, plot_data))
     ax.legend(fontsize=7, frameon=True, loc="upper right")
     plt.tight_layout()
-    plt.savefig(new_plot_path(original_path, False), dpi=150)
+    plt.savefig(new_plot_path(original_path, False), dpi=300)
     plt.close()
