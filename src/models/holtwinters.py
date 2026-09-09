@@ -5,6 +5,7 @@ import optuna
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
 from src.models.fitted import Fitted
 from src.analysis.tuning import create_study
+from src.features.transform import from_log, to_log, smearing_factor
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
@@ -12,6 +13,9 @@ def hw(train_data, test_data, eval, best_params=None):
     # Prepare input data for Holt Winters
     train_X = train_data.set_index("timestamp")["value"]
     train_X = train_X.asfreq('MS')
+
+    # Fitted in log space when enabled; passes through unchanged if not
+    train_X = to_log(train_X)
     seasonal_periods = 12
 
     random_state = 42
@@ -44,9 +48,10 @@ def hw(train_data, test_data, eval, best_params=None):
                         trend=trend,
                         seasonal=seasonal
                     ).fit(**params)
-                    errors.append(
-                        root_mean_squared_error(val, fitted_model.forecast(len(val_idx)))
-                    )
+                    # Scored in visitors, so best_value compares across branches
+                    errors.append(root_mean_squared_error(
+                        from_log(val), from_log(fitted_model.forecast(len(val_idx)))
+                    ))
                 return np.mean(errors)
 
             except Exception as e:
@@ -75,6 +80,12 @@ def hw(train_data, test_data, eval, best_params=None):
     # Forecasting
     forecast_periods = len(test_data["value"])
     forecast = best_model_fitted.forecast(forecast_periods)
+
+    # Duan's smearing correction, from this model's own in-sample residuals
+    smearing = smearing_factor(train_X, best_model_fitted.fittedvalues)
+
+    # Inverted back to visitors before anything downstream sees it
+    forecast = pd.Series(from_log(forecast.values, smearing), index=forecast.index)
     test_data["Forecast"] = forecast.values
 
     if eval:

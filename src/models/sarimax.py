@@ -5,6 +5,7 @@ import optuna
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from src.models.fitted import Fitted
 from src.analysis.tuning import create_study
+from src.features.transform import from_log, log_frame, smearing_factor
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
@@ -20,15 +21,19 @@ def sarimax_model(train_data, test_data, eval, features, best_params=None):
     # Set seed for reproducibility
     random_state = 42
 
+    # Fitted in log space when enabled; both frames pass through unchanged if not
+    train_log = log_frame(train_data, features)
+    test_log = log_frame(test_data, features)
+
     # Standardise exogenous features
     scaler = StandardScaler()
     train_exog = pd.DataFrame(
-        scaler.fit_transform(train_data[features]),
-        columns=features, index=train_data.index,
+        scaler.fit_transform(train_log[features]),
+        columns=features, index=train_log.index,
     )
     test_exog = pd.DataFrame(
-        scaler.transform(test_data[features]),
-        columns=features, index=test_data.index,
+        scaler.transform(test_log[features]),
+        columns=features, index=test_log.index,
     )
 
     # If best_params is provided, use it
@@ -51,9 +56,9 @@ def sarimax_model(train_data, test_data, eval, features, best_params=None):
             errors = []
 
             try:
-                for train_idx, val_idx in tscv.split(train_data):
-                    tr_endog = train_data[target].iloc[train_idx]
-                    val_endog = train_data[target].iloc[val_idx]
+                for train_idx, val_idx in tscv.split(train_log):
+                    tr_endog = train_log[target].iloc[train_idx]
+                    val_endog = train_log[target].iloc[val_idx]
                     tr_exog = train_exog.iloc[train_idx]
                     val_exog = train_exog.iloc[val_idx]
 
@@ -69,9 +74,10 @@ def sarimax_model(train_data, test_data, eval, features, best_params=None):
                     val_forecast = fitted_model.get_forecast(
                         steps=len(val_idx), exog=val_exog
                     )
-                    errors.append(
-                        root_mean_squared_error(val_endog, val_forecast.predicted_mean)
-                    )
+                    # Scored in visitors, so best_value compares across branches
+                    errors.append(root_mean_squared_error(
+                        from_log(val_endog), from_log(val_forecast.predicted_mean)
+                    ))
                 return np.mean(errors)
 
             except Exception as e:
@@ -84,7 +90,7 @@ def sarimax_model(train_data, test_data, eval, features, best_params=None):
 
     # Train the best model
     best_model = SARIMAX(
-        endog=train_data[target],
+        endog=train_log[target],
         exog=train_exog,
         order=(best_params["p"], best_params["d"], best_params["q"]),
         seasonal_order=(best_params["P"], best_params["D"], best_params["Q"], 12),
@@ -96,7 +102,12 @@ def sarimax_model(train_data, test_data, eval, features, best_params=None):
     # Forecasting
     forecast_periods = len(test_data["value"])
     forecast = best_model_fitted.get_forecast(steps=forecast_periods, exog=test_exog)
-    test_data["Forecast"] = forecast.predicted_mean.values
+
+    # Duan's smearing correction, from this model's own in-sample residuals
+    smearing = smearing_factor(train_log[target], best_model_fitted.fittedvalues)
+
+    # Inverted back to visitors before anything downstream sees it
+    test_data["Forecast"] = from_log(forecast.predicted_mean.values, smearing)
 
     if eval:    
         # Metrics Calculation

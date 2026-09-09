@@ -7,6 +7,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 
 from src.models.fitted import Fitted
+from src.features.transform import from_log, to_log, smearing_factor, value_scaled
 
 # Suppress TensorFlow logging before importing it. 
 # Set back to normal after import to only skip the 2 initialisation messages
@@ -19,8 +20,15 @@ os.dup2(_stderr_fd, 2)
 
 
 def lstm(data, eval, h, feature_cols):
-    features = data[feature_cols].values          # (N, n_features)
-    target = data['value'].values.reshape(-1, 1)  # (N, 1)
+    # Fitted in log space when enabled. 'value' and monthly_avg are on the
+    # target's scale, so they move with it; the flags and calendar terms do not
+    logged = data.copy()
+    for column in ["value", *value_scaled(feature_cols)]:
+        if column in logged.columns:
+            logged[column] = to_log(logged[column])
+
+    features = logged[feature_cols].values          # (N, n_features)
+    target = logged['value'].values.reshape(-1, 1)  # (N, 1)
 
     # Set seed for reproducibility
     random_state = 42
@@ -79,12 +87,17 @@ def lstm(data, eval, h, feature_cols):
     # Predict values
     test_predict = model.predict(X_test)
 
-    # Inverse scale the predictions and actual values
-    test_predict = target_scaler.inverse_transform(test_predict)
+    # Undo the MinMax scaling, then the log transform, so predictions are visitors.
+    # Smearing comes from the model's own in-sample residuals, both in log space
+    train_fit = target_scaler.inverse_transform(model.predict(X_train, verbose=0))
+    smearing = smearing_factor(
+        target_scaler.inverse_transform(y_train).ravel(), train_fit.ravel()
+    )
+    test_predict = from_log(target_scaler.inverse_transform(test_predict), smearing)
 
     if eval:
-        # Inverse scale the predictions and actual values
-        y_test_inv = target_scaler.inverse_transform(y_test)
+        # Actuals go back to visitors too, so the metrics below are unchanged
+        y_test_inv = from_log(target_scaler.inverse_transform(y_test))
 
         # Compute RMSE and MAPE
         rmse_lstm = np.sqrt(mean_squared_error(y_test_inv, test_predict))

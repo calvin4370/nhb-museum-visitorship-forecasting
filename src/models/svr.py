@@ -8,6 +8,7 @@ from sklearn.model_selection import TimeSeriesSplit
 
 from src.models.fitted import Fitted
 from src.analysis.tuning import create_study
+from src.features.transform import from_log, log_frame, smearing_factor
 from sklearn.svm import SVR
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
@@ -19,11 +20,19 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
     # Target the caller's feature list predicts
     target = "value"
 
+    # Kept because train_data below is replaced by a features-only frame, which
+    # no longer carries the museum column the study name is built from
+    museum_frame = train_data
+
+    # Fitted in log space when enabled; both frames pass through unchanged if not
+    train_log = log_frame(train_data, features)
+    test_log = log_frame(test_data, features)
+
     # SVR requires features to be scaled
     scaler = StandardScaler()
-    X_train_scaled = pd.DataFrame(scaler.fit_transform(train_data[features]), columns=train_data[features].columns, index=train_data[features].index)
-    X_test_scaled = scaler.transform(test_data[features])
-    y_train = train_data[target]
+    X_train_scaled = pd.DataFrame(scaler.fit_transform(train_log[features]), columns=train_log[features].columns, index=train_log[features].index)
+    X_test_scaled = scaler.transform(test_log[features])
+    y_train = train_log[target]
 
     # New train dataset containing scaled features
     train_data = pd.concat([X_train_scaled, y_train], axis=1)
@@ -59,16 +68,17 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
                 for train_idx, val_idx in tscv.split(data):
                     tr, val = data.iloc[train_idx], data.iloc[val_idx]
                     model.fit(tr[features], tr[target])
-                    errors.append(
-                        root_mean_squared_error(val[target], model.predict(val[features]))
-                    )
+                    # Scored in visitors, so best_value compares across branches
+                    errors.append(root_mean_squared_error(
+                        from_log(val[target]), from_log(model.predict(val[features]))
+                    ))
                 return np.mean(errors)
 
             except Exception as e:
                 return float('inf')
 
         sampler = optuna.samplers.TPESampler(seed=random_state)
-        study = create_study(train_data, "svr", sampler)
+        study = create_study(museum_frame, "svr", sampler)
         study.optimize(objective, n_trials=50)
         best_params = study.best_params
 
@@ -76,8 +86,11 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
     best_model = SVR(**best_params)
     best_model.fit(X_train_scaled, y_train)
 
-    # Forecasting
-    forecast = best_model.predict(X_test_scaled)
+    # Duan's smearing correction, from this model's own training residuals
+    smearing = smearing_factor(y_train, best_model.predict(X_train_scaled))
+
+    # Forecasting, inverted back to visitors before anything downstream sees it
+    forecast = from_log(best_model.predict(X_test_scaled), smearing)
     test_data["Forecast"] = forecast
 
     # Metrics Calculation
@@ -90,5 +103,9 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
         model_eval = []
 
     # SVR was fitted on scaled inputs, so raw rows go through the same scaler
-    fitted = Fitted(best_model, lambda X: best_model.predict(scaler.transform(X)))
+    def predict_raw(X):
+        scaled = scaler.transform(log_frame(X, features)[features])
+        return from_log(best_model.predict(scaled), smearing)
+
+    fitted = Fitted(best_model, predict_raw)
     return model_eval, forecast, best_params, fitted

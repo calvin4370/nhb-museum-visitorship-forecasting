@@ -43,6 +43,10 @@ MODEL_NAMES = {
     "baseline": "Baseline Monthly Mean",
 }
 
+# Fit the models on log1p(visitors) instead of raw visitors, so the
+# multiplicative event spikes become an additive offset a flag can carry
+LOG_TARGET = True
+
 # Short model keys, in the order the pipeline runs them.
 MODEL_KEYS = ["rf", "xgb", "svr", "hw", "sarimax", "lstm", "timegpt", "baseline"]
 
