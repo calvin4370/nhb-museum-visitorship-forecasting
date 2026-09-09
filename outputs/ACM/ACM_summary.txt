@@ -1,13 +1,13 @@
 [--------------- Summary Report (ACM) ---------------]
-Branch:    feature/widen-hyperparameter-tuning
-Generated: 9 Sep 2026 10.29am
+Branch:    test/run-pipelines-7a
+Generated: 9 Sep 2026 11.12am
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE   MAPE    FY2026  FY2027
-Random Forest Regressor             7.13   13.99%  495.4   482.7 
-XGBoost                             7.75   14.25%  491.3   492.9 
-LSTM                                9.57   22.71%  468.5   458.8 
-SARIMAX                             9.91   21.02%  638.3   739.5 
+Random Forest Regressor             7.26   14.27%  495.2   481.2 
+XGBoost                             7.44   14.34%  486.6   495.4 
+SARIMAX                             9.55   17.53%  607.2   609.9 
+LSTM                                9.73   23.45%  471.6   459.1 
 Holt-Winters exponential smoothing  10.10  16.85%  713.9   837.8 
 Baseline Monthly Mean               15.85  30.54%  452.0   452.0 
 
@@ -27,6 +27,6 @@ FY2022               372.8
 FY2023               424.4                 
 FY2024               401.6                 
 FY2025               529.9                 
-FY2026 (Prediction)  495.4                 
-FY2027 (Prediction)  482.7                 
+FY2026 (Prediction)  495.2                 
+FY2027 (Prediction)  481.2                 
 

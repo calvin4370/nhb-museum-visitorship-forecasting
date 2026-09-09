@@ -1,19 +1,19 @@
 [--------------- Summary Report (MHC) ---------------]
-Branch:    feature/widen-hyperparameter-tuning
-Generated: 9 Sep 2026 11.00am
+Branch:    test/run-pipelines-7a
+Generated: 9 Sep 2026 11.44am
 
 ======== Model Evaluation Results + Predictions ========
-Model                               RMSE  MAPE                     FY2026  FY2027
-LSTM                                0.98  372022894236163776.00%   520.4   706.6 
-XGBoost                             4.56  1695836034043691520.00%  532.2   648.4 
-Random Forest Regressor             4.66  2096411149748996864.00%  433.4   631.1 
-Holt-Winters exponential smoothing  4.92  1823584433231552768.00%  -19.9   -61.3 
-SARIMAX                             5.50  2098751002760350464.00%  341.3   341.9 
-Baseline Monthly Mean               8.26  3450535714501395456.00%  0.0     0.0   
+Model                               RMSE   MAPE                     FY2026  FY2027
+Holt-Winters exponential smoothing  4.92   1823584433231552768.00%  -19.9   -61.3 
+Random Forest Regressor             5.34   2403152512409692160.00%  423.8   632.7 
+LSTM                                5.72   2113226251146702848.00%  471.7   687.9 
+Baseline Monthly Mean               8.26   3450535714501395456.00%  0.0     0.0   
+XGBoost                             9.01   3772689469941228544.00%  493.0   665.3 
+SARIMAX                             12.14  4849820618190751744.00%  163.5   46.8  
 
 
 ======== Total Visitors ('000s) by Financial Year ========
-(LSTM)
+(Holt-Winters exponential smoothing)
 FY                   Total Visitors ('000s)
 FY2014               109.1                 
 FY2015               504.2                 
@@ -27,6 +27,6 @@ FY2022               171.5
 FY2023               0.0                   
 FY2024               0.0                   
 FY2025               0.0                   
-FY2026 (Prediction)  520.4                 
-FY2027 (Prediction)  706.6                 
+FY2026 (Prediction)  -19.9                 
+FY2027 (Prediction)  -61.3                 
 
