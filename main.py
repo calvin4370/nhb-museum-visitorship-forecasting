@@ -3,7 +3,11 @@ import os
 from config import MUSEUM_CODES, START_YEAR, START_MONTH, END_YEAR, END_MONTH
 from src.cli import parse_args, resolve_museum_selection, resolve_model_selection
 from src.data.singstat_api import singstat_api
-from src.pipeline import run_museum_pipeline, regen_museum_outputs
+from src.pipeline import (
+    run_museum_pipeline,
+    regen_museum_outputs,
+    write_tuning_report,
+)
 
 
 def main():
@@ -18,6 +22,7 @@ def main():
             print(f"=== {museum} (regenerating outputs) ===")
             regen_museum_outputs(museum)
             print(f"=== {museum} complete ===\n")
+        write_tuning_report()
         return
 
     # Call SingStat API to retrieve museum visitorship and international arrivals data
@@ -33,6 +38,8 @@ def main():
         print(f"=== {museum} ===")
         run_museum_pipeline(museum, visitors, arrivals, models)
         print(f"=== {museum} complete ===\n")
+
+    write_tuning_report()
 
 
 if __name__ == "__main__":

@@ -1,6 +1,9 @@
 """Per-museum orchestration: eval all models, rank by RMSE, predict with
 EVERY surviving model (each reusing its own tuned hyperparameters), and write
-all of that museum's outputs to outputs/{museum_code}/."""
+all of that museum's outputs to outputs/{museum_code}/.
+
+write_tuning_report() is the one exception: it spans every museum, so callers
+run it once after the loop rather than inside it."""
 
 import os
 
@@ -17,6 +20,21 @@ from src.analysis.artifacts import museum_dir, save_model
 from src.visualisation.feature_report import build_report
 from src.analysis.importance import permutation_importance
 from src.analysis.deepavali import build_report as build_deepavali_report
+from src.analysis.tuning_report import build_report as build_tuning_report
+
+
+def write_tuning_report():
+    """Summarise the saved Optuna studies into outputs/tuning_report.md.
+
+    Cross-museum, unlike everything else here, so callers run it once after
+    every museum rather than inside the per-museum loop.
+
+    Returns:
+        str | None: The file written, or None if no studies were found.
+    """
+    written = build_tuning_report()
+    print(f"wrote {written}" if written else "no studies found under outputs/tuning/")
+    return written
 
 
 def run_museum_pipeline(museum, visitors, arrivals, models=None):
@@ -439,3 +457,6 @@ def regen_museum_outputs(museum):
         print(f"  wrote {deepavali_report}")
 
     write_summary_md(f"./outputs/{museum_code}/{museum_code}_summary.md", **summary_args)
+
+    # Rebuilt from the importance CSV the last run saved, so nothing is refitted
+    build_report(museum_code)
