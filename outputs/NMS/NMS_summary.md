@@ -1,13 +1,13 @@
 ## Summary Report (NMS)
 
 ```
-Branch:    feature/JJ-plots
-Generated: 9 Sep 2026 9.58am
+Branch:    feature/widen-hyperparameter-tuning
+Generated: 9 Sep 2026 10.37am
 ```
 
 ### Model Evaluation Results + Predictions
 
-<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>XGBoost</td><td>16.34</td><td>17.40%</td><td>1,042.5</td><td>1,007.5</td></tr><tr><td>Support Vector Regression</td><td>19.61</td><td>14.77%</td><td>904.8</td><td>912.3</td></tr><tr><td>SARIMAX</td><td>20.07</td><td>20.48%</td><td>1,006.4</td><td>1,028.7</td></tr><tr><td>Random Forest Regressor</td><td>21.68</td><td>18.90%</td><td>1,030.7</td><td>977.9</td></tr><tr><td>LSTM</td><td>23.95</td><td>18.86%</td><td>925.2</td><td>920.3</td></tr><tr><td>Baseline Monthly Mean</td><td>36.4</td><td>30.13%</td><td>1,040.0</td><td>1,040.0</td></tr><tr><td>Holt-Winters exponential smoothing</td><td>43.75</td><td>35.34%</td><td>1,275.8</td><td>1,375.8</td></tr></tbody></table>
+<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>XGBoost</td><td>16.34</td><td>17.40%</td><td>1,042.5</td><td>1,007.5</td></tr><tr><td>SARIMAX</td><td>20.07</td><td>20.48%</td><td>1,006.4</td><td>1,028.7</td></tr><tr><td>Random Forest Regressor</td><td>21.68</td><td>18.90%</td><td>1,030.7</td><td>977.9</td></tr><tr><td>LSTM</td><td>24.24</td><td>19.18%</td><td>928.6</td><td>922.3</td></tr><tr><td>Baseline Monthly Mean</td><td>36.40</td><td>30.13%</td><td>1,040.0</td><td>1,040.0</td></tr><tr><td>Holt-Winters exponential smoothing</td><td>43.75</td><td>35.34%</td><td>1,275.8</td><td>1,375.8</td></tr></tbody></table>
 
 ### Total Visitors ('000s) by Financial Year (XGBoost)
 

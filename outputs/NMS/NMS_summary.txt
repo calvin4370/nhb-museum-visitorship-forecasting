@@ -1,15 +1,14 @@
 [--------------- Summary Report (NMS) ---------------]
-Branch:    feature/JJ-plots
-Generated: 9 Sep 2026 9.58am
+Branch:    feature/widen-hyperparameter-tuning
+Generated: 9 Sep 2026 10.37am
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE   MAPE    FY2026   FY2027 
 XGBoost                             16.34  17.40%  1,042.5  1,007.5
-Support Vector Regression           19.61  14.77%  904.8    912.3  
 SARIMAX                             20.07  20.48%  1,006.4  1,028.7
 Random Forest Regressor             21.68  18.90%  1,030.7  977.9  
-LSTM                                23.95  18.86%  925.2    920.3  
-Baseline Monthly Mean               36.4   30.13%  1,040.0  1,040.0
+LSTM                                24.24  19.18%  928.6    922.3  
+Baseline Monthly Mean               36.40  30.13%  1,040.0  1,040.0
 Holt-Winters exponential smoothing  43.75  35.34%  1,275.8  1,375.8
 
 

@@ -5,6 +5,7 @@ import optuna
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 from sklearn.model_selection import TimeSeriesSplit
 from src.models.fitted import Fitted
+from src.analysis.tuning import create_study
 from xgboost import XGBRegressor
 
 def xgb(train_data, test_data, eval, features, best_params=None):
@@ -44,7 +45,7 @@ def xgb(train_data, test_data, eval, features, best_params=None):
             return np.mean(errors)
 
         sampler = optuna.samplers.TPESampler(seed=random_state)
-        study = optuna.create_study(direction="minimize", sampler=sampler)
+        study = create_study(train_data, "xgb", sampler)
         study.optimize(objective, n_trials=50)
         best_params = study.best_params
 

@@ -1,12 +1,11 @@
 [--------------- Summary Report (IHC) ---------------]
-Branch:    feature/JJ-plots
-Generated: 9 Sep 2026 10.05am
+Branch:    feature/widen-hyperparameter-tuning
+Generated: 9 Sep 2026 10.53am
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE  MAPE    FY2026  FY2027
-LSTM                                5.98  35.59%  237.4   230.6 
+LSTM                                5.97  37.70%  237.3   230.2 
 Holt-Winters exponential smoothing  6.19  35.66%  201.0   192.4 
-Support Vector Regression           6.21  30.04%  208.5   207.6 
 XGBoost                             6.61  27.97%  213.3   210.3 
 Random Forest Regressor             6.62  30.43%  211.1   209.9 
 SARIMAX                             7.88  28.75%  214.4   213.3 
@@ -26,6 +25,6 @@ FY2022               148.6
 FY2023               216.2                 
 FY2024               215.3                 
 FY2025               218.2                 
-FY2026 (Prediction)  237.4                 
-FY2027 (Prediction)  230.6                 
+FY2026 (Prediction)  237.3                 
+FY2027 (Prediction)  230.2                 
 

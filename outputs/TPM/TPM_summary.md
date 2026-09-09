@@ -1,13 +1,13 @@
 ## Summary Report (TPM)
 
 ```
-Branch:    feature/JJ-plots
-Generated: 9 Sep 2026 9.58am
+Branch:    feature/widen-hyperparameter-tuning
+Generated: 9 Sep 2026 10.44am
 ```
 
 ### Model Evaluation Results + Predictions
 
-<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>SARIMAX</td><td>2.93</td><td>17.26%</td><td>154.0</td><td>178.5</td></tr><tr><td>XGBoost</td><td>3.29</td><td>22.28%</td><td>194.9</td><td>209.1</td></tr><tr><td>Support Vector Regression</td><td>3.72</td><td>19.80%</td><td>244.5</td><td>312.9</td></tr><tr><td>Random Forest Regressor</td><td>4.06</td><td>21.44%</td><td>218.1</td><td>237.8</td></tr><tr><td>LSTM</td><td>9.2</td><td>53.13%</td><td>253.4</td><td>294.0</td></tr><tr><td>Baseline Monthly Mean</td><td>10.17</td><td>68.14%</td><td>170.1</td><td>170.1</td></tr><tr><td>Holt-Winters exponential smoothing</td><td>12.93</td><td>88.56%</td><td>166.6</td><td>171.6</td></tr></tbody></table>
+<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>SARIMAX</td><td>2.93</td><td>17.26%</td><td>154.0</td><td>178.5</td></tr><tr><td>XGBoost</td><td>3.29</td><td>22.28%</td><td>194.9</td><td>209.1</td></tr><tr><td>Random Forest Regressor</td><td>4.06</td><td>21.44%</td><td>218.1</td><td>237.8</td></tr><tr><td>Baseline Monthly Mean</td><td>10.17</td><td>68.14%</td><td>170.1</td><td>170.1</td></tr><tr><td>LSTM</td><td>12.44</td><td>68.49%</td><td>269.8</td><td>315.1</td></tr><tr><td>Holt-Winters exponential smoothing</td><td>12.93</td><td>88.56%</td><td>166.6</td><td>171.6</td></tr></tbody></table>
 
 ### Total Visitors ('000s) by Financial Year (SARIMAX)
 
