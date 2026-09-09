@@ -1,17 +1,17 @@
 ## Summary Report (NMS)
 
 ```
-Branch:    test/run-pipelines-7a
-Generated: 9 Sep 2026 11.20am
+Branch:    test/run-pipelines-7b
+Generated: 9 Sep 2026 12.03pm
 ```
 
 ### Model Evaluation Results + Predictions
 
-<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>XGBoost</td><td>17.81</td><td>19.13%</td><td>1,081.8</td><td>1,003.4</td></tr><tr><td>Random Forest Regressor</td><td>21.41</td><td>18.73%</td><td>1,028.0</td><td>976.7</td></tr><tr><td>SARIMAX</td><td>23.15</td><td>27.17%</td><td>1,010.2</td><td>1,051.2</td></tr><tr><td>LSTM</td><td>23.45</td><td>18.81%</td><td>933.8</td><td>923.7</td></tr><tr><td>Baseline Monthly Mean</td><td>36.40</td><td>30.13%</td><td>1,040.0</td><td>1,040.0</td></tr><tr><td>Holt-Winters exponential smoothing</td><td>43.75</td><td>35.34%</td><td>1,275.8</td><td>1,375.8</td></tr></tbody></table>
+<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>XGBoost</td><td>18.69</td><td>17.37%</td><td>1,057.1</td><td>1,006.6</td></tr><tr><td>SARIMAX</td><td>23.73</td><td>19.19%</td><td>949.0</td><td>943.1</td></tr><tr><td>LSTM</td><td>24.71</td><td>20.63%</td><td>937.8</td><td>923.4</td></tr><tr><td>Random Forest Regressor</td><td>26.81</td><td>24.95%</td><td>1,063.3</td><td>991.4</td></tr><tr><td>Baseline Monthly Mean</td><td>36.40</td><td>30.13%</td><td>1,040.0</td><td>1,040.0</td></tr><tr><td>Holt-Winters exponential smoothing</td><td>43.75</td><td>35.34%</td><td>1,275.8</td><td>1,375.8</td></tr></tbody></table>
 
 ### Total Visitors ('000s) by Financial Year (XGBoost)
 
-<table align="left"><thead><tr><th width="138">FY</th><th width="148">Total Visitors ('000s)</th></tr></thead><tbody><tr><td>FY2014</td><td>153.4</td></tr><tr><td>FY2015</td><td>783.1</td></tr><tr><td>FY2016</td><td>811.4</td></tr><tr><td>FY2017</td><td>930.7</td></tr><tr><td>FY2018</td><td>977.6</td></tr><tr><td>FY2019</td><td>1,003.8</td></tr><tr><td>FY2020</td><td>359.7</td></tr></tbody></table><table align="right"><thead><tr><th width="138">FY</th><th width="148">Total Visitors ('000s)</th></tr></thead><tbody><tr><td>FY2021</td><td>369.6</td></tr><tr><td>FY2022</td><td>852.9</td></tr><tr><td>FY2023</td><td>1,065.4</td></tr><tr><td>FY2024</td><td>998.1</td></tr><tr><td>FY2025</td><td>1,056.5</td></tr><tr><td>FY2026 (Prediction)</td><td>1,081.8</td></tr><tr><td>FY2027 (Prediction)</td><td>1,003.4</td></tr></tbody></table><br clear="all">
+<table align="left"><thead><tr><th width="138">FY</th><th width="148">Total Visitors ('000s)</th></tr></thead><tbody><tr><td>FY2014</td><td>153.4</td></tr><tr><td>FY2015</td><td>783.1</td></tr><tr><td>FY2016</td><td>811.4</td></tr><tr><td>FY2017</td><td>930.7</td></tr><tr><td>FY2018</td><td>977.6</td></tr><tr><td>FY2019</td><td>1,003.8</td></tr><tr><td>FY2020</td><td>359.7</td></tr></tbody></table><table align="right"><thead><tr><th width="138">FY</th><th width="148">Total Visitors ('000s)</th></tr></thead><tbody><tr><td>FY2021</td><td>369.6</td></tr><tr><td>FY2022</td><td>852.9</td></tr><tr><td>FY2023</td><td>1,065.4</td></tr><tr><td>FY2024</td><td>998.1</td></tr><tr><td>FY2025</td><td>1,056.5</td></tr><tr><td>FY2026 (Prediction)</td><td>1,057.1</td></tr><tr><td>FY2027 (Prediction)</td><td>1,006.6</td></tr></tbody></table><br clear="all">
 
 ![](eval/jj-new-eval-plots/NMS_eval_xgb_timeplot.png)
 

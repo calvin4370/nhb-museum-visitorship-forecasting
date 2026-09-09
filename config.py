@@ -47,7 +47,7 @@ MODEL_NAMES = {
 MODEL_KEYS = ["rf", "xgb", "svr", "hw", "sarimax", "lstm", "timegpt", "baseline"]
 
 # Features every museum's tabular models (rf, xgb, svr, sarimax) train on
-BASE_FEATURES = ["sin_month", "cos_month", "monthly_avg", "is_covid", "intl_arrivals"] + [
+BASE_FEATURES = ["sin_month", "cos_month", "monthly_avg", "is_covid", "is_closed"] + [
     f"lag_{i}" for i in range(1, 13)
 ]
 
