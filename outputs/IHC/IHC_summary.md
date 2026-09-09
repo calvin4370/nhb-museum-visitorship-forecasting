@@ -2,7 +2,7 @@
 
 ```
 Branch:    feature/JJ-plots
-Generated: 9 Sep 2026 9.58am
+Generated: 9 Sep 2026 10.05am
 ```
 
 ### Model Evaluation Results + Predictions
@@ -14,5 +14,14 @@ Generated: 9 Sep 2026 9.58am
 <table align="left"><thead><tr><th width="138">FY</th><th width="148">Total Visitors ('000s)</th></tr></thead><tbody><tr><td>FY2016</td><td>138.9</td></tr><tr><td>FY2017</td><td>185.5</td></tr><tr><td>FY2018</td><td>236.3</td></tr><tr><td>FY2019</td><td>210.5</td></tr><tr><td>FY2020</td><td>37.6</td></tr><tr><td>FY2021</td><td>46.5</td></tr></tbody></table><table align="right"><thead><tr><th width="138">FY</th><th width="148">Total Visitors ('000s)</th></tr></thead><tbody><tr><td>FY2022</td><td>148.6</td></tr><tr><td>FY2023</td><td>216.2</td></tr><tr><td>FY2024</td><td>215.3</td></tr><tr><td>FY2025</td><td>218.2</td></tr><tr><td>FY2026 (Prediction)</td><td>237.4</td></tr><tr><td>FY2027 (Prediction)</td><td>230.6</td></tr></tbody></table><br clear="all">
 
 ![](eval/jj-new-eval-plots/IHC_eval_lstm_timeplot.png)
+
+**Deepavali months: actual vs predicted (LSTM)**
+
+| Month | Actual | Predicted | Difference | % difference |
+|---|---|---|---|---|
+| 2024-10 | 43.90 | 29.91 | -13.99 | -31.87% |
+| 2025-10 | 38.30 | 30.45 | -7.85 | -20.50% |
+| 2026-11 | -- | 22.12 | -- | -- |
+| 2027-10 | -- | 37.04 | -- | -- |
 
 ![](predict/jj-new-predict-plots/IHC_predict_top3_timeplot.png)

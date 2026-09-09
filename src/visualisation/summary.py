@@ -13,6 +13,7 @@ from datetime import datetime
 import pandas as pd
 
 from config import MODEL_NAMES
+from src.analysis.deepavali import table_lines as deepavali_table_lines
 
 
 def git_branch():
@@ -208,16 +209,24 @@ def write_summary_md(save_path, museum_code, eval_table, fy_table, per_model_fy_
     # Append the best eval plot and the top-3 predictions plot
     key_by_name = {name: key for key, name in MODEL_NAMES.items()}
     best_key = key_by_name.get(winning_model)
-    plots = [
-        f"eval/{EVAL_PLOT_DIR}/{museum_code}_eval_{best_key}_timeplot.png",
-        f"predict/{PREDICT_PLOT_DIR}/{museum_code}_predict_top3_timeplot.png",
-    ]
-    for relative in plots:
+
+    def append_plot(relative):
         # skip missing plots
-        if not os.path.exists(os.path.join(os.path.dirname(save_path), relative)):
-            continue
-        lines.append(f"![]({relative})")
+        if os.path.exists(os.path.join(os.path.dirname(save_path), relative)):
+            lines.append(f"![]({relative})")
+            lines.append("")
+
+    append_plot(f"eval/{EVAL_PLOT_DIR}/{museum_code}_eval_{best_key}_timeplot.png")
+
+    # IHC alone has the is_deepavali feature, so this is None for every other museum
+    deepavali = deepavali_table_lines(museum_code)
+    if deepavali:
+        lines.append(f"**Deepavali months: actual vs predicted ({winning_model})**")
         lines.append("")
+        lines.extend(deepavali)
+        lines.append("")
+
+    append_plot(f"predict/{PREDICT_PLOT_DIR}/{museum_code}_predict_top3_timeplot.png")
 
     with open(save_path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))

@@ -16,6 +16,7 @@ from src.models.model_registry import MODEL_REGISTRY
 from src.analysis.artifacts import museum_dir, save_model
 from src.visualisation.feature_report import build_report
 from src.analysis.importance import permutation_importance
+from src.analysis.deepavali import build_report as build_deepavali_report
 
 
 def run_museum_pipeline(museum, visitors, arrivals, models=None):
@@ -279,6 +280,11 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
         fy_table=fy_table,
         per_model_fy_table=per_model_fy_df,
     )
+    # IHC only; returns None for every other museum
+    deepavali_report = build_deepavali_report(museum_code)
+    if deepavali_report:
+        print(f"  wrote {deepavali_report}")
+
     write_summary_md(
         f"./outputs/{museum_code}/{museum_code}_summary.md",
         museum_code=museum_code,
@@ -427,4 +433,9 @@ def regen_museum_outputs(museum):
         per_model_fy_table=per_model_fy_df,
     )
     write_summary_txt(f"./outputs/{museum_code}/{museum_code}_summary.txt", **summary_args)
+    # IHC only; returns None for every other museum
+    deepavali_report = build_deepavali_report(museum_code)
+    if deepavali_report:
+        print(f"  wrote {deepavali_report}")
+
     write_summary_md(f"./outputs/{museum_code}/{museum_code}_summary.md", **summary_args)
