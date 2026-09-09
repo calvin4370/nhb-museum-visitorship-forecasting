@@ -2,12 +2,12 @@
 
 ```
 Branch:    test/run-pipelines-7b
-Generated: 9 Sep 2026 12.03pm
+Generated: 9 Sep 2026 2.50pm
 ```
 
 ### Model Evaluation Results + Predictions
 
-<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>XGBoost</td><td>18.69</td><td>17.37%</td><td>1,057.1</td><td>1,006.6</td></tr><tr><td>SARIMAX</td><td>23.73</td><td>19.19%</td><td>949.0</td><td>943.1</td></tr><tr><td>LSTM</td><td>24.71</td><td>20.63%</td><td>937.8</td><td>923.4</td></tr><tr><td>Random Forest Regressor</td><td>26.81</td><td>24.95%</td><td>1,063.3</td><td>991.4</td></tr><tr><td>Baseline Monthly Mean</td><td>36.40</td><td>30.13%</td><td>1,040.0</td><td>1,040.0</td></tr><tr><td>Holt-Winters exponential smoothing</td><td>43.75</td><td>35.34%</td><td>1,275.8</td><td>1,375.8</td></tr></tbody></table>
+<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>XGBoost</td><td>18.69</td><td>17.37%</td><td>1,057.1</td><td>1,006.6</td></tr><tr><td>SARIMAX</td><td>23.73</td><td>19.19%</td><td>949.0</td><td>943.1</td></tr><tr><td>LSTM</td><td>24.71</td><td>20.63%</td><td>937.8</td><td>923.4</td></tr><tr><td>Random Forest Regressor</td><td>26.81</td><td>24.95%</td><td>1,063.3</td><td>991.4</td></tr><tr><td>Baseline Monthly Mean</td><td>36.4</td><td>30.13%</td><td>1,040.0</td><td>1,040.0</td></tr><tr><td>Holt-Winters exponential smoothing</td><td>43.75</td><td>35.34%</td><td>1,275.8</td><td>1,375.8</td></tr></tbody></table>
 
 ### Total Visitors ('000s) by Financial Year (XGBoost)
 

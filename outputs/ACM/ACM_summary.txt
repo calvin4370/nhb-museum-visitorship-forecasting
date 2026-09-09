@@ -1,6 +1,6 @@
 [--------------- Summary Report (ACM) ---------------]
 Branch:    test/run-pipelines-7b
-Generated: 9 Sep 2026 11.55am
+Generated: 9 Sep 2026 2.49pm
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE   MAPE    FY2026  FY2027
@@ -8,7 +8,7 @@ XGBoost                             8.44   16.44%  525.1   544.2
 Random Forest Regressor             8.87   17.51%  514.0   501.2 
 LSTM                                8.92   20.10%  490.6   486.6 
 SARIMAX                             9.03   19.49%  462.4   488.0 
-Holt-Winters exponential smoothing  10.10  16.85%  713.9   837.8 
+Holt-Winters exponential smoothing  10.1   16.85%  713.9   837.8 
 Baseline Monthly Mean               15.85  30.54%  452.0   452.0 
 
 
