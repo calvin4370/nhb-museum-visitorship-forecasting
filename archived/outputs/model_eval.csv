@@ -1,0 +1,9 @@
+Model,RMSE,MAPE
+Random Forest Regressor,6.66,33.62%
+XGBoost,6.59,36.26%
+LSTM,8.58,41.29%
+TimeGPT,6.61,39.79%
+Holt-Winters exponential smoothing,12.29,71.70%
+SARIMAX,5.92,27.63%
+Baseline Monthly Mean,12.45,57.96%
+Support Vector Regression,6.33,29.67%
