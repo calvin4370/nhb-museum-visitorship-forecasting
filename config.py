@@ -18,7 +18,7 @@ MUSEUM_CODES = {
 }
 
 # Reference data range for the time series to be used for training
-# The model will be evaluated on the last 80% of months of this range.
+# The model will be evaluated on the last 20% of months of this range.
 # Forecasted months will be appended to the end of this range
 START_YEAR, START_MONTH = 2014, "Jan"
 END_YEAR, END_MONTH = 2026, "Mar"
