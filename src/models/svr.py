@@ -25,6 +25,10 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
     X_test_scaled = scaler.transform(test_data[features])
     y_train = train_data[target]
 
+    # Kept because train_data below is replaced by a features-only frame, which
+    # no longer carries the museum column the study name is built from
+    museum_frame = train_data
+
     # New train dataset containing scaled features
     train_data = pd.concat([X_train_scaled, y_train], axis=1)
 
@@ -68,7 +72,7 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
                 return float('inf')
 
         sampler = optuna.samplers.TPESampler(seed=random_state)
-        study = create_study(train_data, "svr", sampler)
+        study = create_study(museum_frame, "svr", sampler)
         study.optimize(objective, n_trials=50)
         best_params = study.best_params
 
