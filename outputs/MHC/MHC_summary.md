@@ -2,12 +2,12 @@
 
 ```
 Branch:    test/run-pipelines-7a
-Generated: 9 Sep 2026 2.43pm
+Generated: 15 Sep 2026 8.23pm
 ```
 
 ### Model Evaluation Results + Predictions
 
-<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>Holt-Winters exponential smoothing</td><td>4.92</td><td>1823584433231552768.00%</td><td>-19.9</td><td>-61.3</td></tr><tr><td>Random Forest Regressor</td><td>5.34</td><td>2403152512409692160.00%</td><td>423.8</td><td>632.7</td></tr><tr><td>LSTM</td><td>5.72</td><td>2113226251146702848.00%</td><td>471.7</td><td>687.9</td></tr><tr><td>Baseline Monthly Mean</td><td>8.26</td><td>3450535714501395456.00%</td><td>0.0</td><td>0.0</td></tr><tr><td>XGBoost</td><td>9.01</td><td>3772689469941228544.00%</td><td>493.0</td><td>665.3</td></tr><tr><td>SARIMAX</td><td>12.14</td><td>4849820618190751744.00%</td><td>163.5</td><td>46.8</td></tr></tbody></table>
+<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>Holt-Winters exponential smoothing</td><td>4.92</td><td>1823584433231552768.00%</td><td>-19.9</td><td>-61.3</td></tr><tr><td>Random Forest Regressor</td><td>5.34</td><td>2403152512409692160.00%</td><td>423.8</td><td>632.7</td></tr><tr><td>LSTM</td><td>7.87</td><td>2961306499691800576.00%</td><td>484.1</td><td>695.9</td></tr><tr><td>Baseline Monthly Mean</td><td>8.26</td><td>3450535714501395456.00%</td><td>0.0</td><td>0.0</td></tr><tr><td>XGBoost</td><td>9.01</td><td>3772689469941228544.00%</td><td>493.0</td><td>665.3</td></tr><tr><td>Support Vector Regression</td><td>10.40</td><td>4430603792411568128.00%</td><td>492.8</td><td>627.4</td></tr><tr><td>SARIMAX</td><td>12.14</td><td>4849820618190751744.00%</td><td>163.5</td><td>46.8</td></tr></tbody></table>
 
 ### Total Visitors ('000s) by Financial Year (Holt-Winters exponential smoothing)
 

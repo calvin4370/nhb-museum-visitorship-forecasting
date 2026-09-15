@@ -2,12 +2,12 @@
 
 ```
 Branch:    test/run-pipelines-7a
-Generated: 9 Sep 2026 2.42pm
+Generated: 15 Sep 2026 7.48pm
 ```
 
 ### Model Evaluation Results + Predictions
 
-<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>Random Forest Regressor</td><td>7.26</td><td>14.27%</td><td>495.2</td><td>481.2</td></tr><tr><td>XGBoost</td><td>7.44</td><td>14.34%</td><td>486.6</td><td>495.4</td></tr><tr><td>SARIMAX</td><td>9.55</td><td>17.53%</td><td>607.2</td><td>609.9</td></tr><tr><td>LSTM</td><td>9.73</td><td>23.45%</td><td>471.6</td><td>459.1</td></tr><tr><td>Holt-Winters exponential smoothing</td><td>10.1</td><td>16.85%</td><td>713.9</td><td>837.8</td></tr><tr><td>Baseline Monthly Mean</td><td>15.85</td><td>30.54%</td><td>452.0</td><td>452.0</td></tr></tbody></table>
+<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>Random Forest Regressor</td><td>7.26</td><td>14.27%</td><td>495.2</td><td>481.2</td></tr><tr><td>Support Vector Regression</td><td>7.36</td><td>14.45%</td><td>475.0</td><td>472.5</td></tr><tr><td>XGBoost</td><td>7.44</td><td>14.34%</td><td>486.6</td><td>495.4</td></tr><tr><td>LSTM</td><td>9.20</td><td>22.20%</td><td>470.6</td><td>457.4</td></tr><tr><td>SARIMAX</td><td>9.55</td><td>17.53%</td><td>607.2</td><td>609.9</td></tr><tr><td>Holt-Winters exponential smoothing</td><td>10.10</td><td>16.85%</td><td>713.9</td><td>837.8</td></tr><tr><td>Baseline Monthly Mean</td><td>15.85</td><td>30.54%</td><td>452.0</td><td>452.0</td></tr></tbody></table>
 
 ### Total Visitors ('000s) by Financial Year (Random Forest Regressor)
 

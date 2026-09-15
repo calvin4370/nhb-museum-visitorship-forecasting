@@ -1,19 +1,20 @@
 [--------------- Summary Report (IHC) ---------------]
 Branch:    test/run-pipelines-7a
-Generated: 9 Sep 2026 2.42pm
+Generated: 15 Sep 2026 8.16pm
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE  MAPE    FY2026  FY2027
+LSTM                                6.17  38.02%  233.1   228.3 
 Holt-Winters exponential smoothing  6.19  35.66%  201.0   192.4 
-LSTM                                6.29  38.34%  241.9   233.5 
 XGBoost                             6.52  30.11%  220.1   221.5 
 Random Forest Regressor             6.54  30.15%  211.2   210.4 
+Support Vector Regression           6.63  32.93%  207.7   207.4 
 SARIMAX                             8.69  33.77%  212.8   215.0 
 Baseline Monthly Mean               8.79  33.24%  216.6   216.6 
 
 
 ======== Total Visitors ('000s) by Financial Year ========
-(Holt-Winters exponential smoothing)
+(LSTM)
 FY                   Total Visitors ('000s)
 FY2016               138.9                 
 FY2017               185.5                 
@@ -25,6 +26,6 @@ FY2022               148.6
 FY2023               216.2                 
 FY2024               215.3                 
 FY2025               218.2                 
-FY2026 (Prediction)  201.0                 
-FY2027 (Prediction)  192.4                 
+FY2026 (Prediction)  233.1                 
+FY2027 (Prediction)  228.3                 
 
