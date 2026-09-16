@@ -74,6 +74,29 @@ def add_event_flag(df, event_stem, col):
     return df
 
 
+def add_post_event_flag(df, event_stem, col):
+    """Flag the month immediately after each occurrence of one recorded event.
+
+    Args:
+        df (pd.DataFrame): Frame with a 'timestamp' column.
+        event_stem (str): Event CSV stem in event_ranges/, e.g. "deepavali".
+        col (str): Name of the indicator column to add.
+
+    Returns:
+        pd.DataFrame: The same frame with `col` added, 1 the month after an
+            occurrence else 0. Occurrences absent from the CSV flag nothing.
+    """
+    occurrences = EventRange.from_folder(names=[event_stem])
+
+    # The month after an occurrence ends, so the payback dip that follows an
+    # event is distinguishable from an ordinary month
+    following = {
+        (event.end + pd.DateOffset(months=1)).replace(day=1) for event in occurrences
+    }
+    df[col] = df["timestamp"].isin(following).astype(int)
+    return df
+
+
 def add_event_features(df):
     """Add every event indicator the models can draw on.
 
@@ -84,7 +107,9 @@ def add_event_features(df):
         pd.DataFrame: The same frame with one indicator column per event.
     """
     # Computed for every museum; the per-museum feature list decides who uses them
-    return add_event_flag(df=df, event_stem="deepavali", col="is_deepavali")
+    df = add_event_flag(df=df, event_stem="deepavali", col="is_deepavali")
+    df = add_post_event_flag(df=df, event_stem="deepavali", col="is_post_deepavali")
+    return df
 
 
 def add_intl_arrivals(df, arrivals):
@@ -185,6 +210,32 @@ def add_monthly_avg(train_data, test_data):
     return train_data, test_data
 
 
+def add_prev_deepavali_value(train_data, test_data):
+    """Value at the most recent Deepavali month that was actually observed.
+
+    Only train rows are observed, so every test row carries the last Deepavali
+    value from train -- a forecast standing at the end of train could know no
+    more than that. Non-Deepavali rows carry 0.
+    """
+    train_data = train_data.copy()
+    test_data = test_data.copy()
+
+    # Only use observed Deepavali months to avoid leakage
+    # Shift to get the previous one
+    observed = train_data["value"].where(train_data["is_deepavali"] == 1)
+    train_data["prev_deepavali_value"] = (
+        observed.shift(1).ffill().fillna(0) * train_data["is_deepavali"]
+    )
+
+    # For test rows, the last Deepavali value observed in train is the only one that can be known
+    # NOTE: This means the test rows miss 2024's huge 43.9 deepavali peak
+    seen = observed.dropna()
+    last_value = float(seen.iloc[-1]) if len(seen) else 0.0
+    test_data["prev_deepavali_value"] = last_value * test_data["is_deepavali"]
+
+    return train_data, test_data
+
+
 def impute_monthly_avg(df, impute_ranges, window_years=None):
     """Impute a monthly series over given ranges with the historical calendar-month mean.
 
@@ -243,6 +294,9 @@ def prepare_eval_data(museum_ts, arrivals):
 
     # Create monthly average feature for train and test using only train data to avoid leakage
     train_data, test_data = add_monthly_avg(train_data, test_data)
+
+    # Create previous Deepavali value feature for train and test using only train data to avoid leakage
+    train_data, test_data = add_prev_deepavali_value(train_data, test_data)
 
     # full_data needs to be recreated from train_data and test_data to keep the added monthly_avg
     full_data = pd.concat([train_data, test_data], ignore_index=True)
@@ -327,6 +381,10 @@ def prepare_predict_data(museum_ts, arrivals, h):
         future_frame[f"lag_{lag}"] = new_df["value"].shift(lag)
 
     full_data, future_frame = add_monthly_avg(full_data, future_frame)
+
+    # Create previous Deepavali value feature for full_data and future_frame 
+    # using only full_data to avoid leakage
+    full_data, future_frame = add_prev_deepavali_value(full_data, future_frame)
 
     # Impute missing lag features with monthly averages
     # Note: Decision made to impute missing lag features with monthly averages 

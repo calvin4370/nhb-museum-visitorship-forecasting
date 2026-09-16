@@ -52,7 +52,10 @@ BASE_FEATURES = ["sin_month", "cos_month", "monthly_avg", "is_covid", "is_closed
 ]
 
 # Per-museum overrides; a museum absent here uses BASE_FEATURES as-is
-MUSEUM_FEATURES = {"IHC": BASE_FEATURES + ["is_deepavali"]}
+MUSEUM_FEATURES = {
+    "IHC": BASE_FEATURES
+    + ["is_deepavali", "is_post_deepavali", "prev_deepavali_value"]
+}
 
 
 def lstm_channels(features):
