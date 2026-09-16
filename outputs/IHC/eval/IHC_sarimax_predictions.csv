@@ -1,0 +1,25 @@
+Institution,Model,Year,Month,Actual,Prediction
+Indian Heritage Centre,sarimax,2024,4,20.5,18.07213388933937
+Indian Heritage Centre,sarimax,2024,5,18.3,16.10368349534112
+Indian Heritage Centre,sarimax,2024,6,11.3,14.952803715825862
+Indian Heritage Centre,sarimax,2024,7,22.2,21.068919218559422
+Indian Heritage Centre,sarimax,2024,8,18.2,18.663950055208666
+Indian Heritage Centre,sarimax,2024,9,13.7,15.065929395991681
+Indian Heritage Centre,sarimax,2024,10,43.9,32.65324185489345
+Indian Heritage Centre,sarimax,2024,11,11.0,15.35336956104512
+Indian Heritage Centre,sarimax,2024,12,6.3,14.50462963215171
+Indian Heritage Centre,sarimax,2025,1,20.3,25.158371647398162
+Indian Heritage Centre,sarimax,2025,2,16.3,16.114656218189626
+Indian Heritage Centre,sarimax,2025,3,13.3,16.650624779651366
+Indian Heritage Centre,sarimax,2025,4,19.4,18.921994143303515
+Indian Heritage Centre,sarimax,2025,5,17.9,16.869309530739482
+Indian Heritage Centre,sarimax,2025,6,8.6,14.92182146585501
+Indian Heritage Centre,sarimax,2025,7,22.3,21.787943839651
+Indian Heritage Centre,sarimax,2025,8,17.5,19.31513725339822
+Indian Heritage Centre,sarimax,2025,9,15.1,15.039231862406337
+Indian Heritage Centre,sarimax,2025,10,38.3,33.09600570573995
+Indian Heritage Centre,sarimax,2025,11,12.6,15.978707483549593
+Indian Heritage Centre,sarimax,2025,12,5.9,14.389913587000501
+Indian Heritage Centre,sarimax,2026,1,30.2,23.82726917780581
+Indian Heritage Centre,sarimax,2026,2,14.6,17.211858081863184
+Indian Heritage Centre,sarimax,2026,3,15.8,18.080389456832158
