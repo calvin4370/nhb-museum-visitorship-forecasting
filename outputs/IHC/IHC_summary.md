@@ -2,12 +2,12 @@
 
 ```
 Branch:    test/run-pipelines-7b
-Generated: 9 Sep 2026 2.50pm
+Generated: 16 Sep 2026 9.52am
 ```
 
 ### Model Evaluation Results + Predictions
 
-<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>SARIMAX</td><td>6.12</td><td>28.56%</td><td>208.7</td><td>206.2</td></tr><tr><td>Holt-Winters exponential smoothing</td><td>6.19</td><td>35.66%</td><td>201.0</td><td>192.4</td></tr><tr><td>Random Forest Regressor</td><td>6.63</td><td>30.75%</td><td>211.6</td><td>209.7</td></tr><tr><td>LSTM</td><td>7.02</td><td>42.86%</td><td>231.1</td><td>230.0</td></tr><tr><td>XGBoost</td><td>7.39</td><td>37.74%</td><td>212.5</td><td>205.3</td></tr><tr><td>Baseline Monthly Mean</td><td>8.79</td><td>33.24%</td><td>216.6</td><td>216.6</td></tr></tbody></table>
+<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>SARIMAX</td><td>6.12</td><td>28.56%</td><td>208.7</td><td>206.2</td></tr><tr><td>Holt-Winters exponential smoothing</td><td>6.19</td><td>35.66%</td><td>201.0</td><td>192.4</td></tr><tr><td>Random Forest Regressor</td><td>6.63</td><td>30.75%</td><td>211.6</td><td>209.7</td></tr><tr><td>Support Vector Regression</td><td>6.75</td><td>34.10%</td><td>212.3</td><td>209.5</td></tr><tr><td>LSTM</td><td>7.02</td><td>42.15%</td><td>235.0</td><td>233.8</td></tr><tr><td>XGBoost</td><td>7.39</td><td>37.74%</td><td>212.5</td><td>205.3</td></tr><tr><td>Baseline Monthly Mean</td><td>8.79</td><td>33.24%</td><td>216.6</td><td>216.6</td></tr></tbody></table>
 
 ### Total Visitors ('000s) by Financial Year (SARIMAX)
 

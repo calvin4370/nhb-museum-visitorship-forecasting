@@ -1,7 +1,8 @@
 Institution,Model,RMSE,MAPE
 Peranakan Museum,Random Forest Regressor,2.52,14.62%
+Peranakan Museum,Support Vector Regression,3.63,17.96%
 Peranakan Museum,XGBoost,3.79,21.11%
-Peranakan Museum,LSTM,6.86,43.13%
+Peranakan Museum,LSTM,5.95,37.82%
 Peranakan Museum,Baseline Monthly Mean,10.17,68.14%
 Peranakan Museum,Holt-Winters exponential smoothing,12.93,88.56%
 Peranakan Museum,SARIMAX,14.93,100.71%

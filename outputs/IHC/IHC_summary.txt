@@ -1,13 +1,14 @@
 [--------------- Summary Report (IHC) ---------------]
 Branch:    test/run-pipelines-7b
-Generated: 9 Sep 2026 2.50pm
+Generated: 16 Sep 2026 9.52am
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE  MAPE    FY2026  FY2027
 SARIMAX                             6.12  28.56%  208.7   206.2 
 Holt-Winters exponential smoothing  6.19  35.66%  201.0   192.4 
 Random Forest Regressor             6.63  30.75%  211.6   209.7 
-LSTM                                7.02  42.86%  231.1   230.0 
+Support Vector Regression           6.75  34.10%  212.3   209.5 
+LSTM                                7.02  42.15%  235.0   233.8 
 XGBoost                             7.39  37.74%  212.5   205.3 
 Baseline Monthly Mean               8.79  33.24%  216.6   216.6 
 
