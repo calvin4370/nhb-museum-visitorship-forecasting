@@ -72,6 +72,20 @@ def lstm_channels(features):
     return ["value"] + [f for f in features if not f.startswith("lag_")]
 
 
+def sarimax_exog(features):
+    """Return the exogenous columns SARIMAX should read.
+
+    Args:
+        features (list[str]): A museum's tabular feature list.
+
+    Returns:
+        list[str]: Every feature except the lags. SARIMAX's own AR and seasonal
+            AR terms already model the dependence on past values, so passing the
+            lag columns as exog would represent the same signal twice.
+    """
+    return [f for f in features if not f.startswith("lag_")]
+
+
 def features_for(museum_code):
     """Return the feature list a museum's tabular models should use.
 

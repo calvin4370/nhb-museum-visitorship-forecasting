@@ -5,6 +5,7 @@ import optuna
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from src.models.fitted import Fitted
 from src.analysis.tuning import create_study
+from config import sarimax_exog
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
@@ -16,6 +17,10 @@ warnings.filterwarnings('ignore')
 def sarimax_model(train_data, test_data, eval, features, best_params=None):
     # Target the caller's feature list predicts
     target = "value"
+
+    # The AR and seasonal AR terms already represent the dependence on past
+    # values, so the lag columns are dropped rather than passed as exog too
+    features = sarimax_exog(features)
 
     # Set seed for reproducibility
     random_state = 42
