@@ -2,12 +2,12 @@
 
 ```
 Branch:    test/run-pipelines-8c
-Generated: 16 Sep 2026 10.55am
+Generated: 16 Sep 2026 12.34pm
 ```
 
 ### Model Evaluation Results + Predictions
 
-<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>SARIMAX</td><td>3.95</td><td>19.52%</td><td>218.7</td><td>218.9</td></tr><tr><td>Support Vector Regression</td><td>4.79</td><td>27.34%</td><td>211.2</td><td>211.5</td></tr><tr><td>XGBoost</td><td>5.64</td><td>26.63%</td><td>219.9</td><td>217.7</td></tr><tr><td>Random Forest Regressor</td><td>5.88</td><td>28.35%</td><td>214.1</td><td>211.5</td></tr><tr><td>LSTM</td><td>6.17</td><td>38.28%</td><td>238.2</td><td>229.1</td></tr><tr><td>Holt-Winters exponential smoothing</td><td>6.19</td><td>35.66%</td><td>201.0</td><td>192.4</td></tr><tr><td>Baseline Monthly Mean</td><td>8.79</td><td>33.24%</td><td>216.6</td><td>216.6</td></tr></tbody></table>
+<table><thead><tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026</th><th>FY2027</th></tr></thead><tbody><tr><td>SARIMAX</td><td>3.95</td><td>19.52%</td><td>218.7</td><td>218.9</td></tr><tr><td>Support Vector Regression</td><td>4.79</td><td>27.34%</td><td>211.2</td><td>211.5</td></tr><tr><td>XGBoost</td><td>5.64</td><td>26.63%</td><td>219.9</td><td>217.7</td></tr><tr><td>Random Forest Regressor</td><td>5.88</td><td>28.35%</td><td>214.1</td><td>211.5</td></tr><tr><td>LSTM</td><td>6.11</td><td>36.58%</td><td>236.4</td><td>224.7</td></tr><tr><td>Holt-Winters exponential smoothing</td><td>6.19</td><td>35.66%</td><td>201.0</td><td>192.4</td></tr><tr><td>Baseline Monthly Mean</td><td>8.79</td><td>33.24%</td><td>216.6</td><td>216.6</td></tr></tbody></table>
 
 ### Total Visitors ('000s) by Financial Year (SARIMAX)
 
