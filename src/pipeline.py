@@ -13,7 +13,7 @@ import pandas as pd
 from config import MUSEUM_CODES, MODEL_NAMES, h, features_for
 from src.features.data_prep import prepare_eval_data, prepare_predict_data
 from src.visualisation.timeplot import timeplot, forecast_table, top_n_timeplot
-from src.visualisation.jj_new_plots import new_timeplot, new_top_n_timeplot
+from src.visualisation.jj_new_plots import EVAL_DIR, PREDICT_DIR, new_timeplot, new_top_n_timeplot
 from src.visualisation.summary import FY_totals, write_summary_txt, write_summary_md
 from src.models.model_registry import MODEL_REGISTRY
 from src.analysis.artifacts import museum_dir, save_model
@@ -35,6 +35,32 @@ def write_tuning_report():
     written = build_tuning_report()
     print(f"wrote {written}" if written else "no studies found under outputs/tuning/")
     return written
+
+
+def clear_model_outputs(museum_code, keys):
+    """Delete the per-model files each key would regenerate this run.
+
+    A model that raises mid-run leaves last run's predictions and plots on disk,
+    where the deepavali report and any cross-branch comparison read them as if
+    they were current. Clearing first means anything still present afterwards
+    was actually produced by this run.
+
+    Args:
+        museum_code (str): Short museum code, e.g. "IHC".
+        keys (iterable[str]): Short model keys about to be run.
+    """
+    for key in keys:
+        stale = [
+            f"./outputs/{museum_code}/eval/{museum_code}_{key}_predictions.csv",
+            f"./outputs/{museum_code}/eval/{museum_code}_eval_{key}_timeplot.png",
+            f"./outputs/{museum_code}/eval/{EVAL_DIR}/{museum_code}_eval_{key}_timeplot.png",
+            f"./outputs/{museum_code}/predict/{museum_code}_{key}_predictions.csv",
+            f"./outputs/{museum_code}/predict/{museum_code}_predict_{key}_timeplot.png",
+            f"./outputs/{museum_code}/predict/{PREDICT_DIR}/{museum_code}_predict_{key}_timeplot.png",
+        ]
+        for path in stale:
+            if os.path.exists(path):
+                os.remove(path)
 
 
 def run_museum_pipeline(museum, visitors, arrivals, models=None):
@@ -76,6 +102,11 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
         MODEL_REGISTRY if models is None
         else {key: MODEL_REGISTRY[key] for key in models}
     )
+
+    # Ensure that any leftover outputs from a previous run are cleared before this run starts
+    # in case any models in this run fails, the old results will not be used in the report
+    clear_model_outputs(museum_code, selected_models)
+
     for key, model_fn in selected_models.items():
         try:
             model_eval, forecast, best_params, fitted = model_fn(
