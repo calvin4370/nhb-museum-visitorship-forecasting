@@ -1,8 +1,0 @@
-Institution,Model,RMSE,MAPE
-Malay Heritage Centre,LSTM,1.79,690855854525644800.00%
-Malay Heritage Centre,Support Vector Regression,3.75,1352406305707303168.00%
-Malay Heritage Centre,XGBoost,4.56,1695836034043691520.00%
-Malay Heritage Centre,Random Forest Regressor,4.66,2096411149748996864.00%
-Malay Heritage Centre,Holt-Winters exponential smoothing,4.92,1823584433231552768.00%
-Malay Heritage Centre,SARIMAX,5.50,2098751002760350464.00%
-Malay Heritage Centre,Baseline Monthly Mean,8.26,3450535714501395456.00%
