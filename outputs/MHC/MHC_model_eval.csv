@@ -1,0 +1,8 @@
+Institution,Model,RMSE,MAPE
+Malay Heritage Centre,Holt-Winters exponential smoothing,4.92,1823584433231552768.00%
+Malay Heritage Centre,SARIMAX,5.37,1891635072421776384.00%
+Malay Heritage Centre,Baseline Monthly Mean,8.26,3450535714501395456.00%
+Malay Heritage Centre,LSTM,12.53,5342318148625172480.00%
+Malay Heritage Centre,Support Vector Regression,28.96,12529299784764811264.00%
+Malay Heritage Centre,XGBoost,44.87,19139420063698001920.00%
+Malay Heritage Centre,Random Forest Regressor,47.50,20587582441199235072.00%
