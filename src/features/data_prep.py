@@ -236,6 +236,50 @@ def add_prev_deepavali_value(train_data, test_data):
     return train_data, test_data
 
 
+def fill_horizon_features(history, horizon):
+    """Fill a forecast horizon's lag and arrivals features from history alone.
+
+    Shared by eval and predict so the test period is forecast with exactly the
+    information a real forecast would have at the end of history.
+
+    Args:
+        history (pd.DataFrame): Observed rows up to the forecast origin, with
+            'value', 'month', 'is_covid' and 'intl_arrivals'.
+        horizon (pd.DataFrame): Rows to forecast, with 'month' and a
+            'monthly_avg' already computed from history.
+
+    Returns:
+        tuple[pd.DataFrame, pd.DataFrame]: history and horizon, each with a
+            'value_filled' column (actuals in history, monthly_avg in the horizon),
+            and horizon with its lag_1..lag_12 and intl_arrivals filled.
+    """
+    history = history.copy()
+    horizon = horizon.copy()
+
+    # Lags reach back into the last 12 observed months where they can, and past the
+    # origin fall on the monthly average for the month they point at
+    # Note: Decision made to impute missing lag features with monthly averages
+    # instead of recursive forecasting to avoid exponentially increasing errors
+    chain = np.concatenate(
+        [history["value"].tail(12).to_numpy(), horizon["monthly_avg"].to_numpy()]
+    )
+    for lag in range(1, 13):
+        horizon[f"lag_{lag}"] = chain[12 - lag : 12 - lag + len(horizon)]
+
+    # Same for international arrivals, but excluding COVID months only
+    arrivals_monthly_avg = exclude_covid(history).groupby("month")["intl_arrivals"].mean()
+    if arrivals_monthly_avg.isna().any() or len(arrivals_monthly_avg) < 12:
+        raise ValueError("Some calendar months have no non-COVID arrivals to average")
+    horizon["intl_arrivals"] = horizon["month"].map(arrivals_monthly_avg)
+
+    # The LSTM reads past values as an input channel, which must stop at the origin
+    # just like the lags; 'value' itself stays the actuals it is scored against
+    history["value_filled"] = history["value"]
+    horizon["value_filled"] = horizon["monthly_avg"]
+
+    return history, horizon
+
+
 def impute_monthly_avg(df, impute_ranges, window_years=None):
     """Impute a monthly series over given ranges with the historical calendar-month mean.
 
@@ -297,6 +341,10 @@ def prepare_eval_data(museum_ts, arrivals):
 
     # Create previous Deepavali value feature for train and test using only train data to avoid leakage
     train_data, test_data = add_prev_deepavali_value(train_data, test_data)
+
+    # Test lags and arrivals are filled the way predict fills them, so eval measures
+    # the same h-month-ahead forecast rather than one fed the test period's actuals
+    train_data, test_data = fill_horizon_features(train_data, test_data)
 
     # full_data needs to be recreated from train_data and test_data to keep the added monthly_avg
     full_data = pd.concat([train_data, test_data], ignore_index=True)
@@ -372,38 +420,18 @@ def prepare_predict_data(museum_ts, arrivals, h):
     # Assume museums stay open throughout prediction period
     future_frame["is_closed"] = 0
 
-    # Concatenate the last 12 months of actual data with the synthetic future frame
-    new_df = full_data.tail(12)
-    new_df = pd.concat([new_df, future_frame], axis=0, join="outer")
-
-    # Create lag features (1 to 12 months); missing ones imputed by monthly average
-    for lag in range(1, 13):
-        future_frame[f"lag_{lag}"] = new_df["value"].shift(lag)
-
+    # Create monthly average feature for full_data and future_frame using only full_data
     full_data, future_frame = add_monthly_avg(full_data, future_frame)
 
-    # Create previous Deepavali value feature for full_data and future_frame 
+    # Create previous Deepavali value feature for full_data and future_frame
     # using only full_data to avoid leakage
     full_data, future_frame = add_prev_deepavali_value(full_data, future_frame)
 
-    # Impute missing lag features with monthly averages
-    # Note: Decision made to impute missing lag features with monthly averages 
-    # instead recursive forecasting to avoid error propagation
-    future_frame["value"] = future_frame["monthly_avg"]
-    for lag in range(1, 13):
-        future_frame[f"lag_imp_{lag}"] = future_frame["value"].shift(lag)
-        future_frame[f"lag_{lag}"] = future_frame[f"lag_{lag}"].fillna(0) + future_frame[
-            f"lag_imp_{lag}"
-        ].fillna(0)
-    for lag in range(1, 13):
-        future_frame.drop(f"lag_imp_{lag}", axis=1, inplace=True)
+    # Lags and arrivals filled from history only, the same way eval fills its test period
+    full_data, future_frame = fill_horizon_features(full_data, future_frame)
 
-    # Do the same for international arrivals, excluding COVID only: arrivals are a
-    # national series, unaffected by whether this one museum was closed
-    arrivals_monthly_avg = exclude_covid(full_data).groupby("month")["intl_arrivals"].mean()
-    if arrivals_monthly_avg.isna().any() or len(arrivals_monthly_avg) < 12:
-        raise ValueError("Some calendar months have no non-COVID arrivals to average")
-    future_frame["intl_arrivals"] = future_frame["month"].map(arrivals_monthly_avg)
+    # The future has no actuals, so its value stands at the monthly average
+    future_frame["value"] = future_frame["monthly_avg"]
 
     # must concat full_data + future_frame, to preserve monthly_avg and intl_arrivals features for future_frame
     combined_history = pd.concat([full_data, future_frame], axis=0, join="outer")

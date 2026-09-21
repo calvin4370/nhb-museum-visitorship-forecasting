@@ -65,11 +65,13 @@ def lstm_channels(features):
         features (list[str]): A museum's tabular feature list.
 
     Returns:
-        list[str]: 'value' plus every non-lag feature. The 12-step input window
-            already supplies the lag columns, so passing them again would feed
-            the same history back once per timestep.
+        list[str]: 'value_filled' plus every non-lag feature. The 12-step input
+            window already supplies the lag columns, so passing them again would
+            feed the same history back once per timestep. 'value_filled' is the
+            actuals up to the forecast origin and the monthly average after it,
+            so the window never sees the values being forecast.
     """
-    return ["value"] + [f for f in features if not f.startswith("lag_")]
+    return ["value_filled"] + [f for f in features if not f.startswith("lag_")]
 
 
 def features_for(museum_code):
