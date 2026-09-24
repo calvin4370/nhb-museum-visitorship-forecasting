@@ -1,6 +1,32 @@
 import numpy as np
 import pandas as pd
 
+from config import COVID_START, COVID_END, END_YEAR, END_MONTH
+
+# SingStat Table Series name
+INTL_ARRIVALS_SERIES = "Total International Visitor Arrivals By Place Of Residence"
+
+# Last month of the configured data window, the anchor every museum forecasts on from
+PERIOD_END = pd.to_datetime(f"{END_YEAR} {END_MONTH}", format="%Y %b")
+
+
+class ImputeRange:
+    """A labelled month range to impute, e.g. the test period or the predict period."""
+
+    def __init__(self, label, start, end):
+        """
+        Args:
+            label (str): Name drawn on the plot, e.g. "Predict period".
+            start (pd.Timestamp): Month-start Timestamp of the range's first month.
+            end (pd.Timestamp): Month-start Timestamp of the range's last month.
+        """
+        self.label = label
+        self.start = start
+        self.end = end
+
+    def __repr__(self):
+        return f"ImputeRange({self.label!r}, {self.start:%Y-%m}, {self.end:%Y-%m})"
+
 
 def sin_cos_month(df):
     # Cyclical encoding of month
@@ -11,30 +37,52 @@ def sin_cos_month(df):
 
 
 def is_covid(df):
-    # Create COVID indicator, COVID impact captured between Apr 2020 to Feb 2023
-    covid_start = pd.Timestamp("2020-04-01")
-    covid_end = pd.Timestamp("2023-02-13")
+    # Create COVID indicator over the period defined in config
     df["is_covid"] = (
-        (df["timestamp"] >= covid_start) & (df["timestamp"] <= covid_end)
+        (df["timestamp"] >= COVID_START) & (df["timestamp"] <= COVID_END)
     ).astype(int)
     return df
 
 
-def engineer_features(museum_ts):
+def add_intl_arrivals(df, arrivals):
+    """
+    Merges total international visitor arrivals into the df
+    """
+    arr = arrivals.loc[
+        arrivals["Data Series"] == INTL_ARRIVALS_SERIES,
+        ["Reporting Period", "Value"],
+    ].copy()
+    arr.rename(columns={"Value": "intl_arrivals"}, inplace=True)
+    arr["intl_arrivals"] = pd.to_numeric(arr["intl_arrivals"])
+    return df.merge(arr, on="Reporting Period", how="left")
+
+
+def engineer_features(museum_ts, arrivals):
     df = museum_ts.copy()
     df["timestamp"] = pd.to_datetime(df["Reporting Period"], format="%Y %b")
     df.rename(columns={"Value": "value"}, inplace=True)
 
-    # Cast visitorship to numeric, coercing any non-numeric values (e.g., "-") to NaN. These will be dropped later.
-    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+    # SingStat's API returns numeric values as JSON strings (dtype object) --
+    # cast explicitly. Non-numeric placeholders (e.g. "-", closed months) coerce
+    # to NaN and are imputed as 0 visitors rather than dropped.
+    df["value"] = pd.to_numeric(df["value"], errors="coerce").fillna(0)
 
-    # Cyclocal encoding of month
+    # Add international arrivals column
+    df = add_intl_arrivals(df, arrivals)
+
+    # Cyclical encoding of month
     df = sin_cos_month(df)
+
+    # Arrivals are a separate SingStat table and can be published later than the visitorship one.
+    if df["intl_arrivals"].isna().any():
+        raise ValueError("No international arrivals data to impute from")
 
     # Create lag features (1 to 12 months)
     for lag in range(1, 13):
         df[f"lag_{lag}"] = df["value"].shift(lag)
-    df.dropna(inplace=True) # Drop NaN rows created by lagging or coerced "-" values
+
+    # Drop only the 12 leading months the lag features cannot fill
+    df.dropna(subset=[f"lag_{lag}" for lag in range(1, 13)], inplace=True)
 
     # Create COVID indicator
     df = is_covid(df)
@@ -60,11 +108,55 @@ def add_monthly_avg(train_data, test_data):
     return train_data, test_data
 
 
-def prepare_eval_data(museum_ts):
+def impute_monthly_avg(df, impute_ranges, window_years=None):
+    """Impute a monthly series over given ranges with the historical calendar-month mean.
+
+    Each range is filled from history strictly before that range starts, so a
+    range lying inside the data is never imputed from itself.
+
+    Args:
+        df (pd.DataFrame): Frame with 'timestamp' and 'value' columns.
+        impute_ranges (list[ImputeRange]): Labelled ranges to impute, inclusive of
+            both endpoints.
+        window_years (int | None): Years of history before each range to average
+            over; None uses all history available before the range.
+
+    Returns:
+        pd.DataFrame: 'label', 'timestamp' and imputed 'value', one row per imputed month.
+    """
+    history = df[["timestamp", "value"]].sort_values("timestamp")
+
+    frames = []
+    for impute_range in impute_ranges:
+        # Only history before the range, optionally limited to a trailing window
+        source = history[history["timestamp"] < impute_range.start]
+        if window_years is not None:
+            source = source[
+                source["timestamp"]
+                >= impute_range.start - pd.DateOffset(years=window_years)
+            ]
+
+        # Mean per calendar month, mapped onto every month in the range
+        monthly_avg = source.groupby(source["timestamp"].dt.month)["value"].mean()
+        months = pd.date_range(impute_range.start, impute_range.end, freq="MS")
+        frames.append(
+            pd.DataFrame(
+                {
+                    "label": impute_range.label,
+                    "timestamp": months,
+                    "value": months.month.map(monthly_avg),
+                }
+            )
+        )
+
+    return pd.concat(frames, ignore_index=True)
+
+
+def prepare_eval_data(museum_ts, arrivals):
     """
     Build an 80/20 chronological train/test split
     """
-    df = engineer_features(museum_ts)
+    df = engineer_features(museum_ts, arrivals)
 
     split_point = int(len(df) * 0.8)
     train_data = df[:split_point]
@@ -73,25 +165,71 @@ def prepare_eval_data(museum_ts):
     # Create monthly average feature for train and test using only train data to avoid leakage
     train_data, test_data = add_monthly_avg(train_data, test_data)
 
-    # Rebuilt from the two halves rather than returning df, so the frame the
-    # sequence models read carries monthly_avg as well
+    # full_data needs to be recreated from train_data and test_data to keep the added monthly_avg
     full_data = pd.concat([train_data, test_data], ignore_index=True)
 
     return train_data, test_data, full_data
 
 
-def prepare_predict_data(museum_ts, h):
+def pad_to_period_end(museum_ts):
+    """Pad a museum's raw series with zero-visitor rows up to the configured end month.
+
+    Only months at or after the museum's first record are added, so one that opened
+    late keeps its true start instead of gaining zeros for months before it existed.
+    Padding keeps every museum's history ending at PERIOD_END, which is what lets the
+    positional lag features below stay aligned to the calendar.
+
+    Args:
+        museum_ts (pd.DataFrame): Raw SingStat rows for one museum.
+
+    Returns:
+        pd.DataFrame: The same rows plus a zero-valued row per absent month, in date order.
+    """
+    df = museum_ts.copy()
+    months = pd.to_datetime(df["Reporting Period"], format="%Y %b")
+
+    # Months the API returned nothing for, between this museum's first record and the end
+    absent = pd.date_range(months.min(), PERIOD_END, freq="MS").difference(
+        pd.DatetimeIndex(months)
+    )
+    if absent.empty:
+        return df
+
+    # Reporting Period must be a real label so add_intl_arrivals can still merge on it
+    padding = pd.DataFrame(
+        {
+            "Data Series": df["Data Series"].iloc[0],
+            "Reporting Period": absent.strftime("%Y %b"),
+            "Value": 0,
+        }
+    )
+    padded = pd.concat([df, padding], ignore_index=True)
+
+    # engineer_features shifts by position, so the rows have to be in date order
+    order = pd.to_datetime(padded["Reporting Period"], format="%Y %b")
+    return padded.assign(_order=order).sort_values("_order").drop(columns="_order").reset_index(drop=True)
+
+
+def prepare_predict_data(museum_ts, arrivals, h):
     """
     Build a full-history train set plus a synthetic h-month-ahead future
     frame to for model to forecast.
     """
-    df = engineer_features(museum_ts)
+    df = engineer_features(pad_to_period_end(museum_ts), arrivals)
     train_data = df
 
-    # Create a synthetic future frame for h months ahead
-    last_date = df["timestamp"].max()
+    # The lag features below are built by position, so a history that stops short of
+    # PERIOD_END would shift every one of them without raising anything
+    if df["timestamp"].max() != PERIOD_END:
+        raise ValueError(
+            f"History ends {df['timestamp'].max():%Y-%m}, expected {PERIOD_END:%Y-%m}; "
+            "lag features would be misaligned"
+        )
+
+    # Every museum forecasts the same h months on from the configured end of the data,
+    # rather than from its own last reported month
     forecast_horizon = pd.date_range(
-        start=last_date + pd.DateOffset(months=1), periods=h, freq="MS"
+        start=PERIOD_END + pd.DateOffset(months=1), periods=h, freq="MS"
     )
     test_data = pd.DataFrame({"timestamp": forecast_horizon, "value": np.nan})
     test_data["Data Series"] = df["Data Series"].iloc[-1]
@@ -119,6 +257,10 @@ def prepare_predict_data(museum_ts, h):
         ].fillna(0)
     for lag in range(1, 13):
         test_data.drop(f"lag_imp_{lag}", axis=1, inplace=True)
+
+    # Do the same forinternational arrivals
+    arrivals_monthly_avg = df.groupby("month")["intl_arrivals"].mean()
+    test_data["intl_arrivals"] = test_data["month"].map(arrivals_monthly_avg)
 
     # train_data, not df: it is the copy carrying monthly_avg
     full_data = pd.concat([train_data, test_data], axis=0, join="outer")

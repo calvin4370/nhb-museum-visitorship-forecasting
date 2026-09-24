@@ -37,14 +37,16 @@ def lstm(data, eval, h):
     else:
         train_size = len(features) - h
 
-    # Normalize features and target separately -- fit scalers on train data ONLY
+    # Normalize features and target 
+    # Fit scalers on train data ONLY
     feature_scaler = MinMaxScaler(feature_range=(0, 1))
     features_scaled = feature_scaler.fit(features[:train_size]).transform(features)
     target_scaler = MinMaxScaler(feature_range=(0, 1))
     target_scaled = target_scaler.fit(target[:train_size]).transform(target)
     n_features = features_scaled.shape[1]
 
-    # A window of `time_steps` feature rows (X) predicting the next target row (y)
+    # Define a function to create sequences for LSTM: a window of `time_steps`
+    # feature rows (X) predicting the next target row (y).
     def create_sequences(X_data, y_data, time_steps):
         X, y = [], []
         for i in range(len(X_data) - time_steps):

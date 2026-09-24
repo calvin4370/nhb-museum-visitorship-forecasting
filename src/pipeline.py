@@ -14,7 +14,7 @@ from src.visualisation.summary import FY_totals, write_summary_txt
 from src.models.model_registry import MODEL_REGISTRY
 
 
-def run_museum_pipeline(museum, visitors):
+def run_museum_pipeline(museum, visitors, arrivals, models=None):
     """
     Train and perform hyperparameter tuning for all 8 models for one museum.
     Every best tuned model then predicts, reusing its own tuned hyperparameters. 
@@ -32,14 +32,18 @@ def run_museum_pipeline(museum, visitors):
     museum_ts = visitors.loc[visitors.loc[:, "Data Series"] == museum, :]
 
     # Train and evaluate all models, performing hyperparameter tuning where applicable
-    train_data, test_data, full_data = prepare_eval_data(museum_ts)
+    train_data, test_data, full_data = prepare_eval_data(museum_ts, arrivals)
     full_data.to_csv(f"./data/processed/{museum_code}_eval.csv", index=False)
 
     eval_rows = []  # [(key, [Model, RMSE, MAPE]), ...]   (one per surviving model)
     tuned_params = {}  # key -> best_params (or None for non-tunable models)
     pretty_names = {}  # key -> pretty model name (e.g. "XGBoost"), for plot titles
 
-    for key, model_fn in MODEL_REGISTRY.items():
+    selected_models = (
+        MODEL_REGISTRY if models is None
+        else {key: MODEL_REGISTRY[key] for key in models}
+    )
+    for key, model_fn in selected_models.items():
         try:
             model_eval, forecast, best_params = model_fn(
                 train_data, test_data, full_data, True
@@ -55,6 +59,21 @@ def run_museum_pipeline(museum, visitors):
         eval_rows.append((key, model_eval))
         tuned_params[key] = best_params
         pretty_names[key] = model_eval[0]
+
+        # Save eval-period predictions
+        eval_forecast_df = forecast_table(key, np.asarray(forecast).ravel())
+        eval_forecast_df["Institution"] = museum
+        eval_forecast_df["Year"] = test_data["timestamp"].dt.year.values
+        eval_forecast_df["Month"] = test_data["timestamp"].dt.month.values
+        eval_forecast_df["Actual"] = test_data["value"].values
+        eval_forecast_df = eval_forecast_df[
+            ["Institution", "Model", "Year", "Month", "Actual", "Prediction"]
+        ]
+        eval_forecast_df.to_csv(
+            f"./outputs/{museum_code}/eval/{museum_code}_{key}_predictions.csv",
+            index=False,
+        )
+
         timeplot(
             f"./outputs/{museum_code}/eval/{museum_code}_eval_{key}_timeplot.png",
             f"{museum_code} — {model_eval[0]} Eval",
@@ -97,7 +116,7 @@ def run_museum_pipeline(museum, visitors):
     )
 
     # Predict with every surviving model, each reusing its own tuned hyperparameters
-    predict_train, predict_test, predict_full = prepare_predict_data(museum_ts, h)
+    predict_train, predict_test, predict_full = prepare_predict_data(museum_ts, arrivals, h)
     predict_full.to_csv(f"./data/processed/{museum_code}_predict.csv", index=False)
 
     per_model_fy = {}  # key -> Series (FY label -> total predicted visitors)

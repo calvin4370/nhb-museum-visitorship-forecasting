@@ -4,7 +4,7 @@ pipeline can loop over them generically:
     adapter(train_data, test_data, full_data, run_eval, best_params=None)
         -> (model_eval, forecast, best_params)
 """
-from config import h
+from config import h, MODEL_KEYS
 from src.models.randomforest import randomforest
 from src.models.xgboost_model import xgb
 from src.models.lstm import lstm
@@ -46,3 +46,8 @@ MODEL_REGISTRY = {
     "timegpt": _simple_adapter(timegpt),
     "baseline": _simple_adapter(baseline),
 }
+
+# Ensure model registry keys match the config's MODEL_KEYS list
+assert list(MODEL_REGISTRY) == MODEL_KEYS, (
+    f"MODEL_REGISTRY keys {list(MODEL_REGISTRY)} do not match config.MODEL_KEYS {MODEL_KEYS}"
+)

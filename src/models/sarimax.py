@@ -3,6 +3,7 @@ import numpy as np
 
 import optuna
 from statsmodels.tsa.statespace.sarimax import SARIMAX
+from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
 import warnings
@@ -11,7 +12,7 @@ warnings.filterwarnings('ignore')
 
 def sarimax_model(train_data, test_data, eval, best_params=None):
     # Define features and target
-    features = ["sin_month", "cos_month", "monthly_avg", "is_covid"] + [
+    features = ["sin_month", "cos_month", "monthly_avg", "is_covid", "intl_arrivals"] + [
         f"lag_{i}" for i in range(1, 13)
     ]
     target = "value"
@@ -19,10 +20,21 @@ def sarimax_model(train_data, test_data, eval, best_params=None):
     # Set seed for reproducibility
     random_state = 42
 
+    # Standardise exogenous features
+    scaler = StandardScaler()
+    train_exog = pd.DataFrame(
+        scaler.fit_transform(train_data[features]),
+        columns=features, index=train_data.index,
+    )
+    test_exog = pd.DataFrame(
+        scaler.transform(test_data[features]),
+        columns=features, index=test_data.index,
+    )
+
     # If best_params is provided, use it
     # Else, perform hyperparameter optimization with Optuna
     if best_params is None:
-        def objective(trial, data=train_data, val_size=10):
+        def objective(trial, val_size=10):
             # Define the search space
             # Non-seasonal params
             p = trial.suggest_int('p', 0, 5)
@@ -33,15 +45,18 @@ def sarimax_model(train_data, test_data, eval, best_params=None):
             D = trial.suggest_int('D', 0, 1)
             Q = trial.suggest_int('Q', 0, 2)
 
-            # Split data into train and validation sets
-            train_data = data[:-val_size]
-            val_data = data[-val_size:]
+            # Split endog/exog into train and validation sets (endog stays
+            # unscaled -- only exog needs standardising)
+            tr_endog = train_data[target][:-val_size]
+            val_endog = train_data[target][-val_size:]
+            tr_exog = train_exog[:-val_size]
+            val_exog = train_exog[-val_size:]
 
             # Try fitting the model with suggested params
             try:
                 model = SARIMAX(
-                    endog=train_data[target],
-                    exog=train_data[features],
+                    endog=tr_endog,
+                    exog=tr_exog,
                     order=(p, d, q),
                     seasonal_order=(P, D, Q, 12),
                     enforce_stationarity=False,
@@ -52,8 +67,8 @@ def sarimax_model(train_data, test_data, eval, best_params=None):
                 fitted_model = model.fit(disp=False)
 
                 # Score on held-out val_data
-                val_forecast = fitted_model.get_forecast(steps=val_size, exog=val_data[features])
-                return root_mean_squared_error(val_data[target], val_forecast.predicted_mean)
+                val_forecast = fitted_model.get_forecast(steps=val_size, exog=val_exog)
+                return root_mean_squared_error(val_endog, val_forecast.predicted_mean)
 
             except Exception as e:
                 return float('inf')
@@ -66,7 +81,7 @@ def sarimax_model(train_data, test_data, eval, best_params=None):
     # Train the best model
     best_model = SARIMAX(
         endog=train_data[target],
-        exog=train_data[features],
+        exog=train_exog,
         order=(best_params["p"], best_params["d"], best_params["q"]),
         seasonal_order=(best_params["P"], best_params["D"], best_params["Q"], 12),
         enforce_stationarity=False,
@@ -76,7 +91,7 @@ def sarimax_model(train_data, test_data, eval, best_params=None):
 
     # Forecasting
     forecast_periods = len(test_data["value"])
-    forecast = best_model_fitted.get_forecast(steps=forecast_periods, exog=test_data[features])
+    forecast = best_model_fitted.get_forecast(steps=forecast_periods, exog=test_exog)
     test_data["Forecast"] = forecast.predicted_mean.values
 
     if eval:    

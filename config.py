@@ -4,7 +4,9 @@ institutions to forecast for, the reference data range, and the forecast
 horizon.
 """
 
-# These are the full names of the museums to forecast for, and their corresponding short codes
+import pandas as pd
+
+# These are the full names of the museums (as stated in the SingStat tableBuilder API) to forecast for, and their corresponding short codes
 # Make sure to use the full names as they appear in the SingStat tableBuilder API, as they are used to filter the data for each museum.
 # The codes can be whatever you want
 MUSEUM_CODES = {
@@ -16,14 +18,21 @@ MUSEUM_CODES = {
 }
 
 # Reference data range for the time series to be used for training
-# The model will be evaluated on the last 20% months of this range.
+# The model will be evaluated on the last 20% of months of this range.
 # Forecasted months will be appended to the end of this range
 START_YEAR, START_MONTH = 2014, "Jan"
 END_YEAR, END_MONTH = 2026, "Mar"
 
+# Period flagged by the is_covid feature: 
+COVID_START = pd.Timestamp("2020-04-01") # Apr 2020 (circuit breaker, museums shut)
+COVID_END = pd.Timestamp("2023-02-13") # 13 Feb 2023 (DORSCON Green, remaining border restrictions lifted)
+
 # Number of months to forecast, default 2 years (i.e., 24 months)
 h = 24
 
+# Short model keys, in the order the pipeline runs them.
+MODEL_KEYS = ["rf", "xgb", "svr", "hw", "sarimax", "lstm", "timegpt", "baseline"]
+
 # LSTM reads features as per-timestep channels. Same set the tabular models use,
 # minus the lag columns, which its 12-step input window already supplies
-LSTM_FEATURES = ["value", "sin_month", "cos_month", "monthly_avg", "is_covid"]
+LSTM_FEATURES = ["value", "sin_month", "cos_month", "monthly_avg", "is_covid", "intl_arrivals"]

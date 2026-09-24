@@ -2,12 +2,33 @@ import pandas as pd
 import numpy as np
 
 import json
+import time
 from urllib.request import Request, urlopen
 from urllib.error import URLError
 
 # CONSTANTS
 MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 MAX_PERIODS_PER_REQUEST = 24 # Singstat API's limit for time periods requested per call
+
+# Rate limit: cap the *effective* call rate regardless of network latency.
+MAX_CALLS_PER_MIN = 75
+MIN_REQUEST_INTERVAL = 60 / MAX_CALLS_PER_MIN  # 0.8s between consecutive request starts
+_last_request_start = None  # module-level, persists across singstat_api() calls in this process
+
+
+def _throttle():
+    """
+    Block until >= MIN_REQUEST_INTERVAL has elapsed since the previous request
+    start, holding the effective rate at or below MAX_CALLS_PER_MIN. If a call
+    itself takes longer than the interval, no extra wait is added (we're already
+    slower than the cap).
+    """
+    global _last_request_start
+    if _last_request_start is not None:
+        elapsed = time.monotonic() - _last_request_start
+        if elapsed < MIN_REQUEST_INTERVAL:
+            time.sleep(MIN_REQUEST_INTERVAL - elapsed)
+    _last_request_start = time.monotonic()
 
 # api call to singstat table builder
 # function to loop through months
@@ -76,6 +97,7 @@ def singstat_api(resourceId, start_year, start_month, end_year, end_month):
         url = f"https://tablebuilder.singstat.gov.sg/api/table/tabledata/{resourceId}?offset={offset}&timeFilter={chunk_timeFilter_param}"
         request = Request(url, headers=hdr)
 
+        _throttle()  # keep effective rate <= MAX_CALLS_PER_MIN regardless of latency
         try:
             data = urlopen(request).read()
             decoded_data = data.decode("utf-8")
