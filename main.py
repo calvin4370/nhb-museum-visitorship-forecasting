@@ -1,4 +1,5 @@
 import os
+import sys
 
 from config import MUSEUM_CODES, START_YEAR, START_MONTH, END_YEAR, END_MONTH
 from src.cli import parse_args, resolve_museum_selection, resolve_model_selection
@@ -7,6 +8,10 @@ from src.pipeline import run_museum_pipeline
 
 
 def main():
+    # Ensure that our debug statements are printed in chronological order with the library logs.
+    # This fixes an issue where optuna's first study's output prints before the museums banner
+    sys.stdout.reconfigure(line_buffering=True)
+
     # Setup command-line argument passing
     args = parse_args()
     museums = resolve_museum_selection(args.museum) if args.museum else list(MUSEUM_CODES.keys())
