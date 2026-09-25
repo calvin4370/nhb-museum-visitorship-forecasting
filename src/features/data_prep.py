@@ -104,6 +104,7 @@ def engineer_features(museum_ts, arrivals):
     df = museum_ts.copy()
     df["timestamp"] = pd.to_datetime(df["Reporting Period"], format="%Y %b")
     df.rename(columns={"Value": "value"}, inplace=True)
+
     # SingStat's API returns numeric values as JSON strings (dtype object) --
     # cast explicitly. Non-numeric placeholders (e.g. "-", closed months) coerce
     # to NaN and are imputed as 0 visitors rather than dropped.
