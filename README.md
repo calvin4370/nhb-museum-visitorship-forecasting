@@ -48,6 +48,12 @@ uv venv --python 3.11.9
 uv pip install -r requirements.txt
 ```
 
+> **If `Activate.ps1` fails with "running scripts is disabled on this system"**, it's because PowerShell won't run `.ps1` script files by default as a safety measure against downloaded scripts running silently. Run the following command to allow scripts **you created locally* to be run (You only need to do this once, and scripts downloaded from the internet still need a trusted digital signature, or they stay blocked):
+> ```powershell
+> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+> ```
+
+
 bash/zsh (Max/Linux)
 ```bash
 pip install uv
@@ -142,7 +148,7 @@ visitor_forecast/
 
 | Setting | Controls |
 | --- | --- |
-| `MUSEUM_CODES` | Which museums to forecast. Keys must match the SingStat series name exactly; the codes are yours to choose and are used in CLI flags, output folders and filenames. |
+| `MUSEUM_CODES` | Which museums to forecast. Keys must match the SingStat series name exactly; the codes can be configured and are used in CLI flags, output folders and filenames. |
 | `START_YEAR`/`START_MONTH`, `END_YEAR`/`END_MONTH` | The historical window requested from SingStat for training. e.g. Jan 2014 - Mar 2026|
 | `COVID_START`, `COVID_END` | The period flagged by `is_covid`, and excluded when computing historical monthly averages. |
 | `h` | Forecast horizon in months (default 24). Forecasting starts the month after `END_YEAR`/`END_MONTH`. |
@@ -150,12 +156,12 @@ visitor_forecast/
 | `BASE_FEATURES` | The feature set every museum's tabular models train on. |
 | `MUSEUM_FEATURES` | Per-museum overrides of that feature set. |
 
-
+<!--
 <br>
 
 ### `.env`
 - For environment variables (currently not yet implemented)
-
+-->
 
 <br>
 
@@ -199,7 +205,7 @@ The target column is `value`, which represents monthly museum visitorship (in th
 - The first 12 months of every museum's history are dropped, since their lag features cannot be filled.
 - Historical visitorship data is split into a chronological `80/20` train-test split.
 - Months with `"-"`/`NA` visitorship (when museums were closed *after their first month of operation onwards) are kept and imputed with `0` where necessary, and `is_closed` is set to `1` 
-    - Museums that opened later (currently only TPM) do not get 0s appended to fill the front of the training window
+    - Museums that opened later (currently only IHC, whose first month is May 2015) do not get 0s appended to fill the front of the training window
 
 
 #### Model Training
@@ -214,12 +220,12 @@ The target column is `value`, which represents monthly museum visitorship (in th
 
 #### Forecasting
 - All surviving models are used to produce a forecast, and their predictions are output in order of their evaluation performance (best first)
-- Museums whose data ends before the configured window (e.g. MHC being closed from 30 Oct 2022 - 25 April 2026) are padded with zero-visitor months, so every museum forecasts the same `h` months from the same starting point.
+- Museums whose data ends before the configured window (e.g. MHC being closed from 30 Oct 2022 - 25 April 2026) are padded with 0-visitor months, so every museum forecasts the same `h` months from the same starting point.
 - A `h=24` months future frame is built to facilitate predictions for each model. Known future features like `sin_month`, `cos_month` are filled in. lag feature values for the 1st forecasted year are filled in from the end of the training data where known.
-- COVID months (defined in `config.py`) were excluded from the calculation of historical monthly averages (for the `monthly_avg` feature)
+- COVID months (defined in `config.py`) and months where the museum was closed were excluded from the calculation of historical monthly averages (for the `monthly_avg` feature)
     - Including them dragged the averages ~14–34% below current levels and tended to make the models underpredict future visitorship
-- Musuems are assumbed to be open throughout the forecast period, so `is_closed` is set to `0` for all `h` months
-- Unknown future feature values like lag features and `intl_arrivals` are imputed from full training period historical monthly means. Similarly, the defined COVID period is excluded from these calculations to prevent underrepresenting future feature values and underpredicting future museum visitorship.
+- Musuems are assumed to be open throughout the forecast period, so `is_closed` is set to `0` for all `h` months
+- Unknown future feature values like lag features and `intl_arrivals` are filled in from full training period historical monthly means. Similarly, the defined COVID period is excluded from these calculations to prevent underrepresenting future feature values and underpredicting future museum visitorship.
 
 <br>
 
@@ -372,21 +378,30 @@ See `outputs/{MUSEUM_CODE}` for full results
 <br>
 
 ## Limitations
-#### Year 2 forecasts is a flattened seasonal baseline
-- As prediction period unknown lag features and `intl_arrivals` are imputed with historical full training period monthly means (excluding COVID from the calculations), the 2nd forecast year, is made up entirely of imputed lag features and `intl_arrivals` and will thus lead to a repeating seasonal trend
+#### Year 2's forecast is a flattened seasonal baseline
+- As prediction period unknown lag features and `intl_arrivals` are filled in with historical full training period monthly means (excluding COVID from the calculations), the 2nd forecast year, is made up entirely of filled-in lag features and `intl_arrivals` and will thus lead to a repeating seasonal trend (for models RF, XGBoost, SVR and LSTM)
+
+#### The 95% band on the plots is a constant, not a true prediction interval
+- The band is drawn as `Forecast ± 1.96 × std(Forecast)` (`src/visualisation/timeplot.py`), so its width is a single scalar applied to every month of the horizon
+<!--
+- It is derived from the spread of the forecast itself, not from forecast error, so a strongly seasonal forecast gets a wide band while a flat one gets a narrow band — the opposite of how confident each actually is
+- It does not widen further into the horizon, even though uncertainty grows the further ahead a forecast goes
+- Nothing ties it to residuals, so it carries no coverage guarantee and should not be read as a calibrated 95% interval. SARIMAX's own `get_forecast(...).conf_int()` is available but currently unused
+-->
 
 #### Some museums have long closed periods with no visitors
-- While historical training period used is Jan 2014 to Mar 2026, TPM only opened, TPM closed between and MHC closed between Oct 2022 and Apr 2026
+- While the historical training period used is Jan 2014 to Mar 2026, some museums were not open throughout it:
+    - IHC only opened in May 2015
+    - TPM was closed for redevelopment from Apr 2019 to Jan 2023, reopening Feb 2023
+    - MHC was closed from Nov 2022 to Mar 2026 (the end of historical data) and reopened in Apr 2026 (start of predict period)
 - For MHC, evaluation MAPE is exploded as its test set falls entirely within its closure period
 
 #### Manual maintenance of input files
-- `deepavali.csv`, which contains the specific months each year when Deepavali occurs (it hovers between Oct and Nov) must be extended manually. Govt only gazettes official Deepavali holiday dates 1.5-2 years in advance
+- `deepavali.csv`, which contains the specific months each year when Deepavali occurs (it hovers between Oct and Nov) must be extended manually. The Singaporean government only gazettes official Deepavali holiday dates 1.5-2 years in advance
 
 
 <br>
 
 ## Roadmap
 - Implement TimeGPT models, .env for storing TimeGPT API keys
-- Adjust MHC's training window such that test set isn't completely 0
-- Replace the plot's confidence band with a real prediction interval
 - Trim the lag feature set to remove useless lag features
