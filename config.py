@@ -30,9 +30,55 @@ COVID_END = pd.Timestamp("2023-02-13") # 13 Feb 2023 (DORSCON Green, remaining b
 # Number of months to forecast, default 2 years (i.e., 24 months)
 h = 24
 
+# Pretty name each model reports itself as, keyed by its short key. The eval
+# table stores only the pretty name, so regenerating outputs needs the inverse.
+MODEL_NAMES = {
+    "rf": "Random Forest Regressor",
+    "xgb": "XGBoost",
+    "svr": "Support Vector Regression",
+    "hw": "Holt-Winters exponential smoothing",
+    "sarimax": "SARIMAX",
+    "lstm": "LSTM",
+    "timegpt": "TimeGPT",
+    "baseline": "Baseline Monthly Mean",
+}
+
 # Short model keys, in the order the pipeline runs them.
 MODEL_KEYS = ["rf", "xgb", "svr", "hw", "sarimax", "lstm", "timegpt", "baseline"]
 
-# LSTM reads features as per-timestep channels. Same set the tabular models use,
-# minus the lag columns, which its 12-step input window already supplies
-LSTM_FEATURES = ["value", "sin_month", "cos_month", "monthly_avg", "is_covid", "intl_arrivals"]
+# Features every museum's tabular models (rf, xgb, svr, sarimax) train on
+BASE_FEATURES = ["sin_month", "cos_month", "monthly_avg", "is_covid", "is_closed", "intl_arrivals"] + [
+    f"lag_{i}" for i in range(1, 13)
+]
+
+# Per-museum overrides; a museum absent here uses BASE_FEATURES as-is
+MUSEUM_FEATURES = {
+    "IHC": BASE_FEATURES
+    + ["is_deepavali", "is_post_deepavali", "prev_deepavali_value"]
+}
+
+
+def lstm_channels(features):
+    """Return the per-timestep channels the LSTM should read.
+
+    Args:
+        features (list[str]): A museum's tabular feature list.
+
+    Returns:
+        list[str]: 'value' plus every non-lag feature. The 12-step input window
+            already supplies the lag columns, so passing them again would feed
+            the same history back once per timestep.
+    """
+    return ["value"] + [f for f in features if not f.startswith("lag_")]
+
+
+def features_for(museum_code):
+    """Return the feature list a museum's tabular models should use.
+
+    Args:
+        museum_code (str): Short museum code, e.g. "IHC".
+
+    Returns:
+        list[str]: The museum's override if it has one, else BASE_FEATURES.
+    """
+    return MUSEUM_FEATURES.get(museum_code, BASE_FEATURES)

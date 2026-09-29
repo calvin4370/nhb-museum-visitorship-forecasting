@@ -3,6 +3,9 @@ import numpy as np
 
 import optuna
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
+from src.models.fitted import Fitted
+from src.analysis.tuning import create_study
+from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
 def hw(train_data, test_data, eval, best_params=None):
@@ -16,7 +19,7 @@ def hw(train_data, test_data, eval, best_params=None):
     # If best_params is provided, use it
         # Else, perform hyperparameter optimization with Optuna
     if best_params is None:
-        def objective(trial, data=train_X, seasonal_periods=12, val_size=10):
+        def objective(trial, data=train_X, seasonal_periods=12):
             # Define the hyperparameter search space
             params = {
                 'smoothing_level': trial.suggest_float('smoothing_level', 0, 1),
@@ -28,34 +31,29 @@ def hw(train_data, test_data, eval, best_params=None):
             trend = trial.suggest_categorical('trend', ['add','mul'])
             seasonal = trial.suggest_categorical('seasonal', ['add','mul'])
 
-            # Split data into train and validation sets
-            train_data = data[:-val_size]
-            val_data = data[-val_size:]
+            # Rolling-origin folds, each validating a full 12-month season
+            tscv = TimeSeriesSplit(n_splits=3, test_size=12)
+            errors = []
 
             try:
-                # Fit model
-                model = ExponentialSmoothing(
-                    train_data,
-                    seasonal_periods = seasonal_periods,
-                    trend = trend,
-                    seasonal = seasonal
+                for train_idx, val_idx in tscv.split(data):
+                    tr, val = data.iloc[train_idx], data.iloc[val_idx]
+                    fitted_model = ExponentialSmoothing(
+                        tr,
+                        seasonal_periods=seasonal_periods,
+                        trend=trend,
+                        seasonal=seasonal
+                    ).fit(**params)
+                    errors.append(
+                        root_mean_squared_error(val, fitted_model.forecast(len(val_idx)))
                     )
-
-                # Train model with suggested parameters
-                fitted_model = model.fit(**params)
-
-                #Generate forecast for validation set
-                forecast = fitted_model.forecast(val_size)
-
-                # Calculate error
-                rmse = root_mean_squared_error(val_data, forecast)
-                return rmse
+                return np.mean(errors)
 
             except Exception as e:
                 return float('inf')
 
         sampler = optuna.samplers.TPESampler(seed=random_state)
-        study = optuna.create_study(direction="minimize", sampler=sampler)
+        study = create_study(train_data, "hw", sampler)
         study.optimize(objective, n_trials=50)
         best_params = study.best_params
 
@@ -88,4 +86,4 @@ def hw(train_data, test_data, eval, best_params=None):
     else:
         model_eval = []
 
-    return model_eval, forecast.values, best_params
+    return model_eval, forecast.values, best_params, Fitted(best_model_fitted)

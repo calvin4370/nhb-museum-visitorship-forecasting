@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 
 from config import COVID_START, COVID_END, END_YEAR, END_MONTH
+from src.events.event_range import EventRange
 
 # SingStat Table Series name
 INTL_ARRIVALS_SERIES = "Total International Visitor Arrivals By Place Of Residence"
@@ -44,6 +45,73 @@ def is_covid(df):
     return df
 
 
+def is_closed(df):
+    # A reported zero means the museum took no visitors that month
+    df["is_closed"] = (df["value"] == 0).astype(int)
+    return df
+
+
+def add_event_flag(df, event_stem, col):
+    """Flag the months covered by any occurrence of one recorded event.
+
+    Args:
+        df (pd.DataFrame): Frame with a 'timestamp' column.
+        event_stem (str): Event CSV stem in event_ranges/, e.g. "deepavali".
+        col (str): Name of the indicator column to add.
+
+    Returns:
+        pd.DataFrame: The same frame with `col` added, 1 inside an occurrence else 0.
+    """
+    occurrences = EventRange.from_folder(names=[event_stem])
+
+    # A month counts if it falls inside any one of the event's occurrences
+    covered = pd.Series(False, index=df.index)
+    for event in occurrences:
+        covered |= df["timestamp"].between(event.start, event.end)
+
+    # Convert booleans to 0/1 to represent whether that event occurred in that month, and add to the frame
+    df[col] = covered.astype(int)
+    return df
+
+
+def add_post_event_flag(df, event_stem, col):
+    """Flag the month immediately after each occurrence of one recorded event.
+
+    Args:
+        df (pd.DataFrame): Frame with a 'timestamp' column.
+        event_stem (str): Event CSV stem in event_ranges/, e.g. "deepavali".
+        col (str): Name of the indicator column to add.
+
+    Returns:
+        pd.DataFrame: The same frame with `col` added, 1 the month after an
+            occurrence else 0. Occurrences absent from the CSV flag nothing.
+    """
+    occurrences = EventRange.from_folder(names=[event_stem])
+
+    # The month after an occurrence ends, so the payback dip that follows an
+    # event is distinguishable from an ordinary month
+    following = {
+        (event.end + pd.DateOffset(months=1)).replace(day=1) for event in occurrences
+    }
+    df[col] = df["timestamp"].isin(following).astype(int)
+    return df
+
+
+def add_event_features(df):
+    """Add every event indicator the models can draw on.
+
+    Args:
+        df (pd.DataFrame): Frame with a 'timestamp' column.
+
+    Returns:
+        pd.DataFrame: The same frame with one indicator column per event.
+    """
+    # Computed for every museum; the per-museum feature list decides who uses them
+    df = add_event_flag(df=df, event_stem="deepavali", col="is_deepavali")
+    df = add_post_event_flag(df=df, event_stem="deepavali", col="is_post_deepavali")
+    return df
+
+
 def add_intl_arrivals(df, arrivals):
     """
     Merges total international visitor arrivals into the df
@@ -67,6 +135,9 @@ def engineer_features(museum_ts, arrivals):
     # to NaN and are imputed as 0 visitors rather than dropped.
     df["value"] = pd.to_numeric(df["value"], errors="coerce").fillna(0)
 
+    # Flag closures only after the coercion above, so imputed months count as closed
+    df = is_closed(df)
+
     # Add international arrivals column
     df = add_intl_arrivals(df, arrivals)
 
@@ -84,26 +155,84 @@ def engineer_features(museum_ts, arrivals):
     # Drop only the 12 leading months the lag features cannot fill
     df.dropna(subset=[f"lag_{lag}" for lag in range(1, 13)], inplace=True)
 
-    # Create COVID indicator
+    # Create COVID features
     df = is_covid(df)
 
+    # Add event features (for now only is_deepavali)
+    df = add_event_features(df)
+
     return df
+
+
+def exclude_covid(df):
+    """Drop the rows falling inside the configured COVID period.
+
+    Args:
+        df (pd.DataFrame): Frame with a 'timestamp' column.
+
+    Returns:
+        pd.DataFrame: Only the rows outside COVID_START..COVID_END.
+    """
+    return df[(df["timestamp"] < COVID_START) | (df["timestamp"] > COVID_END)]
+
+
+def exclude_closed(df):
+    """Drop the rows where the museum was closed (0 visitors).
+
+    Args:
+        df (pd.DataFrame): Frame with an 'is_closed' column.
+
+    Returns:
+        pd.DataFrame: Only the rows the museum was open for.
+    """
+    return df[df["is_closed"] == 0]
 
 
 def add_monthly_avg(train_data, test_data):
     """
     Monthly average computed on train only (avoid leakage), merged into test.
+    COVID and closure months are excluded so the average reflects normal visitorship.
     """
     train_data = train_data.copy()
-    train_data["monthly_avg"] = train_data.groupby(train_data["month"])[
-        "value"
-    ].transform("mean")
+
+    # Average over open, non-COVID months only, then map back onto every train row
+    normal_months = exclude_closed(exclude_covid(train_data))
+    monthly_means = normal_months.groupby("month")["value"].mean()
+    if monthly_means.isna().any() or len(monthly_means) < train_data["month"].nunique():
+        raise ValueError("Some calendar months have no open non-COVID data to average")
+    train_data["monthly_avg"] = train_data["month"].map(monthly_means)
 
     # Get a df of unique month -> monthly_avg pairs from train data only
     monthly_avg = train_data[["month", "monthly_avg"]].drop_duplicates()
 
     # Merge monthly_avg into test_data on month, left join to keep all test rows
     test_data = pd.merge(test_data, monthly_avg, on="month", how="left")
+
+    return train_data, test_data
+
+
+def add_prev_deepavali_value(train_data, test_data):
+    """Value at the most recent Deepavali month that was actually observed.
+
+    Only train rows are observed, so every test row carries the last Deepavali
+    value from train -- a forecast standing at the end of train could know no
+    more than that. Non-Deepavali rows carry 0.
+    """
+    train_data = train_data.copy()
+    test_data = test_data.copy()
+
+    # Only use observed Deepavali months to avoid leakage
+    # Shift to get the previous one
+    observed = train_data["value"].where(train_data["is_deepavali"] == 1)
+    train_data["prev_deepavali_value"] = (
+        observed.shift(1).ffill().fillna(0) * train_data["is_deepavali"]
+    )
+
+    # For test rows, the last Deepavali value observed in train is the only one that can be known
+    # NOTE: This means the test rows miss 2024's huge 43.9 deepavali peak
+    seen = observed.dropna()
+    last_value = float(seen.iloc[-1]) if len(seen) else 0.0
+    test_data["prev_deepavali_value"] = last_value * test_data["is_deepavali"]
 
     return train_data, test_data
 
@@ -156,7 +285,9 @@ def prepare_eval_data(museum_ts, arrivals):
     """
     Build an 80/20 chronological train/test split
     """
-    df = engineer_features(museum_ts, arrivals)
+    # Padded as prepare_predict_data does, so a museum whose data stops early still
+    # splits on the same months as the rest rather than seven months earlier
+    df = engineer_features(pad_to_period_end(museum_ts), arrivals)
 
     split_point = int(len(df) * 0.8)
     train_data = df[:split_point]
@@ -164,6 +295,9 @@ def prepare_eval_data(museum_ts, arrivals):
 
     # Create monthly average feature for train and test using only train data to avoid leakage
     train_data, test_data = add_monthly_avg(train_data, test_data)
+
+    # Create previous Deepavali value feature for train and test using only train data to avoid leakage
+    train_data, test_data = add_prev_deepavali_value(train_data, test_data)
 
     # full_data needs to be recreated from train_data and test_data to keep the added monthly_avg
     full_data = pd.concat([train_data, test_data], ignore_index=True)
@@ -215,14 +349,13 @@ def prepare_predict_data(museum_ts, arrivals, h):
     Build a full-history train set plus a synthetic h-month-ahead future
     frame to for model to forecast.
     """
-    df = engineer_features(pad_to_period_end(museum_ts), arrivals)
-    train_data = df
+    full_data = engineer_features(pad_to_period_end(museum_ts), arrivals)
 
     # The lag features below are built by position, so a history that stops short of
     # PERIOD_END would shift every one of them without raising anything
-    if df["timestamp"].max() != PERIOD_END:
+    if full_data["timestamp"].max() != PERIOD_END:
         raise ValueError(
-            f"History ends {df['timestamp'].max():%Y-%m}, expected {PERIOD_END:%Y-%m}; "
+            f"History ends {full_data['timestamp'].max():%Y-%m}, expected {PERIOD_END:%Y-%m}; "
             "lag features would be misaligned"
         )
 
@@ -231,37 +364,48 @@ def prepare_predict_data(museum_ts, arrivals, h):
     forecast_horizon = pd.date_range(
         start=PERIOD_END + pd.DateOffset(months=1), periods=h, freq="MS"
     )
-    test_data = pd.DataFrame({"timestamp": forecast_horizon, "value": np.nan})
-    test_data["Data Series"] = df["Data Series"].iloc[-1]
-    test_data = sin_cos_month(test_data)
-    test_data = is_covid(test_data)
+    future_frame = pd.DataFrame({"timestamp": forecast_horizon, "value": np.nan})
+    future_frame["Data Series"] = full_data["Data Series"].iloc[-1]
+    future_frame = sin_cos_month(future_frame)
+    future_frame = is_covid(future_frame)
+    future_frame = add_event_features(future_frame)
+
+    # Assume museums stay open throughout prediction period
+    future_frame["is_closed"] = 0
 
     # Concatenate the last 12 months of actual data with the synthetic future frame
-    new_df = df.tail(12)
-    new_df = pd.concat([new_df, test_data], axis=0, join="outer")
+    new_df = full_data.tail(12)
+    new_df = pd.concat([new_df, future_frame], axis=0, join="outer")
 
     # Create lag features (1 to 12 months); missing ones imputed by monthly average
     for lag in range(1, 13):
-        test_data[f"lag_{lag}"] = new_df["value"].shift(lag)
+        future_frame[f"lag_{lag}"] = new_df["value"].shift(lag)
 
-    train_data, test_data = add_monthly_avg(train_data, test_data)
+    full_data, future_frame = add_monthly_avg(full_data, future_frame)
+
+    # Create previous Deepavali value feature for full_data and future_frame 
+    # using only full_data to avoid leakage
+    full_data, future_frame = add_prev_deepavali_value(full_data, future_frame)
 
     # Impute missing lag features with monthly averages
     # Note: Decision made to impute missing lag features with monthly averages 
     # instead recursive forecasting to avoid error propagation
-    test_data["value"] = test_data["monthly_avg"]
+    future_frame["value"] = future_frame["monthly_avg"]
     for lag in range(1, 13):
-        test_data[f"lag_imp_{lag}"] = test_data["value"].shift(lag)
-        test_data[f"lag_{lag}"] = test_data[f"lag_{lag}"].fillna(0) + test_data[
+        future_frame[f"lag_imp_{lag}"] = future_frame["value"].shift(lag)
+        future_frame[f"lag_{lag}"] = future_frame[f"lag_{lag}"].fillna(0) + future_frame[
             f"lag_imp_{lag}"
         ].fillna(0)
     for lag in range(1, 13):
-        test_data.drop(f"lag_imp_{lag}", axis=1, inplace=True)
+        future_frame.drop(f"lag_imp_{lag}", axis=1, inplace=True)
 
-    # Do the same forinternational arrivals
-    arrivals_monthly_avg = df.groupby("month")["intl_arrivals"].mean()
-    test_data["intl_arrivals"] = test_data["month"].map(arrivals_monthly_avg)
+    # Do the same for international arrivals, excluding COVID only: arrivals are a
+    # national series, unaffected by whether this one museum was closed
+    arrivals_monthly_avg = exclude_covid(full_data).groupby("month")["intl_arrivals"].mean()
+    if arrivals_monthly_avg.isna().any() or len(arrivals_monthly_avg) < 12:
+        raise ValueError("Some calendar months have no non-COVID arrivals to average")
+    future_frame["intl_arrivals"] = future_frame["month"].map(arrivals_monthly_avg)
 
-    # train_data, not df: it is the copy carrying monthly_avg
-    full_data = pd.concat([train_data, test_data], axis=0, join="outer")
-    return train_data, test_data, full_data
+    # must concat full_data + future_frame, to preserve monthly_avg and intl_arrivals features for future_frame
+    combined_history = pd.concat([full_data, future_frame], axis=0, join="outer")
+    return full_data, future_frame, combined_history

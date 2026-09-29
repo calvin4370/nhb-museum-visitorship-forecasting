@@ -1,0 +1,33 @@
+[--------------- Summary Report (TPM) ---------------]
+Branch:    test/run-pipelines-8c
+Generated: 16 Sep 2026 12.26pm
+
+======== Model Evaluation Results + Predictions ========
+Model                               RMSE   MAPE    FY2026  FY2027
+SARIMAX                             2.93   17.26%  154.0   178.5 
+XGBoost                             3.29   22.28%  194.9   209.1 
+Support Vector Regression           3.72   19.80%  244.5   312.9 
+Random Forest Regressor             4.06   21.44%  218.1   237.8 
+Baseline Monthly Mean               10.17  68.14%  170.1   170.1 
+LSTM                                10.85  56.23%  218.2   264.5 
+Holt-Winters exponential smoothing  12.93  88.56%  166.6   171.6 
+
+
+======== Total Visitors ('000s) by Financial Year ========
+(SARIMAX)
+FY                   Total Visitors ('000s)
+FY2014               102.8                 
+FY2015               470.6                 
+FY2016               551.8                 
+FY2017               381.5                 
+FY2018               223.3                 
+FY2019               0.0                   
+FY2020               0.0                   
+FY2021               0.0                   
+FY2022               35.1                  
+FY2023               172.6                 
+FY2024               170.1                 
+FY2025               167.6                 
+FY2026 (Prediction)  154.0                 
+FY2027 (Prediction)  178.5                 
+
