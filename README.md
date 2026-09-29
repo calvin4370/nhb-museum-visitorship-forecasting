@@ -1,5 +1,5 @@
 # Museum Visitorship Forecasting
-Last updated on *14 Aug 2026* (after adding `is_closed` feature)
+Last updated on *30 Sep 2026* (results from the pipeline run on 8 Sep 2026)
 
 ## Overview
 Forecasts monthly visitorship for five National Heritage Board (NHB) museums up to 24 months ahead of training data. The forecasts are meant to serve as an additional reference point during workplan target setting.
@@ -28,7 +28,7 @@ Read [Limitations](#limitations) before using any figure for planning.
 | Monthly museum visitorship | `M891071` | forecast target (`value`) |
 | Total international visitor arrivals | `M550001` | exogenous feature (`intl_arrivals`) |
 
-Both series are fetched at runtime by `src/data/singstat_api.py`.
+Both series are fetched by `src/data/singstat_api.py`. If the saved files in `data/raw/` already cover the configured window and contain every selected museum, they are reused and no API call is made; pass `--refresh` to force a fresh fetch.
 
 The requested window is set by `START_YEAR`/`START_MONTH` and `END_YEAR`/`END_MONTH` in `config.py` (currently Jan 2014 – Mar 2026, monthly). Raw responses are written to `data/raw/museum_ts.csv` and `data/raw/intl_arrivals.csv` for reference.
 
@@ -90,7 +90,8 @@ python main.py
 Run `python main.py --help` to see the available flag arguments
 
 ```
-usage: python main.py [-h] [--museum MUSEUM_CODE [MUSEUM_CODE ...]] [--models MODEL [MODEL ...]]
+usage: python main.py [-h] [--museum MUSEUM_CODE [MUSEUM_CODE ...]]
+                      [--models MODEL [MODEL ...]] [--refresh]
 
 Run the museum visitorship forecasting pipeline.
 
@@ -105,6 +106,8 @@ options:
                         Run specific models only (case-insensitive keys, e.g. python main.py --models rf xgb lstm to only run the RF, XGB, and LSTM models).
                         Choices: rf, xgb, svr, hw, sarimax, lstm, timegpt, baseline
                         Omit to run all models.
+  --refresh, -r         Re-fetch both series from the SingStat API even if the files in data/raw/ already cover the configured window.
+                        Omit to reuse the saved files where they do, which skips the API call entirely.
 ```
 
 <br>
@@ -112,7 +115,7 @@ options:
 ## Project Structure
 ```
 visitor_forecast/
-├── main.py                   # Entry point: fetch data, then run the pipeline per museum
+├── main.py                   # Entry point: check or fetch data, then run the pipeline per museum
 ├── config.py                 # Museums, date range, horizon, feature sets, model keys
 ├── requirements.txt
 ├── notebooks/
@@ -128,6 +131,7 @@ visitor_forecast/
 │   │   ├── artifacts.py      # Saves each fitted model to outputs/models/{CODE}/
 │   │   └── importance.py     # Permutation importance on the eval test set
 │   ├── data/
+│   │   ├── raw_data.py       # Reuses data/raw/ when it covers the window, else calls the API
 │   │   └── singstat_api.py   # SingStat TableBuilder client (request chunking, throttling)
 │   ├── features/
 │   │   └── data_prep.py      # Feature engineering, train/test preparation, imputation
@@ -136,7 +140,7 @@ visitor_forecast/
 │   │   ├── event_ranges/     # One CSV per event, one row per occurrence
 │   │   ├── month_range.py    # Loader for fixed-calendar events
 │   │   └── month_ranges.csv  # Events that fall in the same month every year
-│   ├── models/               # The eight forecasting models, plus model_registry.py
+│   ├── models/               # The eight forecasting models, plus model_registry.py and fitted.py
 │   └── visualisation/
 │       ├── timeplot.py       # Evaluation and forecast plots
 │       ├── summary.py        # Financial-year totals and the summary report
@@ -202,7 +206,7 @@ The target column is `value`, which represents monthly museum visitorship (in th
 | `lag_1` … `lag_12` (12 features) | Visitorship in the time periods 1 to 12 months earlier | `BASE_FEATURES` (except LSTM) |
 | `is_covid` | `1` for months inside `COVID_START`–`COVID_END`. `0` otherwise. | `BASE_FEATURES` |
 | `intl_arrivals` | Total international visitor arrivals that month | `BASE_FEATURES` |
-| `is_deepavali` | `1` when Deepavali falls in that month. See [Methodology](#methodology) | only IHC |
+| `is_deepavali` | `1` when Deepavali falls in that month, from `src/events/event_ranges/deepavali.csv` | only IHC |
 | `is_closed` | `1` when reported visitorship is zero, `0` otherwise. SingStat sometimes reports closed months as `"-"`, which is imputed with 0 visitors | `BASE_FEATURES` |
 
 
@@ -228,7 +232,7 @@ The target column is `value`, which represents monthly museum visitorship (in th
 
 #### Forecasting
 - All surviving models are used to produce a forecast, and their predictions are output in order of their evaluation performance (best first)
-- Museums whose data ends before the configured window (e.g. MHC being closed from 30 Oct 2022 - 25 April 2026) are padded with 0-visitor months, so every museum forecasts the same `h` months from the same starting point.
+- Museums whose data ends before the configured window (e.g. MHC, closed from Nov 2022 until it reopened on 25 Apr 2026) are padded with 0-visitor months, so every museum forecasts the same `h` months from the same starting point.
 - A `h=24` months future frame is built to facilitate predictions for each model. Known future features like `sin_month`, `cos_month` are filled in. Lag feature values for the 1st forecasted year are filled in from the end of the training data where known.
 - COVID months (defined in `config.py`) and months where the museum was closed were excluded from the calculation of historical monthly averages (for the `monthly_avg` feature)
     - Including them dragged the averages ~14–34% below current levels and tended to make the models underpredict future visitorship
@@ -238,7 +242,7 @@ The target column is `value`, which represents monthly museum visitorship (in th
 <br>
 
 ## Outputs
-Each run writes SingStat API data to `data/` and writes one folder per museum (with its own museum code, `CODE`) under `outputs/`
+Each run writes SingStat API data to `data/raw/` whenever the API is called, and writes one folder per museum (with its own museum code, `CODE`) under `outputs/`
 
 ```
 outputs/{CODE}/
@@ -267,13 +271,12 @@ outputs/models/{CODE}/
 
 ### `{CODE}_summary.txt`
 
-The main pipeline results summary for each museum. Three tables:
+The main pipeline results summary for each museum. It opens with the branch and time it was generated, followed by two tables:
 
 | Table | Contents |
 | --- | --- |
-| **1. Model Evaluation** | Every model's RMSE and MAPE on the test period, ranked lowest-RMSE-first |
+| **1. Model Evaluation Results + Predictions** | Every model's RMSE and MAPE on the test period, ranked lowest-RMSE-first, alongside its own FY forecast totals |
 | **2. Total Visitors by Financial Year** | Historical actuals and the winning model's forecast in one column. |
-| **3. Forecast FY Totals by Model** | Every model's own FY totals alongside its RMSE and MAPE |
 
 
 <br>
