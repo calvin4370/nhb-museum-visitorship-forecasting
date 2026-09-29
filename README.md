@@ -48,13 +48,13 @@ uv venv --python 3.11.9
 uv pip install -r requirements.txt
 ```
 
-> **If `Activate.ps1` fails with "running scripts is disabled on this system"**, it's because PowerShell won't run `.ps1` script files by default as a safety measure against downloaded scripts running silently. Run the following command to allow scripts **you created locally* to be run (You only need to do this once, and scripts downloaded from the internet still need a trusted digital signature, or they stay blocked):
+> **If `Activate.ps1` fails with "running scripts is disabled on this system"**, it's because PowerShell won't run `.ps1` script files by default as a safety measure against downloaded scripts running silently. Run the following command to allow scripts **you created locally** to be run (You only need to do this once, and scripts downloaded from the internet still need a trusted digital signature, or they stay blocked):
 > ```powershell
 > Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 > ```
 
 
-bash/zsh (Max/Linux)
+bash/zsh (Mac/Linux)
 ```bash
 pip install uv
 uv venv --python 3.11.9
@@ -70,7 +70,7 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-bash/zsh (Max/Linux)
+bash/zsh (Mac/Linux)
 ```bash
 python -m venv .venv
 source .venv/bin/activate
@@ -157,7 +157,7 @@ visitor_forecast/
 | Setting | Controls |
 | --- | --- |
 | `MUSEUM_CODES` | Which museums to forecast. Keys must match the SingStat series name exactly; the codes can be configured and are used in CLI flags, output folders and filenames. |
-| `START_YEAR`/`START_MONTH`, `END_YEAR`/`END_MONTH` | The historical window requested from SingStat for training. e.g. Jan 2014 - Mar 2026|
+| `START_YEAR`/`START_MONTH`, `END_YEAR`/`END_MONTH` | The historical window requested from SingStat for training, e.g. Jan 2014 - Mar 2026 |
 | `COVID_START`, `COVID_END` | The period flagged by `is_covid`, and excluded when computing historical monthly averages. |
 | `h` | Forecast horizon in months (default 24). Forecasting starts the month after `END_YEAR`/`END_MONTH`. |
 | `MODEL_KEYS` | Which models run, and in what order. Must match the keys in `src/models/model_registry.py`. |
@@ -185,7 +185,7 @@ visitor_forecast/
 | `svr` | Support Vector Regression, kernel searched (`linear`/`rbf`/`poly`) | full feature set | Optuna |
 | `lstm` | Two stacked LSTM layers (50 units) → Dense(25) → Dense(1), 12-month input window, 50 epochs | feature set except lag features | — |
 
-Note: `timegpt` is not currently implemented yet
+Note: `timegpt` is not implemented yet
 
 
 <br>
@@ -202,7 +202,7 @@ The target column is `value`, which represents monthly museum visitorship (in th
 | `lag_1` … `lag_12` (12 features) | Visitorship in the time periods 1 to 12 months earlier | `BASE_FEATURES` (except LSTM) |
 | `is_covid` | `1` for months inside `COVID_START`–`COVID_END`. `0` otherwise. | `BASE_FEATURES` |
 | `intl_arrivals` | Total international visitor arrivals that month | `BASE_FEATURES` |
-| `is_deepavali` | `1` when Deepavali falls in that month. see [Methodology](#methodology) | only IHC |
+| `is_deepavali` | `1` when Deepavali falls in that month. See [Methodology](#methodology) | only IHC |
 | `is_closed` | `1` when reported visitorship is zero, `0` otherwise. SingStat sometimes reports closed months as `"-"`, which is imputed with 0 visitors | `BASE_FEATURES` |
 
 
@@ -212,7 +212,7 @@ The target column is `value`, which represents monthly museum visitorship (in th
 #### Preprocessing
 - The first 12 months of every museum's history are dropped, since their lag features cannot be filled.
 - Historical visitorship data is split into a chronological `80/20` train-test split.
-- Months with `"-"`/`NA` visitorship (when museums were closed *after their first month of operation onwards) are kept and imputed with `0` where necessary, and `is_closed` is set to `1` 
+- Months with `"-"`/`NA` visitorship (when museums were closed after their first month of operation onwards) are kept and imputed with `0` where necessary, and `is_closed` is set to `1` 
     - Museums that opened later (currently only IHC, whose first month is May 2015) do not get 0s appended to fill the front of the training window
 
 
@@ -229,16 +229,16 @@ The target column is `value`, which represents monthly museum visitorship (in th
 #### Forecasting
 - All surviving models are used to produce a forecast, and their predictions are output in order of their evaluation performance (best first)
 - Museums whose data ends before the configured window (e.g. MHC being closed from 30 Oct 2022 - 25 April 2026) are padded with 0-visitor months, so every museum forecasts the same `h` months from the same starting point.
-- A `h=24` months future frame is built to facilitate predictions for each model. Known future features like `sin_month`, `cos_month` are filled in. lag feature values for the 1st forecasted year are filled in from the end of the training data where known.
+- A `h=24` months future frame is built to facilitate predictions for each model. Known future features like `sin_month`, `cos_month` are filled in. Lag feature values for the 1st forecasted year are filled in from the end of the training data where known.
 - COVID months (defined in `config.py`) and months where the museum was closed were excluded from the calculation of historical monthly averages (for the `monthly_avg` feature)
     - Including them dragged the averages ~14–34% below current levels and tended to make the models underpredict future visitorship
-- Musuems are assumed to be open throughout the forecast period, so `is_closed` is set to `0` for all `h` months
+- Museums are assumed to be open throughout the forecast period, so `is_closed` is set to `0` for all `h` months
 - Unknown future feature values like lag features and `intl_arrivals` are filled in from full training period historical monthly means. Similarly, the defined COVID period is excluded from these calculations to prevent underrepresenting future feature values and underpredicting future museum visitorship.
 
 <br>
 
 ## Outputs
-Each run writes singstat API data to `data/` and writes one folder per museum (with its own museum code, `CODE`) under `outputs/`
+Each run writes SingStat API data to `data/` and writes one folder per museum (with its own museum code, `CODE`) under `outputs/`
 
 ```
 outputs/{CODE}/
@@ -399,7 +399,7 @@ See `outputs/{MUSEUM_CODE}` for full results
 
 ## Limitations
 #### Year 2's forecast is a flattened seasonal baseline
-- As prediction period unknown lag features and `intl_arrivals` are filled in with historical full training period monthly means (excluding COVID from the calculations), the 2nd forecast year, is made up entirely of filled-in lag features and `intl_arrivals` and will thus lead to a repeating seasonal trend (for models RF, XGBoost, SVR and LSTM)
+- As the prediction period's unknown lag features and `intl_arrivals` are filled in with historical full training period monthly means (excluding COVID from the calculations), the 2nd forecast year is made up entirely of filled-in lag features and `intl_arrivals` and will thus lead to a repeating seasonal trend (for models RF, XGBoost, SVR and LSTM)
 
 #### The 95% band on the plots is a constant, not a true prediction interval
 - The band is drawn as `Forecast ± 1.96 × std(Forecast)` (`src/visualisation/timeplot.py`), so its width is a single scalar applied to every month of the horizon
@@ -414,7 +414,7 @@ See `outputs/{MUSEUM_CODE}` for full results
     - IHC only opened in May 2015
     - TPM was closed for redevelopment from Apr 2019 to Jan 2023, reopening Feb 2023
     - MHC was closed from Nov 2022 to Mar 2026 (the end of historical data) and reopened in Apr 2026 (start of predict period)
-- For MHC, evaluation MAPE is exploded as its test set falls entirely within its closure period
+- For MHC, evaluation MAPE explodes as its test set falls entirely within its closure period
 
 #### Manual maintenance of input files
 - `deepavali.csv`, which contains the specific months each year when Deepavali occurs (it hovers between Oct and Nov) must be extended manually. The Singaporean government only gazettes official Deepavali holiday dates 1.5-2 years in advance
