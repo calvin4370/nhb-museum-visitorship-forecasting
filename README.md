@@ -85,7 +85,7 @@ python main.py
 <br>
 
 ## Usage
-`python main.py` trains 8 models each for 5 museums
+`python main.py` trains 7 models each for 5 museums
 
 Run `python main.py --help` to see the available flag arguments
 
