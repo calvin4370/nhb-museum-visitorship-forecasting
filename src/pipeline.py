@@ -7,11 +7,14 @@ import os
 import numpy as np
 import pandas as pd
 
-from config import MUSEUM_CODES, h
+from config import MUSEUM_CODES, h, features_for
 from src.features.data_prep import prepare_eval_data, prepare_predict_data
 from src.visualisation.timeplot import timeplot, forecast_table, top_n_timeplot
 from src.visualisation.summary import FY_totals, write_summary_txt
 from src.models.model_registry import MODEL_REGISTRY
+from src.analysis.artifacts import museum_dir, save_model
+from src.visualisation.feature_report import build_report
+from src.analysis.importance import permutation_importance
 
 
 def run_museum_pipeline(museum, visitors, arrivals, models=None):
@@ -31,11 +34,21 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
     # Filter for the museum's visitors
     museum_ts = visitors.loc[visitors.loc[:, "Data Series"] == museum, :]
 
+    # Resolved once so eval and predict tune and forecast on the same features
+    features = features_for(museum_code)
+
     # Train and evaluate all models, performing hyperparameter tuning where applicable
     train_data, test_data, full_data = prepare_eval_data(museum_ts, arrivals)
     full_data.to_csv(f"./data/processed/{museum_code}_eval.csv", index=False)
 
+    # Fail loudly here rather than deep inside a model mid-run. Checked on
+    # train_data, not full_data: monthly_avg is added by the train/test split
+    missing = [f for f in features if f not in train_data.columns]
+    if missing:
+        raise ValueError(f"{museum_code} features not engineered: {', '.join(missing)}")
+
     eval_rows = []  # [(key, [Model, RMSE, MAPE]), ...]   (one per surviving model)
+    importance_rows = []  # per-model permutation importance frames
     tuned_params = {}  # key -> best_params (or None for non-tunable models)
     pretty_names = {}  # key -> pretty model name (e.g. "XGBoost"), for plot titles
 
@@ -45,8 +58,8 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
     )
     for key, model_fn in selected_models.items():
         try:
-            model_eval, forecast, best_params = model_fn(
-                train_data, test_data, full_data, True
+            model_eval, forecast, best_params, fitted = model_fn(
+                train_data, test_data, full_data, True, features
             )
         except Exception as e:
             print(f"  [{museum}] {key} failed during eval, skipping: {e}")
@@ -59,6 +72,12 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
         eval_rows.append((key, model_eval))
         tuned_params[key] = best_params
         pretty_names[key] = model_eval[0]
+
+        # Scored on eval, the only labelled data: the predict horizon has no actuals
+        if fitted is not None and fitted.predict is not None:
+            scores = permutation_importance(fitted.predict, test_data, features)
+            scores.insert(0, "model", key)
+            importance_rows.append(scores)
 
         # Save eval-period predictions
         eval_forecast_df = forecast_table(key, np.asarray(forecast).ravel())
@@ -125,14 +144,21 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
         None  # Series for just the winning model, used in the FY totals table
     )
 
+    # Fresh directory per run
+    artifact_dir = museum_dir(museum_code)
+
     for key in model_eval_df["_key"]:
-        _, forecast, _ = MODEL_REGISTRY[key](
+        _, forecast, _, fitted = MODEL_REGISTRY[key](
             predict_train,
             predict_test,
             predict_full,
             False,
+            features,
             best_params=tuned_params[key],
         )
+
+        # The predict-mode fit is the one that produced the shipped forecast
+        save_model(artifact_dir, key, fitted)
 
         # Save the timeplot to outputs/{museum_code}/predict/
         timeplot(
@@ -214,12 +240,21 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
         )
     per_model_fy_df = pd.DataFrame(per_model_rows)
 
+    # One importance table per museum
+    if importance_rows:
+        importance = pd.concat(importance_rows, ignore_index=True)
+        importance.insert(0, "Institution", museum)
+        importance.to_csv(f"{artifact_dir}/permutation_importance.csv", index=False)
+
+
     # Write the summary report to outputs/{museum_code}/{museum_code}_summary.txt
-    # (drop Institution from the txt's eval table -- it's a per-museum file, so
-    # the column is redundant there; the CSV keeps it since it's a plain data export)
     write_summary_txt(
         f"./outputs/{museum_code}/{museum_code}_summary.txt",
+        museum_code=museum_code,
         eval_table=model_eval_df_formatted.drop(columns="Institution"),
         fy_table=fy_table,
         per_model_fy_table=per_model_fy_df,
     )
+
+    # Generate the permutation importance report
+    build_report(museum_code)

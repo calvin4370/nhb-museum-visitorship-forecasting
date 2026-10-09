@@ -16,6 +16,10 @@ Choices: {', '.join(MODEL_KEYS)}
 Omit to run all models.
 """
 
+refresh_flag_help = """Re-fetch both series from the SingStat API even if the files in data/raw/ already cover the configured window.
+Omit to reuse the saved files where they do, which skips the API call entirely.
+"""
+
 def parse_args():
     # Set up the command-line argument parser
     parser = argparse.ArgumentParser(
@@ -42,6 +46,13 @@ def parse_args():
         default=None,
         metavar="MODEL",
         help=model_flag_help,
+    )
+
+    # --refresh / -r flag to force a new API call instead of reusing data/raw/
+    parser.add_argument(
+        "--refresh", "-r",
+        action="store_true",
+        help=refresh_flag_help,
     )
     return parser.parse_args()
 

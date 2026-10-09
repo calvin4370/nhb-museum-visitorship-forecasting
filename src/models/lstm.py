@@ -7,7 +7,7 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 
-from config import LSTM_FEATURES
+from src.models.fitted import Fitted
 
 # Suppress TensorFlow's C++ startup messages and Python deprecation warnings.
 # Both must be set before importing it, which is when they are emitted.
@@ -18,9 +18,8 @@ from keras.models import Sequential
 from keras.layers import LSTM, Dense
 
 
-def lstm(data, eval, h):
-    # Same features the tabular models get, as per-timestep channels
-    features = data[LSTM_FEATURES].values         # (N, n_features)
+def lstm(data, eval, h, feature_cols):
+    features = data[feature_cols].values          # (N, n_features)
     target = data['value'].values.reshape(-1, 1)  # (N, 1)
 
     # Set seed, try to control randomness
@@ -95,4 +94,4 @@ def lstm(data, eval, h):
     else:
         model_eval = []
 
-    return model_eval, test_predict
+    return model_eval, test_predict, Fitted(model)

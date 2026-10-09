@@ -6,11 +6,9 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 from sklearn.model_selection import TimeSeriesSplit
 
-def randomforest(train_data, test_data, eval, best_params=None):
-    # Define features and target
-    features = ["sin_month", "cos_month", "monthly_avg", "is_covid", "intl_arrivals"] + [
-        f"lag_{i}" for i in range(1, 13)
-    ]
+from src.models.fitted import Fitted
+def randomforest(train_data, test_data, eval, features, best_params=None):
+    # Target the caller's feature list predicts
     target = "value"
 
     # Set seed for random forest
@@ -32,7 +30,7 @@ def randomforest(train_data, test_data, eval, best_params=None):
             }
 
             model = RandomForestRegressor(**params, random_state=random_state)
-            tscv = TimeSeriesSplit(n_splits=3)
+            tscv = TimeSeriesSplit(n_splits=3, test_size=12)
             errors = []
 
             for train_idx, val_idx in tscv.split(train_data):
@@ -70,5 +68,5 @@ def randomforest(train_data, test_data, eval, best_params=None):
     else:
         model_eval = []
 
-    return model_eval, forecast, best_params
+    return model_eval, forecast, best_params, Fitted(best_model, best_model.predict)
 

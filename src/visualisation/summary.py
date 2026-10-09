@@ -1,10 +1,39 @@
 """
 Builds outputs/{museum}/{museum}_summary.txt: 
-A report combining the model eval rankings, historical + predicted total visitors by financial
-year, and each model's own predicted FY totals.
+A report combining each model's eval metrics with its own predicted FY totals, and the
+historical + predicted total visitors by financial year.
 """
 
+import subprocess
+from datetime import datetime
+
 import pandas as pd
+
+
+def git_branch():
+    """
+    Returns the current git branch, the short commit SHA if HEAD is detached,
+    or None when git is unavailable or this is not a repo.
+    """
+    try:
+        run = lambda args: subprocess.run(
+            args, capture_output=True, text=True, check=True
+        ).stdout.strip()
+        name = run(["git", "rev-parse", "--abbrev-ref", "HEAD"])
+        return run(["git", "rev-parse", "--short", "HEAD"]) if name == "HEAD" else name
+    except (OSError, subprocess.CalledProcessError):
+        return None
+
+
+def timestamp_now():
+    """
+    Returns the current local time as e.g. "8 Sep 2026 7.56pm". 
+    Built manually rather than with strftime, as its no-leading-zero codes differ per platform.
+    """
+    now = datetime.now()
+    hour = now.hour % 12 or 12
+    meridiem = "am" if now.hour < 12 else "pm"
+    return f"{now.day} {now:%b} {now.year} {hour}.{now:%M}{meridiem}"
 
 
 def FY_label(timestamp):
@@ -42,29 +71,38 @@ def format_table(df, sep="  "):
     return "\n".join([header] + rows)
 
 
-def write_summary_txt(save_path, eval_table, fy_table, per_model_fy_table):
+def write_summary_txt(save_path, museum_code, eval_table, fy_table, per_model_fy_table):
     """
-    Writes the 3 tables to the report file
+    Writes the report file containing model evaluation results and predictions
+    to a txt file at `save_path`. 
     """
     # eval_table is sorted lowest-RMSE-first, so its first row is the winning model,
     # and the FY totals are built from that model's forecast
     winning_model = eval_table.iloc[0]["Model"]
 
-    # Each section is a title, its table, and an optional footer line under it
-    sections = [
-        ("Model Evaluation", eval_table, f"Winning model: {winning_model}"),
-        (f"Total Visitors ('000s) by Financial Year ({winning_model})", fy_table, ""),
-        ("Forecast FY Totals by Model", per_model_fy_table, ""),
-    ]
+    # Document title
+    report_title = f"[--------------- Summary Report ({museum_code}) ---------------]"
 
-    # Build up the lines to be written to the file
-    lines = []
-    for title, table, footer in sections:
-        lines.append(f"======== {title} ========")
-        lines.append(format_table(table))
-        if footer:
-            lines.append(footer)
-        lines.append("\n")
+    # Build the report as a list of lines, with the run's provenance under the title
+    lines = [report_title]
+
+    # Add provenance info: git branch and timestamp
+    branch = git_branch()
+    if branch:
+        lines.append(f"Branch:    {branch}")
+    lines.append(f"Generated: {timestamp_now()}")
+    lines.append("")
+
+    # Append Table 1: Every model's eval metrics alongside its own forecast FY totals
+    lines.append("======== Model Evaluation Results + Predictions ========")
+    lines.append(format_table(per_model_fy_table))
+    lines.append("\n")
+
+    # Append Table 2: Historical then predicted FY totals, from the winning model's forecast
+    lines.append("======== Total Visitors ('000s) by Financial Year ========")
+    lines.append(f"({winning_model})")
+    lines.append(format_table(fy_table))
+    lines.append("\n")
 
     with open(save_path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
