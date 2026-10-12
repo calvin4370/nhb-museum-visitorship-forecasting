@@ -22,6 +22,10 @@ Reads data/processed/ and the per-model prediction CSVs already under outputs/, 
 """
 
 
+refresh_flag_help = """Re-fetch both series from the SingStat API even if the files in data/raw/ already cover the configured window.
+Omit to reuse the saved files where they do, which skips the API call entirely.
+"""
+
 def parse_args():
     # Set up the command-line argument parser
     parser = argparse.ArgumentParser(
@@ -49,11 +53,18 @@ def parse_args():
         metavar="MODEL",
         help=model_flag_help,
     )
-    # --regen-outputs / -r flag for redrawing outputs without retraining
+    # --regen-outputs flag for redrawing outputs without retraining
     parser.add_argument(
-        "--regen-outputs", "-r",
+        "--regen-outputs",
         action="store_true",
         help=regen_flag_help,
+    )
+
+    # --refresh / -r flag to force a new API call instead of reusing data/raw/
+    parser.add_argument(
+        "--refresh", "-r",
+        action="store_true",
+        help=refresh_flag_help,
     )
     return parser.parse_args()
 
