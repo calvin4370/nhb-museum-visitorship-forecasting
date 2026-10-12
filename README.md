@@ -1,5 +1,5 @@
 # Museum Visitorship Forecasting
-Last updated on *30 Sep 2026* (results from the `test/run-pipelines-8c` run on 16 Sep 2026)
+Last updated on *12 Oct 2026* (results from the `test/run-pipelines-8c` run on 16 Sep 2026)
 
 ## Overview
 Forecasts monthly visitorship for five National Heritage Board (NHB) museums up to 24 months ahead of training data. The forecasts are meant to serve as an additional reference point during workplan target setting.
@@ -28,7 +28,7 @@ Read [Limitations](#limitations) before using any figure for planning.
 | Monthly museum visitorship | `M891071` | forecast target (`value`) |
 | Total international visitor arrivals | `M550001` | exogenous feature (`intl_arrivals`) |
 
-Both series are fetched at runtime by `src/data/singstat_api.py`.
+Both series are fetched by `src/data/singstat_api.py`. If the saved files in `data/raw/` already cover the configured window and contain every selected museum, they are reused and no API call is made; pass `--refresh` to force a fresh fetch.
 
 The requested window is set by `START_YEAR`/`START_MONTH` and `END_YEAR`/`END_MONTH` in `config.py` (currently Jan 2014 – Mar 2026, monthly). Raw responses are written to `data/raw/museum_ts.csv` and `data/raw/intl_arrivals.csv` for reference.
 
@@ -47,6 +47,11 @@ uv venv --python 3.11.9
 .venv\Scripts\Activate.ps1
 uv pip install -r requirements.txt
 ```
+
+> **If `Activate.ps1` fails with "running scripts is disabled on this system"**, it's because PowerShell won't run `.ps1` script files by default as a safety measure against downloaded scripts running silently. Run the following command to allow scripts **you created locally** to be run (You only need to do this once, and scripts downloaded from the internet still need a trusted digital signature, or they stay blocked):
+> ```powershell
+> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+> ```
 
 bash/zsh (Mac/Linux)
 ```bash
@@ -79,13 +84,14 @@ python main.py
 <br>
 
 ## Usage
-`python main.py` trains 8 models each for 5 museums
+`python main.py` trains 7 models each for 5 museums
 
 Run `python main.py --help` to see the available flag arguments
 
 ```
 usage: python main.py [-h] [--museum MUSEUM_CODE [MUSEUM_CODE ...]]
                       [--models MODEL [MODEL ...]] [--regen-outputs]
+                      [--refresh]
 
 Run the museum visitorship forecasting pipeline.
 
@@ -100,8 +106,11 @@ options:
                         Run specific models only (case-insensitive keys, e.g. python main.py --models rf xgb lstm to only run the RF, XGB, and LSTM models).
                         Choices: rf, xgb, svr, hw, sarimax, lstm, timegpt, baseline
                         Omit to run all models.
-  --regen-outputs, -r   Skip all model training and rebuild the plots and summary reports from the last run's saved predictions.
+  --regen-outputs       Skip all model training and rebuild the plots and summary reports from the last run's saved predictions.
                         Reads data/processed/ and the per-model prediction CSVs already under outputs/, so no data is fetched and nothing is refitted.
+                        
+  --refresh, -r         Re-fetch both series from the SingStat API even if the files in data/raw/ already cover the configured window.
+                        Omit to reuse the saved files where they do, which skips the API call entirely.
 ```
 
 <br>
@@ -109,7 +118,7 @@ options:
 ## Project Structure
 ```
 visitor_forecast/
-├── main.py                   # Entry point: fetch data, then run the pipeline per museum
+├── main.py                   # Entry point: check or fetch data, then run the pipeline per museum
 ├── config.py                 # Museums, date range, horizon, feature sets, model keys
 ├── requirements.txt
 ├── notebooks/
@@ -129,6 +138,7 @@ visitor_forecast/
 │   │   ├── tuning.py         # Persists each Optuna study to outputs/tuning/
 │   │   └── tuning_report.py  # Summarises every saved study into outputs/tuning_report.md
 │   ├── data/
+│   │   ├── raw_data.py       # Reuses data/raw/ when it covers the window, else calls the API
 │   │   └── singstat_api.py   # SingStat TableBuilder client (request chunking, throttling)
 │   ├── features/
 │   │   └── data_prep.py      # Feature engineering, train/test preparation, imputation
@@ -159,7 +169,7 @@ visitor_forecast/
 
 | Setting | Controls |
 | --- | --- |
-| `MUSEUM_CODES` | Which museums to forecast. Keys must match the SingStat series name exactly; the codes are yours to choose and are used in CLI flags, output folders and filenames. |
+| `MUSEUM_CODES` | Which museums to forecast. Keys must match the SingStat series name exactly; the codes can be configured and are used in CLI flags, output folders and filenames. |
 | `START_YEAR`/`START_MONTH`, `END_YEAR`/`END_MONTH` | The historical window requested from SingStat for training, e.g. Jan 2014 - Mar 2026 |
 | `COVID_START`, `COVID_END` | The period flagged by `is_covid`, and excluded when computing historical monthly averages. |
 | `h` | Forecast horizon in months (default 24). Forecasting starts the month after `END_YEAR`/`END_MONTH`. |
@@ -169,10 +179,12 @@ visitor_forecast/
 | `MUSEUM_FEATURES` | Per-museum overrides of that feature set. |
 
 
+<!--
 <br>
 
 ### `.env`
 - For environment variables (currently not yet implemented)
+-->
 
 
 <br>
@@ -236,16 +248,16 @@ The target column is `value`, which represents monthly museum visitorship (in th
 #### Forecasting
 - All surviving models are used to produce a forecast, and their predictions are output in order of their evaluation performance (best first)
 - Museums whose data ends before the configured window (e.g. MHC, closed from Nov 2022 until it reopened on 25 Apr 2026, whose SingStat series ends in Jul 2025) are padded with zero-visitor months, so every museum forecasts the same `h` months from the same starting point.
-- A `h=24` months future frame is built to facilitate predictions for each model. Known future features like `sin_month`, `cos_month` and the Deepavali flags are filled in. lag feature values for the 1st forecasted year are filled in from the end of the training data where known.
+- A `h=24` months future frame is built to facilitate predictions for each model. Known future features like `sin_month`, `cos_month` and the Deepavali flags are filled in. Lag feature values for the 1st forecasted year are filled in from the end of the training data where known.
 - COVID months (defined in `config.py`) and months where the museum was closed were excluded from the calculation of historical monthly averages (for the `monthly_avg` feature)
     - Including them dragged the averages ~14–34% below current levels and tended to make the models underpredict future visitorship
 - Museums are assumed to be open throughout the forecast period, so `is_closed` is set to `0` for all `h` months
-- Unknown future feature values like lag features and `intl_arrivals` are imputed from full training period historical monthly means. Similarly, the defined COVID period is excluded from these calculations to prevent underrepresenting future feature values and underpredicting future museum visitorship.
+- Unknown future feature values like lag features and `intl_arrivals` are filled in from full training period historical monthly means. Similarly, the defined COVID period is excluded from these calculations to prevent underrepresenting future feature values and underpredicting future museum visitorship.
 
 <br>
 
 ## Outputs
-Each run writes SingStat API data to `data/` and writes one folder per museum (with its own museum code, `CODE`) under `outputs/`. Before each model runs, its outputs from any previous run are deleted, so a model that fails leaves no stale files behind.
+Each run writes SingStat API data to `data/raw/` whenever the API is called, and writes one folder per museum (with its own museum code, `CODE`) under `outputs/`. Before each model runs, its outputs from any previous run are deleted, so a model that fails leaves no stale files behind.
 
 ```
 outputs/{CODE}/
@@ -427,17 +439,25 @@ See `outputs/{MUSEUM_CODE}` for full results
 
 ## Limitations
 #### Year 2's forecast is a flattened seasonal baseline
-- As the prediction period's unknown lag features and `intl_arrivals` are imputed with historical full training period monthly means (excluding COVID from the calculations), the 2nd forecast year is made up entirely of imputed lag features and `intl_arrivals` and will thus lead to a repeating seasonal trend (for models RF, XGBoost, SVR and LSTM)
+- As the prediction period's unknown lag features and `intl_arrivals` are filled in with historical full training period monthly means (excluding COVID from the calculations), the 2nd forecast year is made up entirely of filled-in lag features and `intl_arrivals` and will thus lead to a repeating seasonal trend (for models RF, XGBoost, SVR and LSTM)
+
+#### The 95% band on the plots is a constant, not a true prediction interval
+- The band is drawn as `Forecast ± 1.96 × std(Forecast)` (`src/visualisation/timeplot.py`), so its width is a single scalar applied to every month of the horizon
+<!--
+- It is derived from the spread of the forecast itself, not from forecast error, so a strongly seasonal forecast gets a wide band while a flat one gets a narrow band — the opposite of how confident each actually is
+- It does not widen further into the horizon, even though uncertainty grows the further ahead a forecast goes
+- Nothing ties it to residuals, so it carries no coverage guarantee and should not be read as a calibrated 95% interval. SARIMAX's own `get_forecast(...).conf_int()` is available but currently unused
+-->
 
 #### Some museums have long closed periods with no visitors
 - While the historical training period used is Jan 2014 to Mar 2026, some museums were not open throughout it:
     - IHC only opened in May 2015
     - TPM was closed for redevelopment from Apr 2019 to Jan 2023, reopening Feb 2023
     - MHC was closed from Nov 2022 until it reopened on 25 Apr 2026, the start of the forecast period
-- For MHC, evaluation MAPE is exploded as its test set falls entirely within its closure period
+- For MHC, evaluation MAPE explodes as its test set falls entirely within its closure period
 
 #### Manual maintenance of input files
-- `deepavali.csv`, which contains the specific months each year when Deepavali occurs (it hovers between Oct and Nov) must be extended manually. The government only gazettes official Deepavali holiday dates 1.5-2 years in advance
+- `deepavali.csv`, which contains the specific months each year when Deepavali occurs (it hovers between Oct and Nov) must be extended manually. The Singaporean government only gazettes official Deepavali holiday dates 1.5-2 years in advance
     - 2020 and 2021 are deliberately left out of `deepavali.csv`, so they must not be added back when extending it
 
 
