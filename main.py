@@ -3,7 +3,7 @@ import sys
 from config import MUSEUM_CODES
 from src.cli import parse_args, resolve_museum_selection, resolve_model_selection
 from src.data.singstat_api import singstat_api
-from src.data.raw_data import load_raw_data
+from src.data.raw_data import fetch_raw_data, load_raw_data, load_manual_data, warn_short_series
 from src.pipeline import (
     run_museum_pipeline,
     regen_museum_outputs,
@@ -29,13 +29,26 @@ def main():
         write_tuning_report()
         return
 
-    # Museum visitorship and international arrivals, from data/raw/ where the saved
-    # files already cover the configured window, else from the SingStat API
+    # Update data/raw/ from SingStat if requested, then exit
+    if args.call_singstat_api:
+        try:
+            fetch_raw_data()
+        except RuntimeError as e:
+            print(f"[data] API call failed: {e}")
+            sys.exit(1)
+        return
+
+    # Museum visitorship and international arrivals, from the manual files if given, else
+    # data/raw/ where the saved files cover the configured window, else the SingStat API
     try:
-        visitors, arrivals = load_raw_data(museums, refresh=args.refresh)
+        if args.manual_data:
+            visitors, arrivals = load_manual_data(*args.manual_data, museums)
+        else:
+            visitors, arrivals = load_raw_data(museums, refresh=args.refresh)
     except RuntimeError as e:
-        print(f"[data] API call failed: {e}")
+        print(f"[data] {e}")
         sys.exit(1)
+    warn_short_series(visitors, museums)
 
     for museum in museums:
         print(f"=== {museum} ===")

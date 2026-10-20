@@ -1,7 +1,7 @@
 """
-If raw SingStat data is present for a run: reuse the saved CSVs when they already cover the
-configured window, otherwise fetch from the API. Either path prints a short trail
-to stdout so a captured log shows whether an API call happened and how it went.
+Raw data for a run: reuse the saved SingStat CSVs in data/raw/ when they cover the configured
+window, otherwise fetch from the API. --manual-data runs on manual CSVs instead and never calls
+the API. Each path prints a short trail to stdout so a captured log shows where the data came from.
 """
 import math
 import os
@@ -11,6 +11,7 @@ import pandas as pd
 
 from config import START_YEAR, START_MONTH, END_YEAR, END_MONTH
 from src.data.singstat_api import singstat_api, MAX_PERIODS_PER_REQUEST
+from src.features.data_prep import INTL_ARRIVALS_SERIES
 
 RAW_DIR = "./data/raw"
 
@@ -20,7 +21,7 @@ SERIES = {
     "M550001": ("international arrivals", f"{RAW_DIR}/intl_arrivals.csv"),
 }
 
-# The window config asks SingStat for, which the saved files must cover to be reusable
+# The window config asks SingStat for, which the data must cover to be usable
 WINDOW_START = pd.to_datetime(f"{START_YEAR} {START_MONTH}", format="%Y %b")
 WINDOW_END = pd.to_datetime(f"{END_YEAR} {END_MONTH}", format="%Y %b")
 
@@ -46,13 +47,29 @@ def _months(df):
     return pd.to_datetime(df["Reporting Period"], format="%Y %b").drop_duplicates()
 
 
-def _load_usable(path, museums):
-    """Read one saved raw file, or explain why it cannot be reused.
+def _why_unusable(df, label, required):
+    """Why a frame can't be used, or None if it covers the window and has every required series."""
+    months = _months(df)
+
+    # A museum that closed part-way reports fewer months than the window, so the
+    # coverage check is on the frame as a whole rather than per series
+    if months.min() > WINDOW_START or months.max() < WINDOW_END:
+        return (
+            f"{label} covers {months.min():%b %Y} - {months.max():%b %Y}, "
+            f"need {WINDOW_START:%b %Y} - {WINDOW_END:%b %Y}"
+        )
+    absent = [s for s in required if s not in set(df["Data Series"])]
+    if absent:
+        return f"{label} is missing {', '.join(absent)}"
+    return None
+
+
+def _load_usable(path, required):
+    """Read one data file, or log why it cannot be used.
 
     Args:
         path (str): The CSV to read.
-        museums (list[str] | None): Museum series that must be present, or None to
-            skip that check (the arrivals file carries no museums).
+        required (list[str]): Data Series that must be present in the file.
 
     Returns:
         pd.DataFrame | None: The frame if it covers the window, else None.
@@ -62,26 +79,13 @@ def _load_usable(path, museums):
         return None
 
     df = pd.read_csv(path)
-    months = _months(df)
-
-    # A museum that closed part-way reports fewer months than the window, so the
-    # coverage check is on the file as a whole rather than per series
-    if months.min() > WINDOW_START or months.max() < WINDOW_END:
-        _log(
-            f"{path} covers {months.min():%b %Y} - {months.max():%b %Y}, "
-            f"need {WINDOW_START:%b %Y} - {WINDOW_END:%b %Y}"
-        )
+    problem = _why_unusable(df, path, required)
+    if problem:
+        _log(problem)
         return None
 
-    if museums is not None:
-        absent = [m for m in museums if m not in set(df["Data Series"])]
-        if absent:
-            _log(f"{path} is missing {', '.join(absent)}")
-            return None
-
-    series_count = df["Data Series"].nunique()
     _log(
-        f"Found {path} ({len(months)} months, {series_count} series, "
+        f"Found {path} ({len(_months(df))} months, {df['Data Series'].nunique()} series, "
         f"saved {_saved_at(path)})"
     )
     return df
@@ -124,14 +128,14 @@ def fetch_raw_data():
 
 
 def load_raw_data(museums, refresh=False):
-    """Raw visitorship and arrivals for a run, from disk where possible.
+    """Visitorship and arrivals from data/raw/ where it covers the window, else from the API.
 
     Args:
         museums (list[str]): Full museum names this run needs.
         refresh (bool): Fetch from the API even if the saved files would do.
 
-    Returns:
-        tuple[pd.DataFrame, pd.DataFrame]: visitorship and arrivals frames.
+    Raises:
+        RuntimeError: If an API request fails, or SingStat hasn't published the whole window yet.
     """
     _log(
         f"Checking raw data for {', '.join(museums)} | "
@@ -140,12 +144,59 @@ def load_raw_data(museums, refresh=False):
 
     if refresh:
         _log("--refresh given, ignoring any saved files")
-        return fetch_raw_data()
+    else:
+        visitors = _load_usable(SERIES["M891071"][1], museums)
+        arrivals = _load_usable(SERIES["M550001"][1], [INTL_ARRIVALS_SERIES])
+        if visitors is not None and arrivals is not None:
+            _log("No API call needed - proceeding to pipeline")
+            return visitors, arrivals
 
-    visitors = _load_usable(SERIES["M891071"][1], museums)
-    arrivals = _load_usable(SERIES["M550001"][1], None)
-    if visitors is not None and arrivals is not None:
-        _log("No API call needed - proceeding to pipeline")
-        return visitors, arrivals
+    visitors, arrivals = fetch_raw_data()
 
-    return fetch_raw_data()
+    # SingStat lags a few months, so a fresh download can still fall short of the window
+    problems = [
+        p for p in (
+            _why_unusable(visitors, "SingStat visitorship", museums),
+            _why_unusable(arrivals, "SingStat arrivals", [INTL_ARRIVALS_SERIES]),
+        ) if p
+    ]
+    if problems:
+        for p in problems:
+            _log(p)
+        raise RuntimeError(
+            "SingStat hasn't published the whole window yet. "
+            "Run with --manual-data, or move END_YEAR/END_MONTH in config.py earlier."
+        )
+    return visitors, arrivals
+
+
+def load_manual_data(visitors_path, arrivals_path, museums):
+    """Visitorship and arrivals from manual files only, in the same format as data/raw/.
+
+    Raises:
+        RuntimeError: If either file is missing, doesn't cover the window, or lacks a series.
+    """
+    _log("Using manual data only - data/raw/ and the SingStat API are not used")
+    _log(
+        f"Checking manual data for {', '.join(museums)} | "
+        f"window {WINDOW_START:%b %Y} - {WINDOW_END:%b %Y}"
+    )
+    visitors = _load_usable(visitors_path, museums)
+    arrivals = _load_usable(arrivals_path, [INTL_ARRIVALS_SERIES])
+    if visitors is None or arrivals is None:
+        raise RuntimeError(
+            "Manual data can't be used. Check both files cover the window in config.py "
+            "and include every museum and the arrivals series."
+        )
+    return visitors, arrivals
+
+
+def warn_short_series(visitors, museums):
+    """Warn when a museum's data stops before the window ends, as later months are padded with 0 visitors."""
+    for museum in museums:
+        last = _months(visitors[visitors["Data Series"] == museum]).max()
+        if last < WINDOW_END:
+            _log(
+                f"WARNING: {museum} data ends {last:%b %Y}, so "
+                f"{last + pd.DateOffset(months=1):%b %Y} - {WINDOW_END:%b %Y} will be treated as closed (0 visitors)"
+            )
