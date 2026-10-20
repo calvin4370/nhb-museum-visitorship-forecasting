@@ -1,0 +1,25 @@
+Institution,Model,Year,Month,Actual,Prediction
+Indian Heritage Centre,lstm,2024,4,20.5,16.858622
+Indian Heritage Centre,lstm,2024,5,18.3,14.762428
+Indian Heritage Centre,lstm,2024,6,11.3,15.6589365
+Indian Heritage Centre,lstm,2024,7,22.2,16.73777
+Indian Heritage Centre,lstm,2024,8,18.2,17.127808
+Indian Heritage Centre,lstm,2024,9,13.7,21.97553
+Indian Heritage Centre,lstm,2024,10,43.9,30.11715
+Indian Heritage Centre,lstm,2024,11,11.0,15.860449
+Indian Heritage Centre,lstm,2024,12,6.3,14.401187
+Indian Heritage Centre,lstm,2025,1,20.3,21.919008
+Indian Heritage Centre,lstm,2025,2,16.3,10.475696
+Indian Heritage Centre,lstm,2025,3,13.3,13.826182
+Indian Heritage Centre,lstm,2025,4,19.4,13.96203
+Indian Heritage Centre,lstm,2025,5,17.9,14.036514
+Indian Heritage Centre,lstm,2025,6,8.6,16.249762
+Indian Heritage Centre,lstm,2025,7,22.3,17.18606
+Indian Heritage Centre,lstm,2025,8,17.5,17.738413
+Indian Heritage Centre,lstm,2025,9,15.1,22.765444
+Indian Heritage Centre,lstm,2025,10,38.3,30.290852
+Indian Heritage Centre,lstm,2025,11,12.6,14.47474
+Indian Heritage Centre,lstm,2025,12,5.9,13.61112
+Indian Heritage Centre,lstm,2026,1,30.2,21.386822
+Indian Heritage Centre,lstm,2026,2,14.6,9.516059
+Indian Heritage Centre,lstm,2026,3,15.8,14.767476

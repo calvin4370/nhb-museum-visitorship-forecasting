@@ -1,0 +1,33 @@
+[--------------- Summary Report (ACM) ---------------]
+Branch:    test/run-pipelines-8d
+Generated: 20 Oct 2026 4.47pm
+
+======== Model Evaluation Results + Predictions ========
+Model                               RMSE   MAPE    FY2026  FY2027
+XGBoost                             7.05   13.79%  488.9   486.3 
+Random Forest Regressor             7.12   13.96%  495.6   483.0 
+Support Vector Regression           7.41   14.05%  474.3   470.8 
+SARIMAX                             7.67   15.73%  488.9   486.0 
+LSTM                                8.63   20.61%  465.0   453.8 
+Holt-Winters exponential smoothing  10.10  16.85%  713.9   837.8 
+Baseline Monthly Mean               15.85  30.54%  452.0   452.0 
+
+
+======== Total Visitors ('000s) by Financial Year ========
+(XGBoost)
+FY                   Total Visitors ('000s)
+FY2014               78.2                  
+FY2015               413.4                 
+FY2016               522.4                 
+FY2017               483.7                 
+FY2018               572.7                 
+FY2019               586.8                 
+FY2020               153.2                 
+FY2021               197.1                 
+FY2022               372.8                 
+FY2023               424.4                 
+FY2024               401.6                 
+FY2025               529.9                 
+FY2026 (Prediction)  488.9                 
+FY2027 (Prediction)  486.3                 
+

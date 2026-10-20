@@ -1,0 +1,33 @@
+[--------------- Summary Report (TPM) ---------------]
+Branch:    test/run-pipelines-8d
+Generated: 20 Oct 2026 5.02pm
+
+======== Model Evaluation Results + Predictions ========
+Model                               RMSE   MAPE    FY2026  FY2027
+Random Forest Regressor             2.64   14.00%  199.6   221.0 
+XGBoost                             2.75   15.82%  214.8   248.6 
+Support Vector Regression           3.69   14.23%  236.7   260.4 
+SARIMAX                             8.28   27.01%  69.9    44.8  
+Baseline Monthly Mean               10.17  68.14%  170.1   170.1 
+LSTM                                12.24  57.03%  309.5   358.2 
+Holt-Winters exponential smoothing  12.93  88.56%  166.6   171.6 
+
+
+======== Total Visitors ('000s) by Financial Year ========
+(Random Forest Regressor)
+FY                   Total Visitors ('000s)
+FY2014               102.8                 
+FY2015               470.6                 
+FY2016               551.8                 
+FY2017               381.5                 
+FY2018               223.3                 
+FY2019               0.0                   
+FY2020               0.0                   
+FY2021               0.0                   
+FY2022               35.1                  
+FY2023               172.6                 
+FY2024               170.1                 
+FY2025               167.6                 
+FY2026 (Prediction)  199.6                 
+FY2027 (Prediction)  221.0                 
+
