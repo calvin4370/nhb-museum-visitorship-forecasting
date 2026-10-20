@@ -48,7 +48,7 @@ MODEL_KEYS = ["rf", "xgb", "svr", "hw", "sarimax", "lstm", "timegpt", "baseline"
 
 # Features every museum's tabular models (rf, xgb, svr, sarimax) train on
 BASE_FEATURES = ["sin_month", "cos_month", "monthly_avg", "is_covid", "is_closed", "intl_arrivals"] + [
-    f"lag_{i}" for i in range(1, 13)
+    "lag_1", "lag_2", "lag_3", "lag_12"
 ]
 
 # Per-museum overrides; a museum absent here uses BASE_FEATURES as-is
