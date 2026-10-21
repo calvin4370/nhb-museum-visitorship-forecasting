@@ -457,8 +457,8 @@ See `outputs/{MUSEUM_CODE}` for full results
 - For MHC, evaluation MAPE explodes as its test set falls entirely within its closure period
 
 #### Manual maintenance of input files
-- `deepavali.csv`, which contains the specific months each year when Deepavali occurs (it hovers between Oct and Nov) must be extended manually. The Singaporean government only gazettes official Deepavali holiday dates 1.5-2 years in advance
-    - 2020 and 2021 are deliberately left out of `deepavali.csv`, so they must not be added back when extending it
+- `deepavali.csv`, which contains the specific months each year when Deepavali occurs AND IHC organises a Deepavali open house (it hovers between Oct and Nov) must be extended manually. The Singaporean government only gazettes official Deepavali holiday dates 1.5-2 years in advance
+    - 2020 and 2021, when no open house was held due to COVID, are deliberately left out of `deepavali.csv`, so they must not be added back when extending it
 
 
 <br>
