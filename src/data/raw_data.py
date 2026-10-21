@@ -55,7 +55,7 @@ def _load_usable(path, museums):
             skip that check (the arrivals file carries no museums).
 
     Returns:
-        pd.DataFrame | None: The frame if it covers the window, else None.
+        pd.DataFrame | None: The frame trimmed to the window if it covers it, else None.
     """
     if not os.path.exists(path):
         _log(f"{path} not found")
@@ -73,6 +73,13 @@ def _load_usable(path, museums):
         )
         return None
 
+    # Keep only rows inside the configured window, as the saved file may span a wider range
+    # (data/raw is unchanged)
+    periods = pd.to_datetime(df["Reporting Period"], format="%Y %b")
+    df = df[(periods >= WINDOW_START) & (periods <= WINDOW_END)].reset_index(drop=True)
+    months = _months(df)
+
+    # Checked after filtering, so a museum with no rows inside the window counts as absent
     if museums is not None:
         absent = [m for m in museums if m not in set(df["Data Series"])]
         if absent:
