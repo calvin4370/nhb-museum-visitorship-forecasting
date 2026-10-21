@@ -1,0 +1,8 @@
+Institution,Model,RMSE,MAPE
+Asian Civilisations Museum,Random Forest Regressor,7.13,14.35%
+Asian Civilisations Museum,Support Vector Regression,7.41,13.90%
+Asian Civilisations Museum,XGBoost,7.63,14.99%
+Asian Civilisations Museum,SARIMAX,8.16,14.16%
+Asian Civilisations Museum,LSTM,9.54,22.83%
+Asian Civilisations Museum,Holt-Winters exponential smoothing,10.10,16.85%
+Asian Civilisations Museum,Baseline Monthly Mean,15.85,30.54%
