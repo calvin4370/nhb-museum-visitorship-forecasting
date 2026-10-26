@@ -61,25 +61,45 @@ def _md_table(frame):
 
 
 def build_report(path=REPORT_PATH):
-    """Write the tuning report. Returns the path, or None if no studies exist."""
+    """Summarise every saved Optuna study into outputs/tuning_report.md.
+
+    The report contains:
+    - search budget table (one row per museum and model)
+    - chosen-values table
+    - importance table (one column per museum and one row per parameter)
+
+    Args:
+        path (str): Where to write the report.
+
+    Returns:
+        str | None: The path written, or None if outputs/tuning/ holds no studies.
+    """
+    # Load all saved studies
     studies = load_studies()
     if not studies:
         return None
 
+    # Museums and models with at least one study, in config order so every table lists them the same way
     codes = [c for c in MUSEUM_CODES.values() if any(k[0] == c for k in studies)]
     keys = [k for k in MODEL_KEYS if any(s[1] == k for s in studies)]
 
+    # A study whose first objective raised, or that was interrupted, has no completed
+    # trial and so no best trial: it stays in the budget table but gets no other tables
+    completed = {k: s.get_trials(states=[optuna.trial.TrialState.COMPLETE]) for k, s in studies.items()}
+
     lines = ["# Hyperparameter tuning report", ""]
 
-    # How late in the budget each search peaked, and what it reached
+    # One row per museum and model: the best CV RMSE and which trial found it.
+    # A best trial near the end of the budget means the search was still improving
     budget = pd.DataFrame(
         [
             {
                 "Model": key,
                 "Museum": code,
                 "Trials": len(studies[(code, key)].trials),
-                "Best value": _format(studies[(code, key)].best_value),
-                "Best at trial": studies[(code, key)].best_trial.number,
+                "Completed": len(completed[(code, key)]),
+                "Best value": _format(studies[(code, key)].best_value) if completed[(code, key)] else "none completed",
+                "Best at trial": studies[(code, key)].best_trial.number if completed[(code, key)] else "-",
             }
             for key in keys
             for code in codes
@@ -88,12 +108,18 @@ def build_report(path=REPORT_PATH):
     )
     lines += ["## Search budget", "", _md_table(budget), ""]
 
+    # One section per model, comparing museums side by side
     for key in keys:
-        present = [c for c in codes if (c, key) in studies]
+        present = [c for c in codes if completed.get((c, key))]
+        if not present:
+            continue
         reference = studies[(present[0], key)].best_trial
         params = list(reference.params)
 
         lines += [f"## {key}", "", "### Chosen values", ""]
+
+        # The value each museum's best trial chose, next to its search range;
+        # a value at the edge of the range suggests widening it
         chosen = pd.DataFrame(
             [
                 {
@@ -109,6 +135,7 @@ def build_report(path=REPORT_PATH):
         )
         lines += [_md_table(chosen), "", "### Importance", ""]
 
+        # How much each parameter moved the CV score across trials; nan when Optuna can't compute it
         scores = {}
         for c in present:
             try:
