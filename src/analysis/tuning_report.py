@@ -113,8 +113,14 @@ def build_report(path=REPORT_PATH):
         present = [c for c in codes if completed.get((c, key))]
         if not present:
             continue
-        reference = studies[(present[0], key)].best_trial
-        params = list(reference.params)
+        # Every parameter used by any museum's best trial, with its search range(s);
+        # e.g. SVR only tunes gamma (rbf/poly) and degree (poly) for some kernels
+        winners = {c: studies[(c, key)].best_trial for c in present}
+        ranges = {}
+        for trial in winners.values():
+            for p, dist in trial.distributions.items():
+                ranges.setdefault(p, []).append(_range_of(dist))
+        params = list(ranges)
 
         lines += [f"## {key}", "", "### Chosen values", ""]
 
@@ -124,11 +130,9 @@ def build_report(path=REPORT_PATH):
             [
                 {
                     "Parameter": p,
-                    "Range": _range_of(reference.distributions[p]),
-                    **{
-                        c: _format(studies[(c, key)].best_trial.params.get(p, ""))
-                        for c in present
-                    },
+                    # Ranges only differ if the search space changed between museums
+                    "Range": " / ".join(dict.fromkeys(ranges[p])),
+                    **{c: _format(winners[c].params.get(p, "n/a")) for c in present},
                 }
                 for p in params
             ]
