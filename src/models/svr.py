@@ -7,6 +7,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import TimeSeriesSplit
 
 from src.models.fitted import Fitted
+from src.analysis.tuning import create_study
 from sklearn.svm import SVR
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
@@ -23,6 +24,10 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
     X_train_scaled = pd.DataFrame(scaler.fit_transform(train_data[features]), columns=train_data[features].columns, index=train_data[features].index)
     X_test_scaled = scaler.transform(test_data[features])
     y_train = train_data[target]
+
+    # Kept because train_data below is replaced by a features-only frame, which
+    # no longer carries the museum column the study name is built from
+    museum_frame = train_data
 
     # New train dataset containing scaled features
     train_data = pd.concat([X_train_scaled, y_train], axis=1)
@@ -67,7 +72,7 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
                 return float('inf')
 
         sampler = optuna.samplers.TPESampler(seed=random_state)
-        study = optuna.create_study(direction="minimize", sampler=sampler)
+        study = create_study(museum_frame, "svr", sampler)
         study.optimize(objective, n_trials=50)
         best_params = study.best_params
 

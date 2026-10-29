@@ -117,8 +117,8 @@ Ordered by eval RMSE, best first.
 
 |  |  |
 |---|---|
-| RMSE | 23.91 |
-| MAPE | 19.28% |
+| RMSE | 23.19 |
+| MAPE | 18.34% |
 
 Not scored: this model reads no feature columns, so there is nothing to permute.
 

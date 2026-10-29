@@ -7,6 +7,7 @@ from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_er
 from sklearn.model_selection import TimeSeriesSplit
 
 from src.models.fitted import Fitted
+from src.analysis.tuning import create_study
 def randomforest(train_data, test_data, eval, features, best_params=None):
     # Target the caller's feature list predicts
     target = "value"
@@ -47,7 +48,7 @@ def randomforest(train_data, test_data, eval, features, best_params=None):
 
 
         sampler = optuna.samplers.TPESampler(seed=random_state)
-        study = optuna.create_study(direction="minimize", sampler=sampler)
+        study = create_study(train_data, "rf", sampler)
         study.optimize(objective, n_trials=50)
         best_params = study.best_params
 

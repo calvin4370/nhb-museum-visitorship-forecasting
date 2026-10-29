@@ -4,6 +4,7 @@ import numpy as np
 import optuna
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
 from src.models.fitted import Fitted
+from src.analysis.tuning import create_study
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import mean_absolute_percentage_error, root_mean_squared_error
 
@@ -52,7 +53,7 @@ def hw(train_data, test_data, eval, best_params=None):
                 return float('inf')
 
         sampler = optuna.samplers.TPESampler(seed=random_state)
-        study = optuna.create_study(direction="minimize", sampler=sampler)
+        study = create_study(train_data, "hw", sampler)
         study.optimize(objective, n_trials=50)
         best_params = study.best_params
 

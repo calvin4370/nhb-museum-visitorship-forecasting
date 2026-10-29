@@ -16,6 +16,12 @@ Choices: {', '.join(MODEL_KEYS)}
 Omit to run all models.
 """
 
+regen_flag_help = """Skip all model training and rebuild the plots and summary reports from the last run's saved predictions.
+Reads data/processed/ and the per-model prediction CSVs already under outputs/, so no data is fetched and nothing is refitted.
+
+"""
+
+
 refresh_flag_help = """Re-fetch both series from the SingStat API even if the files in data/raw/ already cover the configured window.
 Omit to reuse the saved files where they do, which skips the API call entirely.
 """
@@ -46,6 +52,12 @@ def parse_args():
         default=None,
         metavar="MODEL",
         help=model_flag_help,
+    )
+    # --regen-outputs flag for redrawing outputs without retraining
+    parser.add_argument(
+        "--regen-outputs",
+        action="store_true",
+        help=regen_flag_help,
     )
 
     # --refresh / -r flag to force a new API call instead of reusing data/raw/

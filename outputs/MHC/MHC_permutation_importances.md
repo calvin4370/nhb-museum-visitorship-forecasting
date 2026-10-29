@@ -33,7 +33,7 @@ Ordered by eval RMSE, best first.
 
 |  |  |
 |---|---|
-| RMSE | 2.16 |
+| RMSE | 1.79 |
 | MAPE | * |
 
 Not scored: this model reads no feature columns, so there is nothing to permute.

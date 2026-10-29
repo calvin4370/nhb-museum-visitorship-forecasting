@@ -2,9 +2,13 @@ import sys
 
 from config import MUSEUM_CODES
 from src.cli import parse_args, resolve_museum_selection, resolve_model_selection
+from src.data.singstat_api import singstat_api
 from src.data.raw_data import load_raw_data
-from src.pipeline import run_museum_pipeline
-
+from src.pipeline import (
+    run_museum_pipeline,
+    regen_museum_outputs,
+    write_tuning_report,
+)
 
 def main():
     # Ensure that our debug statements are printed in chronological order with the library logs.
@@ -15,6 +19,15 @@ def main():
     args = parse_args()
     museums = resolve_museum_selection(args.museum) if args.museum else list(MUSEUM_CODES.keys())
     models = resolve_model_selection(args.models) if args.models else None
+
+     # Regenerate outputs/ if requested, then exit
+    if args.regen_outputs:
+        for museum in museums:
+            print(f"=== {museum} (regenerating outputs) ===")
+            regen_museum_outputs(museum)
+            print(f"=== {museum} complete ===\n")
+        write_tuning_report()
+        return
 
     # Museum visitorship and international arrivals, from data/raw/ where the saved
     # files already cover the configured window, else from the SingStat API
@@ -28,6 +41,8 @@ def main():
         print(f"=== {museum} ===")
         run_museum_pipeline(museum, visitors, arrivals, models)
         print(f"=== {museum} complete ===\n")
+
+    write_tuning_report()
 
 
 if __name__ == "__main__":
