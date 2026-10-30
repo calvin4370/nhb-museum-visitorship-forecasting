@@ -51,16 +51,16 @@ BASE_FEATURES = ["sin_month", "cos_month", "monthly_avg", "is_covid", "is_closed
     f"lag_{i}" for i in range(1, 13)
 ]
 
-# Per-museum featurelist overrides; a museum absent here uses only BASE_FEATURES as-is
+# Per-museum feature list overrides; a museum absent here uses only BASE_FEATURES as-is
 MUSEUM_FEATURES = {
-    "ACM": BASE_FEATURES
-    + ["is_nat_day_oh", "post_nat_day_oh", "prev_nat_day_oh_value"],
+    # "ACM": BASE_FEATURES
+    # + ["is_nat_day_oh", "post_nat_day_oh", "prev_nat_day_oh_value"],
 
-    "NMS": BASE_FEATURES
-    + ["is_nat_day_oh", "post_nat_day_oh", "prev_nat_day_oh_value"],
+    # "NMS": BASE_FEATURES
+    # + ["is_nat_day_oh", "post_nat_day_oh", "prev_nat_day_oh_value"],
 
-    "TPM": BASE_FEATURES
-    + ["is_snf", "post_snf", "prev_snf_value"],
+    # "TPM": BASE_FEATURES
+    # + ["is_snf", "post_snf", "prev_snf_value"],
 
     "IHC": BASE_FEATURES
     + ["is_deepavali", "is_post_deepavali", "prev_deepavali_value"],
