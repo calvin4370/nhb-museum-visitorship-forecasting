@@ -13,3 +13,4 @@ plotnine==0.14.5
 statsmodels==0.14.4
 seaborn==0.13.2
 ipykernel==7.1.0
+certifi>=2026.10.19

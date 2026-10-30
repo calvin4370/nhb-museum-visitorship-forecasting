@@ -28,7 +28,7 @@ Read [Limitations](#limitations) before using any figure for planning.
 | Monthly museum visitorship | `M891071` | forecast target (`value`) |
 | Total international visitor arrivals | `M550001` | exogenous feature (`intl_arrivals`) |
 
-Both series are fetched by `src/data/singstat_api.py`. If the saved files in `data/raw/` already cover the configured window and contain every selected museum, they are reused and no API call is made; pass `--refresh` to force a fresh fetch.
+Both series are fetched by `src/data/singstat_api.py`. If the saved files in `data/raw/` already cover the configured window and contain every selected museum, they are reused (only the rows inside the window are used, and the files themselves are left untouched) and no API call is made; pass `--refresh` to force a fresh fetch.
 
 The requested window is set by `START_YEAR`/`START_MONTH` and `END_YEAR`/`END_MONTH` in `config.py` (currently Jan 2014 – Mar 2026, monthly). Raw responses are written to `data/raw/museum_ts.csv` and `data/raw/intl_arrivals.csv` for reference.
 
@@ -281,7 +281,7 @@ Across all museums, each run also writes:
 
 ```
 outputs/
-├── tuning_report.md                            # Every Optuna study: trials, best RMSE, when it was found
+├── tuning_report.md                            # Every Optuna study: trials (and how many completed), best RMSE, when it was found, chosen values and parameter importance
 ├── tuning/{CODE}_{model}.db                    # The saved Optuna studies (gitignored)
 └── models/{CODE}/                              # Fitted models and raw permutation importances (gitignored)
     ├── {model}.joblib                          # rf, xgb, svr, hw

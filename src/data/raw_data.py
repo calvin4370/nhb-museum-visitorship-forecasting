@@ -72,17 +72,24 @@ def _load_usable(path, required):
         required (list[str]): Data Series that must be present in the file.
 
     Returns:
-        pd.DataFrame | None: The frame if it covers the window, else None.
+        pd.DataFrame | None: The frame trimmed to the window if it covers it, else None.
     """
     if not os.path.exists(path):
         _log(f"{path} not found")
         return None
 
     df = pd.read_csv(path)
+
+    # Keep only rows inside the configured window, as the saved file may span a wider range
+    # (data/raw is unchanged). Filtered first, so a series with no rows inside the window counts as absent
+    periods = pd.to_datetime(df["Reporting Period"], format="%Y %b")
+    df = df[(periods >= WINDOW_START) & (periods <= WINDOW_END)].reset_index(drop=True)
+
     problem = _why_unusable(df, path, required)
     if problem:
         _log(problem)
         return None
+
 
     _log(
         f"Found {path} ({len(_months(df))} months, {df['Data Series'].nunique()} series, "
