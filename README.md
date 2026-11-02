@@ -1,5 +1,5 @@
 # Museum Visitorship Forecasting
-Last updated on *12 Oct 2026* (results from the `test/run-pipelines-8c` run on 16 Sep 2026)
+Last updated on *30 Oct 2026* (results from the `feature/more-event-features` run on 30 Oct 2026)
 
 ## Overview
 Forecasts monthly visitorship for five National Heritage Board (NHB) museums up to 24 months ahead of training data. The forecasts are meant to serve as an additional reference point during workplan target setting.
@@ -28,7 +28,11 @@ Read [Limitations](#limitations) before using any figure for planning.
 | Monthly museum visitorship | `M891071` | forecast target (`value`) |
 | Total international visitor arrivals | `M550001` | exogenous feature (`intl_arrivals`) |
 
-Both series are fetched by `src/data/singstat_api.py`. If the saved files in `data/raw/` already cover the configured window and contain every selected museum, they are reused (only the rows inside the window are used, and the files themselves are left untouched) and no API call is made; pass `--refresh` to force a fresh fetch.
+Both series are fetched by `src/data/singstat_api.py`. If the saved files in `data/raw/` already cover the configured window and contain every selected museum, they are reused (only the rows inside the window are used, and the files themselves are left untouched) and no API call is made; pass `--refresh` to force a fresh fetch. As SingStat publishes a few months late, a fresh fetch that still does not cover the window stops the run rather than padding the missing months.
+
+Two flags change where the data comes from:
+- `--call-singstat-api` downloads both series into `data/raw/` and exits, without running the pipeline
+- `--manual-data VISITORS_CSV INTL_ARRIVALS_CSV` runs on those two files only and never calls the API. They must be in the same format as the `data/raw/` files and cover the whole window, and are trimmed to it the same way
 
 The requested window is set by `START_YEAR`/`START_MONTH` and `END_YEAR`/`END_MONTH` in `config.py` (currently Jan 2014 – Mar 2026, monthly). Raw responses are written to `data/raw/museum_ts.csv` and `data/raw/intl_arrivals.csv` for reference.
 
@@ -91,7 +95,7 @@ Run `python main.py --help` to see the available flag arguments
 ```
 usage: python main.py [-h] [--museum MUSEUM_CODE [MUSEUM_CODE ...]]
                       [--models MODEL [MODEL ...]] [--regen-outputs]
-                      [--refresh]
+                      [--refresh | --call-singstat-api | --manual-data VISITORS_CSV INTL_ARRIVALS_CSV]
 
 Run the museum visitorship forecasting pipeline.
 
@@ -111,6 +115,13 @@ options:
                         
   --refresh, -r         Re-fetch both series from the SingStat API even if the files in data/raw/ already cover the configured window.
                         Omit to reuse the saved files where they do, which skips the API call entirely.
+                        
+  --call-singstat-api   Download both series from the SingStat API into data/raw/, then exit without running the pipeline.
+                        
+  --manual-data VISITORS_CSV INTL_ARRIVALS_CSV
+                        Run on these two files only, instead of data/raw/ (the SingStat API is not called).
+                        Same format as data/raw/museum_ts.csv and data/raw/intl_arrivals.csv, covering the whole window in config.py,
+                        e.g. python main.py --manual-data data/manual/museum_ts.csv data/manual/intl_arrivals.csv
 ```
 
 <br>
@@ -138,13 +149,13 @@ visitor_forecast/
 │   │   ├── tuning.py         # Persists each Optuna study to outputs/tuning/
 │   │   └── tuning_report.py  # Summarises every saved study into outputs/tuning_report.md
 │   ├── data/
-│   │   ├── raw_data.py       # Reuses data/raw/ when it covers the window, else calls the API
+│   │   ├── raw_data.py       # Loads data/raw/ (or --manual-data files) when it covers the window, else calls the API
 │   │   └── singstat_api.py   # SingStat TableBuilder client (request chunking, throttling)
 │   ├── features/
 │   │   └── data_prep.py      # Feature engineering, train/test preparation, imputation
 │   ├── events/
 │   │   ├── event_range.py    # Loader for dated event occurrences
-│   │   ├── event_ranges/     # One CSV per event, one row per occurrence (only deepavali.csv is used as a feature so far)
+│   │   ├── event_ranges/     # One CSV per event, one row per occurrence (deepavali.csv is used for IHC; national_day.csv and singapore_night_festival.csv are built into features but switched off)
 │   │   ├── month_range.py    # Loader for fixed-calendar events
 │   │   └── month_ranges.csv  # Events that fall in the same month every year
 │   ├── models/               # The eight forecasting models, plus model_registry.py and fitted.py
@@ -176,7 +187,7 @@ visitor_forecast/
 | `MODEL_KEYS` | Which models run, and in what order. Must match the keys in `src/models/model_registry.py`. |
 | `MODEL_NAMES` | The display name each model key reports itself as in the output tables. |
 | `BASE_FEATURES` | The feature set every museum's tabular models train on. |
-| `MUSEUM_FEATURES` | Per-museum overrides of that feature set. |
+| `MUSEUM_FEATURES` | Per-museum overrides of that feature set. The ACM, NMS and TPM entries (National Day and Night Festival features) are commented out; uncomment them to switch those features on. |
 
 
 <!--
@@ -222,6 +233,8 @@ The target column is `value`, which represents monthly museum visitorship (in th
 | `is_deepavali` | `1` when Deepavali falls in that month, from `src/events/event_ranges/deepavali.csv`. 2020 and 2021 are left out of that file, as IHC was affected by COVID in both years | only IHC |
 | `is_post_deepavali` | `1` in the month right after each Deepavali month in `deepavali.csv`, `0` otherwise | only IHC |
 | `prev_deepavali_value` | On Deepavali months, visitorship at the most recent Deepavali month that was actually observed; `0` on every other month. Test and forecast months carry the last Deepavali value in their training data, since later ones would not be known yet | only IHC |
+| `is_nat_day_oh`, `post_nat_day_oh`, `prev_nat_day_oh_value` | The same three features for the National Day open house each August, from `national_day.csv`. 2020 and 2021 are left out of that file, as COVID affected both years | ACM, NMS (switched off) |
+| `is_snf`, `post_snf`, `prev_snf_value` | The same three features for the Singapore Night Festival each August, from `singapore_night_festival.csv`. Aug 2019 and Aug 2022 are left out, as TPM was closed then (2020 and 2021 had no festival) | TPM (switched off) |
 
 
 <br>
@@ -307,7 +320,7 @@ The main pipeline results summary for each museum. It opens with the branch and 
 
 ## Results
 
-From the `test/run-pipelines-8c` run on 16 Sep 2026.
+From the `feature/more-event-features` run on 30 Oct 2026. It matches the `test/run-pipelines-8c` run (16 Sep 2026) except for the LSTM, which varies between runs, and the SARIMAX forecasts, as SingStat has since revised Feb 2026 international arrivals (see [Limitations](#limitations)).
 
 ### Model Performance
 | Museum | Winning model | RMSE | MAPE | Decrease in RMSE vs `baseline` |
@@ -316,7 +329,7 @@ From the `test/run-pipelines-8c` run on 16 Sep 2026.
 | NMS | XGBoost | 16.34 | 17.40% | −55% |
 | TPM | SARIMAX | 2.93 | 17.26% | −71% |
 | IHC | SARIMAX | 3.95 | 19.52% | −55% |
-| MHC | LSTM | 1.79 | * | −78% |
+| MHC | LSTM | 1.83 | * | −78% |
 
 * For MHC, all models' MAPEs exploded during evaluation as its held out test set falls entirely within its closure from Nov 2022, where visitorship was 0 (See [Limitations](#limitations))
 
@@ -329,9 +342,9 @@ From each museum's winning model. FY runs April–March. FY total visitorship is
 | --- | --- | --- | --- |
 | ACM | 529.9 | 495.4 | 482.7 |
 | NMS | 1,056.5 | 1,042.5 | 1,007.5 |
-| TPM | 167.6 | 154.0 | 178.5 |
-| IHC | 218.2 | 218.7 | 218.9 |
-| MHC | 0.0 (closed) | 506.1 | 697.9 |
+| TPM | 167.6 | 146.7 | 167.5 |
+| IHC | 218.2 | 218.7 | 219.0 |
+| MHC | 0.0 (closed) | 539.7 | 697.8 |
 
 By museum,
 
@@ -345,8 +358,8 @@ By museum,
     <tr><td><b>Random Forest Regressor</b></td><td>7.13</td><td>13.99%</td><td>495.4</td><td>482.7</td></tr>
     <tr><td>Support Vector Regression</td><td>7.31</td><td>14.44%</td><td>475.1</td><td>472.6</td></tr>
     <tr><td>XGBoost</td><td>7.75</td><td>14.25%</td><td>491.3</td><td>492.9</td></tr>
-    <tr><td>LSTM</td><td>9.32</td><td>21.79%</td><td>470.3</td><td>458.1</td></tr>
-    <tr><td>SARIMAX</td><td>9.91</td><td>21.02%</td><td>638.3</td><td>739.5</td></tr>
+    <tr><td>LSTM</td><td>9.46</td><td>22.59%</td><td>468.3</td><td>455.7</td></tr>
+    <tr><td>SARIMAX</td><td>9.91</td><td>21.02%</td><td>638.3</td><td>739.6</td></tr>
     <tr><td>Holt-Winters exponential smoothing</td><td>10.10</td><td>16.85%</td><td>713.9</td><td>837.8</td></tr>
     <tr><td>Baseline Monthly Mean</td><td>15.85</td><td>30.54%</td><td>452.0</td><td>452.0</td></tr>
   </tbody>
@@ -363,7 +376,7 @@ By museum,
     <tr><td>Support Vector Regression</td><td>19.61</td><td>14.77%</td><td>904.8</td><td>912.3</td></tr>
     <tr><td>SARIMAX</td><td>20.07</td><td>20.48%</td><td>1,006.4</td><td>1,028.7</td></tr>
     <tr><td>Random Forest Regressor</td><td>21.68</td><td>18.90%</td><td>1,030.7</td><td>977.9</td></tr>
-    <tr><td>LSTM</td><td>23.19</td><td>18.34%</td><td>937.1</td><td>934.9</td></tr>
+    <tr><td>LSTM</td><td>23.84</td><td>19.14%</td><td>925.1</td><td>917.8</td></tr>
     <tr><td>Baseline Monthly Mean</td><td>36.40</td><td>30.13%</td><td>1,040.0</td><td>1,040.0</td></tr>
     <tr><td>Holt-Winters exponential smoothing</td><td>43.75</td><td>35.34%</td><td>1,275.8</td><td>1,375.8</td></tr>
   </tbody>
@@ -376,12 +389,12 @@ By museum,
     <tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026 ('000s)</th><th>FY2027 ('000s)</th></tr>
   </thead>
   <tbody>
-    <tr><td><b>SARIMAX</b></td><td>2.93</td><td>17.26%</td><td>154.0</td><td>178.5</td></tr>
+    <tr><td><b>SARIMAX</b></td><td>2.93</td><td>17.26%</td><td>146.7</td><td>167.5</td></tr>
     <tr><td>XGBoost</td><td>3.29</td><td>22.28%</td><td>194.9</td><td>209.1</td></tr>
     <tr><td>Support Vector Regression</td><td>3.72</td><td>19.80%</td><td>244.5</td><td>312.9</td></tr>
     <tr><td>Random Forest Regressor</td><td>4.06</td><td>21.44%</td><td>218.1</td><td>237.8</td></tr>
+    <tr><td>LSTM</td><td>5.62</td><td>38.52%</td><td>265.4</td><td>302.4</td></tr>
     <tr><td>Baseline Monthly Mean</td><td>10.17</td><td>68.14%</td><td>170.1</td><td>170.1</td></tr>
-    <tr><td>LSTM</td><td>10.85</td><td>56.23%</td><td>218.2</td><td>264.5</td></tr>
     <tr><td>Holt-Winters exponential smoothing</td><td>12.93</td><td>88.56%</td><td>166.6</td><td>171.6</td></tr>
   </tbody>
 </table>
@@ -393,11 +406,11 @@ By museum,
     <tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026 ('000s)</th><th>FY2027 ('000s)</th></tr>
   </thead>
   <tbody>
-    <tr><td><b>SARIMAX</b></td><td>3.95</td><td>19.52%</td><td>218.7</td><td>218.9</td></tr>
+    <tr><td><b>SARIMAX</b></td><td>3.95</td><td>19.52%</td><td>218.7</td><td>219.0</td></tr>
     <tr><td>Support Vector Regression</td><td>4.79</td><td>27.34%</td><td>211.2</td><td>211.5</td></tr>
     <tr><td>XGBoost</td><td>5.64</td><td>26.63%</td><td>219.9</td><td>217.7</td></tr>
     <tr><td>Random Forest Regressor</td><td>5.88</td><td>28.35%</td><td>214.1</td><td>211.5</td></tr>
-    <tr><td>LSTM</td><td>6.11</td><td>36.58%</td><td>236.4</td><td>224.7</td></tr>
+    <tr><td>LSTM</td><td>6.18</td><td>35.73%</td><td>238.2</td><td>224.5</td></tr>
     <tr><td>Holt-Winters exponential smoothing</td><td>6.19</td><td>35.66%</td><td>201.0</td><td>192.4</td></tr>
     <tr><td>Baseline Monthly Mean</td><td>8.79</td><td>33.24%</td><td>216.6</td><td>216.6</td></tr>
   </tbody>
@@ -409,7 +422,7 @@ Deepavali months for the winning model (SARIMAX). A negative difference means th
 | --- | --- | --- | --- | --- |
 | 2024-10 | 43.90 | 32.19 | -11.71 | -26.68% |
 | 2025-10 | 38.30 | 37.13 | -1.17 | -3.06% |
-| 2026-11 | -- | 30.05 | -- | -- |
+| 2026-11 | -- | 30.03 | -- | -- |
 | 2027-10 | -- | 39.26 | -- | -- |
 
 #### MHC
@@ -419,12 +432,12 @@ Deepavali months for the winning model (SARIMAX). A negative difference means th
     <tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026 ('000s)</th><th>FY2027 ('000s)</th></tr>
   </thead>
   <tbody>
-    <tr><td><b>LSTM</b></td><td>1.79</td><td>n/a</td><td>506.1</td><td>697.9</td></tr>
+    <tr><td><b>LSTM</b></td><td>1.83</td><td>n/a</td><td>539.7</td><td>697.8</td></tr>
     <tr><td>Support Vector Regression</td><td>3.75</td><td>n/a</td><td>535.2</td><td>632.5</td></tr>
     <tr><td>XGBoost</td><td>4.56</td><td>n/a</td><td>532.2</td><td>648.4</td></tr>
     <tr><td>Random Forest Regressor</td><td>4.66</td><td>n/a</td><td>433.4</td><td>631.1</td></tr>
     <tr><td>Holt-Winters exponential smoothing</td><td>4.92</td><td>n/a</td><td>-19.9</td><td>-61.3</td></tr>
-    <tr><td>SARIMAX</td><td>5.50</td><td>n/a</td><td>341.3</td><td>341.9</td></tr>
+    <tr><td>SARIMAX</td><td>5.50</td><td>n/a</td><td>340.0</td><td>339.1</td></tr>
     <tr><td>Baseline Monthly Mean</td><td>8.26</td><td>n/a</td><td>0.0</td><td>0.0</td></tr>
   </tbody>
 </table>
@@ -455,6 +468,10 @@ See `outputs/{MUSEUM_CODE}` for full results
     - TPM was closed for redevelopment from Apr 2019 to Jan 2023, reopening Feb 2023
     - MHC was closed from Nov 2022 until it reopened on 25 Apr 2026, the start of the forecast period
 - For MHC, evaluation MAPE explodes as its test set falls entirely within its closure period
+
+#### SingStat revises recent months after publishing
+- SingStat sometimes revises recently published figures. Feb 2026 international arrivals went from 1,500,996 (used in the 8c run) to 1,500,997, which moved TPM's SARIMAX forecast from 154.0 to 146.7 ('000s, FY2026)
+- To reproduce a past run exactly, run it on that run's committed `data/raw/` files rather than a fresh fetch
 
 #### Manual maintenance of input files
 - `deepavali.csv`, which contains the specific months each year when Deepavali occurs AND IHC organises a Deepavali open house (it hovers between Oct and Nov) must be extended manually. The Singaporean government only gazettes official Deepavali holiday dates 1.5-2 years in advance
