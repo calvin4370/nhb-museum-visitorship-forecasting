@@ -454,14 +454,6 @@ See `outputs/{MUSEUM_CODE}` for full results
 #### Year 2's forecast is a flattened seasonal baseline
 - As the prediction period's unknown lag features and `intl_arrivals` are filled in with historical full training period monthly means (excluding COVID from the calculations), the 2nd forecast year is made up entirely of filled-in lag features and `intl_arrivals` and will thus lead to a repeating seasonal trend (for models RF, XGBoost, SVR and LSTM)
 
-#### The 95% band on the plots is a constant, not a true prediction interval
-- The band is drawn as `Forecast ± 1.96 × std(Forecast)` (`src/visualisation/timeplot.py`), so its width is a single scalar applied to every month of the horizon
-<!--
-- It is derived from the spread of the forecast itself, not from forecast error, so a strongly seasonal forecast gets a wide band while a flat one gets a narrow band — the opposite of how confident each actually is
-- It does not widen further into the horizon, even though uncertainty grows the further ahead a forecast goes
-- Nothing ties it to residuals, so it carries no coverage guarantee and should not be read as a calibrated 95% interval. SARIMAX's own `get_forecast(...).conf_int()` is available but currently unused
--->
-
 #### Some museums have long closed periods with no visitors
 - While the historical training period used is Jan 2014 to Mar 2026, some museums were not open throughout it:
     - IHC only opened in May 2015
@@ -483,5 +475,4 @@ See `outputs/{MUSEUM_CODE}` for full results
 ## Roadmap
 - Implement TimeGPT models, .env for storing TimeGPT API keys
 - Adjust MHC's training window such that test set isn't completely 0
-- Replace the plot's confidence band with a real prediction interval
 - Trim the lag feature set to remove useless lag features
