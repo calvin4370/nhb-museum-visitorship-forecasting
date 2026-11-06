@@ -1,5 +1,5 @@
 # Museum Visitorship Forecasting
-Last updated on *30 Oct 2026* (results from the `feature/more-event-features` run on 30 Oct 2026)
+Last updated on *6 Nov 2026* (results from the `feature/more-event-features` run on 6 Nov 2026)
 
 ## Overview
 Forecasts monthly visitorship for five National Heritage Board (NHB) museums up to `h` months ahead of training data. The forecasts are meant to serve as an additional reference point during workplan target setting.
@@ -28,7 +28,7 @@ Read [Limitations](#limitations) before using any figure for planning.
 | Monthly museum visitorship | `M891071` | forecast target (`value`) |
 | Total international visitor arrivals | `M550001` | exogenous feature (`intl_arrivals`) |
 
-Both series are fetched by `src/data/singstat_api.py`. If the saved files in `data/raw/` already cover the configured window and contain every selected museum, they are reused (only the rows inside the window are used, and the files themselves are left untouched) and no API call is made; pass `--refresh` to force a fresh fetch. As SingStat publishes a few months late, a fresh fetch that still does not cover the window stops the run rather than padding the missing months.
+Both series are fetched by `src/data/singstat_api.py`. If the saved files in `data/raw/` already cover the configured window and contain every selected museum, they are reused (only the rows inside the window are used, and the files themselves are left untouched) and no API call is made; pass `--refresh` to force a fresh fetch. As SingStat publishes a few months late, a fresh fetch that still does not cover the window stops the run rather than padding the missing months. The run also stops, naming the month, if any series it uses has more than one row for the same month.
 
 Two flags change where the data comes from:
 - `--call-singstat-api` downloads both series into `data/raw/` and exits, without running the pipeline
@@ -242,6 +242,7 @@ The target column is `value`, which represents monthly museum visitorship (in th
 
 ### Pipeline
 #### Preprocessing
+- Each museum's rows are sorted oldest first before lag features and the split are built, so the order of the input files does not matter.
 - The first 12 months of every museum's history are dropped, since their lag features cannot be filled.
 - Historical visitorship data is split chronologically: the last `TEST_MONTHS` months form the test set and everything before them the training set, so every museum is tested on the same months.
 - Months with `"-"`/`NA` visitorship (when museums were closed after their first month of operation onwards) are kept and imputed with `0` where necessary, and `is_closed` is set to `1` 
@@ -321,7 +322,10 @@ The main pipeline results summary for each museum. It opens with the branch and 
 
 ## Results
 
-From the `feature/more-event-features` run on 30 Oct 2026. It matches the `test/run-pipelines-8c` run (16 Sep 2026) except for the LSTM, which varies between runs, and the SARIMAX forecasts, as SingStat has since revised Feb 2026 international arrivals (see [Limitations](#limitations)).
+From the `feature/more-event-features` run on 6 Nov 2026. It matches the `test/run-pipelines-8c` run (16 Sep 2026) except for:
+- the LSTM, which varies between runs
+- the SARIMAX forecasts, as SingStat has since revised Feb 2026 international arrivals (see [Limitations](#limitations))
+- IHC, now tested on the same last `TEST_MONTHS` months as the other museums (Jan 2024 – Mar 2026, previously Apr 2024 – Mar 2026). Retuning on its shorter training set chose a different SARIMAX order, so SVR now wins
 
 ### Model Performance
 | Museum | Winning model | RMSE | MAPE | Decrease in RMSE vs `baseline` |
@@ -329,8 +333,8 @@ From the `feature/more-event-features` run on 30 Oct 2026. It matches the `test/
 | ACM | Random Forest | 7.13 | 13.99% | −55% |
 | NMS | XGBoost | 16.34 | 17.40% | −55% |
 | TPM | SARIMAX | 2.93 | 17.26% | −71% |
-| IHC | SARIMAX | 3.95 | 19.52% | −55% |
-| MHC | LSTM | 1.83 | * | −78% |
+| IHC | SVR | 4.74 | 26.42% | −51% |
+| MHC | LSTM | 1.70 | * | −79% |
 
 * For MHC, all models' MAPEs exploded during evaluation as this run's held out test set falls entirely within its closure from Nov 2022, where visitorship was 0 (See [Limitations](#limitations))
 
@@ -344,8 +348,8 @@ From each museum's winning model. FY runs April–March. FY total visitorship is
 | ACM | 529.9 | 495.4 | 482.7 |
 | NMS | 1,056.5 | 1,042.5 | 1,007.5 |
 | TPM | 167.6 | 146.7 | 167.5 |
-| IHC | 218.2 | 218.7 | 219.0 |
-| MHC | 0.0 (closed) | 539.7 | 697.8 |
+| IHC | 218.2 | 210.2 | 210.5 |
+| MHC | 0.0 (closed) | 519.9 | 704.9 |
 
 By museum,
 
@@ -359,7 +363,7 @@ By museum,
     <tr><td><b>Random Forest Regressor</b></td><td>7.13</td><td>13.99%</td><td>495.4</td><td>482.7</td></tr>
     <tr><td>Support Vector Regression</td><td>7.31</td><td>14.44%</td><td>475.1</td><td>472.6</td></tr>
     <tr><td>XGBoost</td><td>7.75</td><td>14.25%</td><td>491.3</td><td>492.9</td></tr>
-    <tr><td>LSTM</td><td>9.46</td><td>22.59%</td><td>468.3</td><td>455.7</td></tr>
+    <tr><td>LSTM</td><td>9.62</td><td>23.47%</td><td>470.8</td><td>460.5</td></tr>
     <tr><td>SARIMAX</td><td>9.91</td><td>21.02%</td><td>638.3</td><td>739.6</td></tr>
     <tr><td>Holt-Winters exponential smoothing</td><td>10.10</td><td>16.85%</td><td>713.9</td><td>837.8</td></tr>
     <tr><td>Baseline Monthly Mean</td><td>15.85</td><td>30.54%</td><td>452.0</td><td>452.0</td></tr>
@@ -377,7 +381,7 @@ By museum,
     <tr><td>Support Vector Regression</td><td>19.61</td><td>14.77%</td><td>904.8</td><td>912.3</td></tr>
     <tr><td>SARIMAX</td><td>20.07</td><td>20.48%</td><td>1,006.4</td><td>1,028.7</td></tr>
     <tr><td>Random Forest Regressor</td><td>21.68</td><td>18.90%</td><td>1,030.7</td><td>977.9</td></tr>
-    <tr><td>LSTM</td><td>23.84</td><td>19.14%</td><td>925.1</td><td>917.8</td></tr>
+    <tr><td>LSTM</td><td>23.26</td><td>17.97%</td><td>930.7</td><td>931.1</td></tr>
     <tr><td>Baseline Monthly Mean</td><td>36.40</td><td>30.13%</td><td>1,040.0</td><td>1,040.0</td></tr>
     <tr><td>Holt-Winters exponential smoothing</td><td>43.75</td><td>35.34%</td><td>1,275.8</td><td>1,375.8</td></tr>
   </tbody>
@@ -394,7 +398,7 @@ By museum,
     <tr><td>XGBoost</td><td>3.29</td><td>22.28%</td><td>194.9</td><td>209.1</td></tr>
     <tr><td>Support Vector Regression</td><td>3.72</td><td>19.80%</td><td>244.5</td><td>312.9</td></tr>
     <tr><td>Random Forest Regressor</td><td>4.06</td><td>21.44%</td><td>218.1</td><td>237.8</td></tr>
-    <tr><td>LSTM</td><td>5.62</td><td>38.52%</td><td>265.4</td><td>302.4</td></tr>
+    <tr><td>LSTM</td><td>7.15</td><td>46.13%</td><td>251.5</td><td>285.5</td></tr>
     <tr><td>Baseline Monthly Mean</td><td>10.17</td><td>68.14%</td><td>170.1</td><td>170.1</td></tr>
     <tr><td>Holt-Winters exponential smoothing</td><td>12.93</td><td>88.56%</td><td>166.6</td><td>171.6</td></tr>
   </tbody>
@@ -407,24 +411,24 @@ By museum,
     <tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026 ('000s)</th><th>FY2027 ('000s)</th></tr>
   </thead>
   <tbody>
-    <tr><td><b>SARIMAX</b></td><td>3.95</td><td>19.52%</td><td>218.7</td><td>219.0</td></tr>
-    <tr><td>Support Vector Regression</td><td>4.79</td><td>27.34%</td><td>211.2</td><td>211.5</td></tr>
-    <tr><td>XGBoost</td><td>5.64</td><td>26.63%</td><td>219.9</td><td>217.7</td></tr>
-    <tr><td>Random Forest Regressor</td><td>5.88</td><td>28.35%</td><td>214.1</td><td>211.5</td></tr>
-    <tr><td>LSTM</td><td>6.18</td><td>35.73%</td><td>238.2</td><td>224.5</td></tr>
-    <tr><td>Holt-Winters exponential smoothing</td><td>6.19</td><td>35.66%</td><td>201.0</td><td>192.4</td></tr>
-    <tr><td>Baseline Monthly Mean</td><td>8.79</td><td>33.24%</td><td>216.6</td><td>216.6</td></tr>
+    <tr><td><b>Support Vector Regression</b></td><td>4.74</td><td>26.42%</td><td>210.2</td><td>210.5</td></tr>
+    <tr><td>SARIMAX</td><td>5.04</td><td>25.52%</td><td>212.2</td><td>215.5</td></tr>
+    <tr><td>XGBoost</td><td>5.07</td><td>23.85%</td><td>220.1</td><td>212.5</td></tr>
+    <tr><td>Random Forest Regressor</td><td>6.33</td><td>27.75%</td><td>211.1</td><td>210.3</td></tr>
+    <tr><td>Holt-Winters exponential smoothing</td><td>6.38</td><td>25.60%</td><td>228.6</td><td>239.5</td></tr>
+    <tr><td>LSTM</td><td>6.52</td><td>35.48%</td><td>234.5</td><td>221.7</td></tr>
+    <tr><td>Baseline Monthly Mean</td><td>9.77</td><td>40.23%</td><td>216.6</td><td>216.6</td></tr>
   </tbody>
 </table>
 
-Deepavali months for the winning model (SARIMAX). A negative difference means the model under-predicted.
+Deepavali months for the winning model (SVR). A negative difference means the model under-predicted.
 
 | Month | Actual | Predicted | Difference | % difference |
 | --- | --- | --- | --- | --- |
-| 2024-10 | 43.90 | 32.19 | -11.71 | -26.68% |
-| 2025-10 | 38.30 | 37.13 | -1.17 | -3.06% |
-| 2026-11 | -- | 30.03 | -- | -- |
-| 2027-10 | -- | 39.26 | -- | -- |
+| 2024-10 | 43.90 | 30.62 | -13.28 | -30.26% |
+| 2025-10 | 38.30 | 33.50 | -4.80 | -12.54% |
+| 2026-11 | -- | 31.56 | -- | -- |
+| 2027-10 | -- | 40.01 | -- | -- |
 
 #### MHC
 
@@ -433,7 +437,7 @@ Deepavali months for the winning model (SARIMAX). A negative difference means th
     <tr><th>Model</th><th>RMSE</th><th>MAPE</th><th>FY2026 ('000s)</th><th>FY2027 ('000s)</th></tr>
   </thead>
   <tbody>
-    <tr><td><b>LSTM</b></td><td>1.83</td><td>n/a</td><td>539.7</td><td>697.8</td></tr>
+    <tr><td><b>LSTM</b></td><td>1.70</td><td>n/a</td><td>519.9</td><td>704.9</td></tr>
     <tr><td>Support Vector Regression</td><td>3.75</td><td>n/a</td><td>535.2</td><td>632.5</td></tr>
     <tr><td>XGBoost</td><td>4.56</td><td>n/a</td><td>532.2</td><td>648.4</td></tr>
     <tr><td>Random Forest Regressor</td><td>4.66</td><td>n/a</td><td>433.4</td><td>631.1</td></tr>
