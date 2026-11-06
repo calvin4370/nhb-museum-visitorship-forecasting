@@ -138,7 +138,7 @@ def add_intl_arrivals(df, arrivals):
     ].copy()
     arr.rename(columns={"Value": "intl_arrivals"}, inplace=True)
     arr["intl_arrivals"] = pd.to_numeric(arr["intl_arrivals"])
-    return df.merge(arr, on="Reporting Period", how="left")
+    return df.merge(arr, on="Reporting Period", how="left", validate="many_to_one")
 
 
 def engineer_features(museum_ts, arrivals):

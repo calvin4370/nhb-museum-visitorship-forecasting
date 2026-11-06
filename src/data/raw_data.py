@@ -61,6 +61,13 @@ def _why_unusable(df, label, required):
     absent = [s for s in required if s not in set(df["Data Series"])]
     if absent:
         return f"{label} is missing {', '.join(absent)}"
+
+    # One row per series per month, or lags and the train/test split shift by a row
+    rows = df[df["Data Series"].isin(required)]
+    dupes = rows[rows.duplicated(["Data Series", "Reporting Period"], keep=False)]
+    if not dupes.empty:
+        pairs = dupes[["Data Series", "Reporting Period"]].drop_duplicates().values
+        return f"{label} has more than one row for: " + "; ".join(f"{s} {p}" for s, p in pairs)
     return None
 
 
