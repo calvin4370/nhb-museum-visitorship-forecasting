@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from config import COVID_START, COVID_END, END_YEAR, END_MONTH
+from config import COVID_START, COVID_END, END_YEAR, END_MONTH, TEST_MONTHS
 from src.events.event_range import EventRange
 
 # SingStat Table Series name
@@ -307,15 +307,21 @@ def impute_monthly_avg(df, impute_ranges, window_years=None):
 
 def prepare_eval_data(museum_ts, arrivals):
     """
-    Build an 80/20 chronological train/test split
+    Build a chronological train/test split, testing on the last TEST_MONTHS months
     """
     # Padded as prepare_predict_data does, so a museum whose data stops early still
     # splits on the same months as the rest rather than seven months earlier
     df = engineer_features(pad_to_period_end(museum_ts), arrivals)
 
-    split_point = int(len(df) * 0.8)
+    split_point = len(df) - TEST_MONTHS
     train_data = df[:split_point]
     test_data = df[split_point:]
+
+    # Tuning's three 12-month folds and the 36-month baseline need more than 36 training months
+    if len(train_data) <= 36:
+        raise ValueError(
+            f"{df['Data Series'].iloc[0]} has only {len(train_data)} training months, need more than 36"
+        )
 
     # Create monthly average feature for train and test using only train data to avoid leakage
     train_data, test_data = add_monthly_avg(train_data, test_data)

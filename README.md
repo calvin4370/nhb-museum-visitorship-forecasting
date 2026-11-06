@@ -2,7 +2,7 @@
 Last updated on *30 Oct 2026* (results from the `feature/more-event-features` run on 30 Oct 2026)
 
 ## Overview
-Forecasts monthly visitorship for five National Heritage Board (NHB) museums up to 24 months ahead of training data. The forecasts are meant to serve as an additional reference point during workplan target setting.
+Forecasts monthly visitorship for five National Heritage Board (NHB) museums up to `h` months ahead of training data. The forecasts are meant to serve as an additional reference point during workplan target setting.
 
 **Museum Scope:**
 | Code | Museum |
@@ -34,7 +34,7 @@ Two flags change where the data comes from:
 - `--call-singstat-api` downloads both series into `data/raw/` and exits, without running the pipeline
 - `--manual-data VISITORS_CSV INTL_ARRIVALS_CSV` runs on those two files only and never calls the API. They must be in the same format as the `data/raw/` files and cover the whole window, and are trimmed to it the same way
 
-The requested window is set by `START_YEAR`/`START_MONTH` and `END_YEAR`/`END_MONTH` in `config.py` (currently Jan 2014 – Mar 2026, monthly). Raw responses are written to `data/raw/museum_ts.csv` and `data/raw/intl_arrivals.csv` for reference.
+The requested window is set by `START_YEAR`/`START_MONTH` and `END_YEAR`/`END_MONTH` in `config.py` (monthly). Raw responses are written to `data/raw/museum_ts.csv` and `data/raw/intl_arrivals.csv` for reference.
 
 
 <br>
@@ -184,6 +184,7 @@ visitor_forecast/
 | `START_YEAR`/`START_MONTH`, `END_YEAR`/`END_MONTH` | The historical window requested from SingStat for training, e.g. Jan 2014 - Mar 2026 |
 | `COVID_START`, `COVID_END` | The period flagged by `is_covid`, and excluded when computing historical monthly averages. |
 | `h` | Forecast horizon in months (default 24). Forecasting starts the month after `END_YEAR`/`END_MONTH`. |
+| `TEST_MONTHS` | Length of the evaluation test set: the last `TEST_MONTHS` months of the window, the same for every museum. Each museum must still have more than 36 training months, or the run stops. |
 | `MODEL_KEYS` | Which models run, and in what order. Must match the keys in `src/models/model_registry.py`. |
 | `MODEL_NAMES` | The display name each model key reports itself as in the output tables. |
 | `BASE_FEATURES` | The feature set every museum's tabular models train on. |
@@ -242,26 +243,26 @@ The target column is `value`, which represents monthly museum visitorship (in th
 ### Pipeline
 #### Preprocessing
 - The first 12 months of every museum's history are dropped, since their lag features cannot be filled.
-- Historical visitorship data is split into a chronological `80/20` train-test split.
+- Historical visitorship data is split chronologically: the last `TEST_MONTHS` months form the test set and everything before them the training set, so every museum is tested on the same months.
 - Months with `"-"`/`NA` visitorship (when museums were closed after their first month of operation onwards) are kept and imputed with `0` where necessary, and `is_closed` is set to `1` 
     - Museums that opened later (currently only IHC, whose first month is May 2015) do not get 0s appended to fill the front of the training window
 
 
 #### Model Training
-- Models are trained on the 80% training set
+- Models are trained on the training set
 - Models which include hyperparameter tuning are validated on held out portions of the training set through 50 Optuna trials
     - All five tuned models (`hw`, `sarimax`, `svr`, `rf` and `xgb`) use the same rolling-origin validation: `TimeSeriesSplit(n_splits=3, test_size=12)`, averaging RMSE across the 3 folds
     - Each fold validates a full 12-month season, so no calendar month is over- or under-represented in the score
     - All five Optuna objective functions minimise RMSE.
     - Every study is saved to `outputs/tuning/`, and summarised across all museums in `outputs/tuning_report.md`
-- Models are evaluated on the 20% held out test set to calculate evaluation metrics e.g. RMSE, MAPE
+- Models are evaluated on the held out `TEST_MONTHS` test set to calculate evaluation metrics e.g. RMSE, MAPE
 - Tuned hyperparameters are reused to refit the final prediction models using the full 100% historical series.
 
 
 #### Forecasting
 - All surviving models are used to produce a forecast, and their predictions are output in order of their evaluation performance (best first)
-- Museums whose data ends before the configured window (e.g. MHC, closed from Nov 2022 until it reopened on 25 Apr 2026, whose SingStat series ends in Jul 2025) are padded with zero-visitor months, so every museum forecasts the same `h` months from the same starting point.
-- A `h=24` months future frame is built to facilitate predictions for each model. Known future features like `sin_month`, `cos_month` and the Deepavali flags are filled in. Lag feature values for the 1st forecasted year are filled in from the end of the training data where known.
+- Museums whose data ends before the configured window (e.g. MHC, whose SingStat series stopped during its Nov 2022 – Apr 2026 closure) are padded with zero-visitor months, so every museum forecasts the same `h` months from the same starting point.
+- An `h`-month future frame is built to facilitate predictions for each model. Known future features like `sin_month`, `cos_month` and the Deepavali flags are filled in. Lag feature values for the 1st forecasted year are filled in from the end of the training data where known.
 - COVID months (defined in `config.py`) and months where the museum was closed were excluded from the calculation of historical monthly averages (for the `monthly_avg` feature)
     - Including them dragged the averages ~14–34% below current levels and tended to make the models underpredict future visitorship
 - Museums are assumed to be open throughout the forecast period, so `is_closed` is set to `0` for all `h` months
@@ -331,7 +332,7 @@ From the `feature/more-event-features` run on 30 Oct 2026. It matches the `test/
 | IHC | SARIMAX | 3.95 | 19.52% | −55% |
 | MHC | LSTM | 1.83 | * | −78% |
 
-* For MHC, all models' MAPEs exploded during evaluation as its held out test set falls entirely within its closure from Nov 2022, where visitorship was 0 (See [Limitations](#limitations))
+* For MHC, all models' MAPEs exploded during evaluation as this run's held out test set falls entirely within its closure from Nov 2022, where visitorship was 0 (See [Limitations](#limitations))
 
 * RMSE is in thousands of visitors and is **not comparable across museums**: TPM's 2.93 and NMS's 16.34 mostly reflect that NMS is roughly six times larger. Use MAPE for cross-museum comparison.
 
@@ -455,11 +456,11 @@ See `outputs/{MUSEUM_CODE}` for full results
 - As the prediction period's unknown lag features and `intl_arrivals` are filled in with historical full training period monthly means (excluding COVID from the calculations), the 2nd forecast year is made up entirely of filled-in lag features and `intl_arrivals` and will thus lead to a repeating seasonal trend (for models RF, XGBoost, SVR and LSTM)
 
 #### Some museums have long closed periods with no visitors
-- While the historical training period used is Jan 2014 to Mar 2026, some museums were not open throughout it:
+- Some museums were not open throughout the configured window:
     - IHC only opened in May 2015
     - TPM was closed for redevelopment from Apr 2019 to Jan 2023, reopening Feb 2023
-    - MHC was closed from Nov 2022 until it reopened on 25 Apr 2026, the start of the forecast period
-- For MHC, evaluation MAPE explodes as its test set falls entirely within its closure period
+    - MHC was closed from Nov 2022 until it reopened on 25 Apr 2026
+- For MHC, evaluation MAPE explodes while its test set falls entirely within its closure period
 
 #### SingStat revises recent months after publishing
 - SingStat sometimes revises recently published figures. Feb 2026 international arrivals went from 1,500,996 (used in the 8c run) to 1,500,997, which moved TPM's SARIMAX forecast from 154.0 to 146.7 ('000s, FY2026)

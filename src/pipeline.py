@@ -10,7 +10,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from config import MUSEUM_CODES, MODEL_NAMES, h, features_for
+from config import MUSEUM_CODES, MODEL_NAMES, h, features_for, TEST_MONTHS
 from src.features.data_prep import prepare_eval_data, prepare_predict_data
 from src.visualisation.timeplot import timeplot, forecast_table, top_n_timeplot
 from src.visualisation.jj_new_plots import EVAL_DIR, PREDICT_DIR, new_timeplot, new_top_n_timeplot
@@ -357,7 +357,7 @@ def regen_museum_outputs(museum):
 
     # The eval split is positional, so it reproduces exactly from the cached frame
     eval_full = pd.read_csv(f"./data/processed/{museum_code}_eval.csv", parse_dates=["timestamp"])
-    split_point = int(len(eval_full) * 0.8)
+    split_point = len(eval_full) - TEST_MONTHS
     train_data, test_data = eval_full[:split_point], eval_full[split_point:]
 
     # Predict frame is history plus exactly h synthetic future rows on the end

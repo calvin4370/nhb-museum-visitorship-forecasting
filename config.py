@@ -30,6 +30,9 @@ COVID_END = pd.Timestamp("2023-02-13") # 13 Feb 2023 (DORSCON Green, remaining b
 # Number of months to forecast, default 2 years (i.e., 24 months)
 h = 24
 
+# Eval test set size: the last TEST_MONTHS months of the window, for every museum
+TEST_MONTHS = 27
+
 # Pretty name each model reports itself as, keyed by its short key. The eval
 # table stores only the pretty name, so regenerating outputs needs the inverse.
 MODEL_NAMES = {
