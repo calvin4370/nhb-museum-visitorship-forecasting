@@ -144,6 +144,9 @@ def add_intl_arrivals(df, arrivals):
 def engineer_features(museum_ts, arrivals):
     df = museum_ts.copy()
     df["timestamp"] = pd.to_datetime(df["Reporting Period"], format="%Y %b")
+    
+    # Lags and the train/test split go by row position, so rows must be oldest first
+    df = df.sort_values("timestamp").reset_index(drop=True)
     df.rename(columns={"Value": "value"}, inplace=True)
 
     # SingStat's API returns numeric values as JSON strings (dtype object) --
