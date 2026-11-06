@@ -32,7 +32,7 @@ Both series are fetched by `src/data/singstat_api.py`. If the saved files in `da
 
 Two flags change where the data comes from:
 - `--call-singstat-api` downloads both series into `data/raw/` and exits, without running the pipeline
-- `--manual-data VISITORS_CSV INTL_ARRIVALS_CSV` runs on those two files only and never calls the API. They must be in the same format as the `data/raw/` files and cover the whole window, and are trimmed to it the same way
+- `--manual-data VISITORS_CSV INTL_ARRIVALS_CSV` runs on those two files only and never calls the API. Give the visitorship file first and the arrivals file second, e.g. `python main.py --manual-data data/manual/museum_ts.csv data/manual/intl_arrivals.csv`. They must be in the same format as the `data/raw/` files and cover the whole window, and are trimmed to it the same way
 
 The requested window is set by `START_YEAR`/`START_MONTH` and `END_YEAR`/`END_MONTH` in `config.py` (monthly). Raw responses are written to `data/raw/museum_ts.csv` and `data/raw/intl_arrivals.csv` for reference.
 
