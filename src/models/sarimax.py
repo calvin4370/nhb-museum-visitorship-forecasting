@@ -46,6 +46,11 @@ def sarimax_model(train_data, test_data, eval, features, best_params=None):
             D = trial.suggest_int('D', 0, 1)
             Q = trial.suggest_int('Q', 0, 2)
 
+            # Optuna can suggest settings it has already tried, so reuse that trial's score rather than refitting
+            for done in trial.study.get_trials(deepcopy=False, states=[optuna.trial.TrialState.COMPLETE]):
+                if done.params == trial.params:
+                    return done.value
+
             # Rolling-origin folds, each validating a full 12-month season. Endog
             # stays unscaled -- only exog needs standardising
             tscv = TimeSeriesSplit(n_splits=3, test_size=12)
@@ -81,6 +86,8 @@ def sarimax_model(train_data, test_data, eval, features, best_params=None):
         sampler = optuna.samplers.TPESampler(seed=random_state)
         study = create_study(train_data, "sarimax", sampler)
         study.optimize(objective, n_trials=N_TRIALS)
+        distinct = len({tuple(sorted(t.params.items())) for t in study.trials})
+        print(f"  [sarimax] {len(study.trials)} trials, {distinct} distinct settings")
         best_params = study.best_params
 
     # Train the best model
