@@ -1,16 +1,16 @@
 [--------------- Summary Report (TPM) ---------------]
 Branch:    feature/more-event-features
-Generated: 6 Nov 2026 2.32pm
+Generated: 6 Nov 2026 5.21pm
 
 ======== Model Evaluation Results + Predictions ========
-Model                               RMSE   MAPE    FY2026  FY2027
-SARIMAX                             2.93   17.26%  146.7   167.5 
-XGBoost                             3.29   22.28%  194.9   209.1 
-Support Vector Regression           3.72   19.80%  244.5   312.9 
-Random Forest Regressor             4.06   21.44%  218.1   237.8 
-LSTM                                7.15   46.13%  251.5   285.5 
-Baseline Monthly Mean               10.17  68.14%  170.1   170.1 
-Holt-Winters exponential smoothing  12.93  88.56%  166.6   171.6 
+Model                               RMSE   MAPE     FY2026  FY2027
+SARIMAX                             3.51   22.85%   120.0   158.8 
+XGBoost                             3.59   24.60%   209.6   224.3 
+Support Vector Regression           3.72   19.80%   244.5   312.9 
+Random Forest Regressor             4.06   21.44%   217.9   237.2 
+LSTM                                8.33   52.54%   258.2   304.3 
+Baseline Monthly Mean               10.17  68.14%   170.1   170.1 
+Holt-Winters exponential smoothing  26.09  186.24%  150.2   128.1 
 
 
 ======== Total Visitors ('000s) by Financial Year ========
@@ -28,6 +28,6 @@ FY2022               35.1
 FY2023               172.6                 
 FY2024               170.1                 
 FY2025               167.6                 
-FY2026 (Prediction)  146.7                 
-FY2027 (Prediction)  167.5                 
+FY2026 (Prediction)  120.0                 
+FY2027 (Prediction)  158.8                 
 

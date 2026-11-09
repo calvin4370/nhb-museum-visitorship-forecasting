@@ -1,15 +1,15 @@
 [--------------- Summary Report (ACM) ---------------]
 Branch:    feature/more-event-features
-Generated: 6 Nov 2026 2.16pm
+Generated: 6 Nov 2026 4.06pm
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE   MAPE    FY2026  FY2027
-Random Forest Regressor             7.13   13.99%  495.4   482.7 
-Support Vector Regression           7.31   14.44%  475.1   472.6 
-XGBoost                             7.75   14.25%  491.3   492.9 
-LSTM                                9.62   23.47%  470.8   460.5 
-SARIMAX                             9.91   21.02%  638.3   739.6 
-Holt-Winters exponential smoothing  10.10  16.85%  713.9   837.8 
+Random Forest Regressor             7.12   13.96%  493.2   475.9 
+XGBoost                             7.22   13.63%  485.1   489.7 
+Support Vector Regression           7.34   14.45%  474.8   472.3 
+LSTM                                9.41   22.42%  468.3   457.9 
+SARIMAX                             9.65   16.44%  581.2   632.4 
+Holt-Winters exponential smoothing  13.89  24.33%  774.8   989.3 
 Baseline Monthly Mean               15.85  30.54%  452.0   452.0 
 
 
@@ -28,6 +28,6 @@ FY2022               372.8
 FY2023               424.4                 
 FY2024               401.6                 
 FY2025               529.9                 
-FY2026 (Prediction)  495.4                 
-FY2027 (Prediction)  482.7                 
+FY2026 (Prediction)  493.2                 
+FY2027 (Prediction)  475.9                 
 

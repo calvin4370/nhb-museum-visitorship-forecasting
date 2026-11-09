@@ -1,15 +1,15 @@
 [--------------- Summary Report (IHC) ---------------]
 Branch:    feature/more-event-features
-Generated: 6 Nov 2026 2.38pm
+Generated: 6 Nov 2026 5.42pm
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE  MAPE    FY2026  FY2027
-Support Vector Regression           4.74  26.42%  210.2   210.5 
+Support Vector Regression           4.83  26.96%  210.4   210.6 
 SARIMAX                             5.04  25.52%  212.2   215.5 
-XGBoost                             5.07  23.85%  220.1   212.5 
+XGBoost                             5.64  26.09%  218.3   218.2 
 Random Forest Regressor             6.33  27.75%  211.1   210.3 
 Holt-Winters exponential smoothing  6.38  25.60%  228.6   239.5 
-LSTM                                6.52  35.48%  234.5   221.7 
+LSTM                                6.57  35.99%  240.9   223.5 
 Baseline Monthly Mean               9.77  40.23%  216.6   216.6 
 
 
@@ -26,6 +26,6 @@ FY2022               148.6
 FY2023               216.2                 
 FY2024               215.3                 
 FY2025               218.2                 
-FY2026 (Prediction)  210.2                 
-FY2027 (Prediction)  210.5                 
+FY2026 (Prediction)  210.4                 
+FY2027 (Prediction)  210.6                 
 
