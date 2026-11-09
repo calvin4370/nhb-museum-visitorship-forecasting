@@ -39,14 +39,14 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
         def objective(trial, data=train_data):
             # Define hyperparameter search space
             kernel = trial.suggest_categorical('kernel', ['linear', 'rbf', 'poly'])
-            C = trial.suggest_loguniform('C', 1e-3, 1e3)
-            epsilon = trial.suggest_loguniform('epsilon', 1e-3, 1)
+            C = trial.suggest_float('C', 1e-3, 1e3, log=True)
+            epsilon = trial.suggest_float('epsilon', 1e-3, 1, log=True)
 
             # Additional parameters based on kernel
             if kernel == 'poly':
                 degree = trial.suggest_int('degree', 2, 5)
             if kernel in ['rbf', 'poly']:
-                gamma = trial.suggest_loguniform('gamma', 1e-3, 1)
+                gamma = trial.suggest_float('gamma', 1e-3, 1, log=True)
 
             # Create SVR model with trial parameters
             if kernel == 'linear':
