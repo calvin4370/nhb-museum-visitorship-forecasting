@@ -6,6 +6,7 @@ import optuna
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import TimeSeriesSplit
 
+from config import N_TRIALS
 from src.models.fitted import Fitted
 from src.analysis.tuning import create_study
 from sklearn.svm import SVR
@@ -73,7 +74,7 @@ def support_vec(train_data, test_data, eval, features, best_params=None):
 
         sampler = optuna.samplers.TPESampler(seed=random_state)
         study = create_study(museum_frame, "svr", sampler)
-        study.optimize(objective, n_trials=50)
+        study.optimize(objective, n_trials=N_TRIALS)
         best_params = study.best_params
 
     # Train the best model

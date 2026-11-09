@@ -33,6 +33,9 @@ h = 24
 # Eval test set size: the last TEST_MONTHS months of the window, for every museum
 TEST_MONTHS = 27
 
+# Optuna trials per tuned model (rf, xgb, svr, hw, sarimax)
+N_TRIALS = 50
+
 # Pretty name each model reports itself as, keyed by its short key. The eval
 # table stores only the pretty name, so regenerating outputs needs the inverse.
 MODEL_NAMES = {

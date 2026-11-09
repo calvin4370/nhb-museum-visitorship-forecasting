@@ -251,7 +251,7 @@ The target column is `value`, which represents monthly museum visitorship (in th
 
 #### Model Training
 - Models are trained on the training set
-- Models which include hyperparameter tuning are validated on held out portions of the training set through 50 Optuna trials
+- Models which include hyperparameter tuning are validated on held out portions of the training set through `N_TRIALS` Optuna trials (set in `config.py`)
     - All five tuned models (`hw`, `sarimax`, `svr`, `rf` and `xgb`) use the same rolling-origin validation: `TimeSeriesSplit(n_splits=3, test_size=12)`, averaging RMSE across the 3 folds
     - Each fold validates a full 12-month season, so no calendar month is over- or under-represented in the score
     - All five Optuna objective functions minimise RMSE.
