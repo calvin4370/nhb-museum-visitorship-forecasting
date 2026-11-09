@@ -308,7 +308,7 @@ outputs/
 
 ### `{CODE}_summary.txt`
 
-The main pipeline results summary for each museum. It opens with the branch and time it was generated, followed by two tables:
+The main pipeline results summary for each museum. It opens with the branch, the time it was generated and the run's settings from `config.py`, followed by two tables:
 
 | Table | Contents |
 | --- | --- |

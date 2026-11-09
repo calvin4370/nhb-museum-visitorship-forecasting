@@ -12,7 +12,10 @@ from datetime import datetime
 
 import pandas as pd
 
-from config import MODEL_NAMES
+from config import (
+    MODEL_NAMES, MUSEUM_CODES, START_YEAR, START_MONTH, END_YEAR, END_MONTH, TEST_MONTHS, h,
+    COVID_START, COVID_END, BASE_FEATURES, features_for,
+)
 from src.analysis.deepavali import table_lines as deepavali_table_lines
 
 
@@ -60,6 +63,37 @@ def FY_totals(df, value_col="value"):
     return df.groupby(labels)[value_col].sum().sort_index()
 
 
+def settings_lines(museum_code, first_month):
+    """
+    Returns the run's settings as aligned "Label: value" lines, shared by both reports.
+    `first_month` is the museum's first modelled month, which starts its training period.
+    """
+    start = pd.Timestamp(f"{START_YEAR} {START_MONTH}")
+    end = pd.Timestamp(f"{END_YEAR} {END_MONTH}")
+    eval_start = end - pd.DateOffset(months=TEST_MONTHS - 1)
+    train_end = eval_start - pd.DateOffset(months=1)
+    train_months = (eval_start.year - first_month.year) * 12 + eval_start.month - first_month.month
+    predict_start, predict_end = end + pd.DateOffset(months=1), end + pd.DateOffset(months=h)
+
+    # Lags listed as a range rather than twelve names
+    base = [f for f in BASE_FEATURES if not f.startswith("lag_")] + ["lag_1 - lag_12"]
+    extra = [f for f in features_for(museum_code) if f not in BASE_FEATURES]
+    full_name = next(name for name, code in MUSEUM_CODES.items() if code == museum_code)
+
+    settings = [
+        ("Data Window", f"{start:%b %Y} - {end:%b %Y}"),
+        ("Training Period", f"{first_month:%b %Y} - {train_end:%b %Y} ({train_months} months)"),
+        ("Evaluation Period", f"{eval_start:%b %Y} - {end:%b %Y} ({TEST_MONTHS} months)"),
+        ("Prediction Period", f"{predict_start:%b %Y} - {predict_end:%b %Y} ({h} months)"),
+        ("COVID Period", f"{COVID_START.day} {COVID_START:%b %Y} - {COVID_END.day} {COVID_END:%b %Y}"),
+        ("Museum", f"{full_name} ({museum_code})"),
+        ("Base Features", ", ".join(base)),
+        (f"{museum_code}-specific Features", ", ".join(extra) or "None"),
+    ]
+    width = max(len(label) for label, _ in settings) + 2
+    return [f"{label + ':':<{width}}{value}" for label, value in settings]
+
+
 # ============================================================ #
 # Summary TXT
 # ============================================================ #
@@ -82,7 +116,7 @@ def format_table(df, sep="  "):
     return "\n".join([header] + rows)
 
 
-def write_summary_txt(save_path, museum_code, eval_table, fy_table, per_model_fy_table):
+def write_summary_txt(save_path, museum_code, eval_table, fy_table, per_model_fy_table, first_month):
     """
     Writes the report file containing model evaluation results and predictions
     to a txt file at `save_path`.
@@ -103,6 +137,11 @@ def write_summary_txt(save_path, museum_code, eval_table, fy_table, per_model_fy
         lines.append(f"Branch:    {branch}")
     lines.append(f"Generated: {timestamp_now()}")
     lines.append("")
+
+    # Append the run's settings from config.py
+    lines.append("======== Run Config ========")
+    lines.extend(settings_lines(museum_code, first_month))
+    lines.append("\n")
 
     # Append Table 1: Every model's eval metrics alongside its own forecast FY totals
     lines.append("======== Model Evaluation Results + Predictions ========")
@@ -173,7 +212,7 @@ def format_html_tables_side_by_side(frames, widths=None):
     return tables + '<br clear="all">'
 
 
-def write_summary_md(save_path, museum_code, eval_table, fy_table, per_model_fy_table):
+def write_summary_md(save_path, museum_code, eval_table, fy_table, per_model_fy_table, first_month):
     """
     Writes the same report as write_summary_txt, in markdown, to `save_path`.
     """
@@ -190,6 +229,14 @@ def write_summary_md(save_path, museum_code, eval_table, fy_table, per_model_fy_
     if branch:
         lines.append(f"Branch:    {branch}")
     lines.append(f"Generated: {timestamp_now()}")
+    lines.append("```")
+    lines.append("")
+
+    # Append the run's settings from config.py in a code block
+    lines.append("### Run Config")
+    lines.append("")
+    lines.append("```")
+    lines.extend(settings_lines(museum_code, first_month))
     lines.append("```")
     lines.append("")
 

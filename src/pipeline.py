@@ -328,6 +328,7 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
         eval_table=model_eval_df_formatted.drop(columns="Institution"),
         fy_table=fy_table,
         per_model_fy_table=per_model_fy_df,
+        first_month=predict_train["timestamp"].min(),
     )
     # IHC only; returns None for every other museum
     deepavali_report = build_deepavali_report(museum_code)
@@ -340,6 +341,7 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
         eval_table=model_eval_df_formatted.drop(columns="Institution"),
         fy_table=fy_table,
         per_model_fy_table=per_model_fy_df,
+        first_month=predict_train["timestamp"].min(),
     )
 
     # Generate the permutation importance report
@@ -480,6 +482,7 @@ def regen_museum_outputs(museum):
         eval_table=eval_table.drop(columns="Institution"),
         fy_table=fy_table,
         per_model_fy_table=per_model_fy_df,
+        first_month=predict_train["timestamp"].min(),
     )
     write_summary_txt(f"./outputs/{museum_code}/{museum_code}_summary.txt", **summary_args)
     # IHC only; returns None for every other museum
