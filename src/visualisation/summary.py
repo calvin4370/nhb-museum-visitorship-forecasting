@@ -14,7 +14,7 @@ import pandas as pd
 
 from config import (
     MODEL_NAMES, MUSEUM_CODES, START_YEAR, START_MONTH, END_YEAR, END_MONTH, TEST_MONTHS, h,
-    COVID_START, COVID_END, BASE_FEATURES, features_for,
+    COVID_START, COVID_END, BASE_FEATURES, N_TRIALS, features_for,
 )
 from src.analysis.deepavali import table_lines as deepavali_table_lines
 
@@ -89,6 +89,7 @@ def settings_lines(museum_code, first_month):
         ("Museum", f"{full_name} ({museum_code})"),
         ("Base Features", ", ".join(base)),
         (f"{museum_code}-specific Features", ", ".join(extra) or "None"),
+        ("Hyperparameter Tuning", f"(Optuna, N_TRIALS={N_TRIALS})"),
     ]
     width = max(len(label) for label, _ in settings) + 2
     return [f"{label + ':':<{width}}{value}" for label, value in settings]
