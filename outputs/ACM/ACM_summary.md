@@ -2,7 +2,7 @@
 
 ```
 Branch:    feature/more-event-features
-Generated: 10 Nov 2026 10.01am
+Generated: 10 Nov 2026 11.11am
 ```
 
 ### Run Config
@@ -16,6 +16,7 @@ COVID Period:          1 Apr 2020 - 13 Feb 2023
 Museum:                Asian Civilisations Museum (ACM)
 Base Features:         sin_month, cos_month, monthly_avg, is_covid, is_closed, intl_arrivals, lag_1 - lag_12
 ACM-specific Features: None
+Hyperparameter Tuning: (Optuna, N_TRIALS=50)
 ```
 
 ### Model Evaluation Results + Predictions

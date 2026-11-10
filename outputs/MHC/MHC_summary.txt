@@ -1,6 +1,6 @@
 [--------------- Summary Report (MHC) ---------------]
 Branch:    feature/more-event-features
-Generated: 10 Nov 2026 10.34am
+Generated: 10 Nov 2026 11.11am
 
 ======== Run Config ========
 Data Window:           Jan 2014 - Mar 2026
@@ -11,6 +11,7 @@ COVID Period:          1 Apr 2020 - 13 Feb 2023
 Museum:                Malay Heritage Centre (MHC)
 Base Features:         sin_month, cos_month, monthly_avg, is_covid, is_closed, intl_arrivals, lag_1 - lag_12
 MHC-specific Features: None
+Hyperparameter Tuning: (Optuna, N_TRIALS=50)
 
 
 ======== Model Evaluation Results + Predictions ========
@@ -20,7 +21,7 @@ Support Vector Regression           3.75  1352406504016321280.00%  535.2   632.5
 XGBoost                             4.56  1695836034043691520.00%  532.2   648.4 
 Random Forest Regressor             4.66  2096411149748996864.00%  433.4   631.1 
 Holt-Winters exponential smoothing  5.41  2032612101293885696.00%  -13.3   -50.5 
-SARIMAX                             5.50  2098751591138895616.00%  340.0   339.1 
+SARIMAX                             5.5   2098751591138895616.00%  340.0   339.1 
 Baseline Monthly Mean               8.26  3450535714501395456.00%  0.0     0.0   
 
 
