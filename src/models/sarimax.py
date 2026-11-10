@@ -156,7 +156,7 @@ def sarimax_model(train_data, test_data, eval, features, best_params=None):
 
     # Exog is standardised, so raw rows are scaled before being forecast on
     def predict_exog(X):
-        exog = pd.DataFrame(scaler.transform(X[features]), columns=features, index=monthly_index(X))
+        exog = scaler.transform(X[features])
         return best_model_fitted.get_forecast(steps=len(X), exog=exog).predicted_mean.values
 
     return model_eval, test_data["Forecast"], best_params, Fitted(best_model_fitted, predict_exog)
