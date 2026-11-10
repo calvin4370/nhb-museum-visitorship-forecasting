@@ -1,16 +1,27 @@
 [--------------- Summary Report (IHC) ---------------]
 Branch:    feature/more-event-features
-Generated: 6 Nov 2026 2.38pm
+Generated: 10 Nov 2026 10.24am
+
+======== Run Config ========
+Data Window:           Jan 2014 - Mar 2026
+Training Period:       May 2016 - Dec 2023 (92 months)
+Evaluation Period:     Jan 2024 - Mar 2026 (27 months)
+Prediction Period:     Apr 2026 - Mar 2028 (24 months)
+COVID Period:          1 Apr 2020 - 13 Feb 2023
+Museum:                Indian Heritage Centre (IHC)
+Base Features:         sin_month, cos_month, monthly_avg, is_covid, is_closed, intl_arrivals, lag_1 - lag_12
+IHC-specific Features: is_deepavali, is_post_deepavali, prev_deepavali_value
+
 
 ======== Model Evaluation Results + Predictions ========
-Model                               RMSE  MAPE    FY2026  FY2027
-Support Vector Regression           4.74  26.42%  210.2   210.5 
-SARIMAX                             5.04  25.52%  212.2   215.5 
-XGBoost                             5.07  23.85%  220.1   212.5 
-Random Forest Regressor             6.33  27.75%  211.1   210.3 
-Holt-Winters exponential smoothing  6.38  25.60%  228.6   239.5 
-LSTM                                6.52  35.48%  234.5   221.7 
-Baseline Monthly Mean               9.77  40.23%  216.6   216.6 
+Model                               RMSE   MAPE    FY2026  FY2027
+Support Vector Regression           4.74   26.42%  210.2   210.5 
+SARIMAX                             5.04   25.52%  212.2   215.5 
+XGBoost                             5.07   23.85%  220.1   212.5 
+Random Forest Regressor             6.33   27.75%  211.1   210.3 
+LSTM                                6.59   34.34%  235.5   221.9 
+Baseline Monthly Mean               9.77   40.23%  216.6   216.6 
+Holt-Winters exponential smoothing  10.30  43.38%  196.5   183.1 
 
 
 ======== Total Visitors ('000s) by Financial Year ========

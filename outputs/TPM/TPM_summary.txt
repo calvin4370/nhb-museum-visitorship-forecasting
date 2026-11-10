@@ -1,6 +1,17 @@
 [--------------- Summary Report (TPM) ---------------]
 Branch:    feature/more-event-features
-Generated: 6 Nov 2026 2.32pm
+Generated: 10 Nov 2026 10.16am
+
+======== Run Config ========
+Data Window:           Jan 2014 - Mar 2026
+Training Period:       Jan 2015 - Dec 2023 (108 months)
+Evaluation Period:     Jan 2024 - Mar 2026 (27 months)
+Prediction Period:     Apr 2026 - Mar 2028 (24 months)
+COVID Period:          1 Apr 2020 - 13 Feb 2023
+Museum:                Peranakan Museum (TPM)
+Base Features:         sin_month, cos_month, monthly_avg, is_covid, is_closed, intl_arrivals, lag_1 - lag_12
+TPM-specific Features: None
+
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE   MAPE    FY2026  FY2027
@@ -8,9 +19,9 @@ SARIMAX                             2.93   17.26%  146.7   167.5
 XGBoost                             3.29   22.28%  194.9   209.1 
 Support Vector Regression           3.72   19.80%  244.5   312.9 
 Random Forest Regressor             4.06   21.44%  218.1   237.8 
-LSTM                                7.15   46.13%  251.5   285.5 
+Holt-Winters exponential smoothing  9.27   63.49%  154.2   139.2 
+LSTM                                9.90   57.22%  239.9   291.0 
 Baseline Monthly Mean               10.17  68.14%  170.1   170.1 
-Holt-Winters exponential smoothing  12.93  88.56%  166.6   171.6 
 
 
 ======== Total Visitors ('000s) by Financial Year ========
