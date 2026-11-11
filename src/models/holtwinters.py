@@ -3,6 +3,7 @@ import numpy as np
 
 import optuna
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
+from config import N_TRIALS
 from src.models.fitted import Fitted
 from src.analysis.tuning import create_study
 from sklearn.model_selection import TimeSeriesSplit
@@ -27,9 +28,11 @@ def hw(train_data, test_data, eval, best_params=None):
                 'smoothing_seasonal': trial.suggest_float('smoothing_seasonal', 0, 1)
             }
 
-            # Define the trend type
-            trend = trial.suggest_categorical('trend', ['add','mul'])
-            seasonal = trial.suggest_categorical('seasonal', ['add','mul'])
+            # Define the trend type. Multiplicative trend and seasonality need strictly
+            # positive data, so they are only offered when no month is zero
+            options = ['add', 'mul'] if (data > 0).all() else ['add']
+            trend = trial.suggest_categorical('trend', options)
+            seasonal = trial.suggest_categorical('seasonal', options)
 
             # Rolling-origin folds, each validating a full 12-month season
             tscv = TimeSeriesSplit(n_splits=3, test_size=12)
@@ -50,11 +53,14 @@ def hw(train_data, test_data, eval, best_params=None):
                 return np.mean(errors)
 
             except Exception as e:
+                print(f"  [hw] trial {trial.number} failed: {type(e).__name__}: {e}")
                 return float('inf')
 
         sampler = optuna.samplers.TPESampler(seed=random_state)
         study = create_study(train_data, "hw", sampler)
-        study.optimize(objective, n_trials=50)
+        study.optimize(objective, n_trials=N_TRIALS)
+        if not np.isfinite(study.best_value):
+            raise RuntimeError("Holt-Winters: no tuning trial produced a usable score")
         best_params = study.best_params
 
     # Extract trend/seasonal from best_params as they are constructor args, not .fit()

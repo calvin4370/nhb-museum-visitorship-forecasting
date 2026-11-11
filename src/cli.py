@@ -24,6 +24,16 @@ Reads data/processed/ and the per-model prediction CSVs already under outputs/, 
 
 refresh_flag_help = """Re-fetch both series from the SingStat API even if the files in data/raw/ already cover the configured window.
 Omit to reuse the saved files where they do, which skips the API call entirely.
+
+"""
+
+call_api_flag_help = """Download both series from the SingStat API into data/raw/, then exit without running the pipeline.
+
+"""
+
+manual_data_flag_help = """Run on these two files only, instead of data/raw/ (the SingStat API is not called).
+Same format as data/raw/museum_ts.csv and data/raw/intl_arrivals.csv, covering the whole window in config.py,
+e.g. python main.py --manual-data data/manual/museum_ts.csv data/manual/intl_arrivals.csv
 """
 
 def parse_args():
@@ -60,11 +70,32 @@ def parse_args():
         help=regen_flag_help,
     )
 
+    # Prevent the following added flags: 
+    # --refresh, --call-singstat-api, and --manual-data
+    # from being used together, since they are mutually exclusive. 
+    data_source_flags = parser.add_mutually_exclusive_group()
+
     # --refresh / -r flag to force a new API call instead of reusing data/raw/
-    parser.add_argument(
+    data_source_flags.add_argument(
         "--refresh", "-r",
         action="store_true",
         help=refresh_flag_help,
+    )
+
+    # --call-singstat-api flag for updating data/raw/ from SingStat
+    data_source_flags.add_argument(
+        "--call-singstat-api",
+        action="store_true",
+        help=call_api_flag_help,
+    )
+
+    # --manual-data flag for running on manually supplied files instead of data/raw/
+    data_source_flags.add_argument(
+        "--manual-data",
+        nargs=2,
+        metavar=("VISITORS_CSV", "INTL_ARRIVALS_CSV"),
+        default=None,
+        help=manual_data_flag_help,
     )
     return parser.parse_args()
 

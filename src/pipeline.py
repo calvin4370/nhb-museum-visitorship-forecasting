@@ -10,7 +10,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from config import MUSEUM_CODES, MODEL_NAMES, h, features_for
+from config import MUSEUM_CODES, MODEL_NAMES, h, features_for, TEST_MONTHS
 from src.features.data_prep import prepare_eval_data, prepare_predict_data
 from src.visualisation.timeplot import timeplot, forecast_table, top_n_timeplot
 from src.visualisation.jj_new_plots import EVAL_DIR, PREDICT_DIR, new_timeplot, new_top_n_timeplot
@@ -328,6 +328,7 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
         eval_table=model_eval_df_formatted.drop(columns="Institution"),
         fy_table=fy_table,
         per_model_fy_table=per_model_fy_df,
+        first_month=predict_train["timestamp"].min(),
     )
     # IHC only; returns None for every other museum
     deepavali_report = build_deepavali_report(museum_code)
@@ -340,6 +341,7 @@ def run_museum_pipeline(museum, visitors, arrivals, models=None):
         eval_table=model_eval_df_formatted.drop(columns="Institution"),
         fy_table=fy_table,
         per_model_fy_table=per_model_fy_df,
+        first_month=predict_train["timestamp"].min(),
     )
 
     # Generate the permutation importance report
@@ -357,7 +359,7 @@ def regen_museum_outputs(museum):
 
     # The eval split is positional, so it reproduces exactly from the cached frame
     eval_full = pd.read_csv(f"./data/processed/{museum_code}_eval.csv", parse_dates=["timestamp"])
-    split_point = int(len(eval_full) * 0.8)
+    split_point = len(eval_full) - TEST_MONTHS
     train_data, test_data = eval_full[:split_point], eval_full[split_point:]
 
     # Predict frame is history plus exactly h synthetic future rows on the end
@@ -480,6 +482,7 @@ def regen_museum_outputs(museum):
         eval_table=eval_table.drop(columns="Institution"),
         fy_table=fy_table,
         per_model_fy_table=per_model_fy_df,
+        first_month=predict_train["timestamp"].min(),
     )
     write_summary_txt(f"./outputs/{museum_code}/{museum_code}_summary.txt", **summary_args)
     # IHC only; returns None for every other museum

@@ -33,7 +33,7 @@ Ordered by eval RMSE, best first.
 
 |  |  |
 |---|---|
-| RMSE | 1.79 |
+| RMSE | 1.98 |
 | MAPE | * |
 
 Not scored: this model reads no feature columns, so there is nothing to permute.
@@ -106,7 +106,7 @@ Not scored: this model reads no feature columns, so there is nothing to permute.
 
 |  |  |
 |---|---|
-| RMSE | 4.92 |
+| RMSE | 5.41 |
 | MAPE | * |
 
 Not scored: this model reads no feature columns, so there is nothing to permute.

@@ -1,20 +1,32 @@
 [--------------- Summary Report (IHC) ---------------]
-Branch:    test/run-pipelines-8c
-Generated: 16 Sep 2026 12.34pm
+Branch:    feature/more-event-features
+Generated: 10 Nov 2026 11.11am
+
+======== Run Config ========
+Data Window:           Jan 2014 - Mar 2026
+Training Period:       May 2016 - Dec 2023 (92 months)
+Evaluation Period:     Jan 2024 - Mar 2026 (27 months)
+Prediction Period:     Apr 2026 - Mar 2028 (24 months)
+COVID Period:          1 Apr 2020 - 13 Feb 2023
+Museum:                Indian Heritage Centre (IHC)
+Base Features:         sin_month, cos_month, monthly_avg, is_covid, is_closed, intl_arrivals, lag_1 - lag_12
+IHC-specific Features: is_deepavali, is_post_deepavali, prev_deepavali_value
+Hyperparameter Tuning: (Optuna, N_TRIALS=50)
+
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE  MAPE    FY2026  FY2027
-SARIMAX                             3.95  19.52%  218.7   218.9 
-Support Vector Regression           4.79  27.34%  211.2   211.5 
-XGBoost                             5.64  26.63%  219.9   217.7 
-Random Forest Regressor             5.88  28.35%  214.1   211.5 
-LSTM                                6.11  36.58%  236.4   224.7 
-Holt-Winters exponential smoothing  6.19  35.66%  201.0   192.4 
-Baseline Monthly Mean               8.79  33.24%  216.6   216.6 
+Support Vector Regression           4.74  26.42%  210.2   210.5 
+SARIMAX                             5.04  25.52%  212.2   215.5 
+XGBoost                             5.07  23.85%  220.1   212.5 
+Random Forest Regressor             6.33  27.75%  211.1   210.3 
+LSTM                                6.59  34.34%  235.5   221.9 
+Baseline Monthly Mean               9.77  40.23%  216.6   216.6 
+Holt-Winters exponential smoothing  10.3  43.38%  196.5   183.1 
 
 
 ======== Total Visitors ('000s) by Financial Year ========
-(SARIMAX)
+(Support Vector Regression)
 FY                   Total Visitors ('000s)
 FY2016               138.9                 
 FY2017               185.5                 
@@ -26,6 +38,6 @@ FY2022               148.6
 FY2023               216.2                 
 FY2024               215.3                 
 FY2025               218.2                 
-FY2026 (Prediction)  218.7                 
-FY2027 (Prediction)  218.9                 
+FY2026 (Prediction)  210.2                 
+FY2027 (Prediction)  210.5                 
 

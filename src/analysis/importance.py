@@ -11,7 +11,14 @@ FEATURE_GROUPS = {
     "calendar": lambda f: [c for c in f if c in ("sin_month", "cos_month")],
     "seasonal_level": lambda f: [c for c in f if c == "monthly_avg"],
     "regime_flags": lambda f: [c for c in f if c in ("is_covid", "is_closed")],
-    "events": lambda f: [c for c in f if c == "is_deepavali"],
+    "events": lambda f: [
+        c for c in f
+        if c in (
+            "is_deepavali", "is_post_deepavali", "prev_deepavali_value",
+            "is_nat_day_oh", "post_nat_day_oh", "prev_nat_day_oh_value",
+            "is_snf", "post_snf", "prev_snf_value",
+        )
+    ],
     "exogenous": lambda f: [c for c in f if c == "intl_arrivals"],
 }
 

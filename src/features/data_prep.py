@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from config import COVID_START, COVID_END, END_YEAR, END_MONTH
+from config import COVID_START, COVID_END, END_YEAR, END_MONTH, TEST_MONTHS
 from src.events.event_range import EventRange
 
 # SingStat Table Series name
@@ -9,6 +9,13 @@ INTL_ARRIVALS_SERIES = "Total International Visitor Arrivals By Place Of Residen
 
 # Last month of the configured data window, the anchor every museum forecasts on from
 PERIOD_END = pd.to_datetime(f"{END_YEAR} {END_MONTH}", format="%Y %b")
+
+# (event flag, previous-occurrence value) pairs, each filled by add_prev_event_value
+EVENT_VALUE_FEATURES = [
+    ("is_deepavali", "prev_deepavali_value"),
+    ("is_nat_day_oh", "prev_nat_day_oh_value"),
+    ("is_snf", "prev_snf_value"),
+]
 
 
 class ImputeRange:
@@ -107,8 +114,17 @@ def add_event_features(df):
         pd.DataFrame: The same frame with one indicator column per event.
     """
     # Computed for every museum; the per-museum feature list decides who uses them
+    # Deepavali
     df = add_event_flag(df=df, event_stem="deepavali", col="is_deepavali")
     df = add_post_event_flag(df=df, event_stem="deepavali", col="is_post_deepavali")
+
+    # National Day
+    df = add_event_flag(df=df, event_stem="national_day", col="is_nat_day_oh")
+    df = add_post_event_flag(df=df, event_stem="national_day", col="post_nat_day_oh")
+
+    # Singapore Night Festival
+    df = add_event_flag(df=df, event_stem="singapore_night_festival", col="is_snf")
+    df = add_post_event_flag(df=df, event_stem="singapore_night_festival", col="post_snf")
     return df
 
 
@@ -122,12 +138,15 @@ def add_intl_arrivals(df, arrivals):
     ].copy()
     arr.rename(columns={"Value": "intl_arrivals"}, inplace=True)
     arr["intl_arrivals"] = pd.to_numeric(arr["intl_arrivals"])
-    return df.merge(arr, on="Reporting Period", how="left")
+    return df.merge(arr, on="Reporting Period", how="left", validate="many_to_one")
 
 
 def engineer_features(museum_ts, arrivals):
     df = museum_ts.copy()
     df["timestamp"] = pd.to_datetime(df["Reporting Period"], format="%Y %b")
+    
+    # Lags and the train/test split go by row position, so rows must be oldest first
+    df = df.sort_values("timestamp").reset_index(drop=True)
     df.rename(columns={"Value": "value"}, inplace=True)
 
     # SingStat's API returns numeric values as JSON strings (dtype object) --
@@ -211,28 +230,36 @@ def add_monthly_avg(train_data, test_data):
     return train_data, test_data
 
 
-def add_prev_deepavali_value(train_data, test_data):
-    """Value at the most recent Deepavali month that was actually observed.
+def add_prev_event_value(train_data, test_data, flag_col, value_col):
+    """Give each event month the visitorship of the event's previous occurrence.
 
-    Only train rows are observed, so every test row carries the last Deepavali
-    value from train -- a forecast standing at the end of train could know no
-    more than that. Non-Deepavali rows carry 0.
+    In train, each event month gets the value of the event month before it (0 for
+    the first). Only train rows are observed, so every test row carries the last event
+    value from train. Non-event rows will get 0 for value_col.
+
+    Args:
+        train_data (pd.DataFrame): Observed rows, with 'value' and `flag_col`.
+        test_data (pd.DataFrame): Rows to forecast, with `flag_col`.
+        flag_col (str): The event's 0/1 indicator column, e.g. "is_deepavali".
+        value_col (str): Name of the column to add, e.g. "prev_deepavali_value".
+
+    Returns:
+        tuple[pd.DataFrame, pd.DataFrame]: train_data and test_data with `value_col` added.
     """
     train_data = train_data.copy()
     test_data = test_data.copy()
 
-    # Only use observed Deepavali months to avoid leakage
+    # Only use observed event months to avoid leakage
     # Shift to get the previous one
-    observed = train_data["value"].where(train_data["is_deepavali"] == 1)
-    train_data["prev_deepavali_value"] = (
-        observed.shift(1).ffill().fillna(0) * train_data["is_deepavali"]
+    observed = train_data["value"].where(train_data[flag_col] == 1)
+    train_data[value_col] = (
+        observed.shift(1).ffill().fillna(0) * train_data[flag_col]
     )
 
-    # For test rows, the last Deepavali value observed in train is the only one that can be known
-    # NOTE: This means the test rows miss 2024's huge 43.9 deepavali peak
+    # For test rows, the last event value observed in train is the only one that can be known
     seen = observed.dropna()
     last_value = float(seen.iloc[-1]) if len(seen) else 0.0
-    test_data["prev_deepavali_value"] = last_value * test_data["is_deepavali"]
+    test_data[value_col] = last_value * test_data[flag_col]
 
     return train_data, test_data
 
@@ -283,21 +310,28 @@ def impute_monthly_avg(df, impute_ranges, window_years=None):
 
 def prepare_eval_data(museum_ts, arrivals):
     """
-    Build an 80/20 chronological train/test split
+    Build a chronological train/test split, testing on the last TEST_MONTHS months
     """
     # Padded as prepare_predict_data does, so a museum whose data stops early still
     # splits on the same months as the rest rather than seven months earlier
     df = engineer_features(pad_to_period_end(museum_ts), arrivals)
 
-    split_point = int(len(df) * 0.8)
+    split_point = len(df) - TEST_MONTHS
     train_data = df[:split_point]
     test_data = df[split_point:]
+
+    # Tuning's three 12-month folds and the 36-month baseline need more than 36 training months
+    if len(train_data) <= 36:
+        raise ValueError(
+            f"{df['Data Series'].iloc[0]} has only {len(train_data)} training months, need more than 36"
+        )
 
     # Create monthly average feature for train and test using only train data to avoid leakage
     train_data, test_data = add_monthly_avg(train_data, test_data)
 
-    # Create previous Deepavali value feature for train and test using only train data to avoid leakage
-    train_data, test_data = add_prev_deepavali_value(train_data, test_data)
+    # Create previous event value features for train and test using only train data to avoid leakage
+    for flag_col, value_col in EVENT_VALUE_FEATURES:
+        train_data, test_data = add_prev_event_value(train_data, test_data, flag_col, value_col)
 
     # full_data needs to be recreated from train_data and test_data to keep the added monthly_avg
     full_data = pd.concat([train_data, test_data], ignore_index=True)
@@ -383,9 +417,10 @@ def prepare_predict_data(museum_ts, arrivals, h):
 
     full_data, future_frame = add_monthly_avg(full_data, future_frame)
 
-    # Create previous Deepavali value feature for full_data and future_frame 
+    # Create previous event value features for full_data and future_frame
     # using only full_data to avoid leakage
-    full_data, future_frame = add_prev_deepavali_value(full_data, future_frame)
+    for flag_col, value_col in EVENT_VALUE_FEATURES:
+        full_data, future_frame = add_prev_event_value(full_data, future_frame, flag_col, value_col)
 
     # Impute missing lag features with monthly averages
     # Note: Decision made to impute missing lag features with monthly averages 

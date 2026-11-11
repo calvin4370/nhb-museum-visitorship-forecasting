@@ -1,6 +1,18 @@
 [--------------- Summary Report (NMS) ---------------]
-Branch:    test/run-pipelines-8c
-Generated: 16 Sep 2026 12.19pm
+Branch:    feature/more-event-features
+Generated: 10 Nov 2026 11.11am
+
+======== Run Config ========
+Data Window:           Jan 2014 - Mar 2026
+Training Period:       Jan 2015 - Dec 2023 (108 months)
+Evaluation Period:     Jan 2024 - Mar 2026 (27 months)
+Prediction Period:     Apr 2026 - Mar 2028 (24 months)
+COVID Period:          1 Apr 2020 - 13 Feb 2023
+Museum:                National Museum Of Singapore (NMS)
+Base Features:         sin_month, cos_month, monthly_avg, is_covid, is_closed, intl_arrivals, lag_1 - lag_12
+NMS-specific Features: None
+Hyperparameter Tuning: (Optuna, N_TRIALS=50)
+
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE   MAPE    FY2026   FY2027 
@@ -8,9 +20,9 @@ XGBoost                             16.34  17.40%  1,042.5  1,007.5
 Support Vector Regression           19.61  14.77%  904.8    912.3  
 SARIMAX                             20.07  20.48%  1,006.4  1,028.7
 Random Forest Regressor             21.68  18.90%  1,030.7  977.9  
-LSTM                                23.19  18.34%  937.1    934.9  
-Baseline Monthly Mean               36.40  30.13%  1,040.0  1,040.0
-Holt-Winters exponential smoothing  43.75  35.34%  1,275.8  1,375.8
+LSTM                                23.72  18.70%  923.0    920.9  
+Baseline Monthly Mean               36.4   30.13%  1,040.0  1,040.0
+Holt-Winters exponential smoothing  44.2   38.37%  1,205.8  1,349.4
 
 
 ======== Total Visitors ('000s) by Financial Year ========

@@ -1,15 +1,27 @@
 [--------------- Summary Report (ACM) ---------------]
-Branch:    test/run-pipelines-8c
-Generated: 16 Sep 2026 12.09pm
+Branch:    feature/more-event-features
+Generated: 10 Nov 2026 11.11am
+
+======== Run Config ========
+Data Window:           Jan 2014 - Mar 2026
+Training Period:       Jan 2015 - Dec 2023 (108 months)
+Evaluation Period:     Jan 2024 - Mar 2026 (27 months)
+Prediction Period:     Apr 2026 - Mar 2028 (24 months)
+COVID Period:          1 Apr 2020 - 13 Feb 2023
+Museum:                Asian Civilisations Museum (ACM)
+Base Features:         sin_month, cos_month, monthly_avg, is_covid, is_closed, intl_arrivals, lag_1 - lag_12
+ACM-specific Features: None
+Hyperparameter Tuning: (Optuna, N_TRIALS=50)
+
 
 ======== Model Evaluation Results + Predictions ========
 Model                               RMSE   MAPE    FY2026  FY2027
 Random Forest Regressor             7.13   13.99%  495.4   482.7 
 Support Vector Regression           7.31   14.44%  475.1   472.6 
 XGBoost                             7.75   14.25%  491.3   492.9 
-LSTM                                9.32   21.79%  470.3   458.1 
-SARIMAX                             9.91   21.02%  638.3   739.5 
-Holt-Winters exponential smoothing  10.10  16.85%  713.9   837.8 
+LSTM                                9.75   23.69%  467.3   454.5 
+SARIMAX                             9.91   21.02%  638.3   739.6 
+Holt-Winters exponential smoothing  12.04  21.03%  728.0   883.1 
 Baseline Monthly Mean               15.85  30.54%  452.0   452.0 
 
 
